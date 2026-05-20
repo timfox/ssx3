@@ -17,9 +17,14 @@ bool run_native_gfx_session(const RendererConfig& config,
                             const std::string& disc_root,
                             bool boot_videos,
                             bool run_demo_after) {
+    RendererConfig session = config;
+    if (run_demo_after) {
+        session.upscale = UpscaleBackend::Direct;
+    }
+
     std::unique_ptr<Renderer, decltype(&destroy_renderer)> renderer(create_vulkan_renderer(),
                                                                    destroy_renderer);
-    if (!renderer || !renderer->init(config)) {
+    if (!renderer || !renderer->init(session)) {
         return false;
     }
 

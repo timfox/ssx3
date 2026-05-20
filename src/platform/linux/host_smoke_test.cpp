@@ -1,9 +1,12 @@
+#include "platform/host_big.h"
 #include "platform/host_disc.h"
 
 #include <iostream>
 
 int tHashName32_getHashValue(unsigned int* out, char* str);
 int GetHashValue32(char* str);
+void BXsrand(unsigned int seed);
+void BXrand();
 
 namespace host {
 
@@ -20,15 +23,37 @@ bool expect_hash32(const char* label, const char* input, unsigned int expected) 
     return ok;
 }
 
+bool smoke_big_audio() {
+    auto* archive = big_open_cached("data/audio/audio.big");
+    if (!archive) {
+        std::cout << "[fail]    BIG open data/audio/audio.big\n";
+        return false;
+    }
+    const BigEntry* entry = big_locate(*archive, "data\\audio\\BC_AmbLoop1.bnk");
+    if (!entry || entry->size == 0) {
+        std::cout << "[fail]    BIG_locate BC_AmbLoop1.bnk\n";
+        return false;
+    }
+    std::cout << "[ok]      BIG audio.big: " << archive->entries.size() << " files, BC_AmbLoop1 @ 0x"
+              << std::hex << entry->offset << " size=" << std::dec << entry->size << '\n';
+    return true;
+}
+
+bool smoke_bxrandom() {
+    BXsrand(1u);
+    BXrand();
+    BXrand();
+    std::cout << "[ok]      bxrandom BXsrand/BXrand (decompiled + host BSS)\n";
+    return true;
+}
+
 } // namespace
 
 bool run_smoke_tests() {
     std::cout << "host smoke tests (decompiled C on Linux)\n";
 
     bool ok = true;
-    // Empty string: hash stays 0.
     ok = expect_hash32("empty", "", 0u) && ok;
-    // "a" -> (0 << 4) + 97 = 97
     ok = expect_hash32("a", "a", 97u) && ok;
 
     const auto bootElf = disc().resolve_ps2_path("cdrom0:\\SLUS_207.72;1");
@@ -45,6 +70,9 @@ bool run_smoke_tests() {
     } else {
         std::cout << "[ok]      disc/data entries: " << dataChildren.size() << '\n';
     }
+
+    ok = smoke_big_audio() && ok;
+    ok = smoke_bxrandom() && ok;
 
     return ok;
 }

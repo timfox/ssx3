@@ -11,7 +11,9 @@ repo and must not be committed.
 python3 scripts/extract_menu_assets.py --disc disc
 ```
 
-Output: `assets/host/menu/ssx3_logo.png`, `fe_fe_1.png`, etc.
+Output for the title screen: `title_logo.png`, `title_mountain.png` (plus optional
+`ui_*.png` previews). The in-game icy logo comes from `ui/fe_1.ssh` → `ssxt`, not
+`splash.ssh`.
 
 ## Verify nothing is tracked
 

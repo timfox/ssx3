@@ -182,10 +182,12 @@ void VulkanMenuGpu::screen_to_ndc(float sx,
                                   float sh,
                                   VkExtent2D extent,
                                   float out[8]) const {
-    const float x0 = (sx / static_cast<float>(extent.width)) * 2.0f - 1.0f;
-    const float x1 = ((sx + sw) / static_cast<float>(extent.width)) * 2.0f - 1.0f;
-    const float y0 = 1.0f - (sy / static_cast<float>(extent.height)) * 2.0f;
-    const float y1 = 1.0f - ((sy + sh) / static_cast<float>(extent.height)) * 2.0f;
+    const float fb_w = static_cast<float>(std::max<uint32_t>(extent.width, 1u));
+    const float fb_h = static_cast<float>(std::max<uint32_t>(extent.height, 1u));
+    const float x0 = (sx / fb_w) * 2.0f - 1.0f;
+    const float x1 = ((sx + sw) / fb_w) * 2.0f - 1.0f;
+    const float y0 = 1.0f - (sy / fb_h) * 2.0f;
+    const float y1 = 1.0f - ((sy + sh) / fb_h) * 2.0f;
     out[0] = x0;
     out[1] = y1;
     out[2] = x1;

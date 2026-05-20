@@ -45,6 +45,10 @@ $ . venv/bin/activate
 
 ## Native Linux port (in progress)
 
+**Direction:** run decompiled game code on Linux with Vulkan — not permanent
+reimplementations of game systems in the host layer. See `docs/NATIVE_PORT.md` for
+architecture and phased plan.
+
 This repository does not yet run SSX 3 as a playable native Linux game. Most
 game code is still PS2 assembly or placeholder files. The native target is an
 incremental host runtime that:
@@ -78,10 +82,10 @@ With `--gfx`, boot movies and the main menu share one window at `--width` x
 `--height` (default 1280x720). **Space** or **Enter** skips the current movie;
 **Escape** quits. Use `--no-boot-videos` to skip FMV entirely.
 
-After boot FMV (or with `--no-boot-videos`), the host draws the SSX3 title
-screen: disc logo (`ssx3_logo.png`), snowy background, drifting snowflakes, and
-blinking **PRESS &lt;START&gt; TO PLAY** text. Menu textures live under
-`assets/host/menu/` (regenerate from disc with `scripts/extract_menu_assets.py`).
+After boot FMV (or with `--no-boot-videos`), a **temporary** Vulkan title screen
+stands in until real `cFEStateTitle` code runs through the graphics HAL
+(see `docs/NATIVE_PORT.md`). Today it uses extracted `fe_1.ssh` art in 640×448
+layout; the window is resizable with letterboxing.
 
 Vulkan renderer with optional upscaling:
 

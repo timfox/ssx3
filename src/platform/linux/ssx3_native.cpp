@@ -1,3 +1,4 @@
+#include "platform/host_boot.h"
 #include "platform/host_disc.h"
 #include "platform/host_gfx.h"
 
@@ -142,10 +143,11 @@ struct Options {
     fs::path discRoot = "disc";
     fs::path rebuiltPs2Elf = "out/SLUS_207.72";
     bool runGfx = false;
+    bool bootGame = false;
     bool bootVideos = true;
     bool noBootVideos = false;
     int width = 1280;
-    int height = 720;
+    int height = 896;
     bool vsync = true;
     host::UpscaleBackend upscale = host::UpscaleBackend::Compute;
     float renderScale = 0.67f;
@@ -158,6 +160,8 @@ Options parse_args(int argc, char** argv) {
         const std::string arg = argv[i];
         if (arg == "--gfx") {
             options.runGfx = true;
+        } else if (arg == "--boot-game") {
+            options.bootGame = true;
         } else if (arg == "--boot-videos") {
             options.bootVideos = true;
         } else if (arg == "--no-boot-videos") {
@@ -180,7 +184,7 @@ Options parse_args(int argc, char** argv) {
         } else if (arg == "--render-scale" && i + 1 < argc) {
             options.renderScale = std::stof(argv[++i]);
         } else if (arg == "--help" || arg == "-h") {
-            std::cout << "usage: ssx3-native [--gfx] [--boot-videos] [--no-boot-videos]\n"
+            std::cout << "usage: ssx3-native [--gfx] [--boot-game] [--boot-videos] [--no-boot-videos]\n"
                          "                  [--upscale direct|compute|dlss] [--render-scale F]\n"
                          "                  [--no-vsync] [--width N] [--height N] [disc] [rebuilt_elf]\n";
             std::exit(0);
@@ -259,6 +263,14 @@ int main(int argc, char** argv) {
         return 1;
     }
 
+    if (options.bootGame) {
+        if (!host::run_game_boot_chain(argc, argv)) {
+            std::cerr << "game boot chain failed.\n";
+            return 1;
+        }
+        return 0;
+    }
+
     if (options.runGfx) {
         host::RendererConfig gfx{};
         gfx.width = options.width;
@@ -287,7 +299,8 @@ int main(int argc, char** argv) {
     }
 
     std::cout << "runtime status: host I/O and decompiled utilities are linked.\n";
-    std::cout << "hint: use --gfx for boot movies + 3D demo in one window.\n";
+    std::cout << "hint: --boot-game runs Phase 2 HAL boot (systemInit → cAppMan_mainLoop stub).\n";
+    std::cout << "hint: --gfx for boot movies + title screen in Vulkan.\n";
     std::cout << "hint: --no-boot-videos skips FMV; Space/Enter skips current movie.\n";
     return 0;
 }

@@ -5,6 +5,15 @@
 
 namespace host {
 
+struct MenuViewport {
+    int window_width = 0;
+    int window_height = 0;
+    float x = 0.0f;
+    float y = 0.0f;
+    float width = 0.0f;
+    float height = 0.0f;
+};
+
 struct MenuSprite {
     float x = 0.0f;
     float y = 0.0f;
@@ -30,6 +39,7 @@ struct MenuFrame {
     float time_sec = 0.0f;
     int width = 0;
     int height = 0;
+    MenuViewport viewport{};
     std::vector<MenuSprite> sprites;
 };
 

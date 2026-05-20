@@ -1,7 +1,11 @@
 #include "common.h"
 void cBxPseudoRng_Seed(uint* param_1, uint seedAddend);
 void BXsrand(uint seed);
+#ifdef SSX3_HOST
+extern uint D_004FF018[];
+#else
 extern const uint D_004FF018[];
+#endif
 
 //100%
 //https://decomp.me/scratch/ViFdz
@@ -26,6 +30,9 @@ void BXrand()
 
 
 INCLUDE_ASM("bxrandom", AIrand);
+#ifdef SKIP_ASM
+unsigned int AIrand();
+#endif
 
 INCLUDE_ASM("bxrandom", AIrandf__Fff);
 #ifdef SKIP_ASM

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Extract SSX3 front-end textures from disc SHPS archives into assets/host/menu/."""
+"""Extract SSX3 title-screen textures from disc SHPS archives into assets/host/menu/."""
 
 from __future__ import annotations
 
@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "assets" / "host" / "menu"
-EAGM = Path("/tmp/EA-Graphics-Manager/src")
+EAGM = Path("/tmp/EA-Graphics-Manager")
 
 
 def main() -> int:
@@ -22,19 +22,19 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    if not EAGM.is_dir():
+    if not (EAGM / "src").is_dir():
         print("Clone EA-Graphics-Manager to /tmp/EA-Graphics-Manager and pip install reversebox Pillow")
         return 1
 
     sys.path.insert(0, str(EAGM))
-    from EA_Image import ea_image_main  # noqa: E402
-    from EA_Image.common_ea_dir import (  # noqa: E402
+    from src.EA_Image import ea_image_main  # noqa: E402
+    from src.EA_Image.common_ea_dir import (  # noqa: E402
         get_palette_info_dto_from_dir_entry,
         handle_image_swizzle_logic,
         is_image_compressed,
         is_image_swizzled,
     )
-    from EA_Image.ea_image_decoder import decode_image_data_by_entry_type  # noqa: E402
+    from src.EA_Image.ea_image_decoder import decode_image_data_by_entry_type  # noqa: E402
     from PIL import Image  # noqa: E402
     from reversebox.compression.compression_refpack import RefpackHandler  # noqa: E402
 
@@ -50,7 +50,7 @@ def main() -> int:
             ea.parse_bin_attachments(f)
         return ea
 
-    def export_entry(ea, entry, out_name: str) -> None:
+    def decode_entry(ea, entry) -> Image.Image:
         entry_type = entry.h_record_id & 0x7F
         image_data = entry.raw_data
         if is_image_compressed(entry.h_record_id):
@@ -62,18 +62,42 @@ def main() -> int:
         pal = get_palette_info_dto_from_dir_entry(entry, ea)
         rgba = decode_image_data_by_entry_type(entry_type, image_data, pal, entry)
         if not rgba:
-            raise RuntimeError(f"decode failed for {out_name}")
+            raise RuntimeError(f"decode failed for {entry.tag!r}")
+        return Image.frombytes("RGBA", (entry.h_width, entry.h_height), rgba)
+
+    def save(img: Image.Image, name: str) -> None:
         OUT.mkdir(parents=True, exist_ok=True)
-        img = Image.frombytes("RGBA", (entry.h_width, entry.h_height), rgba)
-        out_path = OUT / out_name
+        out_path = OUT / name
         img.save(out_path)
-        print("wrote", out_path)
+        print("wrote", out_path, img.size)
 
     disc = args.disc
-    export_entry(load_ssh(disc / "data/fonts/splash.ssh"), load_ssh(disc / "data/fonts/splash.ssh").dir_entry_list[0], "ssx3_logo.png")
-    fe = load_ssh(disc / "data/textures/fe_1.ssh")
-    for entry in fe.dir_entry_list:
-        export_entry(fe, entry, f"fe_{entry.tag.strip()}.png")
+    ui = load_ssh(disc / "data/ui/fe_1.ssh")
+
+    ssxt = None
+    moun = None
+    for entry in ui.dir_entry_list:
+        tag = entry.tag.strip()
+        img = decode_entry(ui, entry)
+        save(img, f"ui_{tag}.png")
+        if tag == "ssxt":
+            ssxt = img
+        elif tag == "moun":
+            moun = img
+
+    if ssxt is None:
+        print("error: ssxt entry not found in data/ui/fe_1.ssh")
+        return 1
+
+    # Retail title uses the icy logo band from ssxt (exclude character silhouettes below).
+    w, h = ssxt.size
+    logo_crop = ssxt.crop((0, 0, w, int(h * 0.54)))
+    save(logo_crop, "title_logo.png")
+
+    if moun is not None:
+        save(moun, "title_mountain.png")
+
+    print("\nTitle screen assets ready. Run: out/ssx3-native --gfx --no-boot-videos")
     return 0
 
 

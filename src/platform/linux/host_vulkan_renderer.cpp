@@ -85,6 +85,7 @@ public:
             std::cerr << "SDL_CreateWindow failed: " << SDL_GetError() << '\n';
             return false;
         }
+        SDL_SetWindowMinimumSize(window_, 320, 224);
 
         try {
             create_instance();
@@ -189,6 +190,11 @@ public:
             return false;
         }
 
+        if (framebuffer_resized_) {
+            recreate_swapchain();
+            framebuffer_resized_ = false;
+        }
+
         vkWaitForFences(device_, 1, &in_flight_fence_, VK_TRUE, UINT64_MAX);
 
         uint32_t image_index = 0;
@@ -223,15 +229,15 @@ public:
                              VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT);
         }
 
-        const VkExtent2D draw_extent =
-            frame_pipeline_.active() ? frame_pipeline_.render_extent() : swap_extent_;
-        const VkFramebuffer draw_framebuffer = frame_pipeline_.active()
-                                                   ? frame_pipeline_.render_framebuffer()
-                                                   : framebuffers_[current_image_];
-
         const bool menu_frame = menu_mode_ && !menu_frame_.sprites.empty();
+        const VkExtent2D draw_extent =
+            (frame_pipeline_.active() && !menu_frame) ? frame_pipeline_.render_extent() : swap_extent_;
+        const VkFramebuffer draw_framebuffer =
+            (frame_pipeline_.active() && !menu_frame) ? frame_pipeline_.render_framebuffer()
+                                                        : framebuffers_[current_image_];
+
         VkClearValue clear_color =
-            menu_frame ? VkClearValue{{{0.06f, 0.08f, 0.20f, 1.0f}}} : VkClearValue{{{0.05f, 0.07f, 0.12f, 1.0f}}};
+            menu_frame ? VkClearValue{{{0.0f, 0.0f, 0.0f, 1.0f}}} : VkClearValue{{{0.05f, 0.07f, 0.12f, 1.0f}}};
         VkRenderPassBeginInfo render_pass_info{};
         render_pass_info.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
         render_pass_info.renderPass = render_pass_;
@@ -263,7 +269,7 @@ public:
         }
         vkCmdEndRenderPass(cmd);
 
-        if (frame_pipeline_.active()) {
+        if (frame_pipeline_.active() && !menu_frame) {
             frame_pipeline_.record_upscale(cmd,
                                            swap_images_[current_image_],
                                            swap_image_views_[current_image_],
@@ -333,8 +339,11 @@ public:
                            event.key.keysym.sym == SDLK_KP_ENTER) {
                     skip_video_ = true;
                 }
-            } else if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_RESIZED) {
-                framebuffer_resized_ = true;
+            } else if (event.type == SDL_WINDOWEVENT) {
+                if (event.window.event == SDL_WINDOWEVENT_RESIZED ||
+                    event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED) {
+                    framebuffer_resized_ = true;
+                }
             }
         }
     }
