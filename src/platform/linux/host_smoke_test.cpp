@@ -6,6 +6,7 @@
 #include "platform/host_fe_nav.h"
 #include "platform/host_fe_options.h"
 #include "platform/host_fe_options_game.h"
+#include "platform/host_fe_options_sound.h"
 #include "platform/host_fe_title.h"
 #include "platform/host_menu_assets.h"
 #include "platform/host_graphics.h"
@@ -198,7 +199,15 @@ bool smoke_fe_title() {
         host_fe_options_game_destroy(og);
     }
 
-    std::cout << "[ok]      cFEStateTitle + MainMenu + MountainRoom + Options + OptionsGame\n";
+    void* os = host_fe_options_sound_create("assets/host/menu");
+    if (os) {
+        cFEStateOptionsSound_onCreateScreen(os);
+        cFEStateOptionsSound_onUpdate(os);
+        cFEStateOptionsSound_onDestroyScreen(os);
+        host_fe_options_sound_destroy(os);
+    }
+
+    std::cout << "[ok]      FE states: Title, MainMenu, MountainRoom, Options, Game, Sound\n";
     return true;
 }
 

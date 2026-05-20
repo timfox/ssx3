@@ -47,6 +47,8 @@ FEOptionsAction fe_options_action_for_index(int index) {
     switch (index) {
     case 0:
         return FEOptionsAction::OptionsGame;
+    case 1:
+        return FEOptionsAction::OptionsSound;
     case 4:
         return FEOptionsAction::Back;
     default:

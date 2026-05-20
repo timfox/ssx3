@@ -56,7 +56,7 @@ Rough dependency order for reaching the title screen (`cFEStateTitle` @ `0x19477
 5. **Input** — `cInputMap_*`, pad polling (SDL gamepad)
 6. **Graphics** — `cPSPGraphicsMan_*`, `cRenderStateMan_*`, `cBackgroundMan_*`,
    `cVisualEffectsMainMenu_*`, DMA/GS path or **deliberate rewrite** to record draws for Vulkan
-7. **Audio** — `ps2soundman` path (can stub initially)
+7. **Audio** — `ps2soundman` path (host FE: OpenAL via `host_menu_audio.cpp` + `extract_menu_audio.py`; full engine TBD)
 8. **FE** — `cFEStateTitle_onCreateScreen`, widget/UI engine
 
 The in-tree Vulkan menu (`host_main_menu.cpp`) is a **stand-in** until (6)+(8) run for real.

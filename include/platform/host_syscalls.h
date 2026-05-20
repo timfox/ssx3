@@ -47,8 +47,10 @@
 /* cFEStateMountainRoom_*        0x001D2990  host_fe_mountain_room.cpp */
 /* cFEStateOptions_*             0x00188800  host_fe_options.cpp */
 /* cFEStateOptionsGame_*         0x00188F28  host_fe_options_game.cpp */
+/* cFEStateOptionsSound_*        0x0018A298  host_fe_options_sound.cpp */
 /* cVisualEffectsMainMenu_*      0x0024D2F0  host_graphics.cpp + host_visualfx_menu.cpp */
 /* host_menu_ensure_assets       host_menu_assets.cpp (fe_1.ssh → PNG) */
+/* host_menu_audio_*             host_menu_audio.cpp (audio.big → WAV, OpenAL) */
 
 /* --- Graphics (goal: HAL rewrite) --- */
 /* cPSPGraphicsMan_*     (not wired yet) */

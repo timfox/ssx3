@@ -29,5 +29,5 @@ rm /tmp/eegcc_2.95.3_sn_v1.36.tar.gz
 
 echo ""
 echo "Native Linux port (Vulkan) also needs:"
-echo "  apt install -y libsdl2-dev libvulkan-dev glslang-tools \\"
+echo "  apt install -y libsdl2-dev libopenal-dev libvulkan-dev glslang-tools \\"
 echo "    libavcodec-dev libavutil-dev libswscale-dev libswresample-dev libavformat-dev"

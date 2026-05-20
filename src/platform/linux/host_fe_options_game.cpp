@@ -6,6 +6,7 @@
 #include "platform/host_menu_layout.h"
 #include "platform/host_visualfx_menu.h"
 
+#include <algorithm>
 #include <cstdint>
 #include <cstring>
 
@@ -20,8 +21,11 @@ struct HostFEStateOptionsGame {
     MenuFrame frame{};
     char asset_dir[260]{};
     int selected = 0;
+    int values[kGameOptionRows] = {1, 0, 1, 1, 0};
     int initialized = 0;
 };
+
+constexpr int kGameValueCounts[] = {3, 3, 3, 2, 1};
 
 HostFEStateOptionsGame* as_og(void* self) {
     auto* og = static_cast<HostFEStateOptionsGame*>(self);
@@ -58,6 +62,19 @@ void fe_options_game_navigate(void* self, int delta) {
 
 bool fe_options_game_selection_is_back(void* self) {
     return fe_options_game_get_selected(self) == kGameOptionRows - 1;
+}
+
+void fe_options_game_adjust_value(void* self, int delta) {
+    auto* og = as_og(self);
+    if (!og || og->selected >= kGameOptionRows - 1) {
+        return;
+    }
+    const int max_v = kGameValueCounts[og->selected];
+    int& v = og->values[og->selected];
+    v = (v + delta) % max_v;
+    if (v < 0) {
+        v += max_v;
+    }
 }
 
 } // namespace host
@@ -121,8 +138,13 @@ void cFEStateOptionsGame_onUpdate(void* self) {
         host::compute_title_viewport(host::fe_frame_width(), host::fe_frame_height());
 
     og->frame.time_sec += host::fe_frame_dt();
-    host::build_options_game_screen(
-        og->frame, viewport, og->frame.time_sec, og->selected, host::kGameOptionRows);
+    host::build_options_game_screen(og->frame,
+                                    viewport,
+                                    og->frame.time_sec,
+                                    og->selected,
+                                    host::kGameOptionRows,
+                                    og->values,
+                                    host::kGameOptionRows);
     cVisualEffectsMainMenu_render(og->visual_fx, &og->frame);
 }
 

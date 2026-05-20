@@ -9,6 +9,7 @@ enum class FEScreen {
     MountainRoom,
     Options,
     OptionsGame,
+    OptionsSound,
 };
 
 enum class FEMainMenuAction {
@@ -21,6 +22,7 @@ enum class FEMainMenuAction {
 enum class FEOptionsAction {
     Back,
     OptionsGame,
+    OptionsSound,
     Stub,
 };
 

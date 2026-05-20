@@ -41,7 +41,17 @@ void build_options_game_screen(MenuFrame& frame,
                                const MenuViewport& viewport,
                                float time_sec,
                                int selected_row,
-                               int row_count);
+                               int row_count,
+                               const int* row_values,
+                               int value_columns);
+
+void build_options_sound_screen(MenuFrame& frame,
+                                const MenuViewport& viewport,
+                                float time_sec,
+                                int selected_row,
+                                int row_count,
+                                const int* row_values,
+                                int value_columns);
 
 } // namespace host
 

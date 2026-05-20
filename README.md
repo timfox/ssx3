@@ -87,6 +87,12 @@ stands in until real `cFEStateTitle` code runs through the graphics HAL
 (see `docs/NATIVE_PORT.md`). Today it uses extracted `fe_1.ssh` art in 640×448
 layout; the window is resizable with letterboxing.
 
+Menu audio is decoded from `disc/data/audio/audio.big` on first run
+(`scripts/extract_menu_audio.py` uses bundled `tools/vgmstream/vgmstream-cli`):
+title wind loop (`BC_AmbLoop1.bnk`), layered menu stems (`SSX3Menu.bnk`), and UI
+SFX (`FE Menu.bnk`). WAVs land in `assets/host/audio/` and playback uses **OpenAL**
+during `--gfx` (D-pad moves, confirm, back, start).
+
 Vulkan renderer with optional upscaling:
 
 ```bash

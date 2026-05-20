@@ -57,7 +57,9 @@ NATIVE_HOST_SOURCES_BASE = [
     "src/platform/linux/host_fe_mountain_room.cpp",
     "src/platform/linux/host_fe_options.cpp",
     "src/platform/linux/host_fe_options_game.cpp",
+    "src/platform/linux/host_fe_options_sound.cpp",
     "src/platform/linux/host_menu_assets.cpp",
+    "src/platform/linux/host_menu_audio.cpp",
     "src/platform/linux/host_visualfx_menu.cpp",
     "src/platform/linux/host_game_bss.cpp",
     "src/visualfx/crowdrender2d.cpp",
@@ -95,11 +97,11 @@ def host_native_sources() -> list[str]:
 
 
 def host_build_flags() -> tuple[str, str]:
-    cflags = pkg_config("--cflags", "sdl2", "vulkan")
-    libs = pkg_config("--libs", "sdl2", "vulkan")
+    cflags = pkg_config("--cflags", "sdl2", "vulkan", "openal")
+    libs = pkg_config("--libs", "sdl2", "vulkan", "openal")
     cxxflags = (
         f"-std=c++17 -Wall -Wextra -pedantic -O2 -DSSX3_HOST -DSKIP_ASM "
-        f"-DSSX3_HAVE_SDL -Iinclude -I. {cflags}"
+        f"-DSSX3_HAVE_SDL -DSSX3_HAVE_OPENAL -Iinclude -I. {cflags}"
     )
 
     try:

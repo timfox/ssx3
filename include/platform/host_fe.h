@@ -30,6 +30,10 @@ void cFEStateOptionsGame_onDestroyScreen(void* self);
 void cFEStateOptionsGame_onUpdate(void* self);
 void cFEStateOptionsGame_onWidgetEvent(void* self, void* widget, int event);
 
+void cFEStateOptionsSound_onCreateScreen(void* self);
+void cFEStateOptionsSound_onDestroyScreen(void* self);
+void cFEStateOptionsSound_onUpdate(void* self);
+
 #ifdef __cplusplus
 }
 #endif

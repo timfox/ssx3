@@ -43,7 +43,20 @@ int cBigFile_open(HostBigFile* self, const char* path) {
         (normalized.compare(normalized.size() - 4, 4, ".big") == 0 ||
          normalized.compare(normalized.size() - 4, 4, ".BIG") == 0);
 
-    if (!is_big_archive && host::read_disc_file(normalized)) {
+    if (is_big_archive) {
+        host::BigArchive* archive = host::big_open_cached(normalized);
+        if (!archive) {
+            host::host_log("bigfile", "cBigFile_open failed");
+            return 0;
+        }
+        std::strncpy(self->path, normalized.c_str(), sizeof(self->path) - 1);
+        self->path[sizeof(self->path) - 1] = '\0';
+        self->archive = archive;
+        host::host_log("bigfile", "cBigFile_open BIG archive");
+        return 1;
+    }
+
+    if (host::read_disc_file(normalized)) {
         std::strncpy(self->path, normalized.c_str(), sizeof(self->path) - 1);
         self->path[sizeof(self->path) - 1] = '\0';
         self->archive = nullptr;
@@ -51,17 +64,8 @@ int cBigFile_open(HostBigFile* self, const char* path) {
         return 1;
     }
 
-    host::BigArchive* archive = host::big_open_cached(normalized);
-    if (!archive) {
-        host::host_log("bigfile", "cBigFile_open failed");
-        return 0;
-    }
-
-    std::strncpy(self->path, normalized.c_str(), sizeof(self->path) - 1);
-    self->path[sizeof(self->path) - 1] = '\0';
-    self->archive = archive;
-    host::host_log("bigfile", "cBigFile_open BIG archive");
-    return 1;
+    host::host_log("bigfile", "cBigFile_open failed");
+    return 0;
 }
 
 void cBigFile_close(HostBigFile* self) {

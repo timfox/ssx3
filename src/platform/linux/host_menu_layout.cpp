@@ -7,6 +7,7 @@
 #include <array>
 #include <cmath>
 #include <cstring>
+#include <cstdio>
 #include <random>
 
 namespace host {
@@ -72,9 +73,9 @@ void append_text(std::vector<MenuSprite>& sprites,
                  float b,
                  float a) {
     alignas(16) char vertex_buffer[65536];
-    const int quads =
+    /* stb_easy_font_print returns quad count (bytes written / 64), not byte length. */
+    const int num_quads =
         stb_easy_font_print(0.0f, 0.0f, const_cast<char*>(text), nullptr, vertex_buffer, sizeof(vertex_buffer));
-    const int num_quads = quads / 64;
     const auto* bytes = reinterpret_cast<const unsigned char*>(vertex_buffer);
     const float pixel_scale = vpw(vp, scale);
     for (int i = 0; i < num_quads; ++i) {
@@ -117,10 +118,9 @@ void append_text(std::vector<MenuSprite>& sprites,
 
 float measure_text_width_virtual(const char* text, float scale) {
     alignas(16) char buf[4096];
-    const int quads =
+    const int count =
         stb_easy_font_print(0.0f, 0.0f, const_cast<char*>(text), nullptr, buf, sizeof(buf));
     const auto* bytes = reinterpret_cast<const unsigned char*>(buf);
-    const int count = quads / 64;
     if (count <= 0) {
         return 0.0f;
     }
@@ -384,7 +384,7 @@ void build_title_screen(MenuFrame& frame,
         append_sprite(frame.sprites, snow);
     }
 
-    const float blink = 0.4f + 0.6f * (0.5f + 0.5f * std::sin(time_sec * 3.0f));
+    const float blink = 0.55f + 0.45f * (0.5f + 0.5f * std::sin(time_sec * 3.0f));
     const char* press_text = "press <start> to play";
     const float press_scale = 2.05f;
     const float press_w = measure_text_width_virtual(press_text, press_scale);
@@ -392,11 +392,11 @@ void build_title_screen(MenuFrame& frame,
                 viewport,
                 press_text,
                 (vw - press_w) * 0.5f,
-                302.0f,
+                288.0f,
                 press_scale,
-                0.10f,
-                0.11f,
-                0.13f,
+                0.82f,
+                0.84f,
+                0.88f,
                 blink);
 
     const char* copy_text = "Copyright Electronic Arts";
@@ -707,11 +707,39 @@ void build_options_screen(MenuFrame& frame,
     (void)time_sec;
 }
 
+namespace {
+
+void format_option_row(char* out,
+                       size_t out_size,
+                       const char* label,
+                       const char* const* choices,
+                       int choice_count,
+                       int choice_index) {
+    if (!out || out_size == 0 || !label) {
+        return;
+    }
+    if (!choices || choice_count <= 0) {
+        std::snprintf(out, out_size, "%s", label);
+        return;
+    }
+    if (choice_index < 0) {
+        choice_index = 0;
+    }
+    if (choice_index >= choice_count) {
+        choice_index = choice_count - 1;
+    }
+    std::snprintf(out, out_size, "%s: %s", label, choices[choice_index]);
+}
+
+} // namespace
+
 void build_options_game_screen(MenuFrame& frame,
                                const MenuViewport& viewport,
                                float time_sec,
                                int selected_row,
-                               int row_count) {
+                               int row_count,
+                               const int* row_values,
+                               int value_columns) {
     frame.time_sec = time_sec;
     frame.width = viewport.window_width;
     frame.height = viewport.window_height;
@@ -753,24 +781,43 @@ void build_options_game_screen(MenuFrame& frame,
                 0.96f,
                 1.0f);
 
-    static const char* kRows[] = {
-        "Difficulty: Medium",
-        "Camera: Dynamic",
-        "Trick speed: Normal",
-        "Crash resistance: On",
-        "Back",
+    static const char* kDifficulty[] = {"Easy", "Medium", "Hard"};
+    static const char* kCamera[] = {"Dynamic", "Classic", "Near"};
+    static const char* kTrick[] = {"Slow", "Normal", "Fast"};
+    static const char* kCrash[] = {"Off", "On"};
+    struct RowSpec {
+        const char* label;
+        const char* const* choices;
+        int choice_count;
     };
-    const int count = static_cast<int>(sizeof(kRows) / sizeof(kRows[0]));
-    const int rows = row_count < count ? row_count : count;
+    static const RowSpec kSpecs[] = {
+        {"Difficulty", kDifficulty, 3},
+        {"Camera", kCamera, 3},
+        {"Trick speed", kTrick, 3},
+        {"Crash resistance", kCrash, 2},
+        {"Back", nullptr, 0},
+    };
+    const int spec_count = static_cast<int>(sizeof(kSpecs) / sizeof(kSpecs[0]));
+    const int rows = row_count < spec_count ? row_count : spec_count;
     const float base_x = 56.0f;
     const float base_y = 108.0f;
     const float line_h = 36.0f;
 
     for (int i = 0; i < rows; ++i) {
         const bool selected = (i == selected_row);
+        char line[96]{};
+        if (kSpecs[i].choices) {
+            int vi = row_values ? row_values[i] : 0;
+            if (value_columns > 0 && i < value_columns) {
+                vi = row_values[i];
+            }
+            format_option_row(line, sizeof(line), kSpecs[i].label, kSpecs[i].choices, kSpecs[i].choice_count, vi);
+        } else {
+            std::snprintf(line, sizeof(line), "%s", kSpecs[i].label);
+        }
         append_text(frame.sprites,
                     viewport,
-                    kRows[i],
+                    line,
                     base_x,
                     base_y + static_cast<float>(i) * line_h,
                     selected ? 2.2f : 1.85f,
@@ -782,7 +829,7 @@ void build_options_game_screen(MenuFrame& frame,
 
     append_text(frame.sprites,
                 viewport,
-                "Left/Right change value (stub) · Circle/Esc back",
+                "Left/Right change value · Circle/Esc back",
                 40.0f,
                 412.0f,
                 1.25f,
@@ -790,6 +837,90 @@ void build_options_game_screen(MenuFrame& frame,
                 0.42f,
                 0.48f,
                 0.72f);
+}
+
+void build_options_sound_screen(MenuFrame& frame,
+                                const MenuViewport& viewport,
+                                float time_sec,
+                                int selected_row,
+                                int row_count,
+                                const int* row_values,
+                                int value_columns) {
+    frame.time_sec = time_sec;
+    frame.width = viewport.window_width;
+    frame.height = viewport.window_height;
+    frame.viewport = viewport;
+    frame.sprites.clear();
+
+    if (viewport.width < 8.0f || viewport.height < 8.0f || row_count <= 0) {
+        return;
+    }
+
+    constexpr float vw = static_cast<float>(kTitleVirtualWidth);
+    constexpr float vh = static_cast<float>(kTitleVirtualHeight);
+
+    MenuSprite backdrop{};
+    backdrop.texture_index = kTexSnow;
+    backdrop.x = vpx(viewport, 0.0f);
+    backdrop.y = vpy(viewport, 0.0f);
+    backdrop.w = vpw(viewport, vw);
+    backdrop.h = vph(viewport, vh);
+    backdrop.gradient_y = true;
+    backdrop.r = 0.05f;
+    backdrop.g = 0.07f;
+    backdrop.b = 0.11f;
+    backdrop.a = 1.0f;
+    backdrop.r2 = 0.14f;
+    backdrop.g2 = 0.16f;
+    backdrop.b2 = 0.22f;
+    backdrop.a2 = 1.0f;
+    append_sprite(frame.sprites, backdrop);
+
+    append_text(frame.sprites,
+                viewport,
+                "Sound Options",
+                48.0f,
+                36.0f,
+                2.8f,
+                0.90f,
+                0.92f,
+                0.96f,
+                1.0f);
+
+    static const char* kOnOff[] = {"Off", "On"};
+    const int rows = row_count < 5 ? row_count : 5;
+    const float base_x = 56.0f;
+    const float base_y = 108.0f;
+    const float line_h = 36.0f;
+
+    for (int i = 0; i < rows; ++i) {
+        const bool selected = (i == selected_row);
+        char line[96]{};
+        int vi = 0;
+        if (row_values && i < value_columns) {
+            vi = row_values[i];
+        }
+        if (i == 0) {
+            std::snprintf(line, sizeof(line), "Master volume: %d", vi);
+        } else if (i == 4) {
+            std::snprintf(line, sizeof(line), "Back");
+        } else {
+            const char* labels[] = {"", "Music", "SFX", "Commentary"};
+            format_option_row(line, sizeof(line), labels[i], kOnOff, 2, vi);
+        }
+        append_text(frame.sprites,
+                    viewport,
+                    line,
+                    base_x,
+                    base_y + static_cast<float>(i) * line_h,
+                    selected ? 2.2f : 1.85f,
+                    selected ? 0.10f : 0.50f,
+                    selected ? 0.12f : 0.52f,
+                    selected ? 0.16f : 0.56f,
+                    selected ? 1.0f : 0.80f);
+    }
+
+    (void)time_sec;
 }
 
 } // namespace host
