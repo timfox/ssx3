@@ -14,17 +14,63 @@ compile_commands.json
 
 # splat
 asm/
-assets/
 config/undefined_funcs_auto.txt
 config/undefined_syms_auto.txt
 .splache
 *.ld
 
 # stuff
-disc/
 tools/cc/eegcc-2.95.3-V1.36
 
 venv/
+__pycache__/
+*.py[cod]
 
 temp_sheet.xlsx
 objdiff.json
+
+# ---------------------------------------------------------------------------
+# Game content (never commit — supply your own disc extract locally)
+# See disc/README.md and assets/README.md
+# ---------------------------------------------------------------------------
+
+# Full disc tree or ISO
+disc/*
+!disc/README.md
+*.iso
+*.ISO
+
+# Host-side extracts derived from the game (textures, etc.)
+assets/*
+!assets/README.md
+
+# Loose game binaries / archives if copied outside disc/
+SLUS_207.72
+SCUS_*.72
+SLES_*.72
+pad0.000
+pad1.000
+
+# EA / PS2 media and packs (anywhere in the repo)
+*.mpc
+*.MPC
+*.big
+*.BIG
+*.vp6
+*.VP6
+*.bik
+*.BIK
+*.ssh
+*.SSH
+*.fsb
+*.FSB
+*.str
+*.STR
+*.pss
+*.PSS
+*.tim
+*.TIM
+*.vag
+*.VAG
+*.irx
+*.IRX

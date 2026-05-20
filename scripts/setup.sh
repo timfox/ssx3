@@ -20,9 +20,14 @@ download "https://github.com/AngheloAlf/SN-Systems-ProDG_for_PS2_3.01/releases/l
 # wine regedit prodg_env.reg
 
 # Extract the compiler into the tools dir
-mkdir $TOP/tools/cc/eegcc-2.95.3-V1.36
+mkdir -p $TOP/tools/cc/eegcc-2.95.3-V1.36
 echo "Extracting compiler to $TOP/tools..."
 tar -xzf /tmp/eegcc_2.95.3_sn_v1.36.tar.gz -C $TOP/tools/cc/eegcc-2.95.3-V1.36
 
 echo "Removing temporary files..."
-rm /tmp/eegcc_2.95.3_sn_v1.36.tar.gz"
+rm /tmp/eegcc_2.95.3_sn_v1.36.tar.gz
+
+echo ""
+echo "Native Linux port (Vulkan) also needs:"
+echo "  apt install -y libsdl2-dev libvulkan-dev glslang-tools \\"
+echo "    libavcodec-dev libavutil-dev libswscale-dev libswresample-dev libavformat-dev"
