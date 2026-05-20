@@ -1,4 +1,5 @@
 #include "platform/host_renderer.h"
+#include "platform/host_gs.h"
 #include "platform/host_upscale.h"
 #include "platform/host_video_player.h"
 #include "platform/host_vulkan_context.h"
@@ -524,12 +525,14 @@ public:
         }
         menu_gpu_.on_swapchain_resize(swap_extent_);
         menu_mode_ = true;
+        gs_set_renderer(this);
         return true;
     }
 
     void set_main_menu_frame(const MenuFrame& frame) override { menu_frame_ = frame; }
 
     void shutdown_main_menu() override {
+        gs_set_renderer(nullptr);
         menu_mode_ = false;
         menu_frame_ = {};
         menu_gpu_.shutdown();

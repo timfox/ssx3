@@ -1,7 +1,13 @@
 #include "platform/host_boot.h"
 
 #include "platform/host_abi.h"
+#include "platform/host_bigfile.h"
+#include "platform/host_fe.h"
+#include "platform/host_fe_title.h"
+#include "platform/host_input.h"
 #include "platform/host_log.h"
+#include "platform/host_pad.h"
+#include "platform/host_ssxapp.h"
 
 #include <SDL.h>
 
@@ -67,25 +73,27 @@ void systemInit(void* a0, void* a1, int a2, void* a3) {
     (void)a2;
     (void)a3;
     cMemMan_initialize(nullptr, nullptr, 0, nullptr);
-    host::host_log("boot", "systemInit");
+    ::host::host_log("boot", "systemInit");
 }
 
 void cExecutionMan_halt(void* ctx) {
-    host::host_log("boot", "cExecutionMan_halt (execution manager setup)");
+    ::host::host_log("boot", "cExecutionMan_halt (execution manager setup)");
     if (!ctx) {
         return;
     }
-    auto* app = static_cast<host::AppContext*>(ctx);
+    auto* app = static_cast<::host::AppContext*>(ctx);
     app->field_16 = 60;
 }
 
 void cAppMan_mainLoop(void* ctx) {
-    auto* app = static_cast<host::AppContext*>(ctx);
+    auto* app = static_cast<::host::AppContext*>(ctx);
     if (!app) {
         return;
     }
 
-    host::host_log("boot", "cAppMan_mainLoop — host tick loop (Ctrl+C or close SDL window to stop)");
+    ::host::host_log("boot", "cAppMan_mainLoop — host tick loop (Ctrl+C or close SDL window to stop)");
+
+    ::host::pad_poll();
 
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) != 0) {
         while (host_app_tick()) {
@@ -115,6 +123,7 @@ void cAppMan_mainLoop(void* ctx) {
 
     bool running = true;
     while (running && host_app_tick()) {
+        ::host::pad_poll();
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) {
@@ -130,16 +139,17 @@ void cAppMan_mainLoop(void* ctx) {
 
     SDL_DestroyWindow(window);
     SDL_Quit();
+    ::host::pad_shutdown();
 }
 
 void cAppMan_run(void* ctx, int argc, char** argv) {
-    auto* app = static_cast<host::AppContext*>(ctx);
+    auto* app = static_cast<::host::AppContext*>(ctx);
     if (!app) {
         return;
     }
     app->argc = argc;
     app->argv = argv;
-    host::host_log("boot", "cAppMan_run → cAppMan_mainLoop");
+    ::host::host_log("boot", "cAppMan_run → cAppMan_mainLoop");
     cAppMan_mainLoop(ctx);
 }
 
@@ -147,11 +157,11 @@ void cAppMan_run(void* ctx, int argc, char** argv) {
 
 namespace host {
 
-bool run_game_boot_chain(int argc, char** argv) {
-    std::cout << "[boot]    Phase 2: retail main() chain via host HAL\n";
-    std::cout << "[boot]    retail VMAs: preinit=0x" << std::hex << kAddrRetailPreinit
+bool run_retail_boot_init(int argc, char** argv) {
+    std::cout << "[boot]    retail boot init (host HAL, not MIPS)\n";
+    std::cout << "[boot]    VMAs: preinit=0x" << std::hex << kAddrRetailPreinit
               << " static_init=0x" << kAddrStaticInitLoop << " module_init=0x" << kAddrModuleInit
-              << std::dec << '\n';
+              << " title=0x194778" << std::dec << '\n';
 
     retail_preinit(reinterpret_cast<void*>(static_cast<intptr_t>(argc)),
                    reinterpret_cast<void*>(argv));
@@ -169,6 +179,8 @@ bool run_game_boot_chain(int argc, char** argv) {
     std::memset(app, 0, sizeof(AppContext));
     app->heap_tag = heap_tag;
     app->globals_ptr = reinterpret_cast<void*>(0x49db68u);
+    app->argc = argc;
+    app->argv = argv;
     g_app = app;
 
     retail_run_static_init(app);
@@ -176,11 +188,55 @@ bool run_game_boot_chain(int argc, char** argv) {
         retail_module_init(app, module);
     }
 
-    cExecutionMan_halt(app);
-    cAppMan_run(app, argc, argv);
+    void* ssx = host_ssxapp_create();
+    if (ssx) {
+        cSSXApp_cSSXApp(ssx);
+        if (cSSXApp_init(ssx)) {
+            host_log("boot", "cSSXApp_init OK");
+        }
+        host_ssxapp_destroy(ssx);
+    }
 
-    cMemMan_free(block);
-    g_app = nullptr;
+    HostBigFile boot_archive{};
+    cBigFile_cBigFile(&boot_archive);
+    if (cBigFile_open(&boot_archive, "data/audio/audio.big")) {
+        host_log("boot", "cBigFile_open data/audio/audio.big OK");
+        char header[16]{};
+        const unsigned long n = cBigFile_read(&boot_archive, "data\\audio\\BC_AmbLoop1.bnk", header, sizeof(header));
+        if (n > 0) {
+            host_log("boot", "cBigFile_read BC_AmbLoop1 header OK");
+        }
+    }
+    cBigFile_close(&boot_archive);
+
+    void* fe_title = host_fe_title_create("assets/host/menu");
+    if (fe_title) {
+        cFEStateTitle_onCreateScreen(fe_title);
+        cFEStateTitle_onDestroyScreen(fe_title);
+        host_fe_title_destroy(fe_title);
+    }
+
+    ::host::pad_init();
+    cExecutionMan_halt(app);
+    return true;
+}
+
+void run_retail_boot_shutdown(void) {
+    if (g_app) {
+        cMemMan_free(g_app);
+        g_app = nullptr;
+    }
+}
+
+bool run_game_boot_chain(int argc, char** argv) {
+    if (!run_retail_boot_init(argc, argv)) {
+        return false;
+    }
+    if (!g_app) {
+        return false;
+    }
+    cAppMan_run(g_app, argc, argv);
+    run_retail_boot_shutdown();
 
     host_log("boot", "boot chain finished");
     return true;

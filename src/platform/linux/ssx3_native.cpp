@@ -144,6 +144,7 @@ struct Options {
     fs::path rebuiltPs2Elf = "out/SLUS_207.72";
     bool runGfx = false;
     bool bootGame = false;
+    bool bootThenGfx = false;
     bool bootVideos = true;
     bool noBootVideos = false;
     int width = 1280;
@@ -184,7 +185,7 @@ Options parse_args(int argc, char** argv) {
         } else if (arg == "--render-scale" && i + 1 < argc) {
             options.renderScale = std::stof(argv[++i]);
         } else if (arg == "--help" || arg == "-h") {
-            std::cout << "usage: ssx3-native [--gfx] [--boot-game] [--boot-videos] [--no-boot-videos]\n"
+            std::cout << "usage: ssx3-native [--gfx] [--boot-game] [--boot-then-gfx] [--boot-videos] [--no-boot-videos]\n"
                          "                  [--upscale direct|compute|dlss] [--render-scale F]\n"
                          "                  [--no-vsync] [--width N] [--height N] [disc] [rebuilt_elf]\n";
             std::exit(0);
@@ -271,6 +272,28 @@ int main(int argc, char** argv) {
         return 0;
     }
 
+    if (options.bootThenGfx) {
+        if (!host::run_retail_boot_init(argc, argv)) {
+            std::cerr << "retail boot init failed.\n";
+            return 1;
+        }
+        host::RendererConfig gfx{};
+        gfx.width = options.width;
+        gfx.height = options.height;
+        gfx.vsync = options.vsync;
+        gfx.shader_dir = "obj/host/shaders";
+        gfx.upscale = options.upscale;
+        gfx.render_scale = options.renderScale;
+        const bool boot_videos = options.bootVideos && !options.noBootVideos;
+        const bool ok_gfx = host::run_native_gfx_session(gfx, discRoot.string(), boot_videos);
+        host::run_retail_boot_shutdown();
+        if (!ok_gfx) {
+            std::cerr << "Vulkan session after boot init failed.\n";
+            return 1;
+        }
+        return 0;
+    }
+
     if (options.runGfx) {
         host::RendererConfig gfx{};
         gfx.width = options.width;
@@ -300,7 +323,9 @@ int main(int argc, char** argv) {
 
     std::cout << "runtime status: host I/O and decompiled utilities are linked.\n";
     std::cout << "hint: --boot-game runs Phase 2 HAL boot (systemInit → cAppMan_mainLoop stub).\n";
-    std::cout << "hint: --gfx for boot movies + title screen in Vulkan.\n";
+    std::cout << "hint: --boot-then-gfx runs retail init then FMV + Vulkan title menu.\n";
+    std::cout << "hint: --gfx FE flow: title → menu → Freeride / Options → Game options.\n";
+    std::cout << "hint: keyboard: arrows, E/S confirm, Esc/D back, Space start.\n";
     std::cout << "hint: --no-boot-videos skips FMV; Space/Enter skips current movie.\n";
     return 0;
 }

@@ -4,6 +4,8 @@
 namespace host {
 
 /* Phase 2: mirror retail main() through host HAL (not MIPS asm). */
+bool run_retail_boot_init(int argc, char** argv);
+void run_retail_boot_shutdown(void);
 bool run_game_boot_chain(int argc, char** argv);
 
 } // namespace host

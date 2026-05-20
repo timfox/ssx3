@@ -15,7 +15,7 @@ PS2-only services with a **host abstraction layer (HAL)**.
 | Named symbols | ~750 in `config/symbol_addrs.txt` |
 | C++ with real bodies | **6** files (`hashvalue`, `bxrandom`, `bxstring`, `md5`, `crowdrender2d`, `dirtysock/tags`) |
 | Placeholder `src/**/*.cpp` | **~365** files (`//Known file in project` only) |
-| Linked into `ssx3-native` today | Host runtime + **`hashvalue.cpp`**, **`bxrandom.cpp`** (decomp) |
+| Linked into `ssx3-native` today | Host HAL + **`hashvalue.cpp`**, **`bxrandom.cpp`**, **`crowdrender2d.cpp`** (SKIP_ASM bodies) |
 | Title screen / FMV | **Host reimplementation** (assets + Vulkan), not `cFEStateTitle` |
 
 So “translate everything” is the right end state, but **most functions are not translated yet** —
@@ -100,13 +100,16 @@ Target:
 |-------|---------|------------|
 | **0** (now) | Disc check, FMV, hash smoke test, placeholder Vulkan title | — |
 | **1** (started) | HAL: `cMemMan_*`, `systemInit`, FILESYS/BIG, `--boot-game` | `host_mem.cpp`, `host_boot.cpp`, `host_big.cpp` |
-| **2** (started) | Retail `main()` chain → `cAppMan_mainLoop` host tick loop | `--boot-game` |
-| **2b** (started) | Link decomp units (`bxrandom`, …) with smoke tests | `bxrandom.cpp`, `host_game_bss.cpp` |
-| **3** (started) | BIGF reads from `disc/` (`BIG_locateentryz`, …) | `host_disc` + `host_big.cpp` |
-| **4** | Pad input reaches `cInputMap` | SDL |
-| **5** | Graphics HAL draws one FE texture / full-screen quad via Vulkan | Renderer + decomp graphics |
-| **6** | **Real `cFEStateTitle`** — retail title layout from game code | Phase 5 + FE decomp |
-| **7** | Main menu → mountain room → race | World, streaming, physics, audio |
+| **2** (started) | Retail `main()` chain → `cAppMan_mainLoop` host tick loop | `--boot-game`, `--boot-then-gfx` |
+| **2b** (started) | Link decomp units (`bxrandom`, `crowdrender2d`, …) with smoke tests | `bxrandom.cpp`, `crowdrender2d.cpp`, `host_game_bss.cpp` |
+| **2c** (started) | `cSSXApp_init`, `cFEStateTitle_*`, `cFEStateMainMenu_*`, `cBigFile_read` | `host_fe_title.cpp`, `host_fe_mainmenu.cpp`, `host_fe_session.cpp` |
+| **2d** (started) | Auto `fe_1.ssh` → menu PNGs; title → main → mountain room / options | `host_menu_assets.cpp`, `host_fe_session.cpp` |
+| **3** (started) | BIGF + `cBigFile_open`, PS2 path I/O from `disc/` | `host_big.cpp`, `host_io.cpp`, `host_bigfile.cpp` |
+| **4** (started) | Graphics stubs + `gs_submit_menu_frame` → Vulkan | `host_graphics.cpp`, `host_gs.cpp` |
+| **5** (started) | Pad + `input.map` load from disc | `host_pad.cpp`, `host_input.cpp` |
+| **6** | Graphics HAL draws one FE texture / full-screen quad via Vulkan | Renderer + decomp graphics |
+| **7** | **Real `cFEStateTitle`** — retail title layout from game code | Phase 6 + FE decomp |
+| **8** | Main menu → mountain room → race | World, streaming, physics, audio |
 
 Phases 1–4 are months of work; 5–7 are multi-year alongside decompilation (same order of
 magnitude as other PS2 decomp → PC efforts).
@@ -115,7 +118,10 @@ magnitude as other PS2 decomp → PC efforts).
 
 ```bash
 ninja native
-./out/ssx3-native --boot-game
+./out/ssx3-native --no-boot-videos disc
+./out/ssx3-native --boot-game disc
+./out/ssx3-native --boot-then-gfx disc
+./out/ssx3-native --gfx disc
 ```
 
 This runs a **C reimplementation of retail `main()`’s call order** (not MIPS `main` yet):
@@ -125,8 +131,11 @@ This runs a **C reimplementation of retail `main()`’s call order** (not MIPS `
 3. `cMemMan_alloc(0x142c0, …)` — same size as disc ELF
 4. `retail_run_static_init` (stand-in for `0x31af50`, 49 ctor slots)
 5. module init loop (stand-in for `0x31b098`)
-6. `cExecutionMan_halt(ctx)`
-7. `cAppMan_run` → `cAppMan_mainLoop` (SDL window or headless ticks)
+6. `cSSXApp_init` (host HAL @ `0x226900`)
+7. `cBigFile_open` / `cBigFile_read` on `data/audio/audio.big`
+8. `cFEStateTitle_onCreateScreen` (host stub @ `0x194778`)
+9. `cExecutionMan_halt(ctx)`
+10. `cAppMan_run` → `cAppMan_mainLoop` (`--boot-game` only; `--boot-then-gfx` skips to Vulkan)
 
 Symbols: `include/platform/host_abi.h`, `include/platform/host_syscalls.h`, `src/platform/linux/host_*.cpp`.
 

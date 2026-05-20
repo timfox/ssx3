@@ -255,7 +255,11 @@ void reset_title_screen_state() {
     g_title = TitleState{};
 }
 
-void build_title_screen(MenuFrame& frame, const MenuViewport& viewport, float time_sec, float dt) {
+void build_title_screen(MenuFrame& frame,
+                        const MenuViewport& viewport,
+                        float time_sec,
+                        float dt,
+                        const MenuRetailStyle& style) {
     frame.time_sec = time_sec;
     frame.width = viewport.window_width;
     frame.height = viewport.window_height;
@@ -350,6 +354,9 @@ void build_title_screen(MenuFrame& frame, const MenuViewport& viewport, float ti
         snow.y = vpy(viewport, flake.y);
         snow.w = vpw(viewport, flake.size);
         snow.h = vph(viewport, flake.size);
+        snow.r = style.snow_r;
+        snow.g = style.snow_g;
+        snow.b = style.snow_b;
         snow.a = flake.alpha;
         append_sprite(frame.sprites, snow);
     }
@@ -370,6 +377,9 @@ void build_title_screen(MenuFrame& frame, const MenuViewport& viewport, float ti
         snow.y = vpy(viewport, flake.y);
         snow.w = vpw(viewport, flake.size);
         snow.h = vph(viewport, flake.size);
+        snow.r = style.snow_r;
+        snow.g = style.snow_g;
+        snow.b = style.snow_b;
         snow.a = flake.alpha;
         append_sprite(frame.sprites, snow);
     }
@@ -389,7 +399,7 @@ void build_title_screen(MenuFrame& frame, const MenuViewport& viewport, float ti
                 0.13f,
                 blink);
 
-    const char* copy_text = "(c) 2003 Electronic Arts Inc. All Rights Reserved.";
+    const char* copy_text = "Copyright Electronic Arts";
     const float copy_scale = 1.15f;
     const float copy_w = measure_text_width_virtual(copy_text, copy_scale);
     append_text(frame.sprites,
@@ -402,6 +412,384 @@ void build_title_screen(MenuFrame& frame, const MenuViewport& viewport, float ti
                 0.07f,
                 0.09f,
                 0.95f);
+}
+
+void build_main_menu_screen(MenuFrame& frame,
+                            const MenuViewport& viewport,
+                            float time_sec,
+                            int selected_item,
+                            int item_count) {
+    frame.time_sec = time_sec;
+    frame.width = viewport.window_width;
+    frame.height = viewport.window_height;
+    frame.viewport = viewport;
+    frame.sprites.clear();
+
+    if (viewport.width < 8.0f || viewport.height < 8.0f || item_count <= 0) {
+        return;
+    }
+
+    constexpr float vw = static_cast<float>(kTitleVirtualWidth);
+    constexpr float vh = static_cast<float>(kTitleVirtualHeight);
+
+    MenuSprite sky{};
+    sky.texture_index = kTexSnow;
+    sky.x = vpx(viewport, 0.0f);
+    sky.y = vpy(viewport, 0.0f);
+    sky.w = vpw(viewport, vw);
+    sky.h = vph(viewport, vh);
+    sky.gradient_y = true;
+    sky.r = 0.55f;
+    sky.g = 0.68f;
+    sky.b = 0.82f;
+    sky.a = 1.0f;
+    sky.r2 = 0.88f;
+    sky.g2 = 0.92f;
+    sky.b2 = 0.98f;
+    sky.a2 = 1.0f;
+    append_sprite(frame.sprites, sky);
+
+    MenuSprite mountain{};
+    mountain.texture_index = kTexMountain;
+    mountain.x = vpx(viewport, -60.0f);
+    mountain.y = vpy(viewport, 80.0f);
+    mountain.w = vpw(viewport, 420.0f);
+    mountain.h = vph(viewport, 320.0f);
+    mountain.r = 0.65f;
+    mountain.g = 0.78f;
+    mountain.b = 0.90f;
+    mountain.a = 0.95f;
+    append_sprite(frame.sprites, mountain);
+
+    const float logo_w = 320.0f;
+    const float logo_h = logo_w / kLogoAspect;
+    MenuSprite logo{};
+    logo.texture_index = kTexLogo;
+    logo.x = vpx(viewport, (vw - logo_w) * 0.5f);
+    logo.y = vpy(viewport, 24.0f);
+    logo.w = vpw(viewport, logo_w);
+    logo.h = vph(viewport, logo_h);
+    logo.a = 0.92f;
+    append_sprite(frame.sprites, logo);
+
+    static const char* kMenuItems[] = {
+        "Freeride",
+        "World Tour",
+        "Multiplayer",
+        "Options",
+        "Profile",
+    };
+    const int count = static_cast<int>(sizeof(kMenuItems) / sizeof(kMenuItems[0]));
+    const int items = item_count < count ? item_count : count;
+    const float base_x = 368.0f;
+    const float base_y = 168.0f;
+    const float line_h = 38.0f;
+    const float base_scale = 2.35f;
+    const float sel_scale = 2.75f;
+
+    for (int i = 0; i < items; ++i) {
+        const bool selected = (i == selected_item);
+        const float scale = selected ? sel_scale : base_scale;
+        const float pulse = selected ? (0.85f + 0.15f * std::sin(time_sec * 5.0f)) : 1.0f;
+        append_text(frame.sprites,
+                    viewport,
+                    kMenuItems[i],
+                    base_x,
+                    base_y + static_cast<float>(i) * line_h,
+                    scale,
+                    selected ? 0.05f : 0.12f,
+                    selected ? 0.08f : 0.14f,
+                    selected ? 0.12f : 0.18f,
+                    selected ? pulse : 0.82f);
+    }
+
+    append_text(frame.sprites,
+                viewport,
+                "D-Pad / arrows  ·  Cross confirm  ·  Circle back",
+                48.0f,
+                418.0f,
+                1.35f,
+                0.35f,
+                0.38f,
+                0.42f,
+                0.75f);
+}
+
+void build_mountain_room_screen(MenuFrame& frame,
+                                const MenuViewport& viewport,
+                                float time_sec,
+                                int selected_peak,
+                                int peak_count) {
+    frame.time_sec = time_sec;
+    frame.width = viewport.window_width;
+    frame.height = viewport.window_height;
+    frame.viewport = viewport;
+    frame.sprites.clear();
+
+    if (viewport.width < 8.0f || viewport.height < 8.0f || peak_count <= 0) {
+        return;
+    }
+
+    constexpr float vw = static_cast<float>(kTitleVirtualWidth);
+    constexpr float vh = static_cast<float>(kTitleVirtualHeight);
+
+    MenuSprite sky{};
+    sky.texture_index = kTexSnow;
+    sky.x = vpx(viewport, 0.0f);
+    sky.y = vpy(viewport, 0.0f);
+    sky.w = vpw(viewport, vw);
+    sky.h = vph(viewport, vh);
+    sky.gradient_y = true;
+    sky.r = 0.18f;
+    sky.g = 0.28f;
+    sky.b = 0.42f;
+    sky.a = 1.0f;
+    sky.r2 = 0.42f;
+    sky.g2 = 0.52f;
+    sky.b2 = 0.68f;
+    sky.a2 = 1.0f;
+    append_sprite(frame.sprites, sky);
+
+    const float pan = 0.5f + 0.12f * std::sin(time_sec * 0.35f);
+    MenuSprite panorama{};
+    panorama.texture_index = kTexMountain;
+    panorama.x = vpx(viewport, -24.0f);
+    panorama.y = vpy(viewport, 40.0f);
+    panorama.w = vpw(viewport, vw + 48.0f);
+    panorama.h = vph(viewport, 340.0f);
+    panorama.u0 = pan - 0.35f;
+    panorama.u1 = pan + 0.35f;
+    panorama.v0 = 0.0f;
+    panorama.v1 = 1.0f;
+    panorama.a = 1.0f;
+    append_sprite(frame.sprites, panorama);
+
+    MenuSprite vignette{};
+    vignette.texture_index = kTexSnow;
+    vignette.x = vpx(viewport, 0.0f);
+    vignette.y = vpy(viewport, 0.0f);
+    vignette.w = vpw(viewport, vw);
+    vignette.h = vph(viewport, vh);
+    vignette.gradient_y = true;
+    vignette.r = 0.0f;
+    vignette.g = 0.0f;
+    vignette.b = 0.0f;
+    vignette.a = 0.35f;
+    vignette.r2 = 0.0f;
+    vignette.g2 = 0.0f;
+    vignette.b2 = 0.0f;
+    vignette.a2 = 0.65f;
+    append_sprite(frame.sprites, vignette);
+
+    static const char* kPeaks[] = {"Peak A", "Peak B", "Peak C"};
+    const int count = static_cast<int>(sizeof(kPeaks) / sizeof(kPeaks[0]));
+    const int peaks = peak_count < count ? peak_count : count;
+    const float card_w = 168.0f;
+    const float card_y = 318.0f;
+    const float gap = 12.0f;
+    const float total_w = static_cast<float>(peaks) * card_w + static_cast<float>(peaks - 1) * gap;
+    float card_x = (vw - total_w) * 0.5f;
+
+    for (int i = 0; i < peaks; ++i) {
+        const bool selected = (i == selected_peak);
+        const float scale = selected ? 2.1f : 1.75f;
+        const float pulse = selected ? (0.9f + 0.1f * std::sin(time_sec * 6.0f)) : 0.75f;
+        append_text(frame.sprites,
+                    viewport,
+                    kPeaks[i],
+                    card_x,
+                    card_y,
+                    scale,
+                    selected ? 0.95f : 0.55f,
+                    selected ? 0.97f : 0.60f,
+                    selected ? 1.0f : 0.65f,
+                    pulse);
+        card_x += card_w + gap;
+    }
+
+    append_text(frame.sprites,
+                viewport,
+                "Freeride — mountain room (retail cFEStateMountainRoom)",
+                28.0f,
+                28.0f,
+                1.45f,
+                0.75f,
+                0.80f,
+                0.88f,
+                0.9f);
+
+    append_text(frame.sprites,
+                viewport,
+                "Left/Right peak · Cross race · Circle back",
+                36.0f,
+                418.0f,
+                1.3f,
+                0.4f,
+                0.42f,
+                0.48f,
+                0.8f);
+}
+
+void build_options_screen(MenuFrame& frame,
+                          const MenuViewport& viewport,
+                          float time_sec,
+                          int selected_item,
+                          int item_count) {
+    frame.time_sec = time_sec;
+    frame.width = viewport.window_width;
+    frame.height = viewport.window_height;
+    frame.viewport = viewport;
+    frame.sprites.clear();
+
+    if (viewport.width < 8.0f || viewport.height < 8.0f || item_count <= 0) {
+        return;
+    }
+
+    constexpr float vw = static_cast<float>(kTitleVirtualWidth);
+    constexpr float vh = static_cast<float>(kTitleVirtualHeight);
+
+    MenuSprite backdrop{};
+    backdrop.texture_index = kTexSnow;
+    backdrop.x = vpx(viewport, 0.0f);
+    backdrop.y = vpy(viewport, 0.0f);
+    backdrop.w = vpw(viewport, vw);
+    backdrop.h = vph(viewport, vh);
+    backdrop.gradient_y = true;
+    backdrop.r = 0.08f;
+    backdrop.g = 0.10f;
+    backdrop.b = 0.14f;
+    backdrop.a = 1.0f;
+    backdrop.r2 = 0.20f;
+    backdrop.g2 = 0.22f;
+    backdrop.b2 = 0.28f;
+    backdrop.a2 = 1.0f;
+    append_sprite(frame.sprites, backdrop);
+
+    append_text(frame.sprites,
+                viewport,
+                "Options",
+                48.0f,
+                40.0f,
+                3.2f,
+                0.92f,
+                0.94f,
+                0.98f,
+                1.0f);
+
+    static const char* kItems[] = {
+        "Game",
+        "Sound",
+        "Controller",
+        "Save / Load",
+        "Back",
+    };
+    const int count = static_cast<int>(sizeof(kItems) / sizeof(kItems[0]));
+    const int items = item_count < count ? item_count : count;
+    const float base_x = 72.0f;
+    const float base_y = 120.0f;
+    const float line_h = 42.0f;
+
+    for (int i = 0; i < items; ++i) {
+        const bool selected = (i == selected_item);
+        const float scale = selected ? 2.5f : 2.1f;
+        append_text(frame.sprites,
+                    viewport,
+                    kItems[i],
+                    base_x,
+                    base_y + static_cast<float>(i) * line_h,
+                    scale,
+                    selected ? 0.08f : 0.45f,
+                    selected ? 0.10f : 0.48f,
+                    selected ? 0.14f : 0.52f,
+                    selected ? 1.0f : 0.78f);
+    }
+
+    (void)time_sec;
+}
+
+void build_options_game_screen(MenuFrame& frame,
+                               const MenuViewport& viewport,
+                               float time_sec,
+                               int selected_row,
+                               int row_count) {
+    frame.time_sec = time_sec;
+    frame.width = viewport.window_width;
+    frame.height = viewport.window_height;
+    frame.viewport = viewport;
+    frame.sprites.clear();
+
+    if (viewport.width < 8.0f || viewport.height < 8.0f || row_count <= 0) {
+        return;
+    }
+
+    constexpr float vw = static_cast<float>(kTitleVirtualWidth);
+    constexpr float vh = static_cast<float>(kTitleVirtualHeight);
+
+    MenuSprite backdrop{};
+    backdrop.texture_index = kTexSnow;
+    backdrop.x = vpx(viewport, 0.0f);
+    backdrop.y = vpy(viewport, 0.0f);
+    backdrop.w = vpw(viewport, vw);
+    backdrop.h = vph(viewport, vh);
+    backdrop.gradient_y = true;
+    backdrop.r = 0.06f;
+    backdrop.g = 0.08f;
+    backdrop.b = 0.12f;
+    backdrop.a = 1.0f;
+    backdrop.r2 = 0.16f;
+    backdrop.g2 = 0.18f;
+    backdrop.b2 = 0.24f;
+    backdrop.a2 = 1.0f;
+    append_sprite(frame.sprites, backdrop);
+
+    append_text(frame.sprites,
+                viewport,
+                "Game Options",
+                48.0f,
+                36.0f,
+                2.8f,
+                0.90f,
+                0.92f,
+                0.96f,
+                1.0f);
+
+    static const char* kRows[] = {
+        "Difficulty: Medium",
+        "Camera: Dynamic",
+        "Trick speed: Normal",
+        "Crash resistance: On",
+        "Back",
+    };
+    const int count = static_cast<int>(sizeof(kRows) / sizeof(kRows[0]));
+    const int rows = row_count < count ? row_count : count;
+    const float base_x = 56.0f;
+    const float base_y = 108.0f;
+    const float line_h = 36.0f;
+
+    for (int i = 0; i < rows; ++i) {
+        const bool selected = (i == selected_row);
+        append_text(frame.sprites,
+                    viewport,
+                    kRows[i],
+                    base_x,
+                    base_y + static_cast<float>(i) * line_h,
+                    selected ? 2.2f : 1.85f,
+                    selected ? 0.10f : 0.50f,
+                    selected ? 0.12f : 0.52f,
+                    selected ? 0.16f : 0.56f,
+                    selected ? 1.0f : 0.80f);
+    }
+
+    append_text(frame.sprites,
+                viewport,
+                "Left/Right change value (stub) · Circle/Esc back",
+                40.0f,
+                412.0f,
+                1.25f,
+                0.40f,
+                0.42f,
+                0.48f,
+                0.72f);
 }
 
 } // namespace host

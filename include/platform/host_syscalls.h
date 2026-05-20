@@ -26,11 +26,29 @@
 
 /* --- Disc / archives --- */
 /* FILESYS_*             host_filesys.cpp */
-/* BIG_*                 host_big.cpp + host_filesys.cpp */
+/* BIG_*                 host_big.cpp */
+/* cBigFile_*            host_bigfile.cpp */
+/* host::read_*          host_io.cpp */
 
-/* --- FE / title (goal: decomp, not host menu) --- */
-/* cFEStateTitle_onCreateScreen  0x00194778  (not wired yet) */
-/* cVisualEffectsMainMenu_*      0x0024D2F0  (not wired yet) */
+/* --- Input --- */
+/* cInputPad_*           host_pad.cpp */
+/* cInputMap_*           host_input.cpp */
+/* cSSXApp_loadInputMap  host_input.cpp */
+
+/* --- Graphics (stubs → Vulkan via host_gs) --- */
+/* host::gs_*            host_gs.cpp */
+/* cPSPGraphicsMan_New*TexID     host_graphics.cpp */
+/* cRenderStateMan_SnowFlake*     host_graphics.cpp */
+/* cVisualEffectsMainMenu_*       host_graphics.cpp */
+
+/* --- FE / title (host HAL → Vulkan until FE decomp) --- */
+/* cFEStateTitle_*               0x00194778  host_fe_title.cpp */
+/* cFEStateMainMenu_*            0x00194AA8  host_fe_mainmenu.cpp */
+/* cFEStateMountainRoom_*        0x001D2990  host_fe_mountain_room.cpp */
+/* cFEStateOptions_*             0x00188800  host_fe_options.cpp */
+/* cFEStateOptionsGame_*         0x00188F28  host_fe_options_game.cpp */
+/* cVisualEffectsMainMenu_*      0x0024D2F0  host_graphics.cpp + host_visualfx_menu.cpp */
+/* host_menu_ensure_assets       host_menu_assets.cpp (fe_1.ssh → PNG) */
 
 /* --- Graphics (goal: HAL rewrite) --- */
 /* cPSPGraphicsMan_*     (not wired yet) */

@@ -1,4 +1,10 @@
 #include "visualfx/crowdrender2d.h"
+
+#ifdef SSX3_HOST
+#include "platform/host_abi.h"
+const char D_004875D8[] = "host";
+#endif
+
 #include <stdint.h>
 
 //100%
@@ -52,7 +58,12 @@ INCLUDE_ASM("visualfx/crowdrender2d", cCrowdRender2D_constructCrowdAnim2D__FPv);
 void* cMemMan_alloc(int a, const char* b, uint32_t c, int d);
 
 void* cCrowdRender2D_constructCrowdAnim2D(void* param) {
+#ifdef SSX3_HOST
+	void* memory = cMemMan_alloc(0x20u, const_cast<void*>(static_cast<const void*>(D_004875D8)),
+	                             0x20000000u, nullptr);
+#else
 	void* memory = cMemMan_alloc(0x20, D_004875D8, 0x20000000, 0);
+#endif
 	return cCrowdAnim2D_cCrowdAnim2D(memory, param);
 }
 #endif
@@ -61,7 +72,8 @@ INCLUDE_ASM("visualfx/crowdrender2d", cCrowdAnim2D_cCrowdAnim2D__FPvT0);
 #ifdef SKIP_ASM
 void* cCrowdAnim2D_cCrowdAnim2D(void* memory, void* param_1)
 {
-
+	(void)param_1;
+	return memory;
 }
 #endif
 

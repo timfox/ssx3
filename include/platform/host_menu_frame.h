@@ -5,6 +5,12 @@
 
 namespace host {
 
+struct MenuRetailStyle {
+    float snow_r = 0.92f;
+    float snow_g = 0.95f;
+    float snow_b = 1.0f;
+};
+
 struct MenuViewport {
     int window_width = 0;
     int window_height = 0;
