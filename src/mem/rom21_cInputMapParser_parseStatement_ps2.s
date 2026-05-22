@@ -1,0 +1,109 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cInputMapParser_parseStatement
+.ent cInputMapParser_parseStatement
+cInputMapParser_parseStatement:
+    .word  0x27bdffc0
+    .word  0x24030002
+    .word  0x7fb00030
+    .word  0x7fb10020
+    .word  0x0080802d
+    .word  0x7fb20010
+    .word  0xffbf0000
+    .word  0x8e020098
+    .word  0x10430003
+    .word  0x3c050049
+    .word  0x10000046
+    .word  0x24a5ded0
+    .word  0x2611009c
+    .word  0x0200202d
+    .word  0x0c0c85ba
+    .word  0x0220282d
+    .word  0x04400007
+    .word  0x3c050049
+    .word  0x0200202d
+    .word  0x0220302d
+    .word  0x0c0c8540
+    .word  0x24a5def8
+    .word  0x1000003c
+    .word  0x00000000
+    .word  0x0200202d
+    .word  0x0c0c8620
+    .word  0x0220282d
+    .word  0x04400007
+    .word  0x3c050049
+    .word  0x0200202d
+    .word  0x0220302d
+    .word  0x0c0c8540
+    .word  0x24a5df20
+    .word  0x10000031
+    .word  0x00000000
+    .word  0x0200202d
+    .word  0x0c0c8690
+    .word  0x0220282d
+    .word  0x10400007
+    .word  0x3c050049
+    .word  0x0200202d
+    .word  0x0220302d
+    .word  0x0c0c8540
+    .word  0x24a5df48
+    .word  0x10000026
+    .word  0x00000000
+    .word  0x34028000
+    .word  0x24060044
+    .word  0x02029021
+    .word  0x340480e8
+    .word  0x8e4200e4
+    .word  0x0220282d
+    .word  0x3c030001
+    .word  0x00461018
+    .word  0x02031821
+    .word  0x00441021
+    .word  0x02028821
+    .word  0xac7108e8
+    .word  0x0c1059bd
+    .word  0x0220202d
+    .word  0x0c0c86bc
+    .word  0x0200202d
+    .word  0x8e030098
+    .word  0x24020003
+    .word  0x10620004
+    .word  0x3c050049
+    .word  0x0200202d
+    .word  0x1000000d
+    .word  0x24a5df68
+    .word  0x0c0c86bc
+    .word  0x0200202d
+    .word  0x0c0c8c9a
+    .word  0x0200202d
+    .word  0x10400009
+    .word  0xae220040
+    .word  0x8e030098
+    .word  0x24020005
+    .word  0x10620009
+    .word  0x3c050049
+    .word  0x0200202d
+    .word  0x24a5df88
+    .word  0x0c0c8540
+    .word  0x00000000
+    .word  0x0c0c8564
+    .word  0x0200202d
+    .word  0x10000007
+    .word  0x7bb00030
+    .word  0x0c0c86bc
+    .word  0x0200202d
+    .word  0x8e4200e4
+    .word  0x24420001
+    .word  0xae4200e4
+    .word  0x7bb00030
+    .word  0x7bb10020
+    .word  0x7bb20010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0040
+.end cInputMapParser_parseStatement

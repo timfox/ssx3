@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cMemMan_internalResizeBlock
+.ent cMemMan_internalResizeBlock
+cMemMan_internalResizeBlock:
+    .word  0x27bd0030
+    .word  0x00000000
+    .word  0x27bdffe0
+    .word  0x7fb00010
+    .word  0xafbf0000
+    .word  0xafa00004
+    .word  0x94a30000
+    .word  0x2c62000a
+    .word  0x1040003b
+    .word  0x0080802d
+    .word  0x3c02004b
+    .word  0x00031880
+    .word  0x2442821c
+    .word  0x00621821
+    .word  0x8c640000
+    .word  0x00800008
+    .word  0x00000000
+    .word  0x8e02005c
+    .word  0x84440038
+    .word  0x10000027
+    .word  0x8c43003c
+    .word  0x8e02005c
+    .word  0x84440040
+    .word  0x10000023
+    .word  0x8c430044
+    .word  0x8e02005c
+    .word  0x84440048
+    .word  0x1000001f
+    .word  0x8c43004c
+    .word  0x8e040010
+    .word  0x24a20004
+    .word  0xac82029c
+    .word  0x8e03005c
+    .word  0x84640050
+    .word  0x8c650054
+    .word  0x00a0f809
+    .word  0x02042021
+    .word  0x8e020010
+    .word  0x1000001d
+    .word  0xac40029c
+    .word  0x8e02005c
+    .word  0x84440058
+    .word  0x10000010
+    .word  0x8c43005c
+    .word  0x8e02005c
+    .word  0x84440060
+    .word  0x1000000c
+    .word  0x8c430064
+    .word  0x8e02005c
+    .word  0x84440068
+    .word  0x10000008
+    .word  0x8c43006c
+    .word  0x8e02005c
+    .word  0x84440070
+    .word  0x10000004
+    .word  0x8c430074
+    .word  0x8e02005c
+    .word  0x84440078
+    .word  0x8c43007c
+    .word  0x0060f809
+    .word  0x02042021
+    .word  0x10000007
+    .word  0x7bb00010
+    .word  0x8e02005c
+    .word  0x84440080
+    .word  0x8c430084
+    .word  0x0060f809
+    .word  0x02042021
+    .word  0x7bb00010
+    .word  0x8fbf0000
+    .word  0x8fa00004
+    .word  0x03e00008
+    .word  0x27bd0020
+    .word  0x00000000
+    .word  0x8c850008
+    .word  0x8c820004
+    .word  0x00a2102a
+    .word  0x14400004
+    .word  0x24030044
+    .word  0x3c02ffff
+    .word  0x03e00008
+    .word  0x3442ffff
+.end cMemMan_internalResizeBlock

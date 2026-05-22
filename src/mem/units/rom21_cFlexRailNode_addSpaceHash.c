@@ -1,0 +1,61 @@
+#include "common.h"
+// @objdiff-matched
+#include "ps2_match.h"
+
+extern void* func_002D1BE0(void* block);
+extern void func_00328F28(void* out_three_words, void* param_30);
+extern void func_00328C20(void* node, int mode, void* hash_root, void* stack_indices);
+extern char D_0048E808[];
+extern void* cMemMan_alloc(unsigned long size, void* heap_tag, unsigned long flags, void* heap_state);
+#ifdef SKIP_ASM
+void cFlexRailNode_addSpaceHash(void* self);
+PS2_RETAIL_ASM_ONLY(
+    cFlexRailNode_addSpaceHash,
+    ".word 0x27bdffb0\n\t"
+    ".word 0x3c050049\n\t"
+    ".word 0x7fb00040\n\t"
+    ".word 0x3c062000\n\t"
+    ".word 0x0080802d\n\t"
+    ".word 0x7fb10030\n\t"
+    ".word 0x7fb20020\n\t"
+    ".word 0x0000382d\n\t"
+    ".word 0xffbf0010\n\t"
+    ".word 0x24a5e808\n\t"
+    ".word 0x0c0c5f5c\n\t"
+    ".word 0x24040010\n\t"
+    ".word 0x24030003\n\t"
+    ".word 0xac50000c\n\t"
+    ".word 0xac430008\n\t"
+    ".word 0x0c0b46f8\n\t"
+    ".word 0xae020054\n\t"
+    ".word 0x0040882d\n\t"
+    ".word 0x26050030\n\t"
+    ".word 0x8e120054\n\t"
+    ".word 0x0c0ca3ca\n\t"
+    ".word 0x03a0202d\n\t"
+    ".word 0x8fa20004\n\t"
+    ".word 0x2407ffff\n\t"
+    ".word 0x26230050\n\t"
+    ".word 0x8fa50008\n\t"
+    ".word 0x00e2102a\n\t"
+    ".word 0x8fa6000c\n\t"
+    ".word 0x0222180b\n\t"
+    ".word 0x00e5282a\n\t"
+    ".word 0x24640028\n\t"
+    ".word 0x00e6382a\n\t"
+    ".word 0x0065200b\n\t"
+    ".word 0x0240302d\n\t"
+    ".word 0x24820014\n\t"
+    ".word 0x24050002\n\t"
+    ".word 0x0047200a\n\t"
+    ".word 0x0c0ca308\n\t"
+    ".word 0x03a0382d\n\t"
+    ".word 0x7bb00040\n\t"
+    ".word 0x7bb10030\n\t"
+    ".word 0x7bb20020\n\t"
+    ".word 0xdfbf0010\n\t"
+    ".word 0x03e00008\n\t"
+    ".word 0x27bd0050\n\t"
+    ".word 0x00000000\n\t"
+)
+#endif

@@ -1,0 +1,99 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global iFILESYS_ExecCommand
+.ent iFILESYS_ExecCommand
+iFILESYS_ExecCommand:
+    .word  0x27bdfd90
+    .word  0x3c020052
+    .word  0x7fb00260
+    .word  0x7fb10250
+    .word  0x24509ac4
+    .word  0x0080882d
+    .word  0x7fb40220
+    .word  0x3c140052
+    .word  0x7fb20240
+    .word  0x7fb30230
+    .word  0xffbf0210
+    .word  0x0c0f95c0
+    .word  0x0200202d
+    .word  0x1220001a
+    .word  0x0000202d
+    .word  0x8e02001c
+    .word  0x1040000e
+    .word  0xae22002c
+    .word  0x8c420010
+    .word  0x8e230010
+    .word  0x0062102a
+    .word  0x14400009
+    .word  0x00000000
+    .word  0x8e24002c
+    .word  0x8c82002c
+    .word  0x10400005
+    .word  0xae22002c
+    .word  0x8c420010
+    .word  0x0062102a
+    .word  0x5040fffa
+    .word  0x8e24002c
+    .word  0x10800003
+    .word  0x26829ab0
+    .word  0x10000002
+    .word  0xac91002c
+    .word  0xac510030
+    .word  0x26839ab0
+    .word  0x8c62000c
+    .word  0x24420001
+    .word  0xac62000c
+    .word  0x26849ab0
+    .word  0x8c820024
+    .word  0x14400004
+    .word  0x00000000
+    .word  0x8c820010
+    .word  0x50400005
+    .word  0x8c910030
+    .word  0x0c0f95d8
+    .word  0x24840014
+    .word  0x100000e4
+    .word  0x7bb00260
+    .word  0x5220000b
+    .word  0x0000882d
+    .word  0x8e230010
+    .word  0x8c820008
+    .word  0x0043102a
+    .word  0x54400006
+    .word  0x0000882d
+    .word  0x8c82000c
+    .word  0x8e23002c
+    .word  0x2442ffff
+    .word  0xac82000c
+    .word  0xac830030
+    .word  0x26829ab0
+    .word  0x24440014
+    .word  0x0c0f95d8
+    .word  0xac510024
+    .word  0x122000d2
+    .word  0x7bb00260
+    .word  0x8e220004
+    .word  0x50400005
+    .word  0x8e220000
+    .word  0x0c0f7908
+    .word  0x0000202d
+    .word  0x100000cb
+    .word  0x7bb00260
+    .word  0x00021502
+    .word  0x3042000f
+    .word  0x2444fffe
+    .word  0x2c830009
+    .word  0x106000c4
+    .word  0x3c020049
+    .word  0x00041880
+    .word  0x24425d80
+    .word  0x00621821
+    .word  0x8c640000
+    .word  0x00800008
+    .word  0x00000000
+.end iFILESYS_ExecCommand

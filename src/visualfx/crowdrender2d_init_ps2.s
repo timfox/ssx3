@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cCrowdRender2D_init__Fv
+.ent cCrowdRender2D_init__Fv
+cCrowdRender2D_init__Fv:
+    .word  0x27bdff60
+    .word  0x3c050500
+    .word  0x7fb30060
+    .word  0x0080982d
+    .word  0x7fb60030
+    .word  0x3c040048
+    .word  0x7fb70020
+    .word  0x7fbe0010
+    .word  0x7fb00090
+    .word  0x7fb10080
+    .word  0x7fb20070
+    .word  0x7fb40050
+    .word  0x7fb50040
+    .word  0xffbf0000
+    .word  0x0c000000
+    .word  0x248475c0
+    .word  0x3c030044
+    .word  0xae620000
+    .word  0x24775d3c
+    .word  0x0000102d
+    .word  0x02e0b02d
+    .word  0x26de0094
+    .word  0x240300d8
+    .word  0x00000000
+    .word  0x24550001
+    .word  0x00432018
+    .word  0x00971021
+    .word  0x8c430000
+    .word  0x1860001d
+    .word  0x0000902d
+    .word  0x3c020044
+    .word  0x02c4a021
+    .word  0x24425d40
+    .word  0x009e8021
+    .word  0x00828821
+    .word  0x00000000
+    .word  0x8e640000
+    .word  0x0220282d
+    .word  0x0c000000
+    .word  0x26520001
+    .word  0x8f8a2a90
+    .word  0x0040282d
+    .word  0xae02ffc0
+    .word  0x0220302d
+    .word  0x0000382d
+    .word  0x0000402d
+    .word  0x8d4310d8
+    .word  0x2409ffff
+    .word  0x26310005
+    .word  0x84640170
+    .word  0x8c620174
+    .word  0x0040f809
+    .word  0x01442021
+    .word  0xae020000
+    .word  0x8e820000
+    .word  0x0242102a
+    .word  0x1440ffeb
+    .word  0x26100004
+    .word  0x02a0102d
+    .word  0x1840ffdc
+    .word  0x240300d8
+    .word  0x3c020044
+    .word  0x7bb00090
+    .word  0x24425d38
+    .word  0x7bb10080
+    .word  0x8c440058
+    .word  0x7bb20070
+    .word  0x84830004
+    .word  0x7bb40050
+    .word  0xae630004
+    .word  0x7bb50040
+    .word  0x84820006
+    .word  0x7bb60030
+    .word  0xae620008
+    .word  0x7bb70020
+    .word  0x90830000
+    .word  0x7bbe0010
+    .word  0xae63000c
+    .word  0x7bb30060
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd00a0
+.end cCrowdRender2D_init__Fv

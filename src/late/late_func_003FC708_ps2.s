@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_003FC708
+.ent func_003FC708
+func_003FC708:
+    .word  0x27bdffd0
+    .word  0x8f832a30
+    .word  0x7fb00020
+    .word  0x24090005
+    .word  0x0080802d
+    .word  0x7fb10010
+    .word  0xffbf0000
+    .word  0x24040008
+    .word  0x0060502d
+    .word  0x00a0582d
+    .word  0x020a1025
+    .word  0xac640074
+    .word  0x00c0282d
+    .word  0x0100882d
+    .word  0x0200202d
+    .word  0x30420007
+    .word  0x10400017
+    .word  0xac690078
+    .word  0x26020060
+    .word  0x68830007
+    .word  0x6c830000
+    .word  0x6886000f
+    .word  0x6c860008
+    .word  0x68880017
+    .word  0x6c880010
+    .word  0x6889001f
+    .word  0x6c890018
+    .word  0xb1430007
+    .word  0xb5430000
+    .word  0xb146000f
+    .word  0xb5460008
+    .word  0xb1480017
+    .word  0xb5480010
+    .word  0xb149001f
+    .word  0xb5490018
+    .word  0x24840020
+    .word  0x1482ffee
+    .word  0x254a0020
+    .word  0x1000000d
+    .word  0x00000000
+    .word  0x26020060
+    .word  0xdc830000
+    .word  0xdc860008
+    .word  0xdc880010
+    .word  0xdc890018
+    .word  0xfd430000
+    .word  0xfd460008
+    .word  0xfd480010
+    .word  0xfd490018
+    .word  0x24840020
+    .word  0x1482fff6
+    .word  0x254a0020
+    .word  0x8c820000
+    .word  0xad420000
+    .word  0x8f822a30
+    .word  0x0160202d
+    .word  0xac47007c
+    .word  0xac510084
+    .word  0x0c0fee88
+    .word  0xac4b008c
+    .word  0x0040182d
+    .word  0x1060000f
+    .word  0x24020007
+    .word  0x8c620008
+    .word  0x1622000c
+    .word  0x2402006e
+    .word  0x8c630004
+    .word  0x0200202d
+    .word  0x8f822a30
+    .word  0x0000302d
+    .word  0x0060282d
+    .word  0x0c0fe712
+    .word  0xac4300a4
+    .word  0x0c0fee04
+    .word  0x0040202d
+    .word  0x10000002
+    .word  0x7bb00020
+    .word  0x7bb00020
+    .word  0x7bb10010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0030
+.end func_003FC708

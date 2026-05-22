@@ -1,0 +1,75 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cMultiParticle_setupMultiParticle
+.ent cMultiParticle_setupMultiParticle
+cMultiParticle_setupMultiParticle:
+    .word  0x27bdffc0
+    .word  0x3c05004a
+    .word  0x7fb10020
+    .word  0x24a54030
+    .word  0x7fb20010
+    .word  0x0080882d
+    .word  0xffbf0000
+    .word  0x3c062000
+    .word  0x7fb00030
+    .word  0x0000382d
+    .word  0x8e300000
+    .word  0x2632000c
+    .word  0x0c0c5f8c
+    .word  0x00102080
+    .word  0x0040202d
+    .word  0x1200000b
+    .word  0x2603ffff
+    .word  0x3c05ffff
+    .word  0x2406ffff
+    .word  0x34a5ffff
+    .word  0xac850000
+    .word  0x2463ffff
+    .word  0x00000000
+    .word  0x00000000
+    .word  0x00000000
+    .word  0x1466fffa
+    .word  0x24840004
+    .word  0x3c05004a
+    .word  0x24040190
+    .word  0x24a54038
+    .word  0x3c062000
+    .word  0x0000382d
+    .word  0x0c0c5f5c
+    .word  0xae420000
+    .word  0x0c0dc006
+    .word  0x0040202d
+    .word  0x8e230000
+    .word  0x0000202d
+    .word  0x1860000d
+    .word  0xae220010
+    .word  0x3c05ffff
+    .word  0x34a5ffff
+    .word  0x8e22000c
+    .word  0x00000000
+    .word  0x00041880
+    .word  0x24840001
+    .word  0x00621821
+    .word  0xac650000
+    .word  0x8e220000
+    .word  0x0082102a
+    .word  0x5440fff9
+    .word  0x8e22000c
+    .word  0x8e260008
+    .word  0x3c050050
+    .word  0x8e240010
+    .word  0x0c0dc178
+    .word  0x24a5f1a0
+    .word  0x7bb00030
+    .word  0x7bb10020
+    .word  0x7bb20010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0040
+    .word  0x00000000
+.end cMultiParticle_setupMultiParticle

@@ -1,0 +1,97 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cBucketMan_init
+.ent cBucketMan_init
+cBucketMan_init:
+    .word  0x27bdffc0
+    .word  0x24020044
+    .word  0x7fb10020
+    .word  0x0000302d
+    .word  0x00a0882d
+    .word  0x7fb00030
+    .word  0x02221018
+    .word  0x0080802d
+    .word  0x3c05004a
+    .word  0x7fb20010
+    .word  0x24a54020
+    .word  0xffbf0000
+    .word  0x0000382d
+    .word  0x26120004
+    .word  0x0c0c5f8c
+    .word  0x24440010
+    .word  0x24450010
+    .word  0x2624ffff
+    .word  0xac510000
+    .word  0x12200013
+    .word  0x00a0182d
+    .word  0x3c020049
+    .word  0x2406ffff
+    .word  0x24421f00
+    .word  0xac620010
+    .word  0x2484ffff
+    .word  0xac600008
+    .word  0xac60000c
+    .word  0xac620020
+    .word  0xac600018
+    .word  0xac60001c
+    .word  0xac620030
+    .word  0xac600028
+    .word  0xac60002c
+    .word  0xac620040
+    .word  0xac600038
+    .word  0xac60003c
+    .word  0x1486fff2
+    .word  0x24630044
+    .word  0xae450000
+    .word  0x0000302d
+    .word  0x1a200026
+    .word  0xae110000
+    .word  0x0000282d
+    .word  0x8e040004
+    .word  0x24c60001
+    .word  0x00a42021
+    .word  0x24830014
+    .word  0xac830008
+    .word  0x8e020004
+    .word  0x00a21021
+    .word  0xac40000c
+    .word  0x8e030004
+    .word  0x00a31821
+    .word  0xac600018
+    .word  0x8e020004
+    .word  0x00a21021
+    .word  0x24440004
+    .word  0xac44001c
+    .word  0x8e030004
+    .word  0x00a31821
+    .word  0x24640034
+    .word  0xac640028
+    .word  0x8e020004
+    .word  0x00a21021
+    .word  0xac40002c
+    .word  0x8e030004
+    .word  0x00a31821
+    .word  0xac600038
+    .word  0x8e040004
+    .word  0x00a42021
+    .word  0x24830024
+    .word  0xac83003c
+    .word  0x8e020004
+    .word  0x00a21021
+    .word  0xac400000
+    .word  0x8e020000
+    .word  0x00c2102a
+    .word  0x1440ffdd
+    .word  0x24a50044
+    .word  0x7bb00030
+    .word  0x7bb10020
+    .word  0x7bb20010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0040
+.end cBucketMan_init

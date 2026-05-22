@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_0039DFE8
+.ent func_0039DFE8
+func_0039DFE8:
+    .word  0x27bdffc0
+    .word  0x7fb00030
+    .word  0x7fb10020
+    .word  0x0080802d
+    .word  0x7fb20010
+    .word  0xffbf0000
+    .word  0x27922968
+    .word  0x0c0e7fd4
+    .word  0x00a0882d
+    .word  0x8e230008
+    .word  0x8c450014
+    .word  0x84640098
+    .word  0x8c62009c
+    .word  0x00a5900b
+    .word  0x0040f809
+    .word  0x02242021
+    .word  0x50400013
+    .word  0x8e230008
+    .word  0x8e020074
+    .word  0x18400037
+    .word  0x24050008
+    .word  0x0c0e7fde
+    .word  0x0200202d
+    .word  0x0040282d
+    .word  0x3402ffff
+    .word  0x50a20005
+    .word  0x8e020074
+    .word  0x8e04005c
+    .word  0x0c0e721c
+    .word  0x24060001
+    .word  0x8e020074
+    .word  0x0200282d
+    .word  0x8e03005c
+    .word  0x24060009
+    .word  0x1000001b
+    .word  0x2442ffff
+    .word  0x846400a0
+    .word  0x8c6200a4
+    .word  0x0040f809
+    .word  0x02242021
+    .word  0x10400023
+    .word  0x0000102d
+    .word  0x8e020074
+    .word  0x8e030078
+    .word  0x24420001
+    .word  0x0043102a
+    .word  0x1040001c
+    .word  0x24050009
+    .word  0x0c0e7fde
+    .word  0x0200202d
+    .word  0x0040282d
+    .word  0x3402ffff
+    .word  0x50a20005
+    .word  0x8e020074
+    .word  0x8e04005c
+    .word  0x0c0e721c
+    .word  0x24060001
+    .word  0x8e020074
+    .word  0x0200282d
+    .word  0x8e03005c
+    .word  0x24060009
+    .word  0x24420001
+    .word  0xae020074
+    .word  0x8c6700d0
+    .word  0x8ce20008
+    .word  0x84440098
+    .word  0x8c43009c
+    .word  0x0060f809
+    .word  0x00e42021
+    .word  0x8e420000
+    .word  0x24050001
+    .word  0x84440010
+    .word  0x8c430014
+    .word  0x0060f809
+    .word  0x02442021
+    .word  0x24020001
+    .word  0x7bb00030
+    .word  0x7bb10020
+    .word  0x7bb20010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0040
+.end func_0039DFE8

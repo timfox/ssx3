@@ -1,0 +1,77 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cUIListBox_addEntryByStringID
+.ent cUIListBox_addEntryByStringID
+cUIListBox_addEntryByStringID:
+    .word  0x27bdffa0
+    .word  0x7fb10040
+    .word  0x7fb30020
+    .word  0x0080882d
+    .word  0x7fb40010
+    .word  0x7fb00050
+    .word  0x00c0a02d
+    .word  0x7fb20030
+    .word  0xffbf0000
+    .word  0x8e22005c
+    .word  0x8c4300d0
+    .word  0x8c640010
+    .word  0x8c860010
+    .word  0x10c00027
+    .word  0x00a0982d
+    .word  0x8cc30004
+    .word  0x84640020
+    .word  0x8c620024
+    .word  0x0040f809
+    .word  0x00c42021
+    .word  0x0040902d
+    .word  0x52400020
+    .word  0x92220318
+    .word  0x0c0f6f28
+    .word  0x0240202d
+    .word  0x24420001
+    .word  0x3c050049
+    .word  0x24060100
+    .word  0x0000382d
+    .word  0x00022040
+    .word  0x0c0c5f8c
+    .word  0x24a53de0
+    .word  0x0040802d
+    .word  0x0240282d
+    .word  0x0c0f6f88
+    .word  0x0200202d
+    .word  0x92230318
+    .word  0x24040014
+    .word  0x00641018
+    .word  0x00511821
+    .word  0xac6000a0
+    .word  0x92220318
+    .word  0x00441818
+    .word  0x00711021
+    .word  0xac50009c
+    .word  0x92230318
+    .word  0x00641018
+    .word  0x00511821
+    .word  0xac7400a4
+    .word  0x92220318
+    .word  0x00441818
+    .word  0x00711021
+    .word  0xac530098
+    .word  0x92220318
+    .word  0x7bb00050
+    .word  0x24430001
+    .word  0x7bb20030
+    .word  0xa2230318
+    .word  0x304200ff
+    .word  0x7bb10040
+    .word  0x7bb30020
+    .word  0x7bb40010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0060
+    .word  0x00000000
+.end cUIListBox_addEntryByStringID

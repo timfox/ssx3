@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_003D3658
+.ent func_003D3658
+func_003D3658:
+    .word  0x27bdffa0
+    .word  0x00a0382d
+    .word  0x7fb00050
+    .word  0x7fb10040
+    .word  0x0080802d
+    .word  0x7fb20030
+    .word  0x00c0882d
+    .word  0x7fb30020
+    .word  0xffbf0010
+    .word  0x3c130045
+    .word  0x8e62f420
+    .word  0x8e030008
+    .word  0x8c440038
+    .word  0x00031d02
+    .word  0x8c450034
+    .word  0x00031840
+    .word  0x00641821
+    .word  0x84620000
+    .word  0x00021080
+    .word  0x10e00004
+    .word  0x00a29021
+    .word  0x8ce20030
+    .word  0x14400005
+    .word  0x00e0202d
+    .word  0x8e420008
+    .word  0x30420300
+    .word  0x10000030
+    .word  0x2c420001
+    .word  0x0c0f4cae
+    .word  0x0220282d
+    .word  0x8e65f420
+    .word  0x0040382d
+    .word  0x86020000
+    .word  0x8ca40050
+    .word  0x000210c0
+    .word  0x8e060004
+    .word  0x00441021
+    .word  0x6844ffff
+    .word  0x6c44fff8
+    .word  0xb3a40007
+    .word  0xb7a40000
+    .word  0x8e420008
+    .word  0x24030200
+    .word  0x30450300
+    .word  0x14a30010
+    .word  0x24020100
+    .word  0x8e240004
+    .word  0x00061e02
+    .word  0x8e250018
+    .word  0x00061502
+    .word  0x3042000f
+    .word  0x3063000f
+    .word  0x00a4001b
+    .word  0x50800001
+    .word  0x000001cd
+    .word  0x00002812
+    .word  0x00431818
+    .word  0x0065102a
+    .word  0x00651823
+    .word  0x1000000e
+    .word  0x24630001
+    .word  0x14a2000b
+    .word  0x38a20300
+    .word  0x8e220000
+    .word  0x24e30001
+    .word  0x3042000f
+    .word  0x0062001b
+    .word  0x50400001
+    .word  0x000001cd
+    .word  0x00002010
+    .word  0x24830001
+    .word  0x10000002
+    .word  0x0043180a
+    .word  0x2c430001
+    .word  0x0060102d
+    .word  0x7bb00050
+    .word  0x7bb10040
+    .word  0x7bb20030
+    .word  0x7bb30020
+    .word  0xdfbf0010
+    .word  0x03e00008
+    .word  0x27bd0060
+.end func_003D3658

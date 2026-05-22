@@ -1,0 +1,85 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cMemBlockMan_initialize
+.ent cMemBlockMan_initialize
+cMemBlockMan_initialize:
+    .word  0x27bdfff0
+    .word  0x3c050049
+    .word  0xffbf0000
+    .word  0x24a5da18
+    .word  0x3c060100
+    .word  0x0000382d
+    .word  0x0c0c5f5c
+    .word  0x24040804
+    .word  0x0c0c803a
+    .word  0x0040202d
+    .word  0x3c050049
+    .word  0x3c060200
+    .word  0x24a5da28
+    .word  0x0000382d
+    .word  0x24042004
+    .word  0x0c0c5f5c
+    .word  0xaf822a70
+    .word  0x0c0c8048
+    .word  0x0040202d
+    .word  0x3c050049
+    .word  0x3c060300
+    .word  0x24a5da38
+    .word  0x0000382d
+    .word  0x24046004
+    .word  0x0c0c5f5c
+    .word  0xaf822a60
+    .word  0x0c0c8056
+    .word  0x0040202d
+    .word  0x3c050049
+    .word  0x3c040003
+    .word  0x24a5da48
+    .word  0x3c060400
+    .word  0x0000382d
+    .word  0x34842004
+    .word  0x0c0c5f5c
+    .word  0xaf822a6c
+    .word  0x0c0c8064
+    .word  0x0040202d
+    .word  0x3c050049
+    .word  0x3c040002
+    .word  0x24a5da58
+    .word  0x3c060500
+    .word  0x0000382d
+    .word  0x34845804
+    .word  0x0c0c5f5c
+    .word  0xaf822a7c
+    .word  0x0c0c8076
+    .word  0x0040202d
+    .word  0x3c050049
+    .word  0x3c040002
+    .word  0x24a5da68
+    .word  0x3c060600
+    .word  0x0000382d
+    .word  0x34840004
+    .word  0x0c0c5f5c
+    .word  0xaf822a84
+    .word  0x0c0c8088
+    .word  0x0040202d
+    .word  0x3c050049
+    .word  0x3c040002
+    .word  0x24a5da78
+    .word  0x3c060700
+    .word  0x0000382d
+    .word  0x34840004
+    .word  0x0c0c5f5c
+    .word  0xaf822a78
+    .word  0x0c0c809c
+    .word  0x0040202d
+    .word  0x24030001
+    .word  0xdfbf0000
+    .word  0xaf822a68
+    .word  0xaf830dd8
+    .word  0x03e00008
+    .word  0x27bd0010
+.end cMemBlockMan_initialize

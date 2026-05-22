@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_00410930
+.ent func_00410930
+func_00410930:
+    .word  0x27bdff80
+    .word  0x24020001
+    .word  0xffb60060
+    .word  0xffb50050
+    .word  0x0100b02d
+    .word  0xffb40040
+    .word  0x00a0a82d
+    .word  0xffb30030
+    .word  0x00c0a02d
+    .word  0xffb10010
+    .word  0x0000982d
+    .word  0xffbf0070
+    .word  0x0080882d
+    .word  0xffb20020
+    .word  0xffb00000
+    .word  0x12a00036
+    .word  0xaec20000
+    .word  0x0000302d
+    .word  0x10e0000c
+    .word  0x26a80008
+    .word  0x02281023
+    .word  0x8e240004
+    .word  0x00023103
+    .word  0x00061900
+    .word  0x24c50001
+    .word  0x00681821
+    .word  0x2491ffff
+    .word  0x8c620000
+    .word  0x00021027
+    .word  0x10000002
+    .word  0x00a2300b
+    .word  0x2631ffff
+    .word  0x00061100
+    .word  0x3c03ffff
+    .word  0x00482821
+    .word  0x3463ffff
+    .word  0x8ca20000
+    .word  0x10430020
+    .word  0x00a0802d
+    .word  0x3c12ffff
+    .word  0x3652ffff
+    .word  0x8e020000
+    .word  0x0222102b
+    .word  0x00000000
+    .word  0x54400016
+    .word  0x26100010
+    .word  0x8e020004
+    .word  0x0222102b
+    .word  0x50400012
+    .word  0x26100010
+    .word  0x8e05000c
+    .word  0x10a0000c
+    .word  0x00000000
+    .word  0x8e820000
+    .word  0x1040000b
+    .word  0x0280202d
+    .word  0x0040f809
+    .word  0x02a0302d
+    .word  0x50400008
+    .word  0x26100010
+    .word  0x52600001
+    .word  0x8e130008
+    .word  0x10000007
+    .word  0xaec00000
+    .word  0x52600001
+    .word  0x8e130008
+    .word  0x26100010
+    .word  0x8e020000
+    .word  0x1452ffe7
+    .word  0x0222102b
+    .word  0x0260102d
+    .word  0xdfbf0070
+    .word  0xdfb60060
+    .word  0xdfb50050
+    .word  0xdfb40040
+    .word  0xdfb30030
+    .word  0xdfb20020
+    .word  0xdfb10010
+    .word  0xdfb00000
+    .word  0x03e00008
+    .word  0x27bd0080
+    .word  0x00000000
+.end func_00410930

@@ -1,0 +1,116 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global strchr
+.ent strchr
+strchr:
+    .word  0x30820007
+    .word  0x1440005e
+    .word  0x30a500ff
+    .word  0x00051a38
+    .word  0x34068080
+    .word  0x00063438
+    .word  0x34c68080
+    .word  0x00063438
+    .word  0x34c68080
+    .word  0x00063278
+    .word  0x34c60101
+    .word  0x0065502d
+    .word  0x3083000f
+    .word  0x000a1438
+    .word  0x34088080
+    .word  0x00084438
+    .word  0x35088080
+    .word  0x00084438
+    .word  0x35088080
+    .word  0x00084438
+    .word  0x35088080
+    .word  0x004a102d
+    .word  0x0002503c
+    .word  0x14600026
+    .word  0x004a382d
+    .word  0x78890000
+    .word  0x70c65389
+    .word  0x70091ce9
+    .word  0x712a1248
+    .word  0x71083389
+    .word  0x70431489
+    .word  0x70e74389
+    .word  0x70461489
+    .word  0x70471ba9
+    .word  0x00431825
+    .word  0x5460003d
+    .word  0x90820000
+    .word  0x712814c9
+    .word  0x704a1a48
+    .word  0x700214e9
+    .word  0x34088080
+    .word  0x00084438
+    .word  0x35088080
+    .word  0x00084438
+    .word  0x35088080
+    .word  0x00084438
+    .word  0x35088080
+    .word  0x70621c89
+    .word  0x70661c89
+    .word  0x34068080
+    .word  0x00063438
+    .word  0x34c68080
+    .word  0x00063438
+    .word  0x34c68080
+    .word  0x00063278
+    .word  0x34c60101
+    .word  0x706513a9
+    .word  0x00431825
+    .word  0x5060ffde
+    .word  0x24840010
+    .word  0x10000024
+    .word  0x90820000
+    .word  0xdc890000
+    .word  0x00091827
+    .word  0x0126102f
+    .word  0x00431024
+    .word  0x00481024
+    .word  0x5440001d
+    .word  0x90820000
+    .word  0x01271026
+    .word  0x0046182f
+    .word  0x00021027
+    .word  0x00621824
+    .word  0x00681824
+    .word  0x54600016
+    .word  0x90820000
+    .word  0x00c0482d
+    .word  0x24840008
+    .word  0xdc860000
+    .word  0x00c9102f
+    .word  0x00061827
+    .word  0x00431024
+    .word  0x00481024
+    .word  0x1440000c
+    .word  0x00c71026
+    .word  0x00021827
+    .word  0x0049102f
+    .word  0x00431024
+    .word  0x00481024
+    .word  0x5040fff4
+    .word  0x24840008
+    .word  0x10000005
+    .word  0x90820000
+    .word  0x50450007
+    .word  0x90830000
+    .word  0x24840001
+    .word  0x90820000
+    .word  0x00000000
+    .word  0x1440fffa
+    .word  0x00000000
+    .word  0x90830000
+    .word  0x0000102d
+    .word  0x00651826
+    .word  0x03e00008
+    .word  0x0083100a
+.end strchr

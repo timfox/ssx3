@@ -1,0 +1,73 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cWorldCacheTable_cWorldCacheTable
+.ent cWorldCacheTable_cWorldCacheTable
+cWorldCacheTable_cWorldCacheTable:
+    .word  0x27bdffc0
+    .word  0x240600e0
+    .word  0x7fb10020
+    .word  0x7fb00030
+    .word  0x0080882d
+    .word  0x7fb20010
+    .word  0x26240004
+    .word  0xffbf0000
+    .word  0x26320008
+    .word  0xae2500e4
+    .word  0x0c105884
+    .word  0x0000282d
+    .word  0x0000802d
+    .word  0x0000302d
+    .word  0x0240282d
+    .word  0x00000000
+    .word  0x8e2300e4
+    .word  0x00061040
+    .word  0x24c60001
+    .word  0x00431021
+    .word  0x28c4001c
+    .word  0x84430000
+    .word  0xaca30000
+    .word  0x02038021
+    .word  0x1480fff7
+    .word  0x24a50008
+    .word  0x00108080
+    .word  0x3c050049
+    .word  0x0000382d
+    .word  0x24a54e18
+    .word  0x0200202d
+    .word  0x0c0c5f8c
+    .word  0x0000302d
+    .word  0x0200302d
+    .word  0x0040202d
+    .word  0x0000282d
+    .word  0x0c105884
+    .word  0xae220000
+    .word  0x8e280000
+    .word  0x0240202d
+    .word  0x0000382d
+    .word  0x26250004
+    .word  0x2406001b
+    .word  0x00000000
+    .word  0x8c820000
+    .word  0x10400005
+    .word  0x00071080
+    .word  0x01021021
+    .word  0xaca20000
+    .word  0x8c830000
+    .word  0x00e33821
+    .word  0x24a50008
+    .word  0x24c6ffff
+    .word  0x04c1fff6
+    .word  0x24840008
+    .word  0x0220102d
+    .word  0x7bb00030
+    .word  0x7bb10020
+    .word  0x7bb20010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0040
+.end cWorldCacheTable_cWorldCacheTable

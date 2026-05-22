@@ -1,0 +1,113 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global ungetc
+.ent ungetc
+ungetc:
+    .word  0x27bdffd0
+    .word  0x2402ffff
+    .word  0x7fb00020
+    .word  0x7fb10010
+    .word  0x00a0802d
+    .word  0x0080882d
+    .word  0x12220059
+    .word  0xffbf0000
+    .word  0x8e020054
+    .word  0x54400006
+    .word  0x8e040054
+    .word  0x3c020045
+    .word  0x8c434944
+    .word  0xae030054
+    .word  0x8e040054
+    .word  0x00000000
+    .word  0x8c820038
+    .word  0x54400004
+    .word  0x9602000c
+    .word  0x0c10803c
+    .word  0x00000000
+    .word  0x9602000c
+    .word  0x3043ffdf
+    .word  0x30620004
+    .word  0x14400012
+    .word  0xa603000c
+    .word  0x30620010
+    .word  0x1040001c
+    .word  0x30620008
+    .word  0x5040000b
+    .word  0x9602000c
+    .word  0x0c107f8c
+    .word  0x0200202d
+    .word  0x1440003e
+    .word  0x2402ffff
+    .word  0x9602000c
+    .word  0xae000008
+    .word  0x3042fff7
+    .word  0xae000018
+    .word  0xa602000c
+    .word  0x9602000c
+    .word  0x34420004
+    .word  0xa602000c
+    .word  0x8e020030
+    .word  0x10400015
+    .word  0x323100ff
+    .word  0x8e020004
+    .word  0x8e030034
+    .word  0x0043102a
+    .word  0x54400008
+    .word  0x8e040000
+    .word  0x3c05004a
+    .word  0x24040001
+    .word  0x24a5a8a0
+    .word  0x0c1090da
+    .word  0x24060044
+    .word  0x10000027
+    .word  0x2402ffff
+    .word  0x0220102d
+    .word  0x2483ffff
+    .word  0xae030000
+    .word  0xa091ffff
+    .word  0x8e030004
+    .word  0x24630001
+    .word  0x1000001f
+    .word  0xae030004
+    .word  0x8e020010
+    .word  0x5040000f
+    .word  0x8e040004
+    .word  0x8e040000
+    .word  0x0044102b
+    .word  0x5040000b
+    .word  0x8e040004
+    .word  0x9082ffff
+    .word  0x54510008
+    .word  0x8e040004
+    .word  0x8e030004
+    .word  0x2482ffff
+    .word  0xae020000
+    .word  0x24630001
+    .word  0x0220102d
+    .word  0x1000000e
+    .word  0xae030004
+    .word  0x24020001
+    .word  0x8e030000
+    .word  0x26070040
+    .word  0x24050003
+    .word  0x26060042
+    .word  0xae020004
+    .word  0xae04003c
+    .word  0x0220102d
+    .word  0xae030038
+    .word  0xae070030
+    .word  0xae050034
+    .word  0xae060000
+    .word  0xa2110042
+    .word  0x7bb00020
+    .word  0x7bb10010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0030
+    .word  0x00000000
+.end ungetc

@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_003E8DC0
+.ent func_003E8DC0
+func_003E8DC0:
+    .word  0x27bdfea0
+    .word  0x3c02636f
+    .word  0x7fb00150
+    .word  0x34426e6e
+    .word  0x7fb20130
+    .word  0x0080802d
+    .word  0x7fb30120
+    .word  0x00c0902d
+    .word  0x7fb40110
+    .word  0x00a0982d
+    .word  0x7fb10140
+    .word  0x00e0a02d
+    .word  0xffbf0100
+    .word  0x0100302d
+    .word  0x8e03000c
+    .word  0x1062000b
+    .word  0x0120382d
+    .word  0x3c026964
+    .word  0x34426c65
+    .word  0x10620007
+    .word  0x3c026175
+    .word  0x34427468
+    .word  0x10620004
+    .word  0x3c026163
+    .word  0x34426374
+    .word  0x14620030
+    .word  0x2402ffff
+    .word  0x8e020004
+    .word  0x54400003
+    .word  0x8e020540
+    .word  0x1000002b
+    .word  0x2402fffe
+    .word  0x28420040
+    .word  0x14400003
+    .word  0x3c057069
+    .word  0x10000026
+    .word  0x2402fffd
+    .word  0x0200202d
+    .word  0x0c0f9dc6
+    .word  0x34a56e67
+    .word  0x0040882d
+    .word  0x52200020
+    .word  0x2402fffc
+    .word  0xae320008
+    .word  0x0c0fd762
+    .word  0x8e040000
+    .word  0x00541021
+    .word  0x2406001f
+    .word  0x26240018
+    .word  0x0260282d
+    .word  0x0c105b38
+    .word  0xae22000c
+    .word  0x3c06004a
+    .word  0x03a0202d
+    .word  0x24c64880
+    .word  0xa3a00000
+    .word  0x0260382d
+    .word  0x0c0fb060
+    .word  0x24050100
+    .word  0x3c06004a
+    .word  0x03a0202d
+    .word  0x24c64890
+    .word  0x24050100
+    .word  0x0c0faff2
+    .word  0x0240382d
+    .word  0x8e040004
+    .word  0x0240282d
+    .word  0x03a0302d
+    .word  0x0c0f9d14
+    .word  0x24070100
+    .word  0x8e030540
+    .word  0x24630001
+    .word  0xae030540
+    .word  0x8e220000
+    .word  0x7bb00150
+    .word  0x7bb10140
+    .word  0x7bb20130
+    .word  0x7bb30120
+    .word  0x7bb40110
+    .word  0xdfbf0100
+    .word  0x03e00008
+    .word  0x27bd0160
+.end func_003E8DC0

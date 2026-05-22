@@ -1,0 +1,73 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cMultiSplineModifier_setupNodes
+.ent cMultiSplineModifier_setupNodes
+cMultiSplineModifier_setupNodes:
+    .word  0x27bdffa0
+    .word  0x240600a0
+    .word  0x7fb10040
+    .word  0x7fb20030
+    .word  0x0080882d
+    .word  0x7fb00050
+    .word  0x24120001
+    .word  0x7fb30020
+    .word  0x7fb40010
+    .word  0xffbf0000
+    .word  0x8e230044
+    .word  0x8e250040
+    .word  0x8c620000
+    .word  0x8c500078
+    .word  0x0c0f995d
+    .word  0x0040202d
+    .word  0x8e220044
+    .word  0x8c430000
+    .word  0xac700078
+    .word  0x8e220004
+    .word  0x0242102a
+    .word  0x10400020
+    .word  0x7bb00050
+    .word  0x3c14ffff
+    .word  0x3c13ffff
+    .word  0x3694ffbf
+    .word  0x3673feff
+    .word  0x00000000
+    .word  0x0c0b4738
+    .word  0x00128080
+    .word  0x8e230044
+    .word  0x0040202d
+    .word  0x8e260040
+    .word  0x26520001
+    .word  0x02031821
+    .word  0x0c0d449c
+    .word  0x8c650000
+    .word  0x8e220044
+    .word  0x02021021
+    .word  0x8c440000
+    .word  0x8c830008
+    .word  0x00741824
+    .word  0x34630020
+    .word  0xac830008
+    .word  0x8e220044
+    .word  0x02028021
+    .word  0x8e040000
+    .word  0x8c820008
+    .word  0x00531024
+    .word  0xac820008
+    .word  0x8e230004
+    .word  0x0243182a
+    .word  0x1460ffe7
+    .word  0x7bb00050
+    .word  0x7bb10040
+    .word  0x7bb20030
+    .word  0x7bb30020
+    .word  0x7bb40010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0060
+    .word  0x00000000
+.end cMultiSplineModifier_setupNodes

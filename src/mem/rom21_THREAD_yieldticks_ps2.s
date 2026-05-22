@@ -1,0 +1,69 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global THREAD_yieldticks
+.ent THREAD_yieldticks
+THREAD_yieldticks:
+    .word  0x27bdff90
+    .word  0x7fb20040
+    .word  0x7fb00060
+    .word  0x0080902d
+    .word  0x7fb10050
+    .word  0x1a400019
+    .word  0xffbf0030
+    .word  0x0c0f9402
+    .word  0x3c11003e
+    .word  0x3c030045
+    .word  0x8c700da0
+    .word  0x26315290
+    .word  0x50400001
+    .word  0x000001cd
+    .word  0x02508018
+    .word  0x0202001a
+    .word  0x00008012
+    .word  0x0c108f24
+    .word  0x3210ffff
+    .word  0x0200202d
+    .word  0x0220282d
+    .word  0x0c108ec8
+    .word  0x0040302d
+    .word  0x04410003
+    .word  0x3c040049
+    .word  0x0c0f981c
+    .word  0x24845e20
+    .word  0x0c108f30
+    .word  0x00000000
+    .word  0x10000016
+    .word  0x7bb00060
+    .word  0x3c020045
+    .word  0x8c430de4
+    .word  0x1060000a
+    .word  0x00000000
+    .word  0x0c108f24
+    .word  0x00000000
+    .word  0x0040202d
+    .word  0x0c108f2c
+    .word  0x03a0282d
+    .word  0x0c10933a
+    .word  0x8fa40018
+    .word  0x10000009
+    .word  0x7bb00060
+    .word  0x0c108f24
+    .word  0x00000000
+    .word  0x0040202d
+    .word  0x0c108f28
+    .word  0x03a0282d
+    .word  0x0c108f14
+    .word  0x8fa40018
+    .word  0x7bb00060
+    .word  0x7bb10050
+    .word  0x7bb20040
+    .word  0xdfbf0030
+    .word  0x03e00008
+    .word  0x27bd0070
+    .word  0x00000000
+.end THREAD_yieldticks

@@ -1,0 +1,41 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global REAL_abortmessage
+.ent REAL_abortmessage
+REAL_abortmessage:
+    .word  0x27bdfd70
+    .word  0xffbf0200
+    .word  0xffa50258
+    .word  0xffa60260
+    .word  0xffa70268
+    .word  0xffa80270
+    .word  0xffa90278
+    .word  0xffaa0280
+    .word  0xffab0288
+    .word  0xe7ac0248
+    .word  0xe7ae024c
+    .word  0xe7b00250
+    .word  0x10800007
+    .word  0xe7b20254
+    .word  0x0080282d
+    .word  0x27a60258
+    .word  0x0c1061b2
+    .word  0x03a0202d
+    .word  0x10000003
+    .word  0x3c020045
+    .word  0xa3a00000
+    .word  0x3c020045
+    .word  0x3c040049
+    .word  0x8c430dd8
+    .word  0x24845ee8
+    .word  0x0060f809
+    .word  0x03a0282d
+    .word  0xdfbf0200
+    .word  0x03e00008
+    .word  0x27bd0290
+.end REAL_abortmessage

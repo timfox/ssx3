@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_00351800
+.ent func_00351800
+func_00351800:
+    .word  0x27bdffb0
+    .word  0x7fb00040
+    .word  0xffbf0030
+    .word  0x0c0d454e
+    .word  0x0080802d
+    .word  0xc6020050
+    .word  0x27a40010
+    .word  0xc6030054
+    .word  0x27a50014
+    .word  0xc6010058
+    .word  0x46001087
+    .word  0x460018c7
+    .word  0xc780d570
+    .word  0x46000847
+    .word  0x46001082
+    .word  0x460018c2
+    .word  0x46000842
+    .word  0x46001306
+    .word  0xe7a20000
+    .word  0xe7a30004
+    .word  0x0c0c6f94
+    .word  0xe7a10008
+    .word  0xc7ac0004
+    .word  0x27a40018
+    .word  0x0c0c6f94
+    .word  0x27a5001c
+    .word  0xc7ac0008
+    .word  0x27a40020
+    .word  0x0c0c6f94
+    .word  0x27a50024
+    .word  0xc7a00010
+    .word  0xc7a40018
+    .word  0xc7a70014
+    .word  0x46000307
+    .word  0xc7aa0020
+    .word  0x46040202
+    .word  0xc7a90024
+    .word  0x46043882
+    .word  0x460a3c42
+    .word  0x3c013f80
+    .word  0x44810800
+    .word  0xc7a3001c
+    .word  0x460903c2
+    .word  0x460a4402
+    .word  0xe60100cc
+    .word  0x46093842
+    .word  0xc60b0044
+    .word  0x46048942
+    .word  0xc60d0048
+    .word  0x460a0002
+    .word  0xc60e004c
+    .word  0x46091082
+    .word  0xe60b00c0
+    .word  0x46001987
+    .word  0xe60d00c4
+    .word  0x46094202
+    .word  0xe60e00c8
+    .word  0x460339c2
+    .word  0xe6040098
+    .word  0x46036302
+    .word  0xae00009c
+    .word  0x46020001
+    .word  0xae0000ac
+    .word  0x460f2940
+    .word  0xe60700b8
+    .word  0x46100841
+    .word  0xe60c00a8
+    .word  0x460a3182
+    .word  0xe60000b0
+    .word  0x46114200
+    .word  0xe60500b4
+    .word  0x460918c2
+    .word  0xe60100a4
+    .word  0xe6060094
+    .word  0xe60800a0
+    .word  0xe6030090
+    .word  0xae0000bc
+    .word  0x7bb00040
+    .word  0xdfbf0030
+    .word  0x03e00008
+    .word  0x27bd0050
+    .word  0x00000000
+.end func_00351800

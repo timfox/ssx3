@@ -1,0 +1,69 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cUIListBox_setEntryByAsciiString
+.ent cUIListBox_setEntryByAsciiString
+cUIListBox_setEntryByAsciiString:
+    .word  0x27bdff90
+    .word  0x7fb10050
+    .word  0x7fb20040
+    .word  0x0080882d
+    .word  0x7fb40020
+    .word  0x00c0902d
+    .word  0x7fb50010
+    .word  0x30b400ff
+    .word  0x7fb00060
+    .word  0x00e0a82d
+    .word  0x7fb30030
+    .word  0xffbf0000
+    .word  0x0c105a04
+    .word  0x0240202d
+    .word  0x24530001
+    .word  0x24020014
+    .word  0x02821018
+    .word  0x02221821
+    .word  0x8c70009c
+    .word  0x1200000b
+    .word  0x3c050049
+    .word  0x806200a8
+    .word  0x0262102a
+    .word  0x10400004
+    .word  0x00000000
+    .word  0x0c0c5fa6
+    .word  0x0200202d
+    .word  0x0000802d
+    .word  0x16000009
+    .word  0x0200202d
+    .word  0x3c050049
+    .word  0x00132040
+    .word  0x24a53df0
+    .word  0x24060100
+    .word  0x0c0c5f8c
+    .word  0x0000382d
+    .word  0x0040802d
+    .word  0x0200202d
+    .word  0x0c0e5eb6
+    .word  0x0240282d
+    .word  0x24020014
+    .word  0x7bb30030
+    .word  0x02821018
+    .word  0xdfbf0000
+    .word  0x7bb40020
+    .word  0x02221821
+    .word  0xac70009c
+    .word  0x0060202d
+    .word  0xac9200a0
+    .word  0x0060102d
+    .word  0xac5500a4
+    .word  0x7bb00060
+    .word  0x7bb10050
+    .word  0x7bb20040
+    .word  0x7bb50010
+    .word  0x03e00008
+    .word  0x27bd0070
+    .word  0x00000000
+.end cUIListBox_setEntryByAsciiString

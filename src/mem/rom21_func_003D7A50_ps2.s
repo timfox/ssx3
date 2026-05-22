@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_003D7A50
+.ent func_003D7A50
+func_003D7A50:
+    .word  0x27bdffc0
+    .word  0x3c020045
+    .word  0x7fb10020
+    .word  0x24420660
+    .word  0x0080882d
+    .word  0x7fb00010
+    .word  0x001118c0
+    .word  0x7fbf0030
+    .word  0x00622021
+    .word  0x0000802d
+    .word  0x94830000
+    .word  0x3402ffff
+    .word  0xafa00000
+    .word  0x1062002e
+    .word  0xafa00004
+    .word  0x0c0f5c44
+    .word  0x00000000
+    .word  0x0040302d
+    .word  0x10c00029
+    .word  0x00000000
+    .word  0x90c9000a
+    .word  0x00091102
+    .word  0x30420001
+    .word  0x10400023
+    .word  0x0000282d
+    .word  0x90c30007
+    .word  0x3c07ffff
+    .word  0x90c20006
+    .word  0x34e7fffc
+    .word  0x00032e00
+    .word  0x3063000f
+    .word  0x00024040
+    .word  0x00031040
+    .word  0x00052f03
+    .word  0x00431021
+    .word  0x25040003
+    .word  0x00051840
+    .word  0x00872024
+    .word  0x00651821
+    .word  0x2484000c
+    .word  0x2405fffc
+    .word  0x24420003
+    .word  0x00451024
+    .word  0x00c42021
+    .word  0x00822021
+    .word  0x24630003
+    .word  0x00651824
+    .word  0x000910c2
+    .word  0x00832021
+    .word  0x30420001
+    .word  0x10400004
+    .word  0x24050001
+    .word  0x25020007
+    .word  0x00471024
+    .word  0x00822021
+    .word  0x90830000
+    .word  0x24820002
+    .word  0xafa20004
+    .word  0xafa30000
+    .word  0x00a0802d
+    .word  0x12000005
+    .word  0x03a0202d
+    .word  0x0c0f5dd8
+    .word  0x0220282d
+    .word  0x10000004
+    .word  0x00000000
+    .word  0x0000202d
+    .word  0x0c0f5dd8
+    .word  0x0220282d
+    .word  0x12000007
+    .word  0x7bbf0030
+    .word  0x04430006
+    .word  0x7bb10020
+    .word  0x0220282d
+    .word  0x0c0f5dd8
+    .word  0x0000202d
+    .word  0x7bbf0030
+    .word  0x7bb10020
+    .word  0x7bb00010
+    .word  0x03e00008
+    .word  0x27bd0040
+    .word  0x00000000
+.end func_003D7A50

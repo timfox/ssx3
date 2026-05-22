@@ -1,0 +1,113 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global FILESYS_bypassqueuefileinfo
+.ent FILESYS_bypassqueuefileinfo
+FILESYS_bypassqueuefileinfo:
+    .word  0x27bdfd80
+    .word  0x7fb40230
+    .word  0x7fb10260
+    .word  0x00c0a02d
+    .word  0x7fb20250
+    .word  0x0080882d
+    .word  0x7fb50220
+    .word  0x0000902d
+    .word  0x7fb00270
+    .word  0x00a0a82d
+    .word  0x7fb30240
+    .word  0xffbf0210
+    .word  0x2405007c
+    .word  0xae800000
+    .word  0x0c105901
+    .word  0xa3a00100
+    .word  0x10400019
+    .word  0x2402007c
+    .word  0x82230000
+    .word  0x14620003
+    .word  0x0220202d
+    .word  0x1000000b
+    .word  0x24130002
+    .word  0x0c105901
+    .word  0x2405007c
+    .word  0x24130004
+    .word  0x00518023
+    .word  0x03a0202d
+    .word  0x0220282d
+    .word  0x0c105b38
+    .word  0x0200302d
+    .word  0x03b01821
+    .word  0xa0600000
+    .word  0x27b00100
+    .word  0x0220202d
+    .word  0x0c105901
+    .word  0x2405007c
+    .word  0x0200202d
+    .word  0x0c1059bd
+    .word  0x24450001
+    .word  0x10000009
+    .word  0x32620001
+    .word  0x32a20001
+    .word  0x10400005
+    .word  0x24130001
+    .word  0x24130003
+    .word  0x27a40100
+    .word  0x0c1059bd
+    .word  0x0220282d
+    .word  0x32620001
+    .word  0x1040000b
+    .word  0x0220202d
+    .word  0x02a0282d
+    .word  0x0c0f8c82
+    .word  0x27a60200
+    .word  0x10400006
+    .word  0x8fa40200
+    .word  0x0c0f8d3a
+    .word  0x24120001
+    .word  0x8fa40200
+    .word  0x0c0f8cbe
+    .word  0xae820000
+    .word  0x1640001e
+    .word  0x0240102d
+    .word  0x32620006
+    .word  0x1040001a
+    .word  0x3c020052
+    .word  0x8c509ae4
+    .word  0x12000017
+    .word  0x32710004
+    .word  0x12200006
+    .word  0x03a0282d
+    .word  0x8e04000c
+    .word  0x0c10596a
+    .word  0x24840010
+    .word  0x5440000c
+    .word  0x8e100014
+    .word  0x8e040000
+    .word  0x27a50100
+    .word  0x0000302d
+    .word  0x27a70204
+    .word  0x0c0f89da
+    .word  0x27a80208
+    .word  0x10400003
+    .word  0x8fa20208
+    .word  0x24120001
+    .word  0xae820000
+    .word  0x8e100014
+    .word  0x12000004
+    .word  0x0240102d
+    .word  0x1240ffeb
+    .word  0x00000000
+    .word  0x0240102d
+    .word  0x7bb00270
+    .word  0x7bb10260
+    .word  0x7bb20250
+    .word  0x7bb30240
+    .word  0x7bb40230
+    .word  0x7bb50220
+    .word  0xdfbf0210
+    .word  0x03e00008
+    .word  0x27bd0280
+.end FILESYS_bypassqueuefileinfo

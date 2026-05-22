@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_003421A0
+.ent func_003421A0
+func_003421A0:
+    .word  0x27bdffc0
+    .word  0x0000402d
+    .word  0x7fb00030
+    .word  0x7fb10020
+    .word  0x00c0802d
+    .word  0x7fb20010
+    .word  0x0080882d
+    .word  0x00e0902d
+    .word  0x26240030
+    .word  0x0200382d
+    .word  0xffbf0000
+    .word  0x0c0d366c
+    .word  0x24060004
+    .word  0x3c020049
+    .word  0x8e240078
+    .word  0x244208f8
+    .word  0x44801000
+    .word  0xae220050
+    .word  0x10800004
+    .word  0x8e100080
+    .word  0x0c0d4542
+    .word  0x00000000
+    .word  0x46000086
+    .word  0xc6410020
+    .word  0x44800000
+    .word  0x46010036
+    .word  0x00000000
+    .word  0x45000004
+    .word  0x26220010
+    .word  0xc780d494
+    .word  0x10000002
+    .word  0x46000802
+    .word  0x46001006
+    .word  0xe4400000
+    .word  0x44800000
+    .word  0xc6410024
+    .word  0x46000834
+    .word  0x00000000
+    .word  0x45000003
+    .word  0x26220014
+    .word  0x10000003
+    .word  0xc6000014
+    .word  0xc780d498
+    .word  0x46000802
+    .word  0xe4400000
+    .word  0x8f832a74
+    .word  0x0220102d
+    .word  0xc6400008
+    .word  0xc782d49c
+    .word  0xe620000c
+    .word  0xc783d4a0
+    .word  0xc6410004
+    .word  0x96240056
+    .word  0x46020842
+    .word  0x7bb00030
+    .word  0x34840001
+    .word  0xdfbf0000
+    .word  0xe6210008
+    .word  0xc640000c
+    .word  0xc4610010
+    .word  0x46800860
+    .word  0x46030002
+    .word  0x46010003
+    .word  0xe6200018
+    .word  0x8e43001c
+    .word  0xae23002c
+    .word  0xc6400014
+    .word  0x46030002
+    .word  0xe6200024
+    .word  0xc6410018
+    .word  0xe621001c
+    .word  0xc6400010
+    .word  0xa6240056
+    .word  0xe6200020
+    .word  0xae200000
+    .word  0xae200004
+    .word  0xae200028
+    .word  0x7bb10020
+    .word  0x7bb20010
+    .word  0x03e00008
+    .word  0x27bd0040
+    .word  0x00000000
+.end func_003421A0

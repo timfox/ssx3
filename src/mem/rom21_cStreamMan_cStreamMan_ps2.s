@@ -1,0 +1,63 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cStreamMan_cStreamMan
+.ent cStreamMan_cStreamMan
+cStreamMan_cStreamMan:
+    .word  0x27bdffd0
+    .word  0x3c02ffff
+    .word  0x7fb10010
+    .word  0x3442ffff
+    .word  0x0080882d
+    .word  0x7fb00020
+    .word  0xffbf0000
+    .word  0x24040002
+    .word  0x24050001
+    .word  0xae2200bc
+    .word  0x0c0f81ac
+    .word  0x24060001
+    .word  0x3c030001
+    .word  0x3c050005
+    .word  0x34638000
+    .word  0x3c040008
+    .word  0x00431021
+    .word  0x0080802d
+    .word  0x00451021
+    .word  0x0000302d
+    .word  0x0082202a
+    .word  0x3c050049
+    .word  0x0044800a
+    .word  0x24a54d90
+    .word  0x0200202d
+    .word  0x0c0c5f8c
+    .word  0x0000382d
+    .word  0x0200402d
+    .word  0x24050001
+    .word  0x0040382d
+    .word  0x24040002
+    .word  0x24060001
+    .word  0x0c0f81b6
+    .word  0xae220084
+    .word  0xae20009c
+    .word  0x3c050049
+    .word  0x3c040001
+    .word  0x24a54da8
+    .word  0x0000302d
+    .word  0x0000382d
+    .word  0xae220088
+    .word  0x0c0c5f8c
+    .word  0x34844000
+    .word  0xae22008c
+    .word  0x0c0e9bb6
+    .word  0x0220202d
+    .word  0x0220102d
+    .word  0x7bb00020
+    .word  0x7bb10010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0030
+.end cStreamMan_cStreamMan

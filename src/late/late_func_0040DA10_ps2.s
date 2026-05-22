@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_0040DA10
+.ent func_0040DA10
+func_0040DA10:
+    .word  0x27bdff90
+    .word  0xe7b40060
+    .word  0x46006506
+    .word  0xffb10040
+    .word  0xffb00030
+    .word  0xe7b50068
+    .word  0xffbf0050
+    .word  0x0c103954
+    .word  0x3c11004a
+    .word  0x8e309688
+    .word  0x2402ffff
+    .word  0x1202000a
+    .word  0x46000546
+    .word  0x0c103e74
+    .word  0x4600a306
+    .word  0x1440003b
+    .word  0x4600a806
+    .word  0x44800000
+    .word  0x46140034
+    .word  0x00000000
+    .word  0x45000003
+    .word  0x3c02004a
+    .word  0x10000034
+    .word  0x4600a806
+    .word  0xafa00020
+    .word  0x244290a8
+    .word  0x4600a306
+    .word  0x0c104ebe
+    .word  0xafa20004
+    .word  0xffa20008
+    .word  0x16000005
+    .word  0xffa20010
+    .word  0x3c01004a
+    .word  0xdc2290b0
+    .word  0x10000006
+    .word  0xffa20018
+    .word  0x3c02004a
+    .word  0x0000202d
+    .word  0x0c1047dc
+    .word  0xdc459680
+    .word  0xffa20018
+    .word  0x44800000
+    .word  0x4600a032
+    .word  0x00000000
+    .word  0x45000008
+    .word  0x24020002
+    .word  0x8e239688
+    .word  0x1462000a
+    .word  0xafa20000
+    .word  0x0c1057ee
+    .word  0x00000000
+    .word  0x1000000d
+    .word  0x24030022
+    .word  0x24030001
+    .word  0x8e229688
+    .word  0x24040002
+    .word  0x10440005
+    .word  0xafa30000
+    .word  0x0c103e1e
+    .word  0x03a0202d
+    .word  0x14400006
+    .word  0x8fa20020
+    .word  0x0c1057ee
+    .word  0x00000000
+    .word  0x24030021
+    .word  0xac430000
+    .word  0x8fa20020
+    .word  0x10400005
+    .word  0x00000000
+    .word  0x0c1057ee
+    .word  0x00000000
+    .word  0x8fa30020
+    .word  0xac430000
+    .word  0x0c1049ea
+    .word  0xdfa40018
+    .word  0xdfbf0050
+    .word  0xdfb10040
+    .word  0xdfb00030
+    .word  0xc7b50068
+    .word  0xc7b40060
+    .word  0x03e00008
+    .word  0x27bd0070
+.end func_0040DA10

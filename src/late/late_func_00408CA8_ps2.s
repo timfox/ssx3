@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_00408CA8
+.ent func_00408CA8
+func_00408CA8:
+    .word  0x3c021000
+    .word  0x24030008
+    .word  0x3442e010
+    .word  0x00a0482d
+    .word  0xac430000
+    .word  0x3c041000
+    .word  0x3484b020
+    .word  0x8d220000
+    .word  0x24420001
+    .word  0xad220000
+    .word  0x8c830000
+    .word  0x14600007
+    .word  0x24020001
+    .word  0x3c021000
+    .word  0x3442b000
+    .word  0x8c430000
+    .word  0x30630100
+    .word  0x10600006
+    .word  0x24020001
+    .word  0xad220004
+    .word  0x0000000f
+    .word  0x42000038
+    .word  0x03e00008
+    .word  0x0000102d
+    .word  0x8d230010
+    .word  0x8d220000
+    .word  0x2463ffff
+    .word  0x0043102a
+    .word  0x10400018
+    .word  0x3c021000
+    .word  0x8d23000c
+    .word  0x3442b010
+    .word  0x3404ffc0
+    .word  0xac430000
+    .word  0x24050100
+    .word  0x3c011001
+    .word  0xac24b020
+    .word  0x3c031000
+    .word  0x3c027000
+    .word  0x3c011001
+    .word  0xac25b000
+    .word  0x34632000
+    .word  0x344203ff
+    .word  0xac620000
+    .word  0x3c04000f
+    .word  0x3484fc00
+    .word  0x3c030fff
+    .word  0x8d22000c
+    .word  0x3463ffff
+    .word  0x00441021
+    .word  0x00431024
+    .word  0x1000001a
+    .word  0xad22000c
+    .word  0x8d220000
+    .word  0x14430017
+    .word  0x24080100
+    .word  0x8d250000
+    .word  0x3c041000
+    .word  0x8d230008
+    .word  0x3484b010
+    .word  0x00051280
+    .word  0x8d26000c
+    .word  0x00451023
+    .word  0x00621823
+    .word  0x3c051000
+    .word  0xad230008
+    .word  0x3c077000
+    .word  0xac860000
+    .word  0x34a52000
+    .word  0x8d220008
+    .word  0x00021180
+    .word  0x3c011001
+    .word  0xac22b020
+    .word  0x3c011001
+    .word  0xac28b000
+    .word  0x8d220008
+    .word  0x00471025
+    .word  0xaca20000
+    .word  0x0000000f
+    .word  0x42000038
+    .word  0x03e00008
+    .word  0x0000102d
+.end func_00408CA8

@@ -1,0 +1,69 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global SYNCTASK_run
+.ent SYNCTASK_run
+SYNCTASK_run:
+    .word  0x27bdff80
+    .word  0x3c020045
+    .word  0x7fb30040
+    .word  0x3c050045
+    .word  0x0040982d
+    .word  0x8c430dd0
+    .word  0x3c020052
+    .word  0x7fb00070
+    .word  0x7fb10060
+    .word  0x2442ed98
+    .word  0x7fb20050
+    .word  0x2450000c
+    .word  0x7fb40030
+    .word  0x0000902d
+    .word  0x7fb50020
+    .word  0x0080a02d
+    .word  0x7fb60010
+    .word  0x24150001
+    .word  0xffbf0000
+    .word  0x0260b02d
+    .word  0xaca30e04
+    .word  0x2411000f
+    .word  0x8e06fff4
+    .word  0x50c00015
+    .word  0x2631ffff
+    .word  0x8ec20dd0
+    .word  0x8e03fffc
+    .word  0x0043102a
+    .word  0x54400010
+    .word  0x2631ffff
+    .word  0x8e020000
+    .word  0x5440000d
+    .word  0x2631ffff
+    .word  0x8e650dd0
+    .word  0x0280202d
+    .word  0xae150000
+    .word  0x00c0f809
+    .word  0x00a32823
+    .word  0x02429025
+    .word  0x8e630dd0
+    .word  0x8e02fff8
+    .word  0xae000000
+    .word  0x00621821
+    .word  0xae03fffc
+    .word  0x2631ffff
+    .word  0x0621ffe8
+    .word  0x26100010
+    .word  0x0240102d
+    .word  0x7bb00070
+    .word  0x7bb10060
+    .word  0x7bb20050
+    .word  0x7bb30040
+    .word  0x7bb40030
+    .word  0x7bb50020
+    .word  0x7bb60010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0080
+.end SYNCTASK_run

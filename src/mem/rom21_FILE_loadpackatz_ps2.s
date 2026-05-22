@@ -1,0 +1,99 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global FILE_loadpackatz
+.ent FILE_loadpackatz
+FILE_loadpackatz:
+    .word  0x27bdff70
+    .word  0x7fb00080
+    .word  0x7fb30050
+    .word  0x0080802d
+    .word  0x7fb60020
+    .word  0x00c0982d
+    .word  0x00a0b02d
+    .word  0x7fb10070
+    .word  0x7fb20060
+    .word  0x7fb40040
+    .word  0x03a0282d
+    .word  0x7fb50030
+    .word  0xffbf0010
+    .word  0x0c0f869c
+    .word  0x24060100
+    .word  0x0040882d
+    .word  0x1220003c
+    .word  0x0000102d
+    .word  0x0220202d
+    .word  0x0c0ed206
+    .word  0x3c150045
+    .word  0x0040902d
+    .word  0x8fa20000
+    .word  0x1840001c
+    .word  0x00000000
+    .word  0x1a40001a
+    .word  0x26b40c10
+    .word  0x0200202d
+    .word  0x8e820004
+    .word  0x0240282d
+    .word  0x0040f809
+    .word  0x24060100
+    .word  0x0040802d
+    .word  0x12000009
+    .word  0x0220202d
+    .word  0x0c0ed1d0
+    .word  0x0200282d
+    .word  0x14400006
+    .word  0x26a30c10
+    .word  0x0200202d
+    .word  0x8e820008
+    .word  0x0040f809
+    .word  0x0000802d
+    .word  0x26a30c10
+    .word  0x8c620008
+    .word  0x0040f809
+    .word  0x0220202d
+    .word  0x56000003
+    .word  0xafb20000
+    .word  0x1000001b
+    .word  0x0000102d
+    .word  0x0200882d
+    .word  0x1a600004
+    .word  0x8fa20000
+    .word  0x0262102a
+    .word  0x54400001
+    .word  0xafb30000
+    .word  0x8fa60000
+    .word  0x02c0202d
+    .word  0x0c0f995d
+    .word  0x0220282d
+    .word  0x26a30c10
+    .word  0x8c620008
+    .word  0x0040f809
+    .word  0x0220202d
+    .word  0x24080000
+    .word  0x0000000f
+    .word  0xbd140000
+    .word  0x0000000f
+    .word  0xbd140001
+    .word  0x0000000f
+    .word  0x25080040
+    .word  0x29091000
+    .word  0x1520fff8
+    .word  0x00000000
+    .word  0x00000000
+    .word  0x8fa20000
+    .word  0x7bb00080
+    .word  0x7bb10070
+    .word  0x7bb20060
+    .word  0x7bb30050
+    .word  0x7bb40040
+    .word  0x7bb50030
+    .word  0x7bb60020
+    .word  0xdfbf0010
+    .word  0x03e00008
+    .word  0x27bd0090
+    .word  0x00000000
+.end FILE_loadpackatz

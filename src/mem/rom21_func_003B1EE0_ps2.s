@@ -1,0 +1,69 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_003B1EE0
+.ent func_003B1EE0
+func_003B1EE0:
+    .word  0x27bdffe0
+    .word  0x24040002
+    .word  0x7fb00010
+    .word  0xffbf0000
+    .word  0x0c0ec4c0
+    .word  0x3c100051
+    .word  0x8e03a088
+    .word  0x24420001
+    .word  0x24040004
+    .word  0x0c0ec4c0
+    .word  0xac620424
+    .word  0x8e05a088
+    .word  0x3c030051
+    .word  0xac6295dc
+    .word  0x24040002
+    .word  0x8ca20424
+    .word  0x1444001d
+    .word  0x8e02a088
+    .word  0x0c0ec4c0
+    .word  0x2404000e
+    .word  0x3c030051
+    .word  0x3c040049
+    .word  0xac6295e0
+    .word  0x0c0ec8d8
+    .word  0x248454f0
+    .word  0x0c0ec4c0
+    .word  0x2404000e
+    .word  0x3c030051
+    .word  0x24040005
+    .word  0x0c0ec4c0
+    .word  0xac6295e4
+    .word  0x3c030051
+    .word  0x24040005
+    .word  0x0c0ec4c0
+    .word  0xac6295e8
+    .word  0x3c030051
+    .word  0x24040005
+    .word  0x0c0ec4c0
+    .word  0xac6295ec
+    .word  0x3c030051
+    .word  0x24040005
+    .word  0x0c0ec4c0
+    .word  0xac6295f0
+    .word  0x3c030051
+    .word  0xac6295f4
+    .word  0x8e02a088
+    .word  0x24040004
+    .word  0x8c430424
+    .word  0x14640005
+    .word  0x7bb00010
+    .word  0x3c040049
+    .word  0x0c0ec47a
+    .word  0x24845510
+    .word  0x7bb00010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0020
+    .word  0x00000000
+.end func_003B1EE0

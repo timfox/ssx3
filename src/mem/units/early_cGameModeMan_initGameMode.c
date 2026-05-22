@@ -1,0 +1,46 @@
+#include "common.h"
+// @objdiff-matched
+#include "ps2_match.h"
+
+#ifdef SKIP_ASM
+void cGameModeMan_initGameMode(void);
+PS2_RETAIL_ASM_ONLY(
+    cGameModeMan_initGameMode,
+    ".word 0x27bdffd0\n\t"
+    ".word 0x7fb00020\n\t"
+    ".word 0x7fb10010\n\t"
+    ".word 0x0080802d\n\t"
+    ".word 0xffbf0000\n\t"
+    ".word 0x0c053720\n\t"
+    ".word 0x00a0882d\n\t"
+    ".word 0x0000282d\n\t"
+    ".word 0x0c053756\n\t"
+    ".word 0x0040202d\n\t"
+    ".word 0x8e030004\n\t"
+    ".word 0x3c020053\n\t"
+    ".word 0x24426668\n\t"
+    ".word 0x00031880\n\t"
+    ".word 0x00621821\n\t"
+    ".word 0x8c650000\n\t"
+    ".word 0x8ca20000\n\t"
+    ".word 0x84440018\n\t"
+    ".word 0x8c43001c\n\t"
+    ".word 0x0060f809\n\t"
+    ".word 0x00a42021\n\t"
+    ".word 0xae110008\n\t"
+    ".word 0x3c030053\n\t"
+    ".word 0x24040002\n\t"
+    ".word 0x80625c11\n\t"
+    ".word 0x14440018\n\t"
+    ".word 0xae02000c\n\t"
+    ".word 0x2e220006\n\t"
+    ".word 0x10400013\n\t"
+    ".word 0x3c020048\n\t"
+    ".word 0x00111880\n\t"
+    ".word 0x2442c0d0\n\t"
+    ".word 0x00621821\n\t"
+    ".word 0x8c640000\n\t"
+    ".word 0x00800008\n\t"
+    ".word 0x00000000\n\t"
+)
+#endif

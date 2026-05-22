@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_0036CCB8
+.ent func_0036CCB8
+func_0036CCB8:
+    .word  0x27bdffb0
+    .word  0x7fb00030
+    .word  0x7fb20010
+    .word  0x3c10007f
+    .word  0x0080902d
+    .word  0x7fb10020
+    .word  0xffbf0000
+    .word  0x3610ffff
+    .word  0xe7b40040
+    .word  0x0c0c5dfc
+    .word  0x3c113f80
+    .word  0x3c013f80
+    .word  0x4481a000
+    .word  0x00501024
+    .word  0x00511025
+    .word  0x44820800
+    .word  0x46140801
+    .word  0x46140000
+    .word  0x0c0c5dfc
+    .word  0xe6400038
+    .word  0x00501024
+    .word  0x00511025
+    .word  0x44820800
+    .word  0x46140801
+    .word  0x46140000
+    .word  0x0c0c5dfc
+    .word  0xe640003c
+    .word  0x00501024
+    .word  0x00511025
+    .word  0x44820800
+    .word  0x46140801
+    .word  0x46140000
+    .word  0x0c0c5dfc
+    .word  0xe6400040
+    .word  0x00501024
+    .word  0x00511025
+    .word  0x44820800
+    .word  0x46140801
+    .word  0x46140000
+    .word  0x0c0c5dfc
+    .word  0xe6400044
+    .word  0x00501024
+    .word  0x00511025
+    .word  0x44820800
+    .word  0x46140801
+    .word  0x46140000
+    .word  0x0c0c5dfc
+    .word  0xe6400048
+    .word  0x00501024
+    .word  0x00511025
+    .word  0x44820800
+    .word  0x46140801
+    .word  0x46140000
+    .word  0x0c0c5dfc
+    .word  0xe6400050
+    .word  0x00501024
+    .word  0x00511025
+    .word  0x44820800
+    .word  0x46140801
+    .word  0x46140000
+    .word  0x0c0c5dfc
+    .word  0xe6400054
+    .word  0x00501024
+    .word  0x00511025
+    .word  0x44820800
+    .word  0x46140801
+    .word  0x46140000
+    .word  0x0c0c5dfc
+    .word  0xe6400058
+    .word  0x00501024
+    .word  0xdfbf0000
+    .word  0x00511025
+    .word  0x7bb00030
+    .word  0x44820800
+    .word  0x7bb10020
+    .word  0x46140801
+    .word  0x46140000
+    .word  0xc7b40040
+    .word  0xe640005c
+    .word  0x7bb20010
+    .word  0x03e00008
+    .word  0x27bd0050
+.end func_0036CCB8

@@ -1,0 +1,113 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cGraphicsMan_AddBlendedMatrix
+.ent cGraphicsMan_AddBlendedMatrix
+cGraphicsMan_AddBlendedMatrix:
+    .word  0x27bdffb0
+    .word  0x7fb10030
+    .word  0x7fb30010
+    .word  0x0080882d
+    .word  0x7fb00040
+    .word  0x7fb20020
+    .word  0xffbf0000
+    .word  0x8e220f48
+    .word  0x14400012
+    .word  0x00a0982d
+    .word  0x3c050049
+    .word  0x24043000
+    .word  0x24a52638
+    .word  0x24060100
+    .word  0x0c0c5f8c
+    .word  0x0000382d
+    .word  0xae220f48
+    .word  0x0000282d
+    .word  0x24431800
+    .word  0x240401ff
+    .word  0x8e220f48
+    .word  0x2484ffff
+    .word  0x00a21021
+    .word  0xac430004
+    .word  0x24a5000c
+    .word  0x0481fffa
+    .word  0x2463000c
+    .word  0x8e220f4c
+    .word  0x0000902d
+    .word  0x1840001f
+    .word  0x8e300f48
+    .word  0x00000000
+    .word  0x0200202d
+    .word  0x0260282d
+    .word  0x2406000a
+    .word  0x24070014
+    .word  0x0c0da69e
+    .word  0x24080014
+    .word  0x50400012
+    .word  0x8e220f4c
+    .word  0x8e020000
+    .word  0x18400034
+    .word  0x0000302d
+    .word  0x8e020004
+    .word  0x00061880
+    .word  0x8e650004
+    .word  0x24c60001
+    .word  0x00621021
+    .word  0x94440000
+    .word  0x00651821
+    .word  0xa4640000
+    .word  0x8e020000
+    .word  0x00c2102a
+    .word  0x5440fff6
+    .word  0x8e020004
+    .word  0x10000027
+    .word  0x7bb00040
+    .word  0x26520001
+    .word  0x0242102a
+    .word  0x1440ffe4
+    .word  0x2610000c
+    .word  0x8e230f4c
+    .word  0x2402000c
+    .word  0x8e250f48
+    .word  0x00621818
+    .word  0x8e640000
+    .word  0x00651821
+    .word  0xac640000
+    .word  0x8e620000
+    .word  0x18400015
+    .word  0x0000382d
+    .word  0x2408000c
+    .word  0x8e240f4c
+    .word  0x00000000
+    .word  0x00072880
+    .word  0x8e260f48
+    .word  0x24e70001
+    .word  0x00882018
+    .word  0x8e630004
+    .word  0x00a31821
+    .word  0x00862021
+    .word  0x8c820004
+    .word  0x00a22821
+    .word  0x88620003
+    .word  0x98620000
+    .word  0xa8a20003
+    .word  0xb8a20000
+    .word  0x8e620000
+    .word  0x00e2102a
+    .word  0x5440fff0
+    .word  0x8e240f4c
+    .word  0x8e220f4c
+    .word  0x24420001
+    .word  0xae220f4c
+    .word  0x7bb00040
+    .word  0x7bb10030
+    .word  0x7bb20020
+    .word  0x7bb30010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0050
+    .word  0x00000000
+.end cGraphicsMan_AddBlendedMatrix

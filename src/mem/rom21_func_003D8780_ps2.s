@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_003D8780
+.ent func_003D8780
+func_003D8780:
+    .word  0x00a0402d
+    .word  0x00c0502d
+    .word  0x91070005
+    .word  0x00ea102a
+    .word  0x10400003
+    .word  0x24050001
+    .word  0x10000049
+    .word  0x0000282d
+    .word  0x84830002
+    .word  0x2406ffff
+    .word  0x5066002d
+    .word  0x91060004
+    .word  0x9502000a
+    .word  0x0062102a
+    .word  0x10400025
+    .word  0x0000202d
+    .word  0x00e31018
+    .word  0x91040004
+    .word  0x0000602d
+    .word  0x3083000f
+    .word  0x30840080
+    .word  0x004a4821
+    .word  0x24620002
+    .word  0x00e21018
+    .word  0x00031880
+    .word  0x2442000f
+    .word  0x30423ffc
+    .word  0x01021021
+    .word  0x10800007
+    .word  0x00435821
+    .word  0x24e20007
+    .word  0x24e3000e
+    .word  0x00c2202a
+    .word  0x0044180b
+    .word  0x000318c3
+    .word  0x246c0001
+    .word  0x91020006
+    .word  0x10400003
+    .word  0x016c3821
+    .word  0x24420001
+    .word  0x00e23821
+    .word  0x00c9182a
+    .word  0x25220007
+    .word  0x0123100b
+    .word  0x000210c3
+    .word  0x000218c0
+    .word  0x00e21021
+    .word  0x01231823
+    .word  0x90440000
+    .word  0x00651804
+    .word  0x306300ff
+    .word  0x00832024
+    .word  0x0080282d
+    .word  0x10a0001a
+    .word  0x00000000
+    .word  0x91060004
+    .word  0x30c20080
+    .word  0x10400016
+    .word  0x30c6000f
+    .word  0x91020005
+    .word  0x24c40002
+    .word  0x2403ffff
+    .word  0x00441018
+    .word  0x006a182a
+    .word  0x25440007
+    .word  0x00063080
+    .word  0x0143200b
+    .word  0x24050001
+    .word  0x000420c3
+    .word  0x2442000f
+    .word  0x000418c0
+    .word  0x30423ffc
+    .word  0x01431823
+    .word  0x01021021
+    .word  0x00652804
+    .word  0x00461021
+    .word  0x30a500ff
+    .word  0x00441021
+    .word  0x90430001
+    .word  0x00652824
+    .word  0x03e00008
+    .word  0x00a0102d
+.end func_003D8780

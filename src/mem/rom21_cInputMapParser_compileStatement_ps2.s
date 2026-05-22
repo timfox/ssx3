@@ -1,0 +1,63 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cInputMapParser_compileStatement
+.ent cInputMapParser_compileStatement
+cInputMapParser_compileStatement:
+    .word  0x27bdff90
+    .word  0x7fb20040
+    .word  0x7fb40020
+    .word  0x0080902d
+    .word  0x00a0a02d
+    .word  0x7fb00060
+    .word  0x7fb10050
+    .word  0x00e0802d
+    .word  0x7fb30030
+    .word  0x00c0882d
+    .word  0xffbf0010
+    .word  0x0c0c8690
+    .word  0x0100982d
+    .word  0x54400008
+    .word  0x8c450040
+    .word  0x3c050049
+    .word  0x0240202d
+    .word  0x24a5e208
+    .word  0x0c0c8540
+    .word  0x0280302d
+    .word  0x10000016
+    .word  0x2402ffff
+    .word  0x0220382d
+    .word  0x0200402d
+    .word  0x0260482d
+    .word  0xafa00000
+    .word  0x0240202d
+    .word  0x0c0c919e
+    .word  0x03a0302d
+    .word  0x0040182d
+    .word  0x00031080
+    .word  0x02038023
+    .word  0x1a000005
+    .word  0x02228821
+    .word  0x24020020
+    .word  0xae220000
+    .word  0x10000006
+    .word  0x24620001
+    .word  0x3c050049
+    .word  0x0240202d
+    .word  0x0c0c8540
+    .word  0x24a5e228
+    .word  0x2402ffff
+    .word  0x7bb00060
+    .word  0x7bb10050
+    .word  0x7bb20040
+    .word  0x7bb30030
+    .word  0x7bb40020
+    .word  0xdfbf0010
+    .word  0x03e00008
+    .word  0x27bd0070
+    .word  0x00000000
+.end cInputMapParser_compileStatement

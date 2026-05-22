@@ -1,0 +1,117 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_003CCF90
+.ent func_003CCF90
+func_003CCF90:
+    .word  0x27bdffa0
+    .word  0x7fb00050
+    .word  0x7fb30020
+    .word  0x0080802d
+    .word  0x7fb10040
+    .word  0x0000982d
+    .word  0x7fb20030
+    .word  0x7fb40010
+    .word  0xffbf0000
+    .word  0x8ca20000
+    .word  0x8e030008
+    .word  0x14600003
+    .word  0xae0200a4
+    .word  0x10000054
+    .word  0x0000102d
+    .word  0x0060282d
+    .word  0x00c5102a
+    .word  0x8e030004
+    .word  0x1060001b
+    .word  0x00c2280b
+    .word  0x00a3102a
+    .word  0x0060202d
+    .word  0x00a2200b
+    .word  0x1880000e
+    .word  0x0080882d
+    .word  0x00000000
+    .word  0x8e020010
+    .word  0x2631ffff
+    .word  0x8e0300a4
+    .word  0xc4400000
+    .word  0xe4600000
+    .word  0x8e0200a4
+    .word  0x8e030010
+    .word  0x24420004
+    .word  0x24630004
+    .word  0xae0200a4
+    .word  0x1620fff5
+    .word  0xae030010
+    .word  0x8e030008
+    .word  0x0080982d
+    .word  0x8e020004
+    .word  0x00a42823
+    .word  0x00641823
+    .word  0x00441023
+    .word  0xae030008
+    .word  0xae020004
+    .word  0x2402001c
+    .word  0x00a2001a
+    .word  0x50400001
+    .word  0x000001cd
+    .word  0x00001812
+    .word  0x00628818
+    .word  0x00b19023
+    .word  0x1a200007
+    .word  0xae110094
+    .word  0x26040094
+    .word  0x0c0f3282
+    .word  0x02719821
+    .word  0x8e020008
+    .word  0x00511023
+    .word  0xae020008
+    .word  0x1a400020
+    .word  0x26020024
+    .word  0x8e1400a4
+    .word  0xae120094
+    .word  0x26040094
+    .word  0xae0200a4
+    .word  0x0c0f3282
+    .word  0x0000882d
+    .word  0x8e040094
+    .word  0x02723021
+    .word  0x8e0500a4
+    .word  0x8e020008
+    .word  0x00041880
+    .word  0x00a31821
+    .word  0x00042023
+    .word  0x00521023
+    .word  0x24a5ff90
+    .word  0xae020008
+    .word  0xae030010
+    .word  0xae040004
+    .word  0x1a40000b
+    .word  0xae0500a4
+    .word  0x0280282d
+    .word  0x8e0300a4
+    .word  0x00111080
+    .word  0x26310001
+    .word  0x00431021
+    .word  0x0232202a
+    .word  0xc4400000
+    .word  0xe4a00000
+    .word  0x1480fff8
+    .word  0x24a50004
+    .word  0x00c0982d
+    .word  0x8e020008
+    .word  0x58400001
+    .word  0xae000004
+    .word  0x0260102d
+    .word  0x7bb00050
+    .word  0x7bb10040
+    .word  0x7bb20030
+    .word  0x7bb30020
+    .word  0x7bb40010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0060
+.end func_003CCF90

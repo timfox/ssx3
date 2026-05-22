@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_003C2EC8
+.ent func_003C2EC8
+func_003C2EC8:
+    .word  0x0080282d
+    .word  0x27bdfff0
+    .word  0x2404008c
+    .word  0xffbf0000
+    .word  0x3c020051
+    .word  0x00a42018
+    .word  0x2447a8e8
+    .word  0x8ce301f0
+    .word  0x00643021
+    .word  0x94c30024
+    .word  0x30620008
+    .word  0x1040003b
+    .word  0x30620100
+    .word  0x90c20023
+    .word  0x10400040
+    .word  0x0000502d
+    .word  0x3c020051
+    .word  0x00e0702d
+    .word  0x2449ad00
+    .word  0x24080001
+    .word  0x240d0002
+    .word  0x0000602d
+    .word  0x0000582d
+    .word  0x24c70004
+    .word  0x80c2005f
+    .word  0x10400007
+    .word  0x24c50004
+    .word  0x8d220cb0
+    .word  0x84e30000
+    .word  0xdc440008
+    .word  0x00681814
+    .word  0x10000007
+    .word  0x00832025
+    .word  0x8d220cb0
+    .word  0x84e30000
+    .word  0xdc440008
+    .word  0x00681814
+    .word  0x00031827
+    .word  0x00832024
+    .word  0xfc440008
+    .word  0x91c20049
+    .word  0x544d0015
+    .word  0x90c20023
+    .word  0x80c2005f
+    .word  0x10400008
+    .word  0x00ab2021
+    .word  0x8d250cb0
+    .word  0x84820000
+    .word  0xdca30008
+    .word  0x24420018
+    .word  0x00481014
+    .word  0x10000009
+    .word  0x00621825
+    .word  0x00ac2021
+    .word  0x84820000
+    .word  0x8d250cb0
+    .word  0x24420018
+    .word  0xdca30008
+    .word  0x00481014
+    .word  0x00021027
+    .word  0x00621824
+    .word  0xfca30008
+    .word  0x90c20023
+    .word  0x254a0001
+    .word  0x258c0002
+    .word  0x256b0002
+    .word  0x0142102a
+    .word  0x1440ffd4
+    .word  0x24e70002
+    .word  0x1000000a
+    .word  0xdfbf0000
+    .word  0x10400005
+    .word  0x00000000
+    .word  0x0c0f0a94
+    .word  0x00a0202d
+    .word  0x10000004
+    .word  0xdfbf0000
+    .word  0x0c0f0a94
+    .word  0x00a0202d
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0010
+.end func_003C2EC8

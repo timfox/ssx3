@@ -1,0 +1,85 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cInstanceNode_getBoundBoxInfo
+.ent cInstanceNode_getBoundBoxInfo
+cInstanceNode_getBoundBoxInfo:
+    .word  0x8c820018
+    .word  0x27bdffc0
+    .word  0x3c013f80
+    .word  0x44811000
+    .word  0x24a80010
+    .word  0xc4400060
+    .word  0x03a0482d
+    .word  0x44801800
+    .word  0x46001106
+    .word  0xe7a00000
+    .word  0x0000382d
+    .word  0xc4400064
+    .word  0xe7a00004
+    .word  0xc4410068
+    .word  0xe7a2000c
+    .word  0xe7a10008
+    .word  0x7ba20000
+    .word  0x7ca20000
+    .word  0x8c830018
+    .word  0xc460006c
+    .word  0xe7a00000
+    .word  0xc4610070
+    .word  0xe7a10004
+    .word  0xc4600074
+    .word  0xe7a00008
+    .word  0x7ba20000
+    .word  0x7ca20010
+    .word  0x8c830018
+    .word  0x78620040
+    .word  0x7fa20000
+    .word  0x30e20001
+    .word  0x00000000
+    .word  0x50400002
+    .word  0xc5020000
+    .word  0xc4a20000
+    .word  0x30e20002
+    .word  0x50400002
+    .word  0xc5010004
+    .word  0xc4a10004
+    .word  0x30e20004
+    .word  0x50400002
+    .word  0xc5000008
+    .word  0xc4a00008
+    .word  0xe7a20010
+    .word  0xe7a10014
+    .word  0xe7a00018
+    .word  0xe7a4001c
+    .word  0xdba30010
+    .word  0xd9240000
+    .word  0x4be4196c
+    .word  0xfba50030
+    .word  0x7ba20030
+    .word  0x7fa20020
+    .word  0xdba30020
+    .word  0xdba50020
+    .word  0x4b000183
+    .word  0x4be5192a
+    .word  0x4b04203d
+    .word  0x4b0430be
+    .word  0x4b04310b
+    .word  0x48232000
+    .word  0x44830000
+    .word  0x46001834
+    .word  0x00000000
+    .word  0x45030001
+    .word  0x460000c6
+    .word  0x24e70001
+    .word  0x28e20008
+    .word  0x5440ffdb
+    .word  0x30e20001
+    .word  0x46030004
+    .word  0xe4c00000
+    .word  0x03e00008
+    .word  0x27bd0040
+.end cInstanceNode_getBoundBoxInfo

@@ -1,0 +1,95 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cUIMenu_setSelectedByIndex
+.ent cUIMenu_setSelectedByIndex
+cUIMenu_setSelectedByIndex:
+    .word  0x27bdffd0
+    .word  0x7fb00020
+    .word  0x7fb10010
+    .word  0x0080802d
+    .word  0xffbf0000
+    .word  0x8e020014
+    .word  0x00021103
+    .word  0x30420001
+    .word  0x10400008
+    .word  0x30b100ff
+    .word  0x8e07005c
+    .word  0x8ce300d0
+    .word  0x8c62001c
+    .word  0x00021143
+    .word  0x30420001
+    .word  0x54400003
+    .word  0x92040098
+    .word  0x1000003c
+    .word  0xa21100a4
+    .word  0x92030097
+    .word  0x00831021
+    .word  0x0222102a
+    .word  0x14400019
+    .word  0xa2110095
+    .word  0x02231023
+    .word  0x0200282d
+    .word  0x24420001
+    .word  0x24060003
+    .word  0xa2020098
+    .word  0x8ce800d0
+    .word  0x304700ff
+    .word  0x8d030008
+    .word  0x846400a0
+    .word  0x8c6200a4
+    .word  0x0040f809
+    .word  0x01042021
+    .word  0x8e04005c
+    .word  0x0200282d
+    .word  0x92070098
+    .word  0x24060004
+    .word  0x8c8800d0
+    .word  0x8d030008
+    .word  0x846400a0
+    .word  0x8c6200a4
+    .word  0x0040f809
+    .word  0x01042021
+    .word  0x10000018
+    .word  0x92050098
+    .word  0x0224102b
+    .word  0x10400014
+    .word  0x24060002
+    .word  0xa2110098
+    .word  0x0200282d
+    .word  0x8ce800d0
+    .word  0x322700ff
+    .word  0x8d030008
+    .word  0x846400a0
+    .word  0x8c6200a4
+    .word  0x0040f809
+    .word  0x01042021
+    .word  0x8e04005c
+    .word  0x0200282d
+    .word  0x92070098
+    .word  0x24060004
+    .word  0x8c8800d0
+    .word  0x8d030008
+    .word  0x846400a0
+    .word  0x8c6200a4
+    .word  0x0040f809
+    .word  0x01042021
+    .word  0x92050098
+    .word  0x26040074
+    .word  0x0c0e5e1c
+    .word  0x02252823
+    .word  0x0200202d
+    .word  0x0040282d
+    .word  0x0c0e6b4e
+    .word  0x24060001
+    .word  0x7bb00020
+    .word  0x7bb10010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0030
+    .word  0x00000000
+.end cUIMenu_setSelectedByIndex

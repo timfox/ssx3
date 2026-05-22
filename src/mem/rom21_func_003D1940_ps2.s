@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_003D1940
+.ent func_003D1940
+func_003D1940:
+    .word  0x27bdff60
+    .word  0x3c030045
+    .word  0x7fb20070
+    .word  0x9062f42c
+    .word  0x0080902d
+    .word  0x7fb00090
+    .word  0x7fb10080
+    .word  0x7fb30060
+    .word  0x7fb40050
+    .word  0x7fb50040
+    .word  0x7fb60030
+    .word  0x7fb70020
+    .word  0x7fbe0010
+    .word  0x10400038
+    .word  0xffbf0000
+    .word  0x3c030045
+    .word  0x8c62f430
+    .word  0x14400035
+    .word  0x7bb00090
+    .word  0x0c0f5514
+    .word  0x2404ffff
+    .word  0x10400030
+    .word  0x3c020051
+    .word  0x0000202d
+    .word  0x24547644
+    .word  0x3c130045
+    .word  0x269efffc
+    .word  0x24170928
+    .word  0x3c16f000
+    .word  0x3c150f00
+    .word  0x00972818
+    .word  0x00000000
+    .word  0x00b41021
+    .word  0x8c430000
+    .word  0x1060001c
+    .word  0x24910001
+    .word  0x00be1821
+    .word  0x8c630000
+    .word  0x00761024
+    .word  0x00521024
+    .word  0x10400016
+    .word  0x00751024
+    .word  0x00521024
+    .word  0x50400014
+    .word  0x0220202d
+    .word  0x0c0f5514
+    .word  0x308400ff
+    .word  0x10400010
+    .word  0x0220202d
+    .word  0x0000802d
+    .word  0x8e62f420
+    .word  0x00000000
+    .word  0x00101880
+    .word  0x00431021
+    .word  0x8c4400dc
+    .word  0x10800003
+    .word  0x0200202d
+    .word  0x0c0f46ea
+    .word  0x24050002
+    .word  0x26100001
+    .word  0x2a020010
+    .word  0x1440fff6
+    .word  0x8e62f420
+    .word  0x0220202d
+    .word  0x28820004
+    .word  0x5440ffde
+    .word  0x00972818
+    .word  0x3c020045
+    .word  0xae60f420
+    .word  0xac40f430
+    .word  0x7bb00090
+    .word  0x7bb10080
+    .word  0x7bb20070
+    .word  0x7bb30060
+    .word  0x7bb40050
+    .word  0x7bb50040
+    .word  0x7bb60030
+    .word  0x7bb70020
+    .word  0x7bbe0010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd00a0
+.end func_003D1940

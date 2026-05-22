@@ -1,0 +1,95 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global SHAPE_cloneat
+.ent SHAPE_cloneat
+SHAPE_cloneat:
+    .word  0x27bdff60
+    .word  0x2403fff0
+    .word  0x7fb00090
+    .word  0x00a0802d
+    .word  0x7fb20070
+    .word  0x2602000f
+    .word  0x7fb30060
+    .word  0x7fb40050
+    .word  0x00431024
+    .word  0x7fb70020
+    .word  0x0000982d
+    .word  0x7fb10080
+    .word  0x0080b82d
+    .word  0x7fb50040
+    .word  0x0050a023
+    .word  0x7fb60030
+    .word  0x0000902d
+    .word  0x7fbe0010
+    .word  0x12000035
+    .word  0xffbf0000
+    .word  0x2415fff0
+    .word  0x2696fff0
+    .word  0x3c1e0049
+    .word  0x00000000
+    .word  0x0c0eceec
+    .word  0x0200202d
+    .word  0x1260000c
+    .word  0x0040882d
+    .word  0x0c0ed1c2
+    .word  0x92040000
+    .word  0x10400005
+    .word  0x02741023
+    .word  0x2442001f
+    .word  0x00551024
+    .word  0x10000004
+    .word  0x00569821
+    .word  0x2442000f
+    .word  0x00551024
+    .word  0x00549821
+    .word  0x0240202d
+    .word  0x10800006
+    .word  0x02f39021
+    .word  0x90830000
+    .word  0x02441023
+    .word  0x00021200
+    .word  0x00621825
+    .word  0xac830000
+    .word  0x92420000
+    .word  0x12200010
+    .word  0xae420000
+    .word  0x0240202d
+    .word  0x0200282d
+    .word  0x0c0f9862
+    .word  0x0220302d
+    .word  0x92420000
+    .word  0x24030069
+    .word  0x54430009
+    .word  0x8e030000
+    .word  0x2a220015
+    .word  0x54400006
+    .word  0x8e030000
+    .word  0x86460004
+    .word  0x26440010
+    .word  0x0c105e0a
+    .word  0x27c557b8
+    .word  0x8e030000
+    .word  0x00031a03
+    .word  0x02031021
+    .word  0x0000802d
+    .word  0x0043800b
+    .word  0x1600ffd1
+    .word  0x02719821
+    .word  0x7bb00090
+    .word  0x7bb10080
+    .word  0x7bb20070
+    .word  0x7bb30060
+    .word  0x7bb40050
+    .word  0x7bb50040
+    .word  0x7bb60030
+    .word  0x7bb70020
+    .word  0x7bbe0010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd00a0
+.end SHAPE_cloneat

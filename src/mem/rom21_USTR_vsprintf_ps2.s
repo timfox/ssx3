@@ -1,0 +1,70 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global USTR_vsprintf
+.ent USTR_vsprintf
+USTR_vsprintf:
+    .word  0x27bdfef0
+    .word  0x7fb200e0
+    .word  0x00a0902d
+    .word  0x7fb300d0
+    .word  0xafa40060
+    .word  0x3c050049
+    .word  0x7fb100f0
+    .word  0x24a55bc0
+    .word  0x7fb500b0
+    .word  0x03a0202d
+    .word  0x7fbe0080
+    .word  0x00c0982d
+    .word  0x7fb00100
+    .word  0x7fb400c0
+    .word  0x7fb600a0
+    .word  0x7fb70090
+    .word  0xffbf0070
+    .word  0x0c0f6fa4
+    .word  0x0000a82d
+    .word  0x27a40030
+    .word  0x3c050049
+    .word  0x0080f02d
+    .word  0x0c0f6fa4
+    .word  0x24a55bd8
+    .word  0x96510000
+    .word  0x26520002
+    .word  0x1220013f
+    .word  0x24020025
+    .word  0x1222000d
+    .word  0x8fa30060
+    .word  0x24040025
+    .word  0x00000000
+    .word  0x26b50001
+    .word  0xa4710000
+    .word  0x8fa20060
+    .word  0x24420002
+    .word  0xafa20060
+    .word  0x96510000
+    .word  0x12200133
+    .word  0x26520002
+    .word  0x1624fff7
+    .word  0x8fa30060
+    .word  0x1220012f
+    .word  0x24050001
+    .word  0x96510000
+    .word  0x26520002
+    .word  0x0000a02d
+    .word  0x0000b02d
+    .word  0x24170006
+    .word  0x2623ffe0
+    .word  0x2c620011
+    .word  0x1040001b
+    .word  0x3c020049
+    .word  0x00031880
+    .word  0x24425bf0
+    .word  0x00621821
+    .word  0x8c640000
+    .word  0x00800008
+    .word  0x00000000
+.end USTR_vsprintf

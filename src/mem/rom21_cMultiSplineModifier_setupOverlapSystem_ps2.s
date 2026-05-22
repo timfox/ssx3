@@ -1,0 +1,109 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cMultiSplineModifier_setupOverlapSystem
+.ent cMultiSplineModifier_setupOverlapSystem
+cMultiSplineModifier_setupOverlapSystem:
+    .word  0x27bdff20
+    .word  0x7fb300a0
+    .word  0x03a0282d
+    .word  0x7fb40090
+    .word  0x0080982d
+    .word  0x7fb60070
+    .word  0x26660018
+    .word  0x7fb000d0
+    .word  0x24140001
+    .word  0x7fb100c0
+    .word  0x26760004
+    .word  0x7fb200b0
+    .word  0x7fb50080
+    .word  0xffbf0060
+    .word  0x8e620040
+    .word  0x0c0d415c
+    .word  0x8c44000c
+    .word  0x8e620004
+    .word  0x0282102a
+    .word  0x10400044
+    .word  0x2415ffff
+    .word  0xc6c00014
+    .word  0x00143080
+    .word  0x8e620044
+    .word  0x24100060
+    .word  0xe7a00028
+    .word  0x02908018
+    .word  0xe7a00020
+    .word  0x00c21021
+    .word  0xe7a00024
+    .word  0x26940001
+    .word  0xafa0002c
+    .word  0x8c430000
+    .word  0x8e64003c
+    .word  0x78620040
+    .word  0x02042021
+    .word  0x7fa20040
+    .word  0xdba30040
+    .word  0xdba40020
+    .word  0x4be4196c
+    .word  0xfba50050
+    .word  0x7ba20050
+    .word  0x7fa20030
+    .word  0x7c820030
+    .word  0x8e630044
+    .word  0x8e65003c
+    .word  0x00c31821
+    .word  0x8c640000
+    .word  0x02052821
+    .word  0x78820040
+    .word  0x7fa20040
+    .word  0xdba30040
+    .word  0xdba40020
+    .word  0x4be41968
+    .word  0xfba50050
+    .word  0x7ba20050
+    .word  0x7fa20030
+    .word  0x7ca20040
+    .word  0x8e630044
+    .word  0x00c33021
+    .word  0x0c0b46f8
+    .word  0x8cd20000
+    .word  0x8e63003c
+    .word  0x0040882d
+    .word  0x27a40030
+    .word  0x02038021
+    .word  0x0c0ca3ca
+    .word  0x26050030
+    .word  0x8fa20034
+    .word  0x26230050
+    .word  0x8fa50038
+    .word  0x0240302d
+    .word  0x02a2102a
+    .word  0x8fa8003c
+    .word  0x0222180b
+    .word  0x02a5282a
+    .word  0x24640028
+    .word  0x02a8402a
+    .word  0x0065200b
+    .word  0x27a70030
+    .word  0x24820014
+    .word  0x0000282d
+    .word  0x0c0ca308
+    .word  0x0048200a
+    .word  0x8e620004
+    .word  0x0282102a
+    .word  0x5440ffbf
+    .word  0xc6c00014
+    .word  0x7bb000d0
+    .word  0x7bb100c0
+    .word  0x7bb200b0
+    .word  0x7bb300a0
+    .word  0x7bb40090
+    .word  0x7bb50080
+    .word  0x7bb60070
+    .word  0xdfbf0060
+    .word  0x03e00008
+    .word  0x27bd00e0
+.end cMultiSplineModifier_setupOverlapSystem
