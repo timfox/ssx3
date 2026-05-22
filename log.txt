@@ -1,0 +1,4 @@
+2026-05-20 13:03:45 - src.EA_Image.common_ea_dir - line 68 - WARNING - Warning! Couldn't find palette data!
+2026-05-20 13:03:46 - src.EA_Image.common_ea_dir - line 68 - WARNING - Warning! Couldn't find palette data!
+2026-05-20 13:13:47 - src.EA_Image.common_ea_dir - line 68 - WARNING - Warning! Couldn't find palette data!
+2026-05-20 14:01:12 - src.EA_Image.common_ea_dir - line 68 - WARNING - Warning! Couldn't find palette data!

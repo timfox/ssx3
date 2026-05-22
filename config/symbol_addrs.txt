@@ -67,7 +67,17 @@ cDirtysock_tag_TagFieldSetUnk = 0x00259288;
 // Spreadsheet Auto Generation
 
 cMemMan_alloc = 0x00317D70; //type:func
+cMemMan_allocBody = 0x00319A90; //type:func
+cMemMan_allocSmall = 0x00319E48; //type:func
+cMemMan_heapAlloc = 0x00320058; //type:func
+cMemMan_heapAllocTagged = 0x00320078; //type:func
+cMemMan_trackAlloc = 0x003E6220; //type:func
 cMemMan_free = 0x00317E98; //type:func
+func_00317EE0 = 0x00317EE0; //type:func
+func_00319B48 = 0x00319B48; //type:func
+func_00319F68 = 0x00319F68; //type:func
+func_0031A088 = 0x0031A088; //type:func
+func_0031A130 = 0x0031A130; //type:func
 systemInit = 0x0031ADB0; //type:func
 md5_process = 0x0031C350; //type:func
 __sti__all_in_one_fe_cpp = 0x002127E8; //type:func
