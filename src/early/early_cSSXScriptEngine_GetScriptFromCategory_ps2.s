@@ -1,0 +1,117 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cSSXScriptEngine_GetScriptFromCategory
+.ent cSSXScriptEngine_GetScriptFromCategory
+cSSXScriptEngine_GetScriptFromCategory:
+    .word  0x27bdff40
+    .word  0x7fb100a0
+    .word  0x7fb000b0
+    .word  0x0080882d
+    .word  0x7fb20090
+    .word  0x7fb30080
+    .word  0x7fb40070
+    .word  0xffbf0060
+    .word  0x8e22053c
+    .word  0x10400006
+    .word  0x000598c0
+    .word  0x8e220540
+    .word  0x02621021
+    .word  0x8c430000
+    .word  0x14600003
+    .word  0x03a0282d
+    .word  0x10000050
+    .word  0x0000102d
+    .word  0x0c09ef6e
+    .word  0x0220202d
+    .word  0x3414ffff
+    .word  0x3c050048
+    .word  0x24040190
+    .word  0x24a51ea0
+    .word  0x24060100
+    .word  0x0000382d
+    .word  0x0c0c5f8c
+    .word  0x0000802d
+    .word  0x0040902d
+    .word  0x0000182d
+    .word  0x8e220540
+    .word  0x02621021
+    .word  0x8c450000
+    .word  0x18a0002f
+    .word  0x8c4c0004
+    .word  0x8e2f0530
+    .word  0x240e0030
+    .word  0x240d000c
+    .word  0x006e1018
+    .word  0x00000000
+    .word  0x246b0001
+    .word  0x004c4821
+    .word  0x8d220000
+    .word  0x004d1818
+    .word  0x006f1021
+    .word  0x8c480000
+    .word  0x0288182a
+    .word  0x1460001e
+    .word  0x0160182d
+    .word  0x0000502d
+    .word  0x10000002
+    .word  0x0000382d
+    .word  0x24e70001
+    .word  0x28e20015
+    .word  0x1040000b
+    .word  0x00071040
+    .word  0x01221021
+    .word  0x84460004
+    .word  0x10c0fff9
+    .word  0x00071080
+    .word  0x03a22021
+    .word  0x8c830000
+    .word  0x00661824
+    .word  0x5460fff5
+    .word  0x24e70001
+    .word  0x240a0001
+    .word  0x1540000b
+    .word  0x0160182d
+    .word  0x0114102a
+    .word  0x10400004
+    .word  0x00101080
+    .word  0x0100a02d
+    .word  0x0000802d
+    .word  0x00101080
+    .word  0x00521021
+    .word  0x26100001
+    .word  0xac490000
+    .word  0x0160182d
+    .word  0x0065102a
+    .word  0x1440ffd8
+    .word  0x006e1018
+    .word  0x5200000a
+    .word  0x0000802d
+    .word  0x0c0c5dfc
+    .word  0x00000000
+    .word  0x0050001b
+    .word  0x52000001
+    .word  0x000001cd
+    .word  0x00001810
+    .word  0x00031880
+    .word  0x00721821
+    .word  0x8c700000
+    .word  0x12400004
+    .word  0x0200102d
+    .word  0x0c0c5fa6
+    .word  0x0240202d
+    .word  0x0200102d
+    .word  0x7bb000b0
+    .word  0x7bb100a0
+    .word  0x7bb20090
+    .word  0x7bb30080
+    .word  0x7bb40070
+    .word  0xdfbf0060
+    .word  0x03e00008
+    .word  0x27bd00c0
+    .word  0x00000000
+.end cSSXScriptEngine_GetScriptFromCategory

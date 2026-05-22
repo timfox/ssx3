@@ -1,0 +1,81 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cQuadTree_getFreeNode
+.ent cQuadTree_getFreeNode
+cQuadTree_getFreeNode:
+    .word  0x27bdffd0
+    .word  0x7fb00020
+    .word  0x7fb10010
+    .word  0x0080802d
+    .word  0xffbf0000
+    .word  0x8e030024
+    .word  0x8e020020
+    .word  0x5462002d
+    .word  0x8e020024
+    .word  0x8e040010
+    .word  0x3c050048
+    .word  0x24a55f98
+    .word  0x0000302d
+    .word  0x24840400
+    .word  0x0000382d
+    .word  0x0c0c5f8c
+    .word  0x000420c0
+    .word  0x8e050020
+    .word  0x10a00005
+    .word  0x0040882d
+    .word  0x8e060010
+    .word  0x0220202d
+    .word  0x0c105817
+    .word  0x000630c0
+    .word  0x8e030010
+    .word  0x246403ff
+    .word  0x0064102a
+    .word  0x1040000b
+    .word  0x000310c0
+    .word  0x0080282d
+    .word  0x00512021
+    .word  0x00000000
+    .word  0x24620001
+    .word  0xa4820000
+    .word  0x0040182d
+    .word  0x0065102a
+    .word  0x00000000
+    .word  0x1440fffa
+    .word  0x24840008
+    .word  0x8e020010
+    .word  0x8e050020
+    .word  0x000218c0
+    .word  0x02232021
+    .word  0x24420400
+    .word  0x00711821
+    .word  0xa4601ff8
+    .word  0xae040024
+    .word  0x10a00003
+    .word  0xae020010
+    .word  0x0c0c5fa6
+    .word  0x00a0202d
+    .word  0xae110020
+    .word  0x8e020024
+    .word  0x8e050020
+    .word  0x94430000
+    .word  0x8e04000c
+    .word  0x00451023
+    .word  0x000318c0
+    .word  0x000210c2
+    .word  0x00a32821
+    .word  0x24840001
+    .word  0xae04000c
+    .word  0x3042ffff
+    .word  0xae050024
+    .word  0x7bb00020
+    .word  0x7bb10010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0030
+    .word  0x00000000
+.end cQuadTree_getFreeNode

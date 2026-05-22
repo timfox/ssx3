@@ -1,0 +1,61 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cUITemplate_MAP_setupMapPic
+.ent cUITemplate_MAP_setupMapPic
+cUITemplate_MAP_setupMapPic:
+    .word  0x27bdffc0
+    .word  0x8f82f7b8
+    .word  0x7fb00030
+    .word  0x7fb20010
+    .word  0x0080802d
+    .word  0xffbf0000
+    .word  0x7fb10020
+    .word  0x8f83f4ac
+    .word  0x1460000f
+    .word  0x8c51011c
+    .word  0x8e0202d4
+    .word  0x24120001
+    .word  0x50520020
+    .word  0x7bb00030
+    .word  0x8e0502d8
+    .word  0x0c068e30
+    .word  0x0220202d
+    .word  0x8e0502d8
+    .word  0x0220202d
+    .word  0x0c068dba
+    .word  0x24060001
+    .word  0xae1202d4
+    .word  0x10000015
+    .word  0xae0002dc
+    .word  0x04600013
+    .word  0x28620003
+    .word  0x10400011
+    .word  0x8f82f4b4
+    .word  0x8e0302d4
+    .word  0x24420002
+    .word  0x5062000e
+    .word  0x7bb00030
+    .word  0x8e0502d8
+    .word  0x0c068e30
+    .word  0x0220202d
+    .word  0x8f85f4b4
+    .word  0x0220202d
+    .word  0x8e0602d8
+    .word  0x0c068dda
+    .word  0x24070001
+    .word  0x8f82f4b4
+    .word  0xae0002dc
+    .word  0x24420002
+    .word  0xae0202d4
+    .word  0x7bb00030
+    .word  0x7bb10020
+    .word  0x7bb20010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0040
+.end cUITemplate_MAP_setupMapPic

@@ -1,0 +1,101 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cOVState_AUTOSAVE_displayOn
+.ent cOVState_AUTOSAVE_displayOn
+cOVState_AUTOSAVE_displayOn:
+    .word  0x27bdffc0
+    .word  0x7fb10020
+    .word  0x0080882d
+    .word  0x7fb00030
+    .word  0x8f84f7b8
+    .word  0x7fb20010
+    .word  0xffbf0000
+    .word  0x0c089fe0
+    .word  0x00000000
+    .word  0x0040802d
+    .word  0x8e2301a8
+    .word  0x8e220230
+    .word  0x50620048
+    .word  0x7bb00030
+    .word  0x3c04004a
+    .word  0xae230230
+    .word  0x0c0c5d9c
+    .word  0x24842770
+    .word  0x8e240040
+    .word  0x0c0e7618
+    .word  0x0040282d
+    .word  0x0040902d
+    .word  0x5240003e
+    .word  0x7bb00030
+    .word  0x8e2201a8
+    .word  0x1040002c
+    .word  0x00000000
+    .word  0x0c08f226
+    .word  0x0200202d
+    .word  0x14400028
+    .word  0x24020006
+    .word  0x8e2301c0
+    .word  0x10620025
+    .word  0x00000000
+    .word  0x8e300010
+    .word  0x3c040047
+    .word  0x24841e48
+    .word  0x0c0c5d9c
+    .word  0x26100050
+    .word  0x0200202d
+    .word  0x0c0e5c50
+    .word  0x0040282d
+    .word  0x10400006
+    .word  0x0040282d
+    .word  0x0240202d
+    .word  0x24060009
+    .word  0x0000382d
+    .word  0x0c0e7f32
+    .word  0x0000402d
+    .word  0x3c040047
+    .word  0x0c0c5d9c
+    .word  0x24841e38
+    .word  0x8e240040
+    .word  0x0c0e7618
+    .word  0x0040282d
+    .word  0x0040802d
+    .word  0x24050001
+    .word  0x8e020008
+    .word  0x84440048
+    .word  0x8c43004c
+    .word  0x0060f809
+    .word  0x02042021
+    .word  0x3c040047
+    .word  0x0c0c5d9c
+    .word  0x24841e58
+    .word  0x0200202d
+    .word  0x0c0e8400
+    .word  0x0040282d
+    .word  0x10000010
+    .word  0x7bb00030
+    .word  0x0c0e7f4e
+    .word  0x0240202d
+    .word  0x3c040047
+    .word  0x0c0c5d9c
+    .word  0x24841e38
+    .word  0x8e240040
+    .word  0x0c0e7618
+    .word  0x0040282d
+    .word  0x8c430008
+    .word  0x0000282d
+    .word  0x84640048
+    .word  0x8c66004c
+    .word  0x00c0f809
+    .word  0x00442021
+    .word  0x7bb00030
+    .word  0x7bb10020
+    .word  0x7bb20010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0040
+.end cOVState_AUTOSAVE_displayOn

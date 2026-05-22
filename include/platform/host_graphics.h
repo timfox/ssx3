@@ -12,6 +12,9 @@ void cRenderStateMan_SnowFlakeColourR(void* state, float value);
 void cRenderStateMan_SnowFlakeColourG(void* state, float value);
 void cRenderStateMan_SnowFlakeColourB(void* state, float value);
 
+/* Retail snow tint path (decompiled cRenderStateMan_* → host VFX). */
+void apply_retail_menu_snow_colours(void* visual_fx);
+
 #ifdef __cplusplus
 }
 #endif

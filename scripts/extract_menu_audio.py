@@ -24,6 +24,8 @@ VGM_URL = (
 # vgmstream subsong indices are 1-based.
 EXTRACTS = [
     ("data/audio/audio.big", "data\\audio\\BC_AmbLoop1.bnk", 1, "title_ambient.wav"),
+    # Subsong 1 is the ~2.3s stereo menu loop; 4–6 are short stems (one-shots in-game).
+    ("data/audio/audio.big", "data\\audio\\SSX3Menu.bnk", 1, "menu_music.wav"),
     ("data/audio/audio.big", "data\\audio\\SSX3Menu.bnk", 4, "menu_stem_a.wav"),
     ("data/audio/audio.big", "data\\audio\\SSX3Menu.bnk", 5, "menu_stem_b.wav"),
     ("data/audio/audio.big", "data\\audio\\SSX3Menu.bnk", 6, "menu_stem_c.wav"),

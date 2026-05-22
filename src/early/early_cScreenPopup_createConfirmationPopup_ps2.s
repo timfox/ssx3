@@ -1,0 +1,89 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cScreenPopup_createConfirmationPopup
+.ent cScreenPopup_createConfirmationPopup
+cScreenPopup_createConfirmationPopup:
+    .word  0x27bdffa0
+    .word  0x0000382d
+    .word  0x7fb30020
+    .word  0x24060100
+    .word  0x7fb10040
+    .word  0x00a0982d
+    .word  0x0080882d
+    .word  0x3c050046
+    .word  0x7fb00050
+    .word  0x24a56110
+    .word  0x7fb20030
+    .word  0xffbf0010
+    .word  0x0c0c5f5c
+    .word  0x24040360
+    .word  0x8e250010
+    .word  0x0220302d
+    .word  0x0c07163a
+    .word  0x0040202d
+    .word  0x0040802d
+    .word  0x3c040046
+    .word  0xae3002ac
+    .word  0x24020002
+    .word  0x2484dcc8
+    .word  0x0c0c5d9c
+    .word  0xae0200bc
+    .word  0x261200bc
+    .word  0x0240202d
+    .word  0x0040302d
+    .word  0x0c0715f0
+    .word  0x0000282d
+    .word  0x3c040046
+    .word  0x0c0c5d9c
+    .word  0x2484fcd8
+    .word  0x0040302d
+    .word  0x0240202d
+    .word  0x0c0715f0
+    .word  0x24050001
+    .word  0x3c0141f0
+    .word  0x44810800
+    .word  0x2404000c
+    .word  0x3c014220
+    .word  0x44810000
+    .word  0x02642018
+    .word  0xe7a10000
+    .word  0xe7a00004
+    .word  0xafa00008
+    .word  0x6ba20007
+    .word  0x6fa20000
+    .word  0x8fa30008
+    .word  0xb202015f
+    .word  0xb6020158
+    .word  0xae030160
+    .word  0x02242821
+    .word  0x8e220314
+    .word  0x00912021
+    .word  0x24420003
+    .word  0xae02014c
+    .word  0x8ca302d8
+    .word  0xae030168
+    .word  0x688202d7
+    .word  0x6c8202d0
+    .word  0xb20200c7
+    .word  0xb60200c0
+    .word  0xae330324
+    .word  0x8e230040
+    .word  0x8e2502ac
+    .word  0x8c6200d0
+    .word  0x8c440010
+    .word  0x0c0e7ca4
+    .word  0x24840018
+    .word  0x7bb00050
+    .word  0x7bb10040
+    .word  0x7bb20030
+    .word  0x7bb30020
+    .word  0xdfbf0010
+    .word  0x03e00008
+    .word  0x27bd0060
+    .word  0x00000000
+.end cScreenPopup_createConfirmationPopup

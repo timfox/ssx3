@@ -25,9 +25,13 @@ int host_app_tick(void) {
 
 void host_app_request_quit(void) { host::g_should_quit = true; }
 
+void host_app_reset_quit(void) {
+    host::g_should_quit = false;
+    host::g_tick_count = 0;
+}
+
 int host_app_tick_count(void) { return host::g_tick_count; }
 
-/* Common sync symbols — expand as decomp reveals signatures. */
 void SYNCTASK_yieldticks(void) {
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
 }

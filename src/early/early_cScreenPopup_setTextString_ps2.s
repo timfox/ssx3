@@ -1,0 +1,61 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cScreenPopup_setTextString
+.ent cScreenPopup_setTextString
+cScreenPopup_setTextString:
+    .word  0x27bdffc0
+    .word  0x7fb00030
+    .word  0x00c0802d
+    .word  0x7fb20010
+    .word  0x00a0902d
+    .word  0x7fb10020
+    .word  0xffbf0000
+    .word  0x0c0e8300
+    .word  0x0200202d
+    .word  0x10400005
+    .word  0x0240202d
+    .word  0x0c0c613a
+    .word  0x0040282d
+    .word  0x1000001f
+    .word  0x7bb00030
+    .word  0x0c0e830a
+    .word  0x0200202d
+    .word  0x0040882d
+    .word  0x52200016
+    .word  0x3c05004a
+    .word  0x0c0f6f28
+    .word  0x0220202d
+    .word  0x3c050046
+    .word  0x24060100
+    .word  0x0000382d
+    .word  0x24440001
+    .word  0x0c0c5f8c
+    .word  0x24a560b8
+    .word  0x0040802d
+    .word  0x0220282d
+    .word  0x0c0b0960
+    .word  0x0200202d
+    .word  0x0240202d
+    .word  0x0c0c613a
+    .word  0x0200282d
+    .word  0x52000009
+    .word  0x7bb00030
+    .word  0x0c0c5fa6
+    .word  0x0200202d
+    .word  0x10000005
+    .word  0x7bb00030
+    .word  0x0240202d
+    .word  0x0c0c613a
+    .word  0x24a51408
+    .word  0x7bb00030
+    .word  0x7bb10020
+    .word  0x7bb20010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0040
+.end cScreenPopup_setTextString

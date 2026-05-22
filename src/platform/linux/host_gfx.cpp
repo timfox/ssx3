@@ -1,5 +1,7 @@
 #include "platform/host_gfx.h"
 
+#include "platform/host_fe_assets.h"
+
 #include "platform/host_boot_sequence.h"
 #include "platform/host_main_menu.h"
 #include "platform/host_renderer.h"
@@ -22,7 +24,7 @@ bool run_native_gfx_session(const RendererConfig& config,
         session.upscale = UpscaleBackend::Direct;
     }
 
-    std::unique_ptr<Renderer, decltype(&destroy_renderer)> renderer(create_vulkan_renderer(),
+    std::unique_ptr<Renderer, decltype(&destroy_renderer)> renderer(create_renderer(),
                                                                    destroy_renderer);
     if (!renderer || !renderer->init(session)) {
         return false;
@@ -44,7 +46,7 @@ bool run_native_gfx_session(const RendererConfig& config,
         return true;
     }
 
-    const std::string asset_dir = "assets/host/menu";
+    const std::string asset_dir = host::fe_menu_asset_dir();
     if (!run_main_menu_loop(renderer.get(), asset_dir)) {
         renderer->shutdown();
         return false;

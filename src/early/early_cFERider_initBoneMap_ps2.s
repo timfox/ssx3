@@ -1,0 +1,103 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cFERider_initBoneMap
+.ent cFERider_initBoneMap
+cFERider_initBoneMap:
+    .word  0x27bdffe0
+    .word  0x3c06004a
+    .word  0x7fb00010
+    .word  0x24c61970
+    .word  0xffbf0000
+    .word  0x0080802d
+    .word  0x0000282d
+    .word  0x0c0c4312
+    .word  0x8e040008
+    .word  0x8e040008
+    .word  0x3c06004a
+    .word  0x24c61978
+    .word  0xae020c7c
+    .word  0x0c0c4312
+    .word  0x0000282d
+    .word  0x8e040008
+    .word  0x3c060046
+    .word  0x24c60a00
+    .word  0xae020c80
+    .word  0x0c0c4312
+    .word  0x0000282d
+    .word  0x8e040008
+    .word  0x3c060046
+    .word  0x24c60a10
+    .word  0xae020c84
+    .word  0x0c0c4312
+    .word  0x0000282d
+    .word  0x8e040008
+    .word  0x3c060046
+    .word  0x24c60a20
+    .word  0xae020c88
+    .word  0x0c0c4312
+    .word  0x0000282d
+    .word  0x8e040008
+    .word  0x3c060046
+    .word  0x24c60a30
+    .word  0xae020c8c
+    .word  0x0c0c4312
+    .word  0x0000282d
+    .word  0x8e040008
+    .word  0x3c060046
+    .word  0x24c60a40
+    .word  0xae020c90
+    .word  0x0c0c4312
+    .word  0x0000282d
+    .word  0x8e040008
+    .word  0x3c060046
+    .word  0x24c60a50
+    .word  0xae020c94
+    .word  0x0c0c4312
+    .word  0x0000282d
+    .word  0x8e040008
+    .word  0x3c060046
+    .word  0x24c60a60
+    .word  0xae020c98
+    .word  0x0c0c4312
+    .word  0x0000282d
+    .word  0x8e040008
+    .word  0x3c060046
+    .word  0x24c60a70
+    .word  0xae020c9c
+    .word  0x0c0c4312
+    .word  0x0000282d
+    .word  0x8e040008
+    .word  0x3c060046
+    .word  0x24c60a80
+    .word  0xae020ca0
+    .word  0x0c0c4312
+    .word  0x0000282d
+    .word  0x8e040008
+    .word  0x3c060046
+    .word  0x24c60a90
+    .word  0xae020ca4
+    .word  0x0c0c4312
+    .word  0x0000282d
+    .word  0x8e040008
+    .word  0x3c060046
+    .word  0x24c60aa0
+    .word  0xae020ca8
+    .word  0x0c0c4312
+    .word  0x24050001
+    .word  0x8e040008
+    .word  0x3c060046
+    .word  0xae020cac
+    .word  0x24c60ab0
+    .word  0x0c0c4312
+    .word  0x24050001
+    .word  0xae020cb0
+    .word  0x7bb00010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0020
+.end cFERider_initBoneMap

@@ -1,0 +1,105 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cFEStateRiderBio_fillFavesInfo
+.ent cFEStateRiderBio_fillFavesInfo
+cFEStateRiderBio_fillFavesInfo:
+    .word  0x27bdfd90
+    .word  0x3c020046
+    .word  0x7fb40220
+    .word  0x2443f2d0
+    .word  0x7fb00260
+    .word  0x0080a02d
+    .word  0x7fb10250
+    .word  0x03a0282d
+    .word  0x7fb20240
+    .word  0x30620007
+    .word  0x7fb30230
+    .word  0x7fb50210
+    .word  0x7fb60200
+    .word  0x10400019
+    .word  0xffbf01f0
+    .word  0x246201e0
+    .word  0x27a401e0
+    .word  0x3c16004a
+    .word  0x68660007
+    .word  0x6c660000
+    .word  0x6867000f
+    .word  0x6c670008
+    .word  0x68680017
+    .word  0x6c680010
+    .word  0x6869001f
+    .word  0x6c690018
+    .word  0xb0a60007
+    .word  0xb4a60000
+    .word  0xb0a7000f
+    .word  0xb4a70008
+    .word  0xb0a80017
+    .word  0xb4a80010
+    .word  0xb0a9001f
+    .word  0xb4a90018
+    .word  0x24630020
+    .word  0x1462ffee
+    .word  0x24a50020
+    .word  0x10000010
+    .word  0x0080982d
+    .word  0x246201e0
+    .word  0x27a401e0
+    .word  0x3c16004a
+    .word  0xdc660000
+    .word  0xdc670008
+    .word  0xdc680010
+    .word  0xdc690018
+    .word  0xfca60000
+    .word  0xfca70008
+    .word  0xfca80010
+    .word  0xfca90018
+    .word  0x24630020
+    .word  0x1462fff6
+    .word  0x24a50020
+    .word  0x0080982d
+    .word  0x0000902d
+    .word  0x24150030
+    .word  0x26500001
+    .word  0x00000000
+    .word  0x26c51680
+    .word  0x0200302d
+    .word  0x0c105e0a
+    .word  0x0260202d
+    .word  0x0c0c5d9c
+    .word  0x0260202d
+    .word  0x8e840040
+    .word  0x0c0e7618
+    .word  0x0040282d
+    .word  0x00121880
+    .word  0x0040882d
+    .word  0x1220000a
+    .word  0x0200902d
+    .word  0x8e820048
+    .word  0x00551018
+    .word  0x00621021
+    .word  0x03a21821
+    .word  0x0c0c5d9c
+    .word  0x8c640000
+    .word  0x0220202d
+    .word  0x0c0e8400
+    .word  0x0040282d
+    .word  0x2a42000c
+    .word  0x1440ffe8
+    .word  0x26500001
+    .word  0x7bb00260
+    .word  0x7bb10250
+    .word  0x7bb20240
+    .word  0x7bb30230
+    .word  0x7bb40220
+    .word  0x7bb50210
+    .word  0x7bb60200
+    .word  0xdfbf01f0
+    .word  0x03e00008
+    .word  0x27bd0270
+    .word  0x00000000
+.end cFEStateRiderBio_fillFavesInfo

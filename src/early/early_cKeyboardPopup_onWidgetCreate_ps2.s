@@ -1,0 +1,77 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cKeyboardPopup_onWidgetCreate
+.ent cKeyboardPopup_onWidgetCreate
+cKeyboardPopup_onWidgetCreate:
+    .word  0x27bdffc0
+    .word  0x7fb20010
+    .word  0x7fb10020
+    .word  0x0080902d
+    .word  0xffbf0000
+    .word  0x00a0882d
+    .word  0x7fb00030
+    .word  0x3c040046
+    .word  0x8e300038
+    .word  0x0c0c5d9c
+    .word  0x24846398
+    .word  0x5602001c
+    .word  0x3c040046
+    .word  0x8e220008
+    .word  0x0000282d
+    .word  0x84440048
+    .word  0x8c43004c
+    .word  0x0060f809
+    .word  0x02242021
+    .word  0x8f82e980
+    .word  0x38420001
+    .word  0x14400008
+    .word  0x8f82f7b8
+    .word  0x8e220008
+    .word  0x24050001
+    .word  0x84440048
+    .word  0x8c43004c
+    .word  0x0060f809
+    .word  0x02242021
+    .word  0x8f82f7b8
+    .word  0x8c430084
+    .word  0x1060001b
+    .word  0x0000282d
+    .word  0x8e220008
+    .word  0x84440048
+    .word  0x8c43004c
+    .word  0x0060f809
+    .word  0x02242021
+    .word  0x10000015
+    .word  0x7bb00030
+    .word  0x8e300038
+    .word  0x0c0c5d9c
+    .word  0x248463a8
+    .word  0x56020003
+    .word  0x3c040046
+    .word  0x1000000d
+    .word  0xae510048
+    .word  0x8e300038
+    .word  0x0c0c5d9c
+    .word  0x248463b8
+    .word  0x56020003
+    .word  0x3c040046
+    .word  0x10000006
+    .word  0xae510050
+    .word  0x8e300038
+    .word  0x0c0c5d9c
+    .word  0x248463c8
+    .word  0x52020001
+    .word  0xae51004c
+    .word  0x7bb00030
+    .word  0x7bb10020
+    .word  0x7bb20010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0040
+    .word  0x00000000
+.end cKeyboardPopup_onWidgetCreate

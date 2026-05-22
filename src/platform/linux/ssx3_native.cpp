@@ -1,6 +1,9 @@
 #include "platform/host_boot.h"
 #include "platform/host_disc.h"
+#include "platform/host_fe_font.h"
+#include "platform/host_gameplay.h"
 #include "platform/host_gfx.h"
+#include "platform/host_resolution.h"
 
 #include <algorithm>
 #include <cctype>
@@ -143,16 +146,52 @@ struct Options {
     fs::path discRoot = "disc";
     fs::path rebuiltPs2Elf = "out/SLUS_207.72";
     bool runGfx = false;
+    bool runGame = false;
+    bool bootThenGame = false;
     bool bootGame = false;
     bool bootThenGfx = false;
     bool bootVideos = true;
     bool noBootVideos = false;
     int width = 1280;
-    int height = 896;
+    int height = 720;
     bool vsync = true;
     host::UpscaleBackend upscale = host::UpscaleBackend::Compute;
     float renderScale = 0.67f;
+    host::HostFontChoice fontChoice = host::HostFontChoice::Auto;
+    std::string resolutionPreset;
+    bool widthExplicit = false;
+    bool heightExplicit = false;
+    bool renderScaleExplicit = false;
 };
+
+void apply_resolution_preset(Options& options) {
+    if (options.resolutionPreset.empty()) {
+        return;
+    }
+    const host::ResolutionPreset* preset =
+        host::resolution_preset_by_id(options.resolutionPreset.c_str());
+    if (!preset) {
+        std::cerr << "unknown --resolution preset: " << options.resolutionPreset << '\n';
+        host::print_resolution_presets();
+        std::exit(1);
+    }
+    if (!options.widthExplicit) {
+        options.width = preset->width;
+    }
+    if (!options.heightExplicit) {
+        options.height = preset->height;
+    }
+    if (!options.renderScaleExplicit && preset->suggested_render_scale > 0.0f &&
+        options.upscale != host::UpscaleBackend::Direct) {
+        options.renderScale = preset->suggested_render_scale;
+    }
+    std::cout << "[gfx]     resolution preset " << preset->id << " → " << options.width << "x"
+              << options.height;
+    if (!options.renderScaleExplicit && preset->suggested_render_scale > 0.0f) {
+        std::cout << ", render-scale " << options.renderScale;
+    }
+    std::cout << '\n';
+}
 
 Options parse_args(int argc, char** argv) {
     Options options;
@@ -161,6 +200,11 @@ Options parse_args(int argc, char** argv) {
         const std::string arg = argv[i];
         if (arg == "--gfx") {
             options.runGfx = true;
+        } else if (arg == "--game") {
+            options.runGame = true;
+        } else if (arg == "--boot-then-game") {
+            options.bootThenGame = true;
+            options.runGame = true;
         } else if (arg == "--boot-game") {
             options.bootGame = true;
         } else if (arg == "--boot-videos") {
@@ -184,15 +228,38 @@ Options parse_args(int argc, char** argv) {
             }
         } else if (arg == "--render-scale" && i + 1 < argc) {
             options.renderScale = std::stof(argv[++i]);
+            options.renderScaleExplicit = true;
+        } else if (arg == "--resolution" && i + 1 < argc) {
+            options.resolutionPreset = argv[++i];
+        } else if (arg == "--list-resolutions") {
+            host::print_resolution_presets();
+            std::exit(0);
         } else if (arg == "--help" || arg == "-h") {
-            std::cout << "usage: ssx3-native [--gfx] [--boot-game] [--boot-then-gfx] [--boot-videos] [--no-boot-videos]\n"
-                         "                  [--upscale direct|compute|dlss] [--render-scale F]\n"
-                         "                  [--no-vsync] [--width N] [--height N] [disc] [rebuilt_elf]\n";
+            std::cout << "usage: ssx3-native [--gfx] [--game] [--boot-then-game] [--boot-game] [--boot-then-gfx]\n"
+                         "                  [--boot-videos] [--no-boot-videos]\n"
+                         "                  [--font auto|retail|custom] [--upscale direct|compute|dlss]\n"
+                         "                  [--resolution PRESET] [--list-resolutions]\n"
+                         "                  [--render-scale F] [--no-vsync] [--width N] [--height N] [disc] [rebuilt_elf]\n";
+            std::cout << "resolution presets: ps2 720p wxga 1280x896 900p 1080p 1200p 1440p 4k (see --list-resolutions)\n";
             std::exit(0);
         } else if (arg == "--width" && i + 1 < argc) {
             options.width = std::stoi(argv[++i]);
+            options.widthExplicit = true;
         } else if (arg == "--height" && i + 1 < argc) {
             options.height = std::stoi(argv[++i]);
+            options.heightExplicit = true;
+        } else if (arg == "--font" && i + 1 < argc) {
+            const std::string mode = argv[++i];
+            if (mode == "auto") {
+                options.fontChoice = host::HostFontChoice::Auto;
+            } else if (mode == "retail" || mode == "fe") {
+                options.fontChoice = host::HostFontChoice::Retail;
+            } else if (mode == "custom" || mode == "host") {
+                options.fontChoice = host::HostFontChoice::Custom;
+            } else {
+                std::cerr << "unknown --font mode: " << mode << " (use auto|retail|custom)\n";
+                std::exit(1);
+            }
         } else if (!arg.empty() && arg[0] == '-') {
             std::cerr << "unknown option: " << arg << '\n';
             std::exit(1);
@@ -207,6 +274,7 @@ Options parse_args(int argc, char** argv) {
             std::exit(1);
         }
     }
+    apply_resolution_preset(options);
     return options;
 }
 
@@ -272,6 +340,8 @@ int main(int argc, char** argv) {
         return 0;
     }
 
+    host::host_fe_font_set_choice(options.fontChoice);
+
     if (options.bootThenGfx) {
         if (!host::run_retail_boot_init(argc, argv)) {
             std::cerr << "retail boot init failed.\n";
@@ -291,6 +361,21 @@ int main(int argc, char** argv) {
             std::cerr << "Vulkan session after boot init failed.\n";
             return 1;
         }
+        return 0;
+    }
+
+    if (options.runGame) {
+        host::RendererConfig gfx{};
+        gfx.width = options.width;
+        gfx.height = options.height;
+        gfx.vsync = options.vsync;
+        gfx.shader_dir = "obj/host/shaders";
+        gfx.upscale = host::UpscaleBackend::Direct;
+        if (!host::run_native_world_session(gfx, options.bootThenGame)) {
+            std::cerr << "3D gameplay session failed.\n";
+            return 1;
+        }
+        std::cout << "3D gameplay session exited.\n";
         return 0;
     }
 
@@ -322,10 +407,14 @@ int main(int argc, char** argv) {
     }
 
     std::cout << "runtime status: host I/O and decompiled utilities are linked.\n";
-    std::cout << "hint: --boot-game runs Phase 2 HAL boot (systemInit → cAppMan_mainLoop stub).\n";
+    std::cout << "hint: --boot-game runs retail boot with Vulkan renderer (systemInit → cAppMan_mainLoop).\n";
     std::cout << "hint: --boot-then-gfx runs retail init then FMV + Vulkan title menu.\n";
     std::cout << "hint: --gfx FE flow: title → menu → Freeride / Options → Game options.\n";
-    std::cout << "hint: keyboard: arrows, E/S confirm, Esc/D back, Space start.\n";
+    std::cout << "hint: --game flyover on procedural alpine terrain (Vulkan 3D, retail world stubs).\n";
+    std::cout << "hint: --boot-then-game: retail init → load track 0 → Vulkan flyover (cSSXApp_preUpdate ticks race).\n";
+    std::cout << "hint: keyboard: arrows, E/S Cross, W/Esc Triangle back, A Square options, Space start.\n";
     std::cout << "hint: --no-boot-videos skips FMV; Space/Enter skips current movie.\n";
+    std::cout << "hint: --resolution 1080p|1440p|4k|ps2|720p (default 1280x720); --list-resolutions.\n";
+    std::cout << "hint: F11 toggles fullscreen in --gfx / --game windows.\n";
     return 0;
 }

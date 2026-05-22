@@ -1,0 +1,115 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cWScriptProcess_cWScriptProcess
+.ent cWScriptProcess_cWScriptProcess
+cWScriptProcess_cWScriptProcess:
+    .word  0x27bdff80
+    .word  0x3c020049
+    .word  0x7fb20050
+    .word  0x24429b70
+    .word  0x0080902d
+    .word  0x7fb00070
+    .word  0x7fb10060
+    .word  0x00c0802d
+    .word  0x7fb30040
+    .word  0x00a0882d
+    .word  0x7fb50020
+    .word  0x26430028
+    .word  0x7fb40030
+    .word  0x00e0a82d
+    .word  0x7fb60010
+    .word  0x0060202d
+    .word  0xffbf0000
+    .word  0x0000282d
+    .word  0xae42005c
+    .word  0x2406000c
+    .word  0x0c0f9912
+    .word  0x0060982d
+    .word  0xae500024
+    .word  0xae510010
+    .word  0x26b0000c
+    .word  0x24110002
+    .word  0x8ea20000
+    .word  0xae40001c
+    .word  0xae420020
+    .word  0x00000000
+    .word  0x8e050000
+    .word  0x2631ffff
+    .word  0x8e440010
+    .word  0x0c0c26dc
+    .word  0x26100004
+    .word  0xae620000
+    .word  0x0621fff9
+    .word  0x26730004
+    .word  0x26560014
+    .word  0x26510034
+    .word  0x26b00018
+    .word  0x24130009
+    .word  0x8e050000
+    .word  0x2673ffff
+    .word  0x8e440010
+    .word  0x0c0c26dc
+    .word  0x26100004
+    .word  0xae220000
+    .word  0x0661fff9
+    .word  0x26310004
+    .word  0x8eb00004
+    .word  0x24040044
+    .word  0x3c050049
+    .word  0x3c062000
+    .word  0x02042018
+    .word  0xae500004
+    .word  0x24a59850
+    .word  0x0000382d
+    .word  0x2613ffff
+    .word  0x0c0c5f8c
+    .word  0x24840010
+    .word  0x24540010
+    .word  0xac500000
+    .word  0x12000007
+    .word  0x0280882d
+    .word  0x2410ffff
+    .word  0x0220202d
+    .word  0x0c0c208a
+    .word  0x2673ffff
+    .word  0x1670fffc
+    .word  0x26310044
+    .word  0xaed40000
+    .word  0x0000882d
+    .word  0x8e420004
+    .word  0x1840000e
+    .word  0x8eb00008
+    .word  0x0000982d
+    .word  0x00000000
+    .word  0x8e440014
+    .word  0x0200302d
+    .word  0x0240282d
+    .word  0x26310001
+    .word  0x00932021
+    .word  0x0c0c209e
+    .word  0x26100038
+    .word  0x8e420004
+    .word  0x0222102a
+    .word  0x1440fff6
+    .word  0x26730044
+    .word  0x8e430004
+    .word  0x0240102d
+    .word  0xae400000
+    .word  0xae430008
+    .word  0xae400018
+    .word  0x7bb00070
+    .word  0x7bb10060
+    .word  0x7bb20050
+    .word  0x7bb30040
+    .word  0x7bb40030
+    .word  0x7bb50020
+    .word  0x7bb60010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0080
+.end cWScriptProcess_cWScriptProcess

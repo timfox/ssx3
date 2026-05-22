@@ -1,0 +1,95 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_002AFB38
+.ent func_002AFB38
+func_002AFB38:
+    .word  0x27bdff60
+    .word  0x7fb00090
+    .word  0x7fb20070
+    .word  0x0000802d
+    .word  0x7fb30060
+    .word  0x7fb10080
+    .word  0x0080982d
+    .word  0x7fb40050
+    .word  0x7fb50040
+    .word  0x7fb60030
+    .word  0x7fb70020
+    .word  0x7fbe0010
+    .word  0xffbf0000
+    .word  0x8e6200f0
+    .word  0x1840000d
+    .word  0x00a0902d
+    .word  0x267100f4
+    .word  0x00000000
+    .word  0x8e240000
+    .word  0x50800004
+    .word  0x8e6200f0
+    .word  0x0c0abe40
+    .word  0x24050003
+    .word  0x8e6200f0
+    .word  0x26100001
+    .word  0x0202102a
+    .word  0x1440fff7
+    .word  0x26310004
+    .word  0x8f8206c8
+    .word  0x325e0001
+    .word  0x8e6300f0
+    .word  0x0000802d
+    .word  0x8e6400ec
+    .word  0x00431023
+    .word  0x1880001d
+    .word  0xaf8206c8
+    .word  0x267708d4
+    .word  0x267600d0
+    .word  0x267500cc
+    .word  0x001090c0
+    .word  0x26140001
+    .word  0x02578021
+    .word  0x24110001
+    .word  0x00000000
+    .word  0x8e040000
+    .word  0x10800003
+    .word  0x2631ffff
+    .word  0x0c0948ea
+    .word  0x00000000
+    .word  0x0621fffa
+    .word  0x26100004
+    .word  0x02d28821
+    .word  0x8e220000
+    .word  0x10400005
+    .word  0x02b28021
+    .word  0x0c0948ea
+    .word  0x8e040000
+    .word  0xae200000
+    .word  0xae000000
+    .word  0x8e6200ec
+    .word  0x0280802d
+    .word  0x0202102a
+    .word  0x1440ffe9
+    .word  0x001090c0
+    .word  0x8f8206c4
+    .word  0x8e650004
+    .word  0x0c0aaaf4
+    .word  0x8c440000
+    .word  0x13c00004
+    .word  0x7bb00090
+    .word  0x0c0c5f94
+    .word  0x0260202d
+    .word  0x7bb00090
+    .word  0x7bb10080
+    .word  0x7bb20070
+    .word  0x7bb30060
+    .word  0x7bb40050
+    .word  0x7bb50040
+    .word  0x7bb60030
+    .word  0x7bb70020
+    .word  0x7bbe0010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd00a0
+.end func_002AFB38

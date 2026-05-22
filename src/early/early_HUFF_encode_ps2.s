@@ -1,0 +1,97 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global HUFF_encode
+.ent HUFF_encode
+HUFF_encode:
+    .word  0x27bdff60
+    .word  0x7fb00090
+    .word  0x7fb10080
+    .word  0x00a0802d
+    .word  0x7fb20070
+    .word  0x0000882d
+    .word  0x7fb40050
+    .word  0x0080902d
+    .word  0x7fb50040
+    .word  0x0000a02d
+    .word  0x7fb60030
+    .word  0x0000a82d
+    .word  0x7fb30060
+    .word  0x00c0b02d
+    .word  0x10e00002
+    .word  0xffbf0020
+    .word  0x8cf40000
+    .word  0x3c050048
+    .word  0x240431ec
+    .word  0x24a56600
+    .word  0x3c062000
+    .word  0x0c0c5f5c
+    .word  0x0000382d
+    .word  0x0040982d
+    .word  0x12600031
+    .word  0x24020001
+    .word  0x12820008
+    .word  0x2a820002
+    .word  0x5440001e
+    .word  0xafb20000
+    .word  0x24020002
+    .word  0x1282000c
+    .word  0x3c050048
+    .word  0x10000019
+    .word  0xafb20000
+    .word  0x3c050048
+    .word  0x0200202d
+    .word  0x24a56618
+    .word  0x3c062000
+    .word  0x0c0c5f8c
+    .word  0x0000382d
+    .word  0x0040882d
+    .word  0x1000000c
+    .word  0x0240202d
+    .word  0x0000382d
+    .word  0x24a56618
+    .word  0x0200202d
+    .word  0x0c0c5f8c
+    .word  0x3c062000
+    .word  0x0040882d
+    .word  0x0240202d
+    .word  0x0220282d
+    .word  0x0c0b2170
+    .word  0x0200302d
+    .word  0x0220202d
+    .word  0x0220282d
+    .word  0x0c0b2170
+    .word  0x0200302d
+    .word  0xafb10000
+    .word  0xafb60010
+    .word  0x0200382d
+    .word  0x0280402d
+    .word  0xafb00004
+    .word  0xafb00014
+    .word  0x0260202d
+    .word  0x03a0282d
+    .word  0x0c0b27d8
+    .word  0x27a60010
+    .word  0x12200003
+    .word  0x0040a82d
+    .word  0x0c0c5fa6
+    .word  0x0220202d
+    .word  0x0c0c5f94
+    .word  0x0260202d
+    .word  0x02a0102d
+    .word  0x7bb00090
+    .word  0x7bb10080
+    .word  0x7bb20070
+    .word  0x7bb30060
+    .word  0x7bb40050
+    .word  0x7bb50040
+    .word  0x7bb60030
+    .word  0xdfbf0020
+    .word  0x03e00008
+    .word  0x27bd00a0
+    .word  0x00000000
+.end HUFF_encode

@@ -1,0 +1,101 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global __sti__all_in_one_main_cpp
+.ent __sti__all_in_one_main_cpp
+__sti__all_in_one_main_cpp:
+    .word  0x27bdff70
+    .word  0x7fb00080
+    .word  0x0080802d
+    .word  0x7fb10070
+    .word  0x7fb20060
+    .word  0x00a0882d
+    .word  0x7fb30050
+    .word  0x00c0902d
+    .word  0x7fb40040
+    .word  0x7fb50030
+    .word  0x26140138
+    .word  0x7fb60020
+    .word  0x26130154
+    .word  0x7fb70010
+    .word  0x26150170
+    .word  0xffbf0000
+    .word  0x0c0b2a96
+    .word  0x2616018c
+    .word  0x261701c8
+    .word  0x3c020047
+    .word  0x3c050046
+    .word  0x2442d3d0
+    .word  0x24a57da8
+    .word  0xae02012c
+    .word  0x0280202d
+    .word  0x8e230000
+    .word  0x261101a4
+    .word  0xae030130
+    .word  0x8e420000
+    .word  0x0c0b34a8
+    .word  0xae020134
+    .word  0x3c050046
+    .word  0x0260202d
+    .word  0x0c0b34a8
+    .word  0x24a57dc0
+    .word  0x3c050046
+    .word  0x02a0202d
+    .word  0x0c0b34a8
+    .word  0x24a57dc8
+    .word  0x02c0202d
+    .word  0x0c0b34d4
+    .word  0x2405000e
+    .word  0x3c060046
+    .word  0x0220202d
+    .word  0x24c67dd0
+    .word  0x0000282d
+    .word  0x0c0b33e6
+    .word  0x0000382d
+    .word  0x3c060046
+    .word  0x0000382d
+    .word  0x02e0202d
+    .word  0x24c67dd8
+    .word  0x0c0b33e6
+    .word  0x24050001
+    .word  0x0280282d
+    .word  0x0200202d
+    .word  0x0c0b2f32
+    .word  0x2406ffff
+    .word  0x0260282d
+    .word  0x0200202d
+    .word  0x0c0b2f32
+    .word  0x2406ffff
+    .word  0x02a0282d
+    .word  0x0200202d
+    .word  0x0c0b2f32
+    .word  0x2406ffff
+    .word  0x02c0282d
+    .word  0x0200202d
+    .word  0x0c0b2f32
+    .word  0x2406ffff
+    .word  0x0220282d
+    .word  0x0200202d
+    .word  0x0c0b2f32
+    .word  0x2406ffff
+    .word  0x02e0282d
+    .word  0x0200202d
+    .word  0x0c0b2f32
+    .word  0x2406ffff
+    .word  0x0200102d
+    .word  0x7bb10070
+    .word  0x7bb00080
+    .word  0x7bb20060
+    .word  0x7bb30050
+    .word  0x7bb40040
+    .word  0x7bb50030
+    .word  0x7bb60020
+    .word  0x7bb70010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0090
+.end __sti__all_in_one_main_cpp

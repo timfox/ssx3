@@ -1,0 +1,113 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cAppMan_run
+.ent cAppMan_run
+cAppMan_run:
+    .word  0x27bdffc0
+    .word  0xc780d108
+    .word  0x7fb20010
+    .word  0x2402003c
+    .word  0x0080902d
+    .word  0x7fb00030
+    .word  0x7fb10020
+    .word  0x00a0202d
+    .word  0xffbf0000
+    .word  0x00c0882d
+    .word  0xe6400014
+    .word  0x00e0802d
+    .word  0xae440008
+    .word  0x2405003c
+    .word  0xae420010
+    .word  0x8c820008
+    .word  0x84430010
+    .word  0x8c460014
+    .word  0x00c0f809
+    .word  0x00832021
+    .word  0x8e42005c
+    .word  0x0200302d
+    .word  0x0220282d
+    .word  0x84440018
+    .word  0x8c43001c
+    .word  0x0060f809
+    .word  0x02442021
+    .word  0x8e460008
+    .word  0x8e450004
+    .word  0x8cc20008
+    .word  0x84440048
+    .word  0x8c43004c
+    .word  0x0060f809
+    .word  0x00c42021
+    .word  0x10000017
+    .word  0x8e450008
+    .word  0x8ca20008
+    .word  0x84440058
+    .word  0x8c43005c
+    .word  0x0060f809
+    .word  0x00a42021
+    .word  0x0c0f964a
+    .word  0x0000202d
+    .word  0x8e450008
+    .word  0x8ca20008
+    .word  0x84440060
+    .word  0x8c430064
+    .word  0x0060f809
+    .word  0x00a42021
+    .word  0x8e450008
+    .word  0x8ca20008
+    .word  0x84440020
+    .word  0x8c430024
+    .word  0x0060f809
+    .word  0x00a42021
+    .word  0x0c0c5cca
+    .word  0x0240202d
+    .word  0x8e450008
+    .word  0x8ca30008
+    .word  0x84640050
+    .word  0x8c620054
+    .word  0x0040f809
+    .word  0x00a42021
+    .word  0x5040ffe4
+    .word  0x8e450008
+    .word  0x8e440004
+    .word  0xae400004
+    .word  0xae440000
+    .word  0x8c820000
+    .word  0x84430028
+    .word  0x8c45002c
+    .word  0x00a0f809
+    .word  0x00832021
+    .word  0xae400058
+    .word  0x0c0c5bc0
+    .word  0x0240202d
+    .word  0x8e42005c
+    .word  0x84440020
+    .word  0x8c430024
+    .word  0x0060f809
+    .word  0x02442021
+    .word  0x8e450008
+    .word  0x8ca20008
+    .word  0x84440018
+    .word  0x8c43001c
+    .word  0x0060f809
+    .word  0x00a42021
+    .word  0x8e460008
+    .word  0x10c00006
+    .word  0x24050003
+    .word  0x8cc20008
+    .word  0x84440008
+    .word  0x8c43000c
+    .word  0x0060f809
+    .word  0x00c42021
+    .word  0x7bb00030
+    .word  0x0000102d
+    .word  0x7bb10020
+    .word  0x7bb20010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0040
+.end cAppMan_run

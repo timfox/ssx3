@@ -1,0 +1,59 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cVidEngine_ReadyVideo
+.ent cVidEngine_ReadyVideo
+cVidEngine_ReadyVideo:
+    .word  0x27bdffa0
+    .word  0x7fb00050
+    .word  0x7fb10040
+    .word  0x0080802d
+    .word  0xffbf0030
+    .word  0x8e020000
+    .word  0x10400003
+    .word  0x00a0882d
+    .word  0x10000021
+    .word  0x0000102d
+    .word  0x3c050048
+    .word  0x24060100
+    .word  0x24a51fc8
+    .word  0x0000382d
+    .word  0x0c0c5f5c
+    .word  0x24040044
+    .word  0x0c094cf2
+    .word  0x0040202d
+    .word  0xae020000
+    .word  0x0c094ce4
+    .word  0x03a0202d
+    .word  0x8e040000
+    .word  0x24020001
+    .word  0x24030100
+    .word  0x24060009
+    .word  0xafb10000
+    .word  0x03a0282d
+    .word  0xafa20008
+    .word  0xafa30018
+    .word  0xafa6001c
+    .word  0xafa0000c
+    .word  0x0c094d2a
+    .word  0xafa00010
+    .word  0x14400008
+    .word  0x24020001
+    .word  0x8e040000
+    .word  0x50800004
+    .word  0xae000000
+    .word  0x0c094d06
+    .word  0x24050003
+    .word  0xae000000
+    .word  0x0000102d
+    .word  0x7bb00050
+    .word  0x7bb10040
+    .word  0xdfbf0030
+    .word  0x03e00008
+    .word  0x27bd0060
+    .word  0x00000000
+.end cVidEngine_ReadyVideo

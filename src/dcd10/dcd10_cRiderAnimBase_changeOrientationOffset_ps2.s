@@ -1,0 +1,113 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cRiderAnimBase_changeOrientationOffset
+.ent cRiderAnimBase_changeOrientationOffset
+cRiderAnimBase_changeOrientationOffset:
+    .word  0x27bdff00
+    .word  0x7fb300c0
+    .word  0x7fb400b0
+    .word  0x0080982d
+    .word  0x7fb000f0
+    .word  0x00a0a02d
+    .word  0x7fb100e0
+    .word  0x0000202d
+    .word  0x7fb200d0
+    .word  0x7fb500a0
+    .word  0x7fb60090
+    .word  0xffbf0080
+    .word  0x8e630050
+    .word  0x00000000
+    .word  0x000428c0
+    .word  0x24950001
+    .word  0x00a31821
+    .word  0x8c620000
+    .word  0x18400045
+    .word  0x0000882d
+    .word  0x00a0902d
+    .word  0x3c160050
+    .word  0x8e640050
+    .word  0x00000000
+    .word  0x0220282d
+    .word  0x0c0c51d8
+    .word  0x00922021
+    .word  0x8e640050
+    .word  0x0040802d
+    .word  0x0220282d
+    .word  0x00922021
+    .word  0x0c0c51d8
+    .word  0x26310001
+    .word  0xda840010
+    .word  0xda050070
+    .word  0x4be521ea
+    .word  0x4bc522fe
+    .word  0x4bc429ae
+    .word  0x4bc521bf
+    .word  0x4bc428bf
+    .word  0x4a27387c
+    .word  0x4a2700fd
+    .word  0x4a27020e
+    .word  0x4bc0320b
+    .word  0xfba80050
+    .word  0x7ba30050
+    .word  0x7fa30030
+    .word  0x7fa30040
+    .word  0xda030060
+    .word  0xdac4f130
+    .word  0x4be4196c
+    .word  0xfba50070
+    .word  0x7ba30070
+    .word  0x7fa30060
+    .word  0xda840010
+    .word  0xdba50060
+    .word  0x4a28422c
+    .word  0x4bc522fe
+    .word  0x4bc429ae
+    .word  0x4bc622fe
+    .word  0x4bc431ee
+    .word  0x4bc029bf
+    .word  0x4bc430bf
+    .word  0x4bc430bf
+    .word  0x4bc038bf
+    .word  0x4bc03a0b
+    .word  0xfba80070
+    .word  0x7ba30070
+    .word  0x7fa30050
+    .word  0xdba30050
+    .word  0xda840000
+    .word  0x4be41968
+    .word  0xfba50070
+    .word  0x7ba40070
+    .word  0x7ba30030
+    .word  0x7fa40040
+    .word  0x7fa30010
+    .word  0x7fa40020
+    .word  0x7fa40000
+    .word  0x7c440060
+    .word  0x7ba30010
+    .word  0x7c430070
+    .word  0x8e620050
+    .word  0x02421021
+    .word  0x8c430000
+    .word  0x0223182a
+    .word  0x5460ffc1
+    .word  0x8e640050
+    .word  0x02a0202d
+    .word  0x28820006
+    .word  0x5440ffb3
+    .word  0x8e630050
+    .word  0x7bb000f0
+    .word  0x7bb100e0
+    .word  0x7bb200d0
+    .word  0x7bb300c0
+    .word  0x7bb400b0
+    .word  0x7bb500a0
+    .word  0x7bb60090
+    .word  0xdfbf0080
+    .word  0x03e00008
+    .word  0x27bd0100
+.end cRiderAnimBase_changeOrientationOffset

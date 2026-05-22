@@ -1,0 +1,45 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_00277778
+.ent func_00277778
+func_00277778:
+    .word  0x27bdffd0
+    .word  0x24030001
+    .word  0x7fb00020
+    .word  0x7fb10010
+    .word  0x0080802d
+    .word  0xffbf0000
+    .word  0x8e0200a4
+    .word  0x54430015
+    .word  0x7bb00020
+    .word  0x2604000c
+    .word  0x0c0a0f5c
+    .word  0x0000282d
+    .word  0x0040882d
+    .word  0x0200202d
+    .word  0x0c09df76
+    .word  0x0220282d
+    .word  0x1440000a
+    .word  0x24020002
+    .word  0x8e25000c
+    .word  0x0c0a09e6
+    .word  0x8e040000
+    .word  0x0040182d
+    .word  0x24020002
+    .word  0x50620004
+    .word  0xae0300a4
+    .word  0x10000003
+    .word  0x7bb00020
+    .word  0xae0200a4
+    .word  0x7bb00020
+    .word  0x7bb10010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0030
+    .word  0x00000000
+.end func_00277778

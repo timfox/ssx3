@@ -1,0 +1,59 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cFEStateBuyAttrib_onWidgetCreate
+.ent cFEStateBuyAttrib_onWidgetCreate
+cFEStateBuyAttrib_onWidgetCreate:
+    .word  0x27bdffc0
+    .word  0x7fb20010
+    .word  0x7fb10020
+    .word  0x0080902d
+    .word  0xffbf0000
+    .word  0x00a0882d
+    .word  0x7fb00030
+    .word  0x3c040047
+    .word  0x8e300038
+    .word  0x0c0c5d9c
+    .word  0x2484f008
+    .word  0x56020009
+    .word  0x3c040047
+    .word  0x3c040047
+    .word  0x0c0c5d9c
+    .word  0x2484f020
+    .word  0x0220202d
+    .word  0x0c0e8400
+    .word  0x0040282d
+    .word  0x10000017
+    .word  0x7bb00030
+    .word  0x8e300038
+    .word  0x0c0c5d9c
+    .word  0x2484f040
+    .word  0x56020003
+    .word  0x3c04004a
+    .word  0x1000000f
+    .word  0xae5100ac
+    .word  0x8e300038
+    .word  0x0c0c5d9c
+    .word  0x24842320
+    .word  0x56020003
+    .word  0x3c04004a
+    .word  0x10000008
+    .word  0xae200018
+    .word  0x8e300038
+    .word  0x0c0c5d9c
+    .word  0x24842328
+    .word  0x16020004
+    .word  0x7bb00030
+    .word  0x24020001
+    .word  0xae220018
+    .word  0x7bb00030
+    .word  0x7bb10020
+    .word  0x7bb20010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0040
+.end cFEStateBuyAttrib_onWidgetCreate

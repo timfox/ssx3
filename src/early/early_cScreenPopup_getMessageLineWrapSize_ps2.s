@@ -1,0 +1,113 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cScreenPopup_getMessageLineWrapSize
+.ent cScreenPopup_getMessageLineWrapSize
+cScreenPopup_getMessageLineWrapSize:
+    .word  0x27bdff50
+    .word  0x7fb00090
+    .word  0x7fb20070
+    .word  0x00a0802d
+    .word  0x7fb30060
+    .word  0x0200202d
+    .word  0x7fb40050
+    .word  0x00c0982d
+    .word  0x7fb10080
+    .word  0x00e0a02d
+    .word  0x7fb50040
+    .word  0x7fb60030
+    .word  0xffbf0020
+    .word  0xe7b400a0
+    .word  0x8e020014
+    .word  0x34420080
+    .word  0x0c0e813c
+    .word  0xae020014
+    .word  0x0040902d
+    .word  0x52400048
+    .word  0x7bb00090
+    .word  0x4480a000
+    .word  0x0c105a04
+    .word  0x0260202d
+    .word  0x0000a82d
+    .word  0x3c050046
+    .word  0x24060100
+    .word  0x0000382d
+    .word  0x24440001
+    .word  0x0c0c5f8c
+    .word  0x24a560f8
+    .word  0x0040882d
+    .word  0x0260282d
+    .word  0x0c1059bd
+    .word  0x0220202d
+    .word  0x8e030008
+    .word  0x27a50010
+    .word  0x846400a0
+    .word  0x8c6200a4
+    .word  0x0040f809
+    .word  0x02042021
+    .word  0x82230000
+    .word  0x6a020057
+    .word  0x6e020050
+    .word  0x8e040058
+    .word  0xb3a20007
+    .word  0xb7a20000
+    .word  0xafa40008
+    .word  0x10600024
+    .word  0x00000000
+    .word  0x2416005c
+    .word  0x2413000d
+    .word  0x0220802d
+    .word  0x82220000
+    .word  0x0200202d
+    .word  0x00000000
+    .word  0x14560006
+    .word  0x82030001
+    .word  0x14620004
+    .word  0x00000000
+    .word  0x4480a000
+    .word  0x10000014
+    .word  0x26100002
+    .word  0x54530004
+    .word  0x80850000
+    .word  0x4480a000
+    .word  0x1000000f
+    .word  0x26100001
+    .word  0x0c0e4aea
+    .word  0x0240202d
+    .word  0xc7a10000
+    .word  0xc7a20010
+    .word  0x46010002
+    .word  0x4600a500
+    .word  0x46141034
+    .word  0x00000000
+    .word  0x45020005
+    .word  0x26100001
+    .word  0x4600a001
+    .word  0x24150001
+    .word  0x10000004
+    .word  0xe6800000
+    .word  0x82020000
+    .word  0x1440ffe4
+    .word  0x0200202d
+    .word  0x52a00001
+    .word  0xe6940000
+    .word  0x12200004
+    .word  0x7bb00090
+    .word  0x0c0c5fa6
+    .word  0x0220202d
+    .word  0x7bb00090
+    .word  0x7bb10080
+    .word  0x7bb20070
+    .word  0x7bb30060
+    .word  0x7bb40050
+    .word  0x7bb50040
+    .word  0x7bb60030
+    .word  0xdfbf0020
+    .word  0xc7b400a0
+    .word  0x03e00008
+    .word  0x27bd00b0
+.end cScreenPopup_getMessageLineWrapSize

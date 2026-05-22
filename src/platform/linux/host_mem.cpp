@@ -5,7 +5,6 @@
 #include <cstdlib>
 #include <iostream>
 #include <string>
-#include <unordered_map>
 
 namespace host {
 namespace {
@@ -17,7 +16,6 @@ struct MemHeader {
 
 constexpr unsigned long kMemMagic = 0x53535833u;
 
-std::unordered_map<void*, MemHeader> g_allocations;
 unsigned long g_heap_bytes = 0;
 
 } // namespace
@@ -52,7 +50,6 @@ void* cMemMan_alloc(unsigned long size, void* heap_tag, unsigned long flags, voi
     header->size = size;
     header->magic = host::kMemMagic;
     void* user = static_cast<char*>(block) + 16;
-    host::g_allocations[user] = *header;
     host::g_heap_bytes += size;
 
     const std::string msg =
@@ -61,19 +58,23 @@ void* cMemMan_alloc(unsigned long size, void* heap_tag, unsigned long flags, voi
     return user;
 }
 
+extern "C" void* func_003E6574(void* a0, void* heap_tag, int size) {
+    (void)a0;
+    return cMemMan_alloc(static_cast<unsigned long>(size), heap_tag, 0x20000000u, nullptr);
+}
+
 void cMemMan_free(void* ptr) {
     if (!ptr) {
         return;
     }
 
-    auto it = host::g_allocations.find(ptr);
-    if (it != host::g_allocations.end()) {
-        host::g_heap_bytes -= it->second.size;
-        host::g_allocations.erase(it);
+    auto* header = reinterpret_cast<host::MemHeader*>(static_cast<char*>(ptr) - 16);
+    if (header->magic == host::kMemMagic) {
+        host::g_heap_bytes -= header->size;
+        header->magic = 0;
     }
 
-    void* block = static_cast<char*>(ptr) - 16;
-    std::free(block);
+    std::free(header);
 }
 
 } // extern "C"

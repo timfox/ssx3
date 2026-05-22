@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_0028BB10
+.ent func_0028BB10
+func_0028BB10:
+    .word  0x27bdff80
+    .word  0x3c020048
+    .word  0x7fb10060
+    .word  0x3c030048
+    .word  0x7fb00070
+    .word  0x0080882d
+    .word  0x7fb20050
+    .word  0x24423b48
+    .word  0x7fb30040
+    .word  0x24633ad8
+    .word  0x7fb40030
+    .word  0x3c060048
+    .word  0xffbf0020
+    .word  0x24c73ab8
+    .word  0xae220ab0
+    .word  0x00a0402d
+    .word  0x8e2401d8
+    .word  0xae2301d4
+    .word  0x15000011
+    .word  0xac870004
+    .word  0xdce20008
+    .word  0xdce30010
+    .word  0xdcc63ab8
+    .word  0xdce40018
+    .word  0x8e2501d8
+    .word  0xffa20008
+    .word  0xffa30010
+    .word  0xffa60000
+    .word  0xffa40018
+    .word  0xacbd0004
+    .word  0x94e30008
+    .word  0x8e2201d8
+    .word  0x2442f530
+    .word  0x02221023
+    .word  0x00621821
+    .word  0xa7a30008
+    .word  0x8e250acc
+    .word  0x31140001
+    .word  0xaf800524
+    .word  0x263201d8
+    .word  0x10a00012
+    .word  0x31130002
+    .word  0x8ca3fff0
+    .word  0x24020060
+    .word  0x00622018
+    .word  0x00858021
+    .word  0x50b0000a
+    .word  0x8e240acc
+    .word  0x2610ffa0
+    .word  0x00000000
+    .word  0x0000282d
+    .word  0x0c0a2c9e
+    .word  0x0200202d
+    .word  0x8e220acc
+    .word  0x5450fffb
+    .word  0x2610ffa0
+    .word  0x8e240acc
+    .word  0x0c0c5fa6
+    .word  0x2484fff0
+    .word  0x0240202d
+    .word  0x0c0ab390
+    .word  0x0000282d
+    .word  0x0220202d
+    .word  0x0c0a2852
+    .word  0x0000282d
+    .word  0x12600004
+    .word  0x00000000
+    .word  0x8e2401d8
+    .word  0x0c0ab7ba
+    .word  0x0000282d
+    .word  0x12800004
+    .word  0x7bb00070
+    .word  0x0c0c5f94
+    .word  0x0220202d
+    .word  0x7bb00070
+    .word  0x7bb10060
+    .word  0x7bb20050
+    .word  0x7bb30040
+    .word  0x7bb40030
+    .word  0xdfbf0020
+    .word  0x03e00008
+    .word  0x27bd0080
+.end func_0028BB10

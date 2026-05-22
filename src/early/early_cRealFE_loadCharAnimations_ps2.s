@@ -1,0 +1,59 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cRealFE_loadCharAnimations
+.ent cRealFE_loadCharAnimations
+cRealFE_loadCharAnimations:
+    .word  0x27bdffb0
+    .word  0x3c040046
+    .word  0x7fb00040
+    .word  0x0000282d
+    .word  0x7fb10030
+    .word  0x24841330
+    .word  0x7fb20020
+    .word  0x24060064
+    .word  0xffbf0010
+    .word  0x03a0382d
+    .word  0x0c0f7b54
+    .word  0x0000802d
+    .word  0x3c120046
+    .word  0x2791e8d0
+    .word  0x0000302d
+    .word  0x00000000
+    .word  0x0000382d
+    .word  0x24040018
+    .word  0x0c0c5f5c
+    .word  0x26451348
+    .word  0x8e250000
+    .word  0x0040202d
+    .word  0x0c0c4494
+    .word  0x26310004
+    .word  0x8f830d08
+    .word  0x320400ff
+    .word  0x00042080
+    .word  0x0200282d
+    .word  0x00641821
+    .word  0x0040302d
+    .word  0x8f840d8c
+    .word  0x26100001
+    .word  0x0c0c53cc
+    .word  0xac620000
+    .word  0x1a00ffed
+    .word  0x0000302d
+    .word  0x0c0c542c
+    .word  0x8f840d8c
+    .word  0x8fa40000
+    .word  0x0c0f7b70
+    .word  0x24050064
+    .word  0x7bb00040
+    .word  0x7bb10030
+    .word  0x7bb20020
+    .word  0xdfbf0010
+    .word  0x03e00008
+    .word  0x27bd0050
+    .word  0x00000000
+.end cRealFE_loadCharAnimations

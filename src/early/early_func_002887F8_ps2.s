@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_002887F8
+.ent func_002887F8
+func_002887F8:
+    .word  0x8c826410
+    .word  0x1040004d
+    .word  0x24090001
+    .word  0xac806410
+    .word  0x44801000
+    .word  0x248662c8
+    .word  0x248363e4
+    .word  0x24856414
+    .word  0x0000402d
+    .word  0x2407000a
+    .word  0xc4a10000
+    .word  0x46020832
+    .word  0x00000000
+    .word  0x4503001d
+    .word  0x24c60010
+    .word  0xc4600000
+    .word  0x46010040
+    .word  0xe4610000
+    .word  0xc4a00000
+    .word  0x46020034
+    .word  0x00000000
+    .word  0x45000008
+    .word  0x248263e4
+    .word  0xc460005c
+    .word  0x46000836
+    .word  0x00000000
+    .word  0x45030009
+    .word  0xe4600000
+    .word  0x10000008
+    .word  0xac896410
+    .word  0xc460005c
+    .word  0x46010036
+    .word  0x00000000
+    .word  0x45020003
+    .word  0xac896410
+    .word  0xe4600000
+    .word  0xaca00000
+    .word  0x00481021
+    .word  0xc4c0fffc
+    .word  0xc4410000
+    .word  0x46010002
+    .word  0xe4c00000
+    .word  0x24c60010
+    .word  0x24630004
+    .word  0x24a50004
+    .word  0x24e7ffff
+    .word  0x04e1ffdb
+    .word  0x25080004
+    .word  0xc788043c
+    .word  0xc7890440
+    .word  0xc78a0444
+    .word  0xc7860448
+    .word  0xc787044c
+    .word  0xc7850450
+    .word  0xc7840454
+    .word  0xc7820458
+    .word  0xc781045c
+    .word  0xc4806308
+    .word  0xc7830460
+    .word  0x46080202
+    .word  0x46090242
+    .word  0x460a0282
+    .word  0x46060182
+    .word  0xe488636c
+    .word  0x460701c2
+    .word  0xe4896370
+    .word  0x46050142
+    .word  0xe48a6374
+    .word  0x46040102
+    .word  0xe4866378
+    .word  0x46020082
+    .word  0xe487637c
+    .word  0x46010042
+    .word  0xe4856380
+    .word  0x46030002
+    .word  0xe4846384
+    .word  0xe4826388
+    .word  0xe481638c
+    .word  0xe4806390
+    .word  0x03e00008
+    .word  0x00000000
+    .word  0x00000000
+.end func_002887F8

@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_00184520
+.ent func_00184520
+func_00184520:
+    .word  0x27bdff90
+    .word  0x7fb10050
+    .word  0x7fb20040
+    .word  0x0080882d
+    .word  0x7fb30030
+    .word  0x7fb00060
+    .word  0x7fb40020
+    .word  0xffbf0010
+    .word  0x8e230050
+    .word  0x8e22004c
+    .word  0x8c6500a0
+    .word  0x8c4400a0
+    .word  0x80b40018
+    .word  0x0c053720
+    .word  0x80900018
+    .word  0x0040202d
+    .word  0x0c053756
+    .word  0x24050006
+    .word  0x82250044
+    .word  0x0200302d
+    .word  0x03a0382d
+    .word  0x0c053fe4
+    .word  0x0040202d
+    .word  0x26240024
+    .word  0x0c0e5e10
+    .word  0x0040902d
+    .word  0x3c040046
+    .word  0x0040982d
+    .word  0x0c0c5d9c
+    .word  0x2484d9b8
+    .word  0x0040282d
+    .word  0x0c0e7618
+    .word  0x0260202d
+    .word  0x0040802d
+    .word  0x12000007
+    .word  0x001410c0
+    .word  0x00521021
+    .word  0x0c0662bc
+    .word  0x94440006
+    .word  0x0200202d
+    .word  0x0c0e8314
+    .word  0x0040282d
+    .word  0x3c040046
+    .word  0x0c0c5d9c
+    .word  0x2484d9c8
+    .word  0x0260202d
+    .word  0x0c0e7618
+    .word  0x0040282d
+    .word  0x0040902d
+    .word  0x52400019
+    .word  0x7bb00060
+    .word  0x0c053720
+    .word  0x00000000
+    .word  0x0040202d
+    .word  0x0c053756
+    .word  0x24050001
+    .word  0x82250044
+    .word  0x0c051d22
+    .word  0x0040202d
+    .word  0x00028600
+    .word  0x0c053720
+    .word  0x00108603
+    .word  0x0040202d
+    .word  0x0c053756
+    .word  0x2405000b
+    .word  0x82250044
+    .word  0x0040202d
+    .word  0x0c05424a
+    .word  0x0200302d
+    .word  0x0c0662bc
+    .word  0x0040202d
+    .word  0x0240202d
+    .word  0x0c0e8314
+    .word  0x0040282d
+    .word  0x7bb00060
+    .word  0x7bb10050
+    .word  0x7bb20040
+    .word  0x7bb30030
+    .word  0x7bb40020
+    .word  0xdfbf0010
+    .word  0x03e00008
+    .word  0x27bd0070
+.end func_00184520

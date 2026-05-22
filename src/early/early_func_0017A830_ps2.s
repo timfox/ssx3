@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_0017A830
+.ent func_0017A830
+func_0017A830:
+    .word  0x27bdff50
+    .word  0x7fb20080
+    .word  0x7fb30070
+    .word  0x0000902d
+    .word  0x7fb40060
+    .word  0x0080982d
+    .word  0x7fb50050
+    .word  0x00c0a02d
+    .word  0x7fb000a0
+    .word  0x7fb10090
+    .word  0xffbf0040
+    .word  0x8e620000
+    .word  0x18400014
+    .word  0x00a0a82d
+    .word  0x26710044
+    .word  0x26700004
+    .word  0x02a0202d
+    .word  0x0c106aa2
+    .word  0x0200282d
+    .word  0x54400008
+    .word  0x8e620000
+    .word  0x0280202d
+    .word  0x0c106aa2
+    .word  0x0220282d
+    .word  0x54400003
+    .word  0x8e620000
+    .word  0x1000002e
+    .word  0x0000102d
+    .word  0x26520001
+    .word  0x2631008c
+    .word  0x0242102a
+    .word  0x1440fff0
+    .word  0x2610008c
+    .word  0x27b10010
+    .word  0x3c100046
+    .word  0x2610ce20
+    .word  0x0280282d
+    .word  0x0c0c60b6
+    .word  0x0220202d
+    .word  0x03a0202d
+    .word  0x0220302d
+    .word  0x0c0c61b4
+    .word  0x0200282d
+    .word  0x0220202d
+    .word  0x0c0c6098
+    .word  0x24050002
+    .word  0x3c06004a
+    .word  0x27b20020
+    .word  0x03a0282d
+    .word  0x24c61298
+    .word  0x0c0c618c
+    .word  0x0220202d
+    .word  0x8fa50010
+    .word  0x24060100
+    .word  0x0c0c5a2c
+    .word  0x0240202d
+    .word  0x0220202d
+    .word  0x0c0c6098
+    .word  0x24050002
+    .word  0x8fa40000
+    .word  0x27a60030
+    .word  0xafb50030
+    .word  0x0c0e9a52
+    .word  0x24050001
+    .word  0x8fb00034
+    .word  0x0240202d
+    .word  0x24050002
+    .word  0x0c0c5a3a
+    .word  0x0002800a
+    .word  0x03a0202d
+    .word  0x0c0c6098
+    .word  0x24050002
+    .word  0x0200102d
+    .word  0x7bb000a0
+    .word  0x7bb10090
+    .word  0x7bb20080
+    .word  0x7bb30070
+    .word  0x7bb40060
+    .word  0x7bb50050
+    .word  0xdfbf0040
+    .word  0x03e00008
+    .word  0x27bd00b0
+.end func_0017A830

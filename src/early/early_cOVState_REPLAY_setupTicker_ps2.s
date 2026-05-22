@@ -1,0 +1,61 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cOVState_REPLAY_setupTicker
+.ent cOVState_REPLAY_setupTicker
+cOVState_REPLAY_setupTicker:
+    .word  0x27bdffd0
+    .word  0x7fb00020
+    .word  0x0080802d
+    .word  0xffbf0010
+    .word  0x3c040047
+    .word  0x0c0c5d9c
+    .word  0x24841cc8
+    .word  0x8e040040
+    .word  0x0c0e7618
+    .word  0x0040282d
+    .word  0x0040202d
+    .word  0x10800022
+    .word  0x7bb00020
+    .word  0x6882004b
+    .word  0x6c820044
+    .word  0x8c85004c
+    .word  0xb3a20007
+    .word  0xb7a20000
+    .word  0xafa50008
+    .word  0x8f83f7b8
+    .word  0x8c620084
+    .word  0x8c420028
+    .word  0x8c4303cc
+    .word  0x18600008
+    .word  0x00000000
+    .word  0xc4410484
+    .word  0x46800860
+    .word  0x44830000
+    .word  0x46800020
+    .word  0x46000883
+    .word  0x10000002
+    .word  0x00000000
+    .word  0x44801000
+    .word  0xc780ab08
+    .word  0x3c01432a
+    .word  0x44810800
+    .word  0x46001002
+    .word  0x46010000
+    .word  0xe7a00000
+    .word  0x6ba20007
+    .word  0x6fa20000
+    .word  0x8fa30008
+    .word  0xb082004b
+    .word  0xb4820044
+    .word  0xac83004c
+    .word  0x7bb00020
+    .word  0xdfbf0010
+    .word  0x03e00008
+    .word  0x27bd0030
+    .word  0x00000000
+.end cOVState_REPLAY_setupTicker

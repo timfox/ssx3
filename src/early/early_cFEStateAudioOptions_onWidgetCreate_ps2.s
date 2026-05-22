@@ -1,0 +1,115 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cFEStateAudioOptions_onWidgetCreate
+.ent cFEStateAudioOptions_onWidgetCreate
+cFEStateAudioOptions_onWidgetCreate:
+    .word  0x27bdffb0
+    .word  0x7fb10030
+    .word  0x7fb00040
+    .word  0x0080882d
+    .word  0x7fb30010
+    .word  0x00a0802d
+    .word  0xffbf0000
+    .word  0x3c04004a
+    .word  0x7fb20020
+    .word  0x24841830
+    .word  0x0c0c5d9c
+    .word  0x8e120038
+    .word  0x16420006
+    .word  0x3c04004a
+    .word  0x8e220078
+    .word  0x1440002b
+    .word  0xae30004c
+    .word  0x1000002a
+    .word  0x8e23005c
+    .word  0x0c0c5d9c
+    .word  0x24841838
+    .word  0x16420007
+    .word  0x3c02004a
+    .word  0x8e230078
+    .word  0x24020002
+    .word  0x14620021
+    .word  0xae300054
+    .word  0x10000020
+    .word  0x8e23005c
+    .word  0x24531840
+    .word  0x0c0c5d9c
+    .word  0x0260202d
+    .word  0x16420006
+    .word  0x24020001
+    .word  0x8e230078
+    .word  0x14620017
+    .word  0xae300050
+    .word  0x10000016
+    .word  0x8e23005c
+    .word  0x0c0c5d9c
+    .word  0x0260202d
+    .word  0x56420007
+    .word  0x3c04004a
+    .word  0x8e230078
+    .word  0x24020001
+    .word  0x1462000d
+    .word  0xae300050
+    .word  0x1000000c
+    .word  0x8e23005c
+    .word  0x0c0c5d9c
+    .word  0x24841848
+    .word  0x5642000c
+    .word  0x3c040046
+    .word  0x8e230078
+    .word  0x24020003
+    .word  0x14620003
+    .word  0xae300058
+    .word  0x10000002
+    .word  0x8e23005c
+    .word  0x8e230060
+    .word  0x2402ffff
+    .word  0xae020078
+    .word  0x10000022
+    .word  0xae03007c
+    .word  0x0c0c5d9c
+    .word  0x24840420
+    .word  0x56420003
+    .word  0x3c040046
+    .word  0x1000001c
+    .word  0xae000018
+    .word  0x0c0c5d9c
+    .word  0x24840430
+    .word  0x56420003
+    .word  0x3c040046
+    .word  0x10000015
+    .word  0x24020002
+    .word  0x0c0c5d9c
+    .word  0x24840440
+    .word  0x56420004
+    .word  0x3c040046
+    .word  0xae300068
+    .word  0x1000000e
+    .word  0x24020001
+    .word  0x0c0c5d9c
+    .word  0x24840450
+    .word  0x56420004
+    .word  0x3c040046
+    .word  0xae300064
+    .word  0x10000007
+    .word  0x24020004
+    .word  0x0c0c5d9c
+    .word  0x24840460
+    .word  0x56420005
+    .word  0x7bb00040
+    .word  0xae30006c
+    .word  0x24020003
+    .word  0xae020018
+    .word  0x7bb00040
+    .word  0x7bb10030
+    .word  0x7bb20020
+    .word  0x7bb30010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0050
+.end cFEStateAudioOptions_onWidgetCreate

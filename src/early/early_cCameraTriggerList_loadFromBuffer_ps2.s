@@ -1,0 +1,98 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cCameraTriggerList_loadFromBuffer
+.ent cCameraTriggerList_loadFromBuffer
+cCameraTriggerList_loadFromBuffer:
+    .word  0x27bdff80
+    .word  0x7fb10060
+    .word  0xafa50000
+    .word  0x7fb00070
+    .word  0x7fb20050
+    .word  0x7fb30040
+    .word  0x7fb40030
+    .word  0x7fb50020
+    .word  0xffbf0010
+    .word  0x0c05b0e4
+    .word  0x0080882d
+    .word  0x0220202d
+    .word  0x0c05b0ea
+    .word  0x03a0282d
+    .word  0x8e22000c
+    .word  0x24030007
+    .word  0x10430003
+    .word  0x24020003
+    .word  0x1000003b
+    .word  0xae23000c
+    .word  0x0220202d
+    .word  0x03a0282d
+    .word  0x0c05b0f4
+    .word  0x24060007
+    .word  0x0040802d
+    .word  0x16000035
+    .word  0x7bb00070
+    .word  0x8e240004
+    .word  0x3c050046
+    .word  0x24a5bf40
+    .word  0x0000302d
+    .word  0x00042080
+    .word  0x0c0c5f8c
+    .word  0x0000382d
+    .word  0x0000902d
+    .word  0x8e230004
+    .word  0x18600026
+    .word  0xae220000
+    .word  0x3c150046
+    .word  0x24140004
+    .word  0x24130003
+    .word  0x24040024
+    .word  0x26a5bf58
+    .word  0x0000302d
+    .word  0x0c0c5f5c
+    .word  0x0000382d
+    .word  0x8e26000c
+    .word  0x03a0202d
+    .word  0xafa20004
+    .word  0x27a50004
+    .word  0xac54001c
+    .word  0xac400008
+    .word  0xac40000c
+    .word  0xac400010
+    .word  0xac400000
+    .word  0x0c05b10a
+    .word  0xac530004
+    .word  0x0040802d
+    .word  0x12000007
+    .word  0x8fa40004
+    .word  0x10800011
+    .word  0x0200102d
+    .word  0x0c05b16a
+    .word  0x24050003
+    .word  0x1000000d
+    .word  0x0200102d
+    .word  0x8fa50004
+    .word  0x0240302d
+    .word  0x0220202d
+    .word  0x0c05b048
+    .word  0x26520001
+    .word  0x8e230004
+    .word  0x0243182a
+    .word  0x1460ffe0
+    .word  0x24040024
+    .word  0x24030007
+    .word  0x0000102d
+    .word  0xae23000c
+    .word  0x7bb00070
+    .word  0x7bb10060
+    .word  0x7bb20050
+    .word  0x7bb30040
+    .word  0x7bb40030
+    .word  0x7bb50020
+    .word  0xdfbf0010
+    .word  0x03e00008
+    .word  0x27bd0080
+.end cCameraTriggerList_loadFromBuffer

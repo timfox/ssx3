@@ -1,0 +1,111 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cFELoadHintState_onCreateScreen
+.ent cFELoadHintState_onCreateScreen
+cFELoadHintState_onCreateScreen:
+    .word  0x27bdff40
+    .word  0x7fb100a0
+    .word  0x0080882d
+    .word  0x7fb20090
+    .word  0xffbf0080
+    .word  0x3c040048
+    .word  0x7fb000b0
+    .word  0x2484bdd8
+    .word  0x0c0c5d9c
+    .word  0x8e300010
+    .word  0x0200202d
+    .word  0x0040302d
+    .word  0x0220282d
+    .word  0x0c0e5f30
+    .word  0x0000382d
+    .word  0x10400005
+    .word  0xae220040
+    .word  0x0040202d
+    .word  0x0000282d
+    .word  0x0c0e721c
+    .word  0x0000302d
+    .word  0x8382fb48
+    .word  0x2403000c
+    .word  0x24500001
+    .word  0x16030006
+    .word  0x9384fb48
+    .word  0x24830001
+    .word  0x00031600
+    .word  0xa383fb48
+    .word  0x00021603
+    .word  0x24500001
+    .word  0x3c050048
+    .word  0x03a0202d
+    .word  0x24a5bde8
+    .word  0x0c105e0a
+    .word  0x0200302d
+    .word  0x27b20040
+    .word  0x3c050048
+    .word  0x24a5be00
+    .word  0x0200302d
+    .word  0x0c105e0a
+    .word  0x0240202d
+    .word  0x8383fb48
+    .word  0x2405000f
+    .word  0x50a00001
+    .word  0x000001cd
+    .word  0x3c040048
+    .word  0x24630001
+    .word  0x2484be10
+    .word  0x0065001a
+    .word  0x00001010
+    .word  0x0c0c5d9c
+    .word  0xa382fb48
+    .word  0x8e240040
+    .word  0x0c0e7618
+    .word  0x0040282d
+    .word  0x0040802d
+    .word  0x52000007
+    .word  0x3c040048
+    .word  0x0c0c5d9c
+    .word  0x03a0202d
+    .word  0x0200202d
+    .word  0x0c0e8400
+    .word  0x0040282d
+    .word  0x3c040048
+    .word  0x0c0c5d9c
+    .word  0x2484be20
+    .word  0x8e240040
+    .word  0x0c0e7618
+    .word  0x0040282d
+    .word  0x0040802d
+    .word  0x52000007
+    .word  0x3c040048
+    .word  0x0c0c5d9c
+    .word  0x0240202d
+    .word  0x0200202d
+    .word  0x0c0e8400
+    .word  0x0040282d
+    .word  0x3c040048
+    .word  0x0c0c5d9c
+    .word  0x2484be30
+    .word  0x8e240040
+    .word  0x0c0e7618
+    .word  0x0040282d
+    .word  0x1040000a
+    .word  0x7bb000b0
+    .word  0x8e240048
+    .word  0x10800008
+    .word  0x7bb100a0
+    .word  0x8c840010
+    .word  0x10800006
+    .word  0x7bb20090
+    .word  0xac440078
+    .word  0xac40007c
+    .word  0x7bb000b0
+    .word  0x7bb100a0
+    .word  0x7bb20090
+    .word  0xdfbf0080
+    .word  0x03e00008
+    .word  0x27bd00c0
+.end cFELoadHintState_onCreateScreen

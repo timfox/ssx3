@@ -1,0 +1,117 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cFEStateOptionsSaveLoad_onWidgetEvent
+.ent cFEStateOptionsSaveLoad_onWidgetEvent
+cFEStateOptionsSaveLoad_onWidgetEvent:
+    .word  0x27bdffb0
+    .word  0x00a0182d
+    .word  0x7fb20020
+    .word  0x7fb00040
+    .word  0x0080902d
+    .word  0x7fb10030
+    .word  0x1060005d
+    .word  0xffbf0010
+    .word  0x24020005
+    .word  0x10c20005
+    .word  0x24020006
+    .word  0x10c2004a
+    .word  0x7bb00040
+    .word  0x10000058
+    .word  0x7bb10030
+    .word  0x8c660018
+    .word  0x24020003
+    .word  0x14c2002e
+    .word  0xac620018
+    .word  0x92430014
+    .word  0x3c040046
+    .word  0x2484e110
+    .word  0xa2430048
+    .word  0x8f82f7b8
+    .word  0x8c50008c
+    .word  0x8e110004
+    .word  0x86220020
+    .word  0x0c0c5d9c
+    .word  0x02028021
+    .word  0x8e230024
+    .word  0x0200202d
+    .word  0x0060f809
+    .word  0x0040282d
+    .word  0x3c050046
+    .word  0x0040802d
+    .word  0x24a5e130
+    .word  0x24040bfc
+    .word  0x24060100
+    .word  0x0c0c5f5c
+    .word  0x0000382d
+    .word  0x8e450010
+    .word  0x0040202d
+    .word  0x0200382d
+    .word  0x0000402d
+    .word  0x0000482d
+    .word  0x0000502d
+    .word  0x0000582d
+    .word  0xafa00000
+    .word  0x0c076672
+    .word  0x0240302d
+    .word  0x0040802d
+    .word  0x24050001
+    .word  0x8e020008
+    .word  0x844400c8
+    .word  0x8c4300cc
+    .word  0x0060f809
+    .word  0x02042021
+    .word  0xae000018
+    .word  0x0200282d
+    .word  0x8e440010
+    .word  0x0c0e7ca4
+    .word  0x24840018
+    .word  0x10000026
+    .word  0x7bb00040
+    .word  0x2cc20004
+    .word  0x54400006
+    .word  0x8e420010
+    .word  0x82430014
+    .word  0x24020001
+    .word  0x00621004
+    .word  0x00c23025
+    .word  0x8e420010
+    .word  0x0240282d
+    .word  0x8c470000
+    .word  0x8ce30004
+    .word  0x84640020
+    .word  0x8c620024
+    .word  0x0040f809
+    .word  0x00e42021
+    .word  0x10400014
+    .word  0x0040282d
+    .word  0x8e440010
+    .word  0x0c0e7d00
+    .word  0x24840018
+    .word  0x10000010
+    .word  0x7bb00040
+    .word  0x8e420010
+    .word  0x0240282d
+    .word  0x8c660018
+    .word  0x8c470000
+    .word  0x8ce30004
+    .word  0x84640028
+    .word  0x8c62002c
+    .word  0x0040f809
+    .word  0x00e42021
+    .word  0x10400004
+    .word  0x0040282d
+    .word  0x8e440010
+    .word  0x0c0e7d00
+    .word  0x24840018
+    .word  0x7bb00040
+    .word  0x7bb10030
+    .word  0x7bb20020
+    .word  0xdfbf0010
+    .word  0x03e00008
+    .word  0x27bd0050
+.end cFEStateOptionsSaveLoad_onWidgetEvent

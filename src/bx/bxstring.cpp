@@ -56,56 +56,33 @@ INCLUDE_ASM("bx/bxstring", func_00318B40);
 
 INCLUDE_ASM("bx/bxstring", func_00318BC0);
 
-INCLUDE_ASM("bx/bxstring", func_00318BF8);
-
-INCLUDE_ASM("bx/bxstring", cBXString_FindLastOf);
-//94.17%
-//https://decomp.me/scratch/p8aRA
-
-INCLUDE_ASM("bx/bxstring", func_00318C60);
+/* 0x219bd8+ lives in asm/bx/bxstring_mid.s (see config/ssx3_us.yaml). */
 
 //100%
 //https://decomp.me/scratch/ETxUq
-INCLUDE_ASM("bx/bxstring", cBXString_FindFirstOf);
+struct cBXString {
+    char* pStrdata;
+};
+
+static char* bx_strchr(char* str, int ch) {
+    if (!str) {
+        return 0;
+    }
+    const unsigned char c = static_cast<unsigned char>(ch);
+    for (char* p = str; *p; ++p) {
+        if (static_cast<unsigned char>(*p) == c) {
+            return p;
+        }
+    }
+    return 0;
+}
+
 #ifdef SKIP_ASM
-//int cBXString_FindFirstOf(cBXString* this, char needle)
-//{
-//    char* pcVar1;
-//    int iVar2;
-//
-//    pcVar1 = 0;//(char*)func_0041ACC0(this->pStrdata, needle);
-//    if (pcVar1) {
-//        iVar2 = (int)pcVar1 - (int)this->pStrdata;
-//    }
-//    else {
-//        iVar2 = -1;
-//    }
-//    return iVar2;
-//}
+int cBXString_FindFirstOf(cBXString* str, char needle) {
+    char* found = bx_strchr(str->pStrdata, static_cast<unsigned char>(needle));
+    if (!found) {
+        return -1;
+    }
+    return static_cast<int>(found - str->pStrdata);
+}
 #endif
-
-INCLUDE_ASM("bx/bxstring", func_00318CE8);
-
-INCLUDE_ASM("bx/bxstring", func_00318D28);
-
-INCLUDE_ASM("bx/bxstring", func_00318D90);
-
-INCLUDE_ASM("bx/bxstring", func_00318DF8);
-
-INCLUDE_ASM("bx/bxstring", func_00318E68);
-
-INCLUDE_ASM("bx/bxstring", func_00318EB8);
-
-INCLUDE_ASM("bx/bxstring", func_00318F20);
-
-INCLUDE_ASM("bx/bxstring", func_00318F58);
-
-INCLUDE_ASM("bx/bxstring", func_00318F90);
-
-INCLUDE_ASM("bx/bxstring", func_00319028);
-
-INCLUDE_ASM("bx/bxstring", cBXString_cBXString5);
-
-INCLUDE_ASM("bx/bxstring", func_00319120);
-
-INCLUDE_ASM("bx/bxstring", func_00319170);

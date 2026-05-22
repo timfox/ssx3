@@ -1,0 +1,85 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cWorldTriggerManager_LoadTriggerInfo
+.ent cWorldTriggerManager_LoadTriggerInfo
+cWorldTriggerManager_LoadTriggerInfo:
+    .word  0x27bdffd0
+    .word  0x7fb00020
+    .word  0x0080802d
+    .word  0x7fb10010
+    .word  0x8f840768
+    .word  0xffbf0000
+    .word  0x0c0c5fce
+    .word  0x00000000
+    .word  0x10400038
+    .word  0x8f840768
+    .word  0x0c0f88bc
+    .word  0x0000282d
+    .word  0x0040882d
+    .word  0xae110338
+    .word  0x82220000
+    .word  0x14400035
+    .word  0x0000102d
+    .word  0x8e220008
+    .word  0x3c050048
+    .word  0x0000302d
+    .word  0x0000382d
+    .word  0x24420002
+    .word  0x24a535c0
+    .word  0x000220c0
+    .word  0x0c0c5f8c
+    .word  0xae020340
+    .word  0x8e030340
+    .word  0x24070002
+    .word  0xae02033c
+    .word  0x00e3182a
+    .word  0x10600025
+    .word  0x2626000c
+    .word  0x240a0001
+    .word  0x24090002
+    .word  0x24080003
+    .word  0x8e03033c
+    .word  0x000720c0
+    .word  0x8cc50000
+    .word  0x00831821
+    .word  0xac650000
+    .word  0x8e02033c
+    .word  0x00822021
+    .word  0xac860004
+    .word  0x8cc30000
+    .word  0x146a0003
+    .word  0x00000000
+    .word  0x1000000b
+    .word  0x24c60018
+    .word  0x14690003
+    .word  0x00000000
+    .word  0x10000007
+    .word  0x24c60038
+    .word  0x14680003
+    .word  0x38630004
+    .word  0x10000003
+    .word  0x24c60030
+    .word  0x24c20010
+    .word  0x0043300a
+    .word  0x8e020340
+    .word  0x24e70001
+    .word  0x00e2102a
+    .word  0x5440ffe6
+    .word  0x8e03033c
+    .word  0x10000005
+    .word  0x24020001
+    .word  0xae00033c
+    .word  0xae000338
+    .word  0xae000340
+    .word  0x24020001
+    .word  0x7bb00020
+    .word  0x7bb10010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0030
+.end cWorldTriggerManager_LoadTriggerInfo

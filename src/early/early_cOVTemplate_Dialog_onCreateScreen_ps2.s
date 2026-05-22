@@ -1,0 +1,65 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cOVTemplate_Dialog_onCreateScreen
+.ent cOVTemplate_Dialog_onCreateScreen
+cOVTemplate_Dialog_onCreateScreen:
+    .word  0x27bdffd0
+    .word  0x7fb10010
+    .word  0x0080882d
+    .word  0xffbf0000
+    .word  0x7fb00020
+    .word  0x3c040047
+    .word  0x24841af8
+    .word  0x0c0c5d9c
+    .word  0x8e300010
+    .word  0x0200202d
+    .word  0x0040302d
+    .word  0x0220282d
+    .word  0x0c0e5f30
+    .word  0x0000382d
+    .word  0x10400005
+    .word  0xae220040
+    .word  0x0040202d
+    .word  0x0000282d
+    .word  0x0c0e721c
+    .word  0x0000302d
+    .word  0x0c0828e0
+    .word  0x0220202d
+    .word  0x3c04004a
+    .word  0x0c0c5d9c
+    .word  0x248423e0
+    .word  0x8e240040
+    .word  0x0c0e7618
+    .word  0x0040282d
+    .word  0x3c04004a
+    .word  0xac400018
+    .word  0x0c0c5d9c
+    .word  0x248423e8
+    .word  0x8e240040
+    .word  0x0c0e7618
+    .word  0x0040282d
+    .word  0x24030001
+    .word  0x3c040047
+    .word  0xac430018
+    .word  0x0c0c5d9c
+    .word  0x24841b08
+    .word  0x8e240040
+    .word  0x0c0e7618
+    .word  0x0040282d
+    .word  0x8e23009c
+    .word  0x0040802d
+    .word  0x2c620007
+    .word  0x10400034
+    .word  0x3c020047
+    .word  0x00031880
+    .word  0x24421b60
+    .word  0x00621821
+    .word  0x8c640000
+    .word  0x00800008
+    .word  0x00000000
+.end cOVTemplate_Dialog_onCreateScreen

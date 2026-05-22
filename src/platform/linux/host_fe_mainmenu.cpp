@@ -1,29 +1,13 @@
 #include "platform/host_fe_mainmenu.h"
 
-#include "platform/host_fe_context.h"
-#include "platform/host_graphics.h"
-#include "platform/host_log.h"
-#include "platform/host_menu_layout.h"
+#include "platform/host_fe_mainmenu_state.h"
 #include "platform/host_visualfx_menu.h"
 
-#include <cstdint>
 #include <cstring>
 
 namespace host {
 
-constexpr std::uint32_t kFEMainMenuMagic = 0x46454D4Du; /* "FEMM" */
-constexpr int kMenuItemCount = 5;
-
-struct HostFEStateMainMenu {
-    std::uint32_t magic = kFEMainMenuMagic;
-    HostVisualEffectsMainMenu* visual_fx = nullptr;
-    MenuFrame frame{};
-    char asset_dir[260]{};
-    int selected = 0;
-    int initialized = 0;
-};
-
-HostFEStateMainMenu* as_mm(void* self) {
+HostFEStateMainMenu* fe_mainmenu_as_state(void* self) {
     auto* mm = static_cast<HostFEStateMainMenu*>(self);
     if (!mm || mm->magic != kFEMainMenuMagic) {
         return nullptr;
@@ -31,15 +15,15 @@ HostFEStateMainMenu* as_mm(void* self) {
     return mm;
 }
 
-int fe_mainmenu_item_count() { return kMenuItemCount; }
+constexpr int kMenuItemCount = 5;
 
 int fe_mainmenu_get_selected(void* self) {
-    auto* mm = as_mm(self);
+    auto* mm = fe_mainmenu_as_state(self);
     return mm ? mm->selected : 0;
 }
 
 void fe_mainmenu_set_selected(void* self, int index) {
-    auto* mm = as_mm(self);
+    auto* mm = fe_mainmenu_as_state(self);
     if (!mm) {
         return;
     }
@@ -70,7 +54,7 @@ void* host_fe_mainmenu_create(const char* asset_dir) {
 }
 
 void host_fe_mainmenu_destroy(void* self) {
-    auto* mm = host::as_mm(self);
+    auto* mm = host::fe_mainmenu_as_state(self);
     if (!mm) {
         return;
     }
@@ -80,63 +64,6 @@ void host_fe_mainmenu_destroy(void* self) {
         mm->visual_fx = nullptr;
     }
     delete mm;
-}
-
-void cFEStateMainMenu_onCreateScreen(void* self) {
-    auto* mm = host::as_mm(self);
-    if (!mm) {
-        return;
-    }
-    host::host_log("fe", "cFEStateMainMenu_onCreateScreen (retail 0x194AA8)");
-
-    if (!mm->visual_fx) {
-        mm->visual_fx = host::host_visualfx_mainmenu_create();
-    }
-    cVisualEffectsMainMenu_cVisualEffectsMainMenu(mm->visual_fx, nullptr);
-    cRenderStateMan_SnowFlakeColourR(nullptr, 0.98f);
-    cRenderStateMan_SnowFlakeColourG(nullptr, 0.99f);
-    cRenderStateMan_SnowFlakeColourB(nullptr, 1.0f);
-
-    mm->selected = 0;
-    mm->initialized = 1;
-}
-
-void cFEStateMainMenu_onDestroyScreen(void* self) {
-    auto* mm = host::as_mm(self);
-    if (!mm) {
-        return;
-    }
-    host::host_visualfx_mainmenu_set_active(nullptr);
-    mm->initialized = 0;
-    host::host_log("fe", "cFEStateMainMenu_onDestroyScreen");
-}
-
-void cFEStateMainMenu_onUpdate(void* self) {
-    auto* mm = host::as_mm(self);
-    if (!mm || !mm->initialized) {
-        return;
-    }
-
-    const host::MenuViewport viewport =
-        host::compute_title_viewport(host::fe_frame_width(), host::fe_frame_height());
-
-    mm->frame.time_sec += host::fe_frame_dt();
-    host::build_main_menu_screen(
-        mm->frame, viewport, mm->frame.time_sec, mm->selected, host::fe_mainmenu_item_count());
-    cVisualEffectsMainMenu_render(mm->visual_fx, &mm->frame);
-}
-
-void cFEStateMainMenu_onWidgetCreate(void* self, void* widget) {
-    (void)self;
-    (void)widget;
-    host::host_log("fe", "cFEStateMainMenu_onWidgetCreate (retail 0x194D18, stub)");
-}
-
-void cFEStateMainMenu_onWidgetEvent(void* self, void* widget, int event) {
-    (void)self;
-    (void)widget;
-    (void)event;
-    host::host_log("fe", "cFEStateMainMenu_onWidgetEvent (retail 0x194EA8, stub)");
 }
 
 } // extern "C"

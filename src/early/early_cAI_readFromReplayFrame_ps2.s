@@ -1,0 +1,105 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cAI_readFromReplayFrame
+.ent cAI_readFromReplayFrame
+cAI_readFromReplayFrame:
+    .word  0x27bdffb0
+    .word  0x24060028
+    .word  0x7fb00040
+    .word  0x7fb10030
+    .word  0x7fb20020
+    .word  0x0080882d
+    .word  0x7fb30010
+    .word  0x0000902d
+    .word  0xffbf0000
+    .word  0x00a0982d
+    .word  0x0220282d
+    .word  0x8e630000
+    .word  0x84640010
+    .word  0x8c620014
+    .word  0x0040f809
+    .word  0x02642021
+    .word  0x8e250004
+    .word  0x0220202d
+    .word  0x0c044ed2
+    .word  0x8e300000
+    .word  0x8e220098
+    .word  0x0200282d
+    .word  0x0220202d
+    .word  0x0c044ed2
+    .word  0xae22009c
+    .word  0x8e22007c
+    .word  0x58400012
+    .word  0x8e220080
+    .word  0x26300040
+    .word  0x8e030000
+    .word  0x0260282d
+    .word  0x26520001
+    .word  0x26100004
+    .word  0x8c620018
+    .word  0x8c47077c
+    .word  0x8ce30de8
+    .word  0x84640018
+    .word  0x8c66001c
+    .word  0x00c0f809
+    .word  0x00e42021
+    .word  0x8e22007c
+    .word  0x0242102a
+    .word  0x5440fff3
+    .word  0x8e030000
+    .word  0x8e220080
+    .word  0x18400012
+    .word  0x0000902d
+    .word  0x26300048
+    .word  0x8e030000
+    .word  0x00000000
+    .word  0x0260282d
+    .word  0x26520001
+    .word  0x26100004
+    .word  0x8c620018
+    .word  0x8c47077c
+    .word  0x8ce30de8
+    .word  0x84640018
+    .word  0x8c66001c
+    .word  0x00c0f809
+    .word  0x00e42021
+    .word  0x8e220080
+    .word  0x0242102a
+    .word  0x5440fff3
+    .word  0x8e030000
+    .word  0x8e220084
+    .word  0x18400012
+    .word  0x0000902d
+    .word  0x2630005c
+    .word  0x8e030000
+    .word  0x00000000
+    .word  0x0260282d
+    .word  0x26520001
+    .word  0x26100004
+    .word  0x8c620018
+    .word  0x8c47077c
+    .word  0x8ce30de8
+    .word  0x84640018
+    .word  0x8c66001c
+    .word  0x00c0f809
+    .word  0x00e42021
+    .word  0x8e220084
+    .word  0x0242102a
+    .word  0x5440fff3
+    .word  0x8e030000
+    .word  0x0c0bbcb6
+    .word  0x0260202d
+    .word  0x7bb00040
+    .word  0x7bb10030
+    .word  0x7bb20020
+    .word  0x7bb30010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0050
+    .word  0x00000000
+.end cAI_readFromReplayFrame

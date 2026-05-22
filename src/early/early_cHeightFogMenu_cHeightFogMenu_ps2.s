@@ -1,0 +1,91 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cHeightFogMenu_cHeightFogMenu
+.ent cHeightFogMenu_cHeightFogMenu
+cHeightFogMenu_cHeightFogMenu:
+    .word  0x27bdff90
+    .word  0x7fb00060
+    .word  0x0080802d
+    .word  0x7fb10050
+    .word  0x7fb20040
+    .word  0x7fb30030
+    .word  0x26120164
+    .word  0x7fb40020
+    .word  0x26130194
+    .word  0x7fb50010
+    .word  0x26140130
+    .word  0xffbf0000
+    .word  0x0c0b2a96
+    .word  0x2615014c
+    .word  0x261101c8
+    .word  0x3c020048
+    .word  0x3c050048
+    .word  0x2442fb28
+    .word  0x0280202d
+    .word  0x24a5e4c0
+    .word  0x0c0b34a8
+    .word  0xae02012c
+    .word  0x02a0202d
+    .word  0x0c0b34d4
+    .word  0x24050028
+    .word  0x3c09004a
+    .word  0x24080001
+    .word  0x25292d30
+    .word  0x0240202d
+    .word  0x0000382d
+    .word  0x278612c4
+    .word  0x0c0b363e
+    .word  0x0000282d
+    .word  0xc78cb004
+    .word  0x3c070048
+    .word  0xc78db008
+    .word  0x24e7e4d0
+    .word  0x0260202d
+    .word  0x278612c8
+    .word  0x0c0b373a
+    .word  0x24050001
+    .word  0xc78cb00c
+    .word  0x3c070048
+    .word  0xc78db010
+    .word  0x24e7e4e0
+    .word  0x0220202d
+    .word  0x278612cc
+    .word  0x0c0b373a
+    .word  0x24050002
+    .word  0x0280282d
+    .word  0x0200202d
+    .word  0x0c0b2f32
+    .word  0x2406ffff
+    .word  0x02a0282d
+    .word  0x0200202d
+    .word  0x0c0b2f32
+    .word  0x2406ffff
+    .word  0x0240282d
+    .word  0x0200202d
+    .word  0x0c0b2f32
+    .word  0x2406ffff
+    .word  0x0260282d
+    .word  0x0200202d
+    .word  0x0c0b2f32
+    .word  0x2406ffff
+    .word  0x0220282d
+    .word  0x0200202d
+    .word  0x0c0b2f32
+    .word  0x2406ffff
+    .word  0x0200102d
+    .word  0x7bb10050
+    .word  0x7bb00060
+    .word  0x7bb20040
+    .word  0x7bb30030
+    .word  0x7bb40020
+    .word  0x7bb50010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0070
+    .word  0x00000000
+.end cHeightFogMenu_cHeightFogMenu

@@ -1,0 +1,113 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cBlockMan_init
+.ent cBlockMan_init
+cBlockMan_init:
+    .word  0x27bdff80
+    .word  0x7fb30040
+    .word  0x7fb50020
+    .word  0x0080982d
+    .word  0x7fb40030
+    .word  0x00a0a82d
+    .word  0x7fb60010
+    .word  0x7fb00070
+    .word  0x00c0b02d
+    .word  0x7fb10060
+    .word  0x00152900
+    .word  0x7fb20050
+    .word  0xffbf0000
+    .word  0x0c0c5a88
+    .word  0xae670010
+    .word  0x0040a02d
+    .word  0x1aa0000e
+    .word  0xae740004
+    .word  0x02c0802d
+    .word  0x02a0882d
+    .word  0x8e050004
+    .word  0x0260202d
+    .word  0x0c0c5a88
+    .word  0x2631ffff
+    .word  0x8e030000
+    .word  0x8e640004
+    .word  0x26100008
+    .word  0x00621818
+    .word  0x00832021
+    .word  0x1620fff6
+    .word  0xae640004
+    .word  0x8e640004
+    .word  0x3c050049
+    .word  0x24a5d840
+    .word  0x0000302d
+    .word  0x0000382d
+    .word  0x0c0c5f8c
+    .word  0x0000902d
+    .word  0xae75000c
+    .word  0x0054a021
+    .word  0xae620000
+    .word  0x1aa00031
+    .word  0xae620008
+    .word  0x00000000
+    .word  0x001280c0
+    .word  0x0260202d
+    .word  0x02168821
+    .word  0x0c0c5a88
+    .word  0x8e250004
+    .word  0x8e630008
+    .word  0x00122100
+    .word  0x0040402d
+    .word  0x264a0001
+    .word  0x8e220000
+    .word  0x00831821
+    .word  0xac680008
+    .word  0x00484818
+    .word  0x8e620008
+    .word  0x00821021
+    .word  0xac54000c
+    .word  0x8e630008
+    .word  0x00831821
+    .word  0xac740000
+    .word  0x8e620008
+    .word  0x00822021
+    .word  0xac890004
+    .word  0x8e220000
+    .word  0x2442ffff
+    .word  0x1840000c
+    .word  0x0000302d
+    .word  0x0040382d
+    .word  0x0100282d
+    .word  0x0280202d
+    .word  0x01141821
+    .word  0xac830000
+    .word  0x24c60001
+    .word  0x00852021
+    .word  0x00c7102a
+    .word  0x00000000
+    .word  0x1440fffa
+    .word  0x00651821
+    .word  0x02161021
+    .word  0x0140902d
+    .word  0x8c430000
+    .word  0x0255202a
+    .word  0x2463ffff
+    .word  0x01031018
+    .word  0x00541821
+    .word  0x0289a021
+    .word  0x1480ffd2
+    .word  0xac600000
+    .word  0x7bb00070
+    .word  0x7bb10060
+    .word  0x7bb20050
+    .word  0x7bb30040
+    .word  0x7bb40030
+    .word  0x7bb50020
+    .word  0x7bb60010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0080
+    .word  0x00000000
+.end cBlockMan_init

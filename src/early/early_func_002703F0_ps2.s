@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_002703F0
+.ent func_002703F0
+func_002703F0:
+    .word  0x27bdffc0
+    .word  0x7fb00030
+    .word  0x7fb10020
+    .word  0x0080802d
+    .word  0x7fb20010
+    .word  0x00a0882d
+    .word  0x12200004
+    .word  0xffbf0000
+    .word  0x0c09b912
+    .word  0x8e050484
+    .word  0xae020488
+    .word  0x8e030488
+    .word  0x10600006
+    .word  0x00000000
+    .word  0x8e0203d0
+    .word  0x14620003
+    .word  0x00000000
+    .word  0x8c620018
+    .word  0xae020488
+    .word  0x12200013
+    .word  0x2611048c
+    .word  0x8e030488
+    .word  0x24120001
+    .word  0x8c620030
+    .word  0xae020484
+    .word  0x00000000
+    .word  0x8e240000
+    .word  0x50800004
+    .word  0x2652ffff
+    .word  0x0c09b536
+    .word  0x8e050484
+    .word  0x2652ffff
+    .word  0x0641fff9
+    .word  0x26310004
+    .word  0x0200202d
+    .word  0x0c09b6e2
+    .word  0x8c850488
+    .word  0x10000026
+    .word  0x7bb00030
+    .word  0x8e030484
+    .word  0x8e0403cc
+    .word  0x0064102a
+    .word  0x1440001f
+    .word  0x24620001
+    .word  0x8e02061c
+    .word  0x50400017
+    .word  0xae040484
+    .word  0x0200202d
+    .word  0x0c09c0be
+    .word  0x0000282d
+    .word  0x0200202d
+    .word  0x0c09c0fc
+    .word  0x24050001
+    .word  0x8f82f7b8
+    .word  0x8c430084
+    .word  0x8c710084
+    .word  0x8e220004
+    .word  0x8c5000a8
+    .word  0x0c058834
+    .word  0x0200202d
+    .word  0x8e020014
+    .word  0x84440020
+    .word  0x8c430024
+    .word  0x0060f809
+    .word  0x02042021
+    .word  0x0c08ba10
+    .word  0x0220202d
+    .word  0x10000008
+    .word  0x7bb00030
+    .word  0x24050003
+    .word  0x0c09bd28
+    .word  0x0200202d
+    .word  0x10000003
+    .word  0x7bb00030
+    .word  0xae020484
+    .word  0x7bb00030
+    .word  0x7bb10020
+    .word  0x7bb20010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0040
+    .word  0x00000000
+.end func_002703F0

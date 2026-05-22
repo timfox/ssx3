@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_00309F18
+.ent func_00309F18
+func_00309F18:
+    .word  0x27bdff80
+    .word  0x7fb20050
+    .word  0x7fb00070
+    .word  0x0080902d
+    .word  0x7fb10060
+    .word  0x265002c0
+    .word  0x7fb30040
+    .word  0x7fb40030
+    .word  0x7fb50020
+    .word  0x7fb60010
+    .word  0xffbf0000
+    .word  0x0c0b66d0
+    .word  0x0000882d
+    .word  0x00000000
+    .word  0x0200202d
+    .word  0x0c0c30e4
+    .word  0x2631ffff
+    .word  0x0621fffc
+    .word  0x2610010c
+    .word  0x8e560000
+    .word  0x2402ffff
+    .word  0xae420000
+    .word  0x0000802d
+    .word  0xae400290
+    .word  0xae400294
+    .word  0xae400298
+    .word  0xae4002a4
+    .word  0xae4002a8
+    .word  0x8e42028c
+    .word  0x8c440000
+    .word  0x0c0ea600
+    .word  0x24840010
+    .word  0x0040a02d
+    .word  0x1a800020
+    .word  0x2415000c
+    .word  0x8e45028c
+    .word  0x02152018
+    .word  0x8ca20004
+    .word  0x8c430004
+    .word  0x00832021
+    .word  0x84820000
+    .word  0x38420003
+    .word  0x14400013
+    .word  0x26130001
+    .word  0x00a0202d
+    .word  0x0c0e9af6
+    .word  0x0200282d
+    .word  0x0040882d
+    .word  0x5220000e
+    .word  0x0260802d
+    .word  0x8e44028c
+    .word  0x0c0e9aea
+    .word  0x0200282d
+    .word  0x18400008
+    .word  0x0040802d
+    .word  0x00000000
+    .word  0x0220282d
+    .word  0x0c0c2722
+    .word  0x0240202d
+    .word  0x2610ffff
+    .word  0x1600fffb
+    .word  0x26310004
+    .word  0x0260802d
+    .word  0x0214102a
+    .word  0x5440ffe3
+    .word  0x8e45028c
+    .word  0xae560000
+    .word  0xae400290
+    .word  0xae400294
+    .word  0xae400298
+    .word  0xae4002a4
+    .word  0xae4002a8
+    .word  0x7bb00070
+    .word  0x7bb10060
+    .word  0x7bb20050
+    .word  0x7bb30040
+    .word  0x7bb40030
+    .word  0x7bb50020
+    .word  0x7bb60010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0080
+.end func_00309F18

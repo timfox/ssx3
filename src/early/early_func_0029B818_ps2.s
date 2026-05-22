@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_0029B818
+.ent func_0029B818
+func_0029B818:
+    .word  0x27bdfef0
+    .word  0x24020003
+    .word  0x7fb00100
+    .word  0x7fb100f0
+    .word  0x0080802d
+    .word  0x7fb200e0
+    .word  0x00c0882d
+    .word  0x00a0902d
+    .word  0xffbf00d0
+    .word  0xae220000
+    .word  0x0240202d
+    .word  0x0c10596a
+    .word  0x26055838
+    .word  0x10400016
+    .word  0x24050060
+    .word  0x8e060118
+    .word  0x8e220000
+    .word  0x8cc40000
+    .word  0x00451018
+    .word  0x8c830acc
+    .word  0x00431021
+    .word  0x8c430000
+    .word  0x0460000d
+    .word  0x28620002
+    .word  0x14400006
+    .word  0x3c02004a
+    .word  0x24020002
+    .word  0x1062002f
+    .word  0x2402ffff
+    .word  0x10000008
+    .word  0x8e030118
+    .word  0x904335a8
+    .word  0xa2035838
+    .word  0x8cc40000
+    .word  0x0c0a2f3a
+    .word  0x8e250000
+    .word  0x8e030118
+    .word  0x24050060
+    .word  0x8e220000
+    .word  0x24060001
+    .word  0x8c640000
+    .word  0x00451018
+    .word  0x8c830acc
+    .word  0x00431021
+    .word  0x8c430000
+    .word  0x10660007
+    .word  0x28620002
+    .word  0x1040001a
+    .word  0x24020002
+    .word  0x10600005
+    .word  0x2402ffff
+    .word  0x10000018
+    .word  0x7bb00100
+    .word  0x10000015
+    .word  0x24020001
+    .word  0x0240282d
+    .word  0x0c1059bd
+    .word  0x26045838
+    .word  0x3c050048
+    .word  0x3c06004a
+    .word  0x3c09004a
+    .word  0x03a0202d
+    .word  0x0240402d
+    .word  0x252936c8
+    .word  0x24a52dc8
+    .word  0x24c63590
+    .word  0x0c105e0a
+    .word  0x2607587c
+    .word  0x8e030118
+    .word  0x03a0302d
+    .word  0x8e250000
+    .word  0x24070100
+    .word  0x0c0a2f44
+    .word  0x8c640000
+    .word  0x2402ffff
+    .word  0x7bb00100
+    .word  0x7bb100f0
+    .word  0x7bb200e0
+    .word  0xdfbf00d0
+    .word  0x03e00008
+    .word  0x27bd0110
+    .word  0x00000000
+.end func_0029B818

@@ -1,0 +1,77 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cReplay_restoreDeadBucket
+.ent cReplay_restoreDeadBucket
+cReplay_restoreDeadBucket:
+    .word  0x27bdffa0
+    .word  0x3c02ffff
+    .word  0x7fb00050
+    .word  0x3442ffff
+    .word  0x7fb10040
+    .word  0x24060008
+    .word  0x7fb20030
+    .word  0x00a0882d
+    .word  0xffbf0020
+    .word  0x03a0282d
+    .word  0x0000802d
+    .word  0x8e270000
+    .word  0xafa20010
+    .word  0x84e40010
+    .word  0x8ce30014
+    .word  0x0060f809
+    .word  0x02242021
+    .word  0x8fa20000
+    .word  0x18400028
+    .word  0x3c120048
+    .word  0x8e230000
+    .word  0x00000000
+    .word  0x27a50010
+    .word  0x24060004
+    .word  0x84640010
+    .word  0x8c620014
+    .word  0x0040f809
+    .word  0x02242021
+    .word  0x2404001c
+    .word  0x26451720
+    .word  0x3c062000
+    .word  0x0c0c5f5c
+    .word  0x0000382d
+    .word  0x0040302d
+    .word  0x8fa50010
+    .word  0x8f8216c8
+    .word  0x30a300ff
+    .word  0x8c440000
+    .word  0x00031880
+    .word  0x8c820008
+    .word  0x00621821
+    .word  0x8c630000
+    .word  0x10600008
+    .word  0x00051202
+    .word  0x8c64001c
+    .word  0x00021080
+    .word  0x00441021
+    .word  0x8c430000
+    .word  0x00031202
+    .word  0x14400002
+    .word  0x00022880
+    .word  0x0000282d
+    .word  0x00c0202d
+    .word  0x0c0d41b6
+    .word  0x26100001
+    .word  0x8fa20000
+    .word  0x0202102a
+    .word  0x5440ffdc
+    .word  0x8e230000
+    .word  0x7bb00050
+    .word  0x7bb10040
+    .word  0x7bb20030
+    .word  0xdfbf0020
+    .word  0x03e00008
+    .word  0x27bd0060
+    .word  0x00000000
+.end cReplay_restoreDeadBucket

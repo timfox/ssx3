@@ -1,0 +1,13 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_00303D88
+.ent func_00303D88
+func_00303D88:
+    .word  0x03e00008
+    .word  0x00000000
+.end func_00303D88

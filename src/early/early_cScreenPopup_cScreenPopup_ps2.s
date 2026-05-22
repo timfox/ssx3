@@ -1,0 +1,117 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cScreenPopup_cScreenPopup
+.ent cScreenPopup_cScreenPopup
+cScreenPopup_cScreenPopup:
+    .word  0x27bdffb0
+    .word  0x7fb00040
+    .word  0x0080802d
+    .word  0x7fb10030
+    .word  0x7fb20020
+    .word  0xffbf0010
+    .word  0x0c0e78c6
+    .word  0x261102d0
+    .word  0x24120004
+    .word  0x3c030047
+    .word  0x260400bc
+    .word  0x2463cbd8
+    .word  0x0c07157e
+    .word  0xae030008
+    .word  0x8f830da0
+    .word  0x2402ffff
+    .word  0xae0202c4
+    .word  0xae0302b4
+    .word  0xae0302b0
+    .word  0xae0002a8
+    .word  0xae0002b8
+    .word  0xae0002bc
+    .word  0xae00030c
+    .word  0xae0002c0
+    .word  0xae000314
+    .word  0x0220202d
+    .word  0x0000282d
+    .word  0x2406000c
+    .word  0x0c105884
+    .word  0x2631000c
+    .word  0x2652ffff
+    .word  0x0641fffa
+    .word  0x0220202d
+    .word  0x24020001
+    .word  0xae000048
+    .word  0xae020310
+    .word  0x24030004
+    .word  0xae00004c
+    .word  0x260200a0
+    .word  0xae00006c
+    .word  0xae000070
+    .word  0xae000074
+    .word  0xae000078
+    .word  0xae00007c
+    .word  0xae000080
+    .word  0xae000088
+    .word  0xae000084
+    .word  0xae00008c
+    .word  0xae000064
+    .word  0xae000050
+    .word  0xae000054
+    .word  0xae000058
+    .word  0xae00005c
+    .word  0xae000060
+    .word  0xae000068
+    .word  0x00000000
+    .word  0xac400000
+    .word  0x2463ffff
+    .word  0x00000000
+    .word  0x00000000
+    .word  0x00000000
+    .word  0x0461fffa
+    .word  0x2442fffc
+    .word  0x3c013f80
+    .word  0x44810000
+    .word  0x2405003f
+    .word  0xae00031c
+    .word  0x0200102d
+    .word  0xe7a00008
+    .word  0xe7a00000
+    .word  0xe7a00004
+    .word  0x7bb10030
+    .word  0x6ba30007
+    .word  0x6fa30000
+    .word  0x8fa40008
+    .word  0xb203027f
+    .word  0xb6030278
+    .word  0xae040280
+    .word  0xae0002c8
+    .word  0x3c03004c
+    .word  0xae0002cc
+    .word  0x24676788
+    .word  0x68e80007
+    .word  0x6ce80000
+    .word  0x68e4000f
+    .word  0x6ce40008
+    .word  0xb2080333
+    .word  0xb608032c
+    .word  0xb204033b
+    .word  0xb6040334
+    .word  0x3c04004c
+    .word  0x7bb20020
+    .word  0x24876798
+    .word  0x68e80007
+    .word  0x6ce80000
+    .word  0x68e3000f
+    .word  0x6ce30008
+    .word  0xb2080343
+    .word  0xb608033c
+    .word  0xb203034b
+    .word  0xb6030344
+    .word  0xae050328
+    .word  0x7bb00040
+    .word  0xdfbf0010
+    .word  0x03e00008
+    .word  0x27bd0050
+.end cScreenPopup_cScreenPopup

@@ -14,6 +14,14 @@ void gs_set_renderer(Renderer* renderer) {
     g_renderer = renderer;
 }
 
+Renderer* gs_renderer(void) {
+    return g_renderer;
+}
+
+bool gs_renderer_active(void) {
+    return g_renderer != nullptr;
+}
+
 void gs_submit_menu_frame(const MenuFrame& frame) {
     if (g_renderer) {
         g_renderer->set_main_menu_frame(frame);

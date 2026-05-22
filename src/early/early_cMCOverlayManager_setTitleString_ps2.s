@@ -1,0 +1,109 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cMCOverlayManager_setTitleString
+.ent cMCOverlayManager_setTitleString
+cMCOverlayManager_setTitleString:
+    .word  0x27bdf790
+    .word  0x7fb20840
+    .word  0x27a60200
+    .word  0x7fb40820
+    .word  0x0080902d
+    .word  0x7fb30830
+    .word  0x00a0a02d
+    .word  0x7fb50810
+    .word  0x7fb00860
+    .word  0x7fb10850
+    .word  0xffbf0800
+    .word  0x0c08f31e
+    .word  0x00c0982d
+    .word  0x27a40400
+    .word  0x3c050048
+    .word  0x0080a82d
+    .word  0x0c0b0950
+    .word  0x24a5c150
+    .word  0x8e4300b4
+    .word  0x10600005
+    .word  0x24020001
+    .word  0x10620016
+    .word  0x8f82f7b8
+    .word  0x10000026
+    .word  0x3c040048
+    .word  0x8f82f7b8
+    .word  0x3c040048
+    .word  0x2484c160
+    .word  0x8c50008c
+    .word  0x8e110004
+    .word  0x86220020
+    .word  0x0c0c5d9c
+    .word  0x02028021
+    .word  0x8e230024
+    .word  0x0200202d
+    .word  0x0060f809
+    .word  0x0040282d
+    .word  0x02a0282d
+    .word  0x0040302d
+    .word  0x0c0b09b4
+    .word  0x0260202d
+    .word  0x0260282d
+    .word  0x1000000f
+    .word  0x0280302d
+    .word  0x0c053720
+    .word  0x00000000
+    .word  0x0040202d
+    .word  0x0c053756
+    .word  0x24050001
+    .word  0x8e4500fc
+    .word  0x27b00600
+    .word  0x0c051c5c
+    .word  0x0040202d
+    .word  0x0040282d
+    .word  0x0c0b0950
+    .word  0x0200202d
+    .word  0x02a0282d
+    .word  0x0200302d
+    .word  0x0c0b09b4
+    .word  0x03a0202d
+    .word  0x10000013
+    .word  0x8e460434
+    .word  0x2484c138
+    .word  0x8c50008c
+    .word  0x8e110004
+    .word  0x86220020
+    .word  0x0c0c5d9c
+    .word  0x02028021
+    .word  0x8e230024
+    .word  0x0200202d
+    .word  0x0060f809
+    .word  0x0040282d
+    .word  0x0040282d
+    .word  0x0c0b0942
+    .word  0x0260202d
+    .word  0x02a0282d
+    .word  0x0260302d
+    .word  0x0c0b09b4
+    .word  0x03a0202d
+    .word  0x8e460434
+    .word  0x03a0282d
+    .word  0x8cc20000
+    .word  0x84440168
+    .word  0x8c43016c
+    .word  0x0060f809
+    .word  0x00c42021
+    .word  0x26440234
+    .word  0x0c0b0942
+    .word  0x03a0282d
+    .word  0x7bb00860
+    .word  0x7bb10850
+    .word  0x7bb20840
+    .word  0x7bb30830
+    .word  0x7bb40820
+    .word  0x7bb50810
+    .word  0xdfbf0800
+    .word  0x03e00008
+    .word  0x27bd0870
+.end cMCOverlayManager_setTitleString

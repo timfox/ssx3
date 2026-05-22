@@ -1,0 +1,105 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cGFGateState_update
+.ent cGFGateState_update
+cGFGateState_update:
+    .word  0x27bdffc0
+    .word  0x8f82fb78
+    .word  0x7fb10010
+    .word  0x7fb00020
+    .word  0x0080882d
+    .word  0xffbf0000
+    .word  0xe7b40030
+    .word  0x0c09c0a0
+    .word  0x8c440028
+    .word  0x1440004f
+    .word  0x7bb00020
+    .word  0x0c053720
+    .word  0x00000000
+    .word  0x0040202d
+    .word  0x0c053756
+    .word  0x0000282d
+    .word  0x3c030053
+    .word  0x24040004
+    .word  0x80625c10
+    .word  0x10440044
+    .word  0x8f82fb78
+    .word  0x8c43000c
+    .word  0x8c64001c
+    .word  0x1c800026
+    .word  0x2403003c
+    .word  0x3c040048
+    .word  0x0c0c5d9c
+    .word  0x2484c048
+    .word  0x0040282d
+    .word  0x0c08d2fa
+    .word  0x0220202d
+    .word  0x8f82fb78
+    .word  0x3c04004a
+    .word  0x24842ab0
+    .word  0x8c500048
+    .word  0x0c0c5d9c
+    .word  0x26100018
+    .word  0x0200202d
+    .word  0x0c0e7e76
+    .word  0x0040282d
+    .word  0x0040382d
+    .word  0x10e00007
+    .word  0x24050006
+    .word  0x8ce30008
+    .word  0x0000302d
+    .word  0x846400c0
+    .word  0x8c6200c4
+    .word  0x0040f809
+    .word  0x00e42021
+    .word  0x0c0a2c60
+    .word  0x00000000
+    .word  0x0c0a71ec
+    .word  0x0040202d
+    .word  0x0c0a2c60
+    .word  0x00000000
+    .word  0x0040202d
+    .word  0x0c0a3230
+    .word  0x24050078
+    .word  0x0c08cea8
+    .word  0x0220202d
+    .word  0x8f82fb78
+    .word  0x2403003c
+    .word  0x50600001
+    .word  0x000001cd
+    .word  0x2404003c
+    .word  0x8c45000c
+    .word  0x8ca2001c
+    .word  0x0043001a
+    .word  0x00001012
+    .word  0x00002010
+    .word  0x4482a000
+    .word  0x4680a520
+    .word  0x14800010
+    .word  0x7bb00020
+    .word  0x0c0a2c60
+    .word  0x00000000
+    .word  0x4600a064
+    .word  0x46800860
+    .word  0x4601a034
+    .word  0x45000004
+    .word  0x00000000
+    .word  0x3c013f80
+    .word  0x44810000
+    .word  0x46000841
+    .word  0x46000824
+    .word  0x44050000
+    .word  0x0c0a7108
+    .word  0x0040202d
+    .word  0x7bb00020
+    .word  0x7bb10010
+    .word  0xdfbf0000
+    .word  0xc7b40030
+    .word  0x03e00008
+    .word  0x27bd0040
+.end cGFGateState_update

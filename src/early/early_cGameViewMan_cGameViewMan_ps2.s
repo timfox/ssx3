@@ -1,0 +1,113 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cGameViewMan_cGameViewMan
+.ent cGameViewMan_cGameViewMan
+cGameViewMan_cGameViewMan:
+    .word  0x27bdffa0
+    .word  0x24020001
+    .word  0x7fb20020
+    .word  0x2403ffff
+    .word  0x7fb00040
+    .word  0x0080902d
+    .word  0x7fb10030
+    .word  0x7fb30010
+    .word  0xffbf0000
+    .word  0xe7b40050
+    .word  0x2ca20002
+    .word  0xc794ae2c
+    .word  0x14400002
+    .word  0xae450000
+    .word  0xc794ae30
+    .word  0x0000882d
+    .word  0x3c130048
+    .word  0x26500004
+    .word  0x8e420000
+    .word  0x0222102b
+    .word  0x10400018
+    .word  0x3c062000
+    .word  0x0000382d
+    .word  0x240404b0
+    .word  0x0c0c5f5c
+    .word  0x2665b538
+    .word  0x0040202d
+    .word  0x0c05771c
+    .word  0x0220282d
+    .word  0xae020000
+    .word  0x0220282d
+    .word  0xc78cae34
+    .word  0x4600a386
+    .word  0x8c430090
+    .word  0x3c0141f0
+    .word  0x44816800
+    .word  0x84640010
+    .word  0x8c660014
+    .word  0x00c0f809
+    .word  0x00442021
+    .word  0x8e040000
+    .word  0x0c0577f6
+    .word  0x24050002
+    .word  0x10000003
+    .word  0x26310001
+    .word  0xae000000
+    .word  0x26310001
+    .word  0x2e220002
+    .word  0x1440ffe1
+    .word  0x26100004
+    .word  0x24020001
+    .word  0xae40000c
+    .word  0xae420010
+    .word  0xae400014
+    .word  0x8f85f7ac
+    .word  0x8ca310d8
+    .word  0x84640050
+    .word  0x8c620054
+    .word  0x0040f809
+    .word  0x00a42021
+    .word  0x04400005
+    .word  0x8f85f7ac
+    .word  0x4482a000
+    .word  0x4680a520
+    .word  0x10000008
+    .word  0x8ca310d8
+    .word  0x00021842
+    .word  0x30420001
+    .word  0x00431025
+    .word  0x4482a000
+    .word  0x4680a520
+    .word  0x4614a500
+    .word  0x8ca310d8
+    .word  0x84640058
+    .word  0x8c62005c
+    .word  0x0040f809
+    .word  0x00a42021
+    .word  0x04400005
+    .word  0x00021842
+    .word  0x44820000
+    .word  0x46800020
+    .word  0x10000007
+    .word  0xe6540020
+    .word  0x30420001
+    .word  0x00431025
+    .word  0x44820000
+    .word  0x46800020
+    .word  0x46000000
+    .word  0xe6540020
+    .word  0x0240102d
+    .word  0xe6400024
+    .word  0xae400018
+    .word  0xae40001c
+    .word  0x7bb00040
+    .word  0x7bb10030
+    .word  0x7bb20020
+    .word  0x7bb30010
+    .word  0xdfbf0000
+    .word  0xc7b40050
+    .word  0x03e00008
+    .word  0x27bd0060
+    .word  0x00000000
+.end cGameViewMan_cGameViewMan

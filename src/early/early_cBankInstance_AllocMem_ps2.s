@@ -1,0 +1,61 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cBankInstance_AllocMem
+.ent cBankInstance_AllocMem
+cBankInstance_AllocMem:
+    .word  0x27bdffb0
+    .word  0x7fb00040
+    .word  0x7fb10030
+    .word  0x00c0802d
+    .word  0x7fb20020
+    .word  0x00a0882d
+    .word  0x7fb30010
+    .word  0x0080902d
+    .word  0xffbf0000
+    .word  0x16200003
+    .word  0x00e0982d
+    .word  0x5200001f
+    .word  0x7bb00040
+    .word  0x24020001
+    .word  0x12000014
+    .word  0xae420008
+    .word  0x8f830524
+    .word  0x0200282d
+    .word  0x8c6201d8
+    .word  0x8c460000
+    .word  0x8cc30000
+    .word  0x84640020
+    .word  0x8c620024
+    .word  0x0040f809
+    .word  0x00c42021
+    .word  0x0040202d
+    .word  0x04800004
+    .word  0x24020002
+    .word  0xae44000c
+    .word  0x10000005
+    .word  0xae420008
+    .word  0x2402fffd
+    .word  0x02301821
+    .word  0x00821026
+    .word  0x0062880a
+    .word  0xae510014
+    .word  0x3c040048
+    .word  0x24842998
+    .word  0x0220282d
+    .word  0x0c094be8
+    .word  0x0260302d
+    .word  0xae420010
+    .word  0x7bb00040
+    .word  0x7bb10030
+    .word  0x7bb20020
+    .word  0x7bb30010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0050
+    .word  0x00000000
+.end cBankInstance_AllocMem

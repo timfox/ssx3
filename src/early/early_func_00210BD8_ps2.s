@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_00210BD8
+.ent func_00210BD8
+func_00210BD8:
+    .word  0x27bdff80
+    .word  0x7fb00070
+    .word  0x0080802d
+    .word  0x7fb10060
+    .word  0x7fb20050
+    .word  0x3c040047
+    .word  0x7fb30040
+    .word  0x00a0902d
+    .word  0x7fb40030
+    .word  0x00c0882d
+    .word  0x7fb50020
+    .word  0xffbf0010
+    .word  0x0c0c5d9c
+    .word  0x2484e808
+    .word  0x8e040040
+    .word  0x0c0e7618
+    .word  0x0040282d
+    .word  0x0040802d
+    .word  0x12000035
+    .word  0x8f82f7b8
+    .word  0x24050007
+    .word  0x961500c8
+    .word  0x8c440078
+    .word  0x961300c4
+    .word  0x0c053756
+    .word  0x961400c6
+    .word  0x12200014
+    .word  0x3c050053
+    .word  0x3c050053
+    .word  0x03a0202d
+    .word  0x0c0c60b6
+    .word  0x24a54fb8
+    .word  0x3c05004a
+    .word  0x03a0202d
+    .word  0x0c0c6244
+    .word  0x24a52710
+    .word  0x03a0202d
+    .word  0x0c0c6244
+    .word  0x0240282d
+    .word  0x8fa50000
+    .word  0x0c0e867e
+    .word  0x0200202d
+    .word  0x03a0202d
+    .word  0x0c0c6098
+    .word  0x24050002
+    .word  0x10000012
+    .word  0x0200202d
+    .word  0x03a0202d
+    .word  0x0c0c60b6
+    .word  0x24a54fc8
+    .word  0x3c05004a
+    .word  0x03a0202d
+    .word  0x0c0c6244
+    .word  0x24a52710
+    .word  0x03a0202d
+    .word  0x0c0c6244
+    .word  0x0240282d
+    .word  0x8fa50000
+    .word  0x0c0e867e
+    .word  0x0200202d
+    .word  0x03a0202d
+    .word  0x0c0c6098
+    .word  0x24050002
+    .word  0x0200202d
+    .word  0x02a0382d
+    .word  0x0260402d
+    .word  0x0280482d
+    .word  0x2405001e
+    .word  0x24060008
+    .word  0x0000502d
+    .word  0x0c06a0f6
+    .word  0x240b0001
+    .word  0x7bb00070
+    .word  0x7bb10060
+    .word  0x7bb20050
+    .word  0x7bb30040
+    .word  0x7bb40030
+    .word  0x7bb50020
+    .word  0xdfbf0010
+    .word  0x03e00008
+    .word  0x27bd0080
+    .word  0x00000000
+.end func_00210BD8

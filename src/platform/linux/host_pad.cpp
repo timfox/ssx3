@@ -37,7 +37,7 @@ void apply_keyboard(PadState& pad) {
         press(PadButton::Cross);
     }
     if (keyboard_button(SDL_SCANCODE_ESCAPE)) {
-        press(PadButton::Circle);
+        press(PadButton::Triangle);
     }
     if (keyboard_button(SDL_SCANCODE_UP)) {
         press(PadButton::DPadUp);
@@ -62,6 +62,10 @@ void apply_keyboard(PadState& pad) {
     }
     if (keyboard_button(SDL_SCANCODE_W)) {
         press(PadButton::Triangle);
+    }
+    /* Retail FE: Select = MenuKeyCancel */
+    if (keyboard_button(SDL_SCANCODE_TAB)) {
+        press(PadButton::Select);
     }
     if (keyboard_button(SDL_SCANCODE_Q)) {
         press(PadButton::L1);
@@ -178,16 +182,3 @@ bool pad_pressed(PadButton button, int port) {
 }
 
 } // namespace host
-
-extern "C" {
-
-int cInputPad_poll(int port) {
-    host::pad_poll();
-    return 1;
-}
-
-unsigned short cInputPad_getButtons(int port) {
-    return host::pad_state(port).buttons;
-}
-
-} // extern "C"

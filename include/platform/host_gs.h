@@ -8,6 +8,8 @@ class Renderer;
 
 /* Vulkan renderer registers here; game graphics stubs call gs_submit_menu_frame. */
 void gs_set_renderer(Renderer* renderer);
+Renderer* gs_renderer(void);
+bool gs_renderer_active(void);
 void gs_submit_menu_frame(const MenuFrame& frame);
 
 } // namespace host

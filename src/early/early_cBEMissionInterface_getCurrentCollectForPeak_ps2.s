@@ -1,0 +1,61 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cBEMissionInterface_getCurrentCollectForPeak
+.ent cBEMissionInterface_getCurrentCollectForPeak
+cBEMissionInterface_getCurrentCollectForPeak:
+    .word  0x27bdffc0
+    .word  0x7fb00030
+    .word  0x00a0802d
+    .word  0x7fb20010
+    .word  0x7fb10020
+    .word  0x00c0902d
+    .word  0xffbf0000
+    .word  0x0c052838
+    .word  0x0200202d
+    .word  0x0040882d
+    .word  0x0c052820
+    .word  0x0200202d
+    .word  0x24030f88
+    .word  0x240b000c
+    .word  0x00434818
+    .word  0x0000382d
+    .word  0x34029b50
+    .word  0x3c030044
+    .word  0x02228818
+    .word  0x2463d950
+    .word  0x3c02004a
+    .word  0x0000202d
+    .word  0x244a6ca8
+    .word  0x008b2818
+    .word  0x24880001
+    .word  0x24060015
+    .word  0x00a91021
+    .word  0x00511021
+    .word  0x24650054
+    .word  0x004a2021
+    .word  0x8ca20000
+    .word  0x54520004
+    .word  0x2484000c
+    .word  0x80820004
+    .word  0x00e23821
+    .word  0x2484000c
+    .word  0x24c6ffff
+    .word  0x04c1fff8
+    .word  0x24a50064
+    .word  0x0100202d
+    .word  0x5880ffef
+    .word  0x008b2818
+    .word  0x7bb00030
+    .word  0x00e0102d
+    .word  0x7bb10020
+    .word  0x7bb20010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0040
+    .word  0x00000000
+.end cBEMissionInterface_getCurrentCollectForPeak

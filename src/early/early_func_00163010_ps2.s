@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_00163010
+.ent func_00163010
+func_00163010:
+    .word  0x27bdffb0
+    .word  0x44803000
+    .word  0xffbf0040
+    .word  0x0080182d
+    .word  0x46006106
+    .word  0xc4a00044
+    .word  0x78a20030
+    .word  0x460e0001
+    .word  0xe7b10034
+    .word  0xe7b20030
+    .word  0x46060034
+    .word  0x00000000
+    .word  0x45000002
+    .word  0x7fa20000
+    .word  0x46003006
+    .word  0xc781953c
+    .word  0x460000c4
+    .word  0x3c0140a0
+    .word  0x44811000
+    .word  0x46010042
+    .word  0xc4a5004c
+    .word  0xc46001ec
+    .word  0x46022082
+    .word  0x46016842
+    .word  0x46050034
+    .word  0x46030842
+    .word  0x46012300
+    .word  0x46046028
+    .word  0x45000004
+    .word  0x46001329
+    .word  0x46050004
+    .word  0x46007802
+    .word  0xe46001e8
+    .word  0xc46001e8
+    .word  0x27a20034
+    .word  0xc46401d0
+    .word  0x46100001
+    .word  0xc4a1004c
+    .word  0xe46101ec
+    .word  0x46060028
+    .word  0x46006300
+    .word  0x46046034
+    .word  0x00000000
+    .word  0x45000002
+    .word  0xe46001e8
+    .word  0x27a20030
+    .word  0xc4430000
+    .word  0x0060202d
+    .word  0x3c013f80
+    .word  0x44810000
+    .word  0xdba30000
+    .word  0x4b000183
+    .word  0x4be3192a
+    .word  0x4b04203d
+    .word  0x4b0430be
+    .word  0x4b04310b
+    .word  0x4a0403bd
+    .word  0x4a0003bf
+    .word  0x4842b000
+    .word  0x44821000
+    .word  0x46041842
+    .word  0x46030001
+    .word  0x460c0002
+    .word  0x46000840
+    .word  0xe46101d0
+    .word  0x46020883
+    .word  0x44021000
+    .word  0xdba40000
+    .word  0x48a21800
+    .word  0x4be32158
+    .word  0xfba50000
+    .word  0xd8630020
+    .word  0xdba40000
+    .word  0x4be4196c
+    .word  0xfba50020
+    .word  0x7ba20020
+    .word  0x7c620040
+    .word  0x0c05a054
+    .word  0x7fa20010
+    .word  0xdfbf0040
+    .word  0x03e00008
+    .word  0x27bd0050
+.end func_00163010

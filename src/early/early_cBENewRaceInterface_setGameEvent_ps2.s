@@ -1,0 +1,97 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cBENewRaceInterface_setGameEvent
+.ent cBENewRaceInterface_setGameEvent
+cBENewRaceInterface_setGameEvent:
+    .word  0x00a0382d
+    .word  0x3c020044
+    .word  0x24050054
+    .word  0x2442e978
+    .word  0x00e52818
+    .word  0x27bdff80
+    .word  0x7fb00070
+    .word  0x03a0302d
+    .word  0x00a22821
+    .word  0x30a30007
+    .word  0x10600019
+    .word  0xffbf0060
+    .word  0x24a20040
+    .word  0x3c100053
+    .word  0x28e80006
+    .word  0x68a30007
+    .word  0x6ca30000
+    .word  0x68a9000f
+    .word  0x6ca90008
+    .word  0x68aa0017
+    .word  0x6caa0010
+    .word  0x68ab001f
+    .word  0x6cab0018
+    .word  0xb0c30007
+    .word  0xb4c30000
+    .word  0xb0c9000f
+    .word  0xb4c90008
+    .word  0xb0ca0017
+    .word  0xb4ca0010
+    .word  0xb0cb001f
+    .word  0xb4cb0018
+    .word  0x24a50020
+    .word  0x14a2ffee
+    .word  0x24c60020
+    .word  0x1000000f
+    .word  0x00000000
+    .word  0x24a20040
+    .word  0x3c100053
+    .word  0x28e80006
+    .word  0xdca30000
+    .word  0xdca90008
+    .word  0xdcaa0010
+    .word  0xdcab0018
+    .word  0xfcc30000
+    .word  0xfcc90008
+    .word  0xfcca0010
+    .word  0xfccb0018
+    .word  0x24a50020
+    .word  0x14a2fff6
+    .word  0x24c60020
+    .word  0x68a20007
+    .word  0x6ca20000
+    .word  0x68a9000f
+    .word  0x6ca90008
+    .word  0x8caa0010
+    .word  0xb0c20007
+    .word  0xb4c20000
+    .word  0xb0c9000f
+    .word  0xb4c90008
+    .word  0x26035bc8
+    .word  0xacca0010
+    .word  0x1100000f
+    .word  0xa067004a
+    .word  0x28e20004
+    .word  0x1440000d
+    .word  0x8fa20000
+    .word  0x80630049
+    .word  0x24020002
+    .word  0x14620005
+    .word  0x00000000
+    .word  0x0c051366
+    .word  0x0000282d
+    .word  0x10000004
+    .word  0x26035bc8
+    .word  0x0c051366
+    .word  0x24050001
+    .word  0x26035bc8
+    .word  0x8fa20000
+    .word  0x80640048
+    .word  0x7bb00070
+    .word  0x00441026
+    .word  0xdfbf0060
+    .word  0x2c420001
+    .word  0x03e00008
+    .word  0x27bd0080
+    .word  0x00000000
+.end cBENewRaceInterface_setGameEvent

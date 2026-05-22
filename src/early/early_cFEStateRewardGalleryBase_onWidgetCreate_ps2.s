@@ -1,0 +1,115 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cFEStateRewardGalleryBase_onWidgetCreate
+.ent cFEStateRewardGalleryBase_onWidgetCreate
+cFEStateRewardGalleryBase_onWidgetCreate:
+    .word  0x27bdff40
+    .word  0x7fb000b0
+    .word  0x7fb100a0
+    .word  0x0080802d
+    .word  0x7fb20090
+    .word  0x00a0882d
+    .word  0x7fb30080
+    .word  0x3c040046
+    .word  0x7fb40070
+    .word  0x24840488
+    .word  0x7fb50060
+    .word  0x7fb60050
+    .word  0x7fbe0030
+    .word  0xffbf0020
+    .word  0x7fb70040
+    .word  0x0c0c5d9c
+    .word  0x8e370038
+    .word  0x56e20003
+    .word  0x3c040046
+    .word  0x10000012
+    .word  0xae110900
+    .word  0x0c0c5d9c
+    .word  0x24846da0
+    .word  0x56e20003
+    .word  0x3c040046
+    .word  0x10000117
+    .word  0xae11091c
+    .word  0x0c0c5d9c
+    .word  0x24846db0
+    .word  0x56e20003
+    .word  0x3c040046
+    .word  0x10000111
+    .word  0xae110920
+    .word  0x0c0c5d9c
+    .word  0x24846dc0
+    .word  0x56e2000a
+    .word  0x3c040046
+    .word  0xae1108f8
+    .word  0x0000282d
+    .word  0x8e220008
+    .word  0x84440048
+    .word  0x8c43004c
+    .word  0x0060f809
+    .word  0x02242021
+    .word  0x10000105
+    .word  0x7bb000b0
+    .word  0x0c0c5d9c
+    .word  0x24846dd8
+    .word  0x16e20009
+    .word  0x3c040046
+    .word  0xae110918
+    .word  0x3c05004a
+    .word  0x8e060068
+    .word  0x24a512c0
+    .word  0x0c105e0a
+    .word  0x03a0202d
+    .word  0x1000000c
+    .word  0x8e040918
+    .word  0x0c0c5d9c
+    .word  0x24846de8
+    .word  0x16e2000c
+    .word  0x3c04004a
+    .word  0xae110914
+    .word  0x3c05004a
+    .word  0x8e06006c
+    .word  0x24a512c0
+    .word  0x0c105e0a
+    .word  0x03a0202d
+    .word  0x8e040914
+    .word  0x0c0e8314
+    .word  0x03a0282d
+    .word  0x100000ea
+    .word  0x7bb000b0
+    .word  0x0c0c5d9c
+    .word  0x24841ee8
+    .word  0x16e20007
+    .word  0x3c040046
+    .word  0x3c05004a
+    .word  0x0220202d
+    .word  0x0c0e8314
+    .word  0x24a51ef0
+    .word  0x100000e0
+    .word  0x7bb000b0
+    .word  0x0c0c5d9c
+    .word  0x2484db90
+    .word  0x56e20003
+    .word  0x3c040046
+    .word  0x100000d9
+    .word  0xae1108f4
+    .word  0x0c0c5d9c
+    .word  0x24846df8
+    .word  0x16e20028
+    .word  0x3c040046
+    .word  0x8e02004c
+    .word  0x2444fffd
+    .word  0x2c830005
+    .word  0x106000d0
+    .word  0x3c020046
+    .word  0x00041880
+    .word  0x24426f40
+    .word  0x00621821
+    .word  0x8c640000
+    .word  0x00800008
+    .word  0x00000000
+.end cFEStateRewardGalleryBase_onWidgetCreate

@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_00225CA0
+.ent func_00225CA0
+func_00225CA0:
+    .word  0x27bdff90
+    .word  0x7fb00060
+    .word  0x7fb10050
+    .word  0x0080802d
+    .word  0x7fb20040
+    .word  0x00a0882d
+    .word  0x7fb30030
+    .word  0x27a50010
+    .word  0xffbf0020
+    .word  0x00c0982d
+    .word  0x24060004
+    .word  0x8e230000
+    .word  0x84640010
+    .word  0x8c620014
+    .word  0x0040f809
+    .word  0x02242021
+    .word  0x8fb20010
+    .word  0x24020005
+    .word  0x16420016
+    .word  0x24020004
+    .word  0x0220282d
+    .word  0x0260302d
+    .word  0xafa00000
+    .word  0x03a0202d
+    .word  0x0c08931e
+    .word  0xafa00004
+    .word  0x8e030008
+    .word  0x24020004
+    .word  0x54620005
+    .word  0xae000008
+    .word  0x0200202d
+    .word  0x0c08937c
+    .word  0x24050002
+    .word  0xae000008
+    .word  0xae000000
+    .word  0x6ba20007
+    .word  0x6fa20000
+    .word  0xb2020007
+    .word  0xb6020000
+    .word  0x10000022
+    .word  0xae120008
+    .word  0x56420019
+    .word  0xae120008
+    .word  0x03a0202d
+    .word  0x0c089368
+    .word  0x24050020
+    .word  0x0220282d
+    .word  0x0260302d
+    .word  0x0c08966a
+    .word  0x03a0202d
+    .word  0x8e020008
+    .word  0x54520005
+    .word  0xae000008
+    .word  0x0200202d
+    .word  0x0c08937c
+    .word  0x24050002
+    .word  0xae000008
+    .word  0x0200202d
+    .word  0xae000000
+    .word  0x0c08941a
+    .word  0x03a0282d
+    .word  0xae120008
+    .word  0x03a0202d
+    .word  0x0c08937c
+    .word  0x24050002
+    .word  0x10000009
+    .word  0x7bb00060
+    .word  0x0200282d
+    .word  0x24060004
+    .word  0x8e220000
+    .word  0x84440010
+    .word  0x8c430014
+    .word  0x0060f809
+    .word  0x02242021
+    .word  0x7bb00060
+    .word  0x7bb10050
+    .word  0x7bb20040
+    .word  0x7bb30030
+    .word  0xdfbf0020
+    .word  0x03e00008
+    .word  0x27bd0070
+    .word  0x00000000
+.end func_00225CA0

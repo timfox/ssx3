@@ -4,10 +4,13 @@
 from __future__ import annotations
 
 import argparse
+import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+from ensure_venv_deps import ensure_venv_deps  # noqa: E402
 OUT = ROOT / "assets" / "host" / "menu"
 EAGM = Path("/tmp/EA-Graphics-Manager")
 
@@ -22,9 +25,21 @@ def main() -> int:
     )
     args = parser.parse_args()
 
+    ensure_venv_deps("reversebox", "Pillow")
+
     if not (EAGM / "src").is_dir():
-        print("Clone EA-Graphics-Manager to /tmp/EA-Graphics-Manager and pip install reversebox Pillow")
-        return 1
+        print(f"[menu]    cloning EA-Graphics-Manager → {EAGM}")
+        subprocess.run(
+            [
+                "git",
+                "clone",
+                "--depth",
+                "1",
+                "https://github.com/bartlomiejduda/EA-Graphics-Manager.git",
+                str(EAGM),
+            ],
+            check=True,
+        )
 
     sys.path.insert(0, str(EAGM))
     from src.EA_Image import ea_image_main  # noqa: E402
@@ -79,25 +94,32 @@ def main() -> int:
     for entry in ui.dir_entry_list:
         tag = entry.tag.strip()
         img = decode_entry(ui, entry)
-        save(img, f"ui_{tag}.png")
         if tag == "ssxt":
             ssxt = img
         elif tag == "moun":
             moun = img
+        elif tag == "Widg":
+            save(img, "menu_panel.png")
+        elif tag == "hudp":
+            save(img, "ui_hudp.png")
+        elif tag == "over":
+            save(img, "ui_over.png")
 
     if ssxt is None:
         print("error: ssxt entry not found in data/ui/fe_1.ssh")
         return 1
 
-    # Retail title uses the icy logo band from ssxt (exclude character silhouettes below).
+    # Title: icy logo band from ssxt (exclude rider silhouettes below).
     w, h = ssxt.size
     logo_crop = ssxt.crop((0, 0, w, int(h * 0.54)))
     save(logo_crop, "title_logo.png")
+    save(ssxt, "ssx3_logo.png")
 
     if moun is not None:
         save(moun, "title_mountain.png")
 
     print("\nTitle screen assets ready. Run: out/ssx3-native --gfx --no-boot-videos")
+    print("hint: python3 scripts/extract_menu_font.py --disc disc  (retail FE font)")
     return 0
 
 

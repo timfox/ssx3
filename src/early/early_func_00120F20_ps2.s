@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_00120F20
+.ent func_00120F20
+func_00120F20:
+    .word  0x27bdffc0
+    .word  0x7fb00030
+    .word  0x0080802d
+    .word  0x7fb10020
+    .word  0x7fb20010
+    .word  0xffbf0000
+    .word  0xae0003fc
+    .word  0x0c04a632
+    .word  0xae000aa4
+    .word  0x24030003
+    .word  0x24050003
+    .word  0x0043001a
+    .word  0x50600001
+    .word  0x000001cd
+    .word  0x8e04086c
+    .word  0x00003010
+    .word  0x0083001a
+    .word  0x00001010
+    .word  0x10c20014
+    .word  0x8f82f7b8
+    .word  0x8e030860
+    .word  0x8c450084
+    .word  0x8c640004
+    .word  0x8ca20020
+    .word  0x8c4300a0
+    .word  0x5483000e
+    .word  0x8e040860
+    .word  0x8cb10034
+    .word  0x0000902d
+    .word  0x0c05122a
+    .word  0x0220202d
+    .word  0x54400005
+    .word  0x24120001
+    .word  0x8e220070
+    .word  0x38420001
+    .word  0x50400001
+    .word  0x24120001
+    .word  0x52400007
+    .word  0x8e020ac4
+    .word  0x8e040860
+    .word  0x0c0ccb6e
+    .word  0x26050400
+    .word  0x0c048822
+    .word  0x0200202d
+    .word  0x8e020ac4
+    .word  0x1040000c
+    .word  0x3c020050
+    .word  0x8e020afc
+    .word  0x10400006
+    .word  0x26050110
+    .word  0x8e020780
+    .word  0x8e0308a0
+    .word  0x8c44002c
+    .word  0x00031940
+    .word  0x00832821
+    .word  0x0c0490ac
+    .word  0x0200202d
+    .word  0x3c020050
+    .word  0x3c05ffff
+    .word  0x2442f120
+    .word  0x34a5ffff
+    .word  0x78430000
+    .word  0x0200202d
+    .word  0xae000a30
+    .word  0x7e0309d0
+    .word  0x0c046cfe
+    .word  0xae0505b8
+    .word  0xc6010470
+    .word  0x44800000
+    .word  0x46010036
+    .word  0x00000000
+    .word  0x45020005
+    .word  0x7bb00030
+    .word  0xc78086e0
+    .word  0x46000800
+    .word  0xe6000470
+    .word  0x7bb00030
+    .word  0x7bb10020
+    .word  0x7bb20010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0040
+.end func_00120F20

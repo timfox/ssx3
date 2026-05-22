@@ -1,0 +1,111 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cFEStateBuyAttrib_updateExperienceDisplay
+.ent cFEStateBuyAttrib_updateExperienceDisplay
+cFEStateBuyAttrib_updateExperienceDisplay:
+    .word  0x27bdff40
+    .word  0x7fb20080
+    .word  0xe7b500b8
+    .word  0x0080902d
+    .word  0xe7b400b0
+    .word  0x7fb10090
+    .word  0x7fb30070
+    .word  0x2651004c
+    .word  0x7fb40060
+    .word  0x0000982d
+    .word  0x7fb50050
+    .word  0x0000a02d
+    .word  0x7fb60040
+    .word  0x3c15004a
+    .word  0x7fb000a0
+    .word  0x3c160047
+    .word  0xffbf0030
+    .word  0x3c014140
+    .word  0x4481a800
+    .word  0xc794aab4
+    .word  0x03a0202d
+    .word  0x26c5f080
+    .word  0x0c105e0a
+    .word  0x0260302d
+    .word  0x0c0c5d9c
+    .word  0x03a0202d
+    .word  0x8e440048
+    .word  0x0c0e7618
+    .word  0x0040282d
+    .word  0x0040802d
+    .word  0x52000014
+    .word  0x03a0202d
+    .word  0xc6200000
+    .word  0x46800020
+    .word  0x27a50020
+    .word  0xe7b50024
+    .word  0xafa00028
+    .word  0x46140002
+    .word  0xe7a00020
+    .word  0x8e020008
+    .word  0x844400a8
+    .word  0x8c4300ac
+    .word  0x0060f809
+    .word  0x02042021
+    .word  0x8e020008
+    .word  0x24050001
+    .word  0x84440048
+    .word  0x8c43004c
+    .word  0x0060f809
+    .word  0x02042021
+    .word  0x03a0202d
+    .word  0x26a52350
+    .word  0x0c105e0a
+    .word  0x0260302d
+    .word  0x0c0c5d9c
+    .word  0x03a0202d
+    .word  0x8e440048
+    .word  0x0c0e7618
+    .word  0x0040282d
+    .word  0x0040802d
+    .word  0x12000016
+    .word  0x02541821
+    .word  0x8e240000
+    .word  0x8c620084
+    .word  0x27a50020
+    .word  0xe7b50024
+    .word  0x00441021
+    .word  0xafa00028
+    .word  0x44820000
+    .word  0x46800020
+    .word  0x46140002
+    .word  0xe7a00020
+    .word  0x8e020008
+    .word  0x844400a8
+    .word  0x8c4300ac
+    .word  0x0060f809
+    .word  0x02042021
+    .word  0x8e020008
+    .word  0x24050001
+    .word  0x84440048
+    .word  0x8c43004c
+    .word  0x0060f809
+    .word  0x02042021
+    .word  0x26730001
+    .word  0x26310004
+    .word  0x2a620007
+    .word  0x1440ffbd
+    .word  0x26940004
+    .word  0x7bb000a0
+    .word  0x7bb10090
+    .word  0x7bb20080
+    .word  0x7bb30070
+    .word  0x7bb40060
+    .word  0x7bb50050
+    .word  0x7bb60040
+    .word  0xdfbf0030
+    .word  0xc7b500b8
+    .word  0xc7b400b0
+    .word  0x03e00008
+    .word  0x27bd00c0
+.end cFEStateBuyAttrib_updateExperienceDisplay

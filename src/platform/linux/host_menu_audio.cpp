@@ -1,6 +1,7 @@
 #include "platform/host_menu_audio.h"
 
 #include "platform/host_disc.h"
+#include "platform/host_fe_flow.h"
 #include "platform/host_log.h"
 
 #include <AL/al.h>
@@ -20,8 +21,9 @@ namespace fs = std::filesystem;
 namespace host {
 namespace {
 
-constexpr float kAmbientVolume = 0.42f;
-constexpr float kMusicVolume = 0.55f;
+constexpr float kAmbientVolume = 0.44f;
+constexpr float kMusicVolume = 0.58f;
+constexpr float kStemVolume = 0.48f;
 constexpr float kSfxVolume = 0.72f;
 
 struct WavData {
@@ -39,11 +41,14 @@ struct AlVoice {
 ALCdevice* g_alc_device = nullptr;
 ALCcontext* g_alc_context = nullptr;
 bool g_audio_open = false;
+FEScreen g_screen = FEScreen::Title;
+int g_stem_index = 0;
 
 AlVoice g_ambient;
-AlVoice g_music_a;
-AlVoice g_music_b;
-AlVoice g_music_c;
+AlVoice g_menu_music;
+AlVoice g_music_stem_a;
+AlVoice g_music_stem_b;
+AlVoice g_music_stem_c;
 AlVoice g_sfx_navigate;
 AlVoice g_sfx_confirm;
 AlVoice g_sfx_back;
@@ -214,6 +219,12 @@ void play_loop(AlVoice& voice) {
     al_check("play loop");
 }
 
+void stop_voice(AlVoice& voice) {
+    if (voice.loaded && voice.source != 0) {
+        alSourceStop(voice.source);
+    }
+}
+
 void play_sfx_voice(AlVoice& voice) {
     if (!voice.loaded || !g_audio_open) {
         return;
@@ -225,10 +236,31 @@ void play_sfx_voice(AlVoice& voice) {
     al_check("play sfx");
 }
 
+void play_stem_hit() {
+    AlVoice* stems[] = {&g_music_stem_a, &g_music_stem_b, &g_music_stem_c};
+    AlVoice* voice = nullptr;
+    for (int attempt = 0; attempt < 3; ++attempt) {
+        voice = stems[g_stem_index % 3];
+        g_stem_index = (g_stem_index + 1) % 3;
+        if (voice->loaded) {
+            break;
+        }
+        voice = nullptr;
+    }
+    if (!voice || !voice->loaded || !g_audio_open) {
+        return;
+    }
+    alSourceStop(voice->source);
+    alSourcei(voice->source, AL_LOOPING, AL_FALSE);
+    alSourcef(voice->source, AL_GAIN, kStemVolume);
+    alSourcePlay(voice->source);
+    al_check("play stem");
+}
+
 void stop_all_voices() {
     const AlVoice* voices[] = {
-        &g_ambient,     &g_music_a,      &g_music_b,      &g_music_c,
-        &g_sfx_navigate, &g_sfx_confirm, &g_sfx_back,     &g_sfx_start,
+        &g_ambient,      &g_menu_music,   &g_music_stem_a, &g_music_stem_b, &g_music_stem_c,
+        &g_sfx_navigate, &g_sfx_confirm,  &g_sfx_back,     &g_sfx_start,
     };
     for (const AlVoice* voice : voices) {
         if (voice->loaded && voice->source != 0) {
@@ -239,9 +271,10 @@ void stop_all_voices() {
 
 void destroy_all_voices() {
     destroy_voice(g_ambient);
-    destroy_voice(g_music_a);
-    destroy_voice(g_music_b);
-    destroy_voice(g_music_c);
+    destroy_voice(g_menu_music);
+    destroy_voice(g_music_stem_a);
+    destroy_voice(g_music_stem_b);
+    destroy_voice(g_music_stem_c);
     destroy_voice(g_sfx_navigate);
     destroy_voice(g_sfx_confirm);
     destroy_voice(g_sfx_back);
@@ -289,15 +322,53 @@ void close_openal() {
     g_audio_open = false;
 }
 
-} // namespace
+void apply_screen_mix() {
+    if (!g_audio_open) {
+        return;
+    }
 
-bool host_menu_audio_ready(const std::string& asset_dir) {
-    const fs::path root(asset_dir);
-    return fs::is_regular_file(root / "audio" / "title_ambient.wav");
+    stop_voice(g_menu_music);
+    stop_voice(g_music_stem_a);
+    stop_voice(g_music_stem_b);
+    stop_voice(g_music_stem_c);
+
+    if (g_screen == FEScreen::Title) {
+        stop_voice(g_ambient);
+        if (g_ambient.loaded) {
+            alSourcef(g_ambient.source, AL_GAIN, kAmbientVolume);
+            play_loop(g_ambient);
+        }
+        return;
+    }
+
+    stop_voice(g_ambient);
+    if (g_menu_music.loaded) {
+        alSourcef(g_menu_music.source, AL_GAIN, kMusicVolume);
+        play_loop(g_menu_music);
+    }
 }
 
-bool host_menu_audio_ensure(const std::string& asset_dir) {
-    if (host_menu_audio_ready(asset_dir)) {
+constexpr const char kMenuAudioDir[] = "assets/host/audio";
+
+} // namespace
+
+const char* host_menu_audio_dir() {
+    return kMenuAudioDir;
+}
+
+bool host_menu_audio_ready() {
+    const fs::path dir = kMenuAudioDir;
+    return fs::is_regular_file(dir / "title_ambient.wav") &&
+           fs::is_regular_file(dir / "menu_music.wav");
+}
+
+bool host_menu_audio_ready(const std::string& asset_dir) {
+    (void)asset_dir;
+    return host_menu_audio_ready();
+}
+
+bool host_menu_audio_ensure() {
+    if (host_menu_audio_ready()) {
         return true;
     }
 
@@ -318,20 +389,25 @@ bool host_menu_audio_ensure(const std::string& asset_dir) {
         return false;
     }
 
-    if (!host_menu_audio_ready(asset_dir)) {
-        host_log("audio", "decode finished but title_ambient.wav still missing");
+    if (!host_menu_audio_ready()) {
+        host_log("audio", "decode finished but menu WAVs still missing (need menu_music.wav)");
         return false;
     }
-    host_log("audio", ("menu audio ready under " + asset_dir + "/audio").c_str());
+    host_log("audio", ("menu audio ready under " + std::string(kMenuAudioDir)).c_str());
     return true;
 }
 
-void host_menu_audio_start(const std::string& asset_dir) {
+bool host_menu_audio_ensure(const std::string& asset_dir) {
+    (void)asset_dir;
+    return host_menu_audio_ensure();
+}
+
+void host_menu_audio_start() {
     host_menu_audio_stop();
 
-    const fs::path audio_dir = fs::path(asset_dir) / "audio";
-    if (!host_menu_audio_ready(asset_dir)) {
-        host_log("audio", "menu audio assets missing — run with disc mounted");
+    const fs::path audio_dir = fs::path(kMenuAudioDir);
+    if (!host_menu_audio_ready()) {
+        host_log("audio", "menu audio assets missing — run scripts/extract_menu_audio.py --disc disc");
         return;
     }
 
@@ -344,20 +420,25 @@ void host_menu_audio_start(const std::string& asset_dir) {
         AlVoice* voice;
         float volume;
         bool loop;
-    } loops[] = {
+    } clips[] = {
         {"title_ambient.wav", &g_ambient, kAmbientVolume, true},
-        {"menu_stem_a.wav", &g_music_a, kMusicVolume * 0.85f, true},
-        {"menu_stem_b.wav", &g_music_b, kMusicVolume, true},
-        {"menu_stem_c.wav", &g_music_c, kMusicVolume * 0.9f, true},
+        {"menu_music.wav", &g_menu_music, kMusicVolume, true},
+        {"menu_stem_a.wav", &g_music_stem_a, kStemVolume, false},
+        {"menu_stem_b.wav", &g_music_stem_b, kStemVolume, false},
+        {"menu_stem_c.wav", &g_music_stem_c, kStemVolume, false},
     };
 
     int loaded_loops = 0;
-    for (const auto& entry : loops) {
+    int loaded_stems = 0;
+    for (const auto& entry : clips) {
         if (upload_voice(audio_dir / entry.name, *entry.voice, entry.volume, entry.loop)) {
-            play_loop(*entry.voice);
-            ++loaded_loops;
+            if (entry.loop) {
+                ++loaded_loops;
+            } else {
+                ++loaded_stems;
+            }
         } else {
-            host_log("audio", (std::string("missing loop ") + entry.name).c_str());
+            host_log("audio", (std::string("missing ") + entry.name).c_str());
         }
     }
 
@@ -387,8 +468,29 @@ void host_menu_audio_start(const std::string& asset_dir) {
         return;
     }
 
+    g_screen = FEScreen::Title;
+    g_stem_index = 0;
+    apply_screen_mix();
+
     host_log("audio", "OpenAL menu audio started");
-    std::cout << "[audio]   OpenAL loops=" << loaded_loops << " sfx=" << loaded_sfx << '\n';
+    std::cout << "[audio]   OpenAL loops=" << loaded_loops << " stems=" << loaded_stems
+              << " sfx=" << loaded_sfx << '\n';
+}
+
+void host_menu_audio_start(const std::string& asset_dir) {
+    (void)asset_dir;
+    host_menu_audio_start();
+}
+
+void host_menu_audio_on_screen(FEScreen screen) {
+    if (!g_audio_open) {
+        return;
+    }
+    if (g_screen == screen) {
+        return;
+    }
+    g_screen = screen;
+    apply_screen_mix();
 }
 
 void host_menu_audio_stop() {
@@ -404,6 +506,9 @@ void host_menu_audio_play_sfx(MenuSfx sfx) {
     switch (sfx) {
     case MenuSfx::Navigate:
         play_sfx_voice(g_sfx_navigate);
+        if (g_screen != FEScreen::Title) {
+            play_stem_hit();
+        }
         break;
     case MenuSfx::Confirm:
         play_sfx_voice(g_sfx_confirm);

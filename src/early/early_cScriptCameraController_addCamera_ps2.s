@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cScriptCameraController_addCamera
+.ent cScriptCameraController_addCamera
+cScriptCameraController_addCamera:
+    .word  0x27bdffc0
+    .word  0x7fb10020
+    .word  0x7fb20010
+    .word  0x00a0882d
+    .word  0x7fb00030
+    .word  0x0080902d
+    .word  0xffbf0000
+    .word  0x8e220014
+    .word  0x0c09d0f2
+    .word  0x8c440008
+    .word  0x0040182d
+    .word  0x24020001
+    .word  0x10620017
+    .word  0x28620002
+    .word  0x50400005
+    .word  0x24020002
+    .word  0x10600009
+    .word  0x7bb00030
+    .word  0x1000003a
+    .word  0x7bb10020
+    .word  0x10620019
+    .word  0x24020003
+    .word  0x10620021
+    .word  0x7bb00030
+    .word  0x10000034
+    .word  0x7bb10020
+    .word  0x3c050046
+    .word  0x240400b0
+    .word  0x24a5beb0
+    .word  0x3c062000
+    .word  0x0c0c5f5c
+    .word  0x0000382d
+    .word  0x0c05a52e
+    .word  0x0040202d
+    .word  0x1000001e
+    .word  0x0040802d
+    .word  0x3c050046
+    .word  0x240400b0
+    .word  0x24a5bed0
+    .word  0x3c062000
+    .word  0x0c0c5f5c
+    .word  0x0000382d
+    .word  0x0c05a73e
+    .word  0x0040202d
+    .word  0x10000014
+    .word  0x0040802d
+    .word  0x3c050046
+    .word  0x240400a0
+    .word  0x24a5bef0
+    .word  0x3c062000
+    .word  0x0c0c5f5c
+    .word  0x0000382d
+    .word  0x0c05a916
+    .word  0x0040202d
+    .word  0x1000000a
+    .word  0x0040802d
+    .word  0x3c050046
+    .word  0x240400a0
+    .word  0x24a5bf10
+    .word  0x3c062000
+    .word  0x0c0c5f5c
+    .word  0x0000382d
+    .word  0x0c05ab4e
+    .word  0x0040202d
+    .word  0x0040802d
+    .word  0x0200202d
+    .word  0x0c05a52a
+    .word  0x0220282d
+    .word  0xae30001c
+    .word  0x0200282d
+    .word  0x0240202d
+    .word  0x0c05a4d0
+    .word  0x24060001
+    .word  0x24020001
+    .word  0xae420018
+    .word  0x7bb00030
+    .word  0x7bb10020
+    .word  0x7bb20010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0040
+    .word  0x00000000
+.end cScriptCameraController_addCamera

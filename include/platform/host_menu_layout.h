@@ -53,6 +53,21 @@ void build_options_sound_screen(MenuFrame& frame,
                                 const int* row_values,
                                 int value_columns);
 
+void build_fe_list_screen(MenuFrame& frame,
+                          const MenuViewport& viewport,
+                          float time_sec,
+                          const char* header_title,
+                          const char* const* labels,
+                          const char* const* descriptions,
+                          int item_count,
+                          int selected_item);
+
+void build_fe_info_screen(MenuFrame& frame,
+                          const MenuViewport& viewport,
+                          float time_sec,
+                          const char* title,
+                          const char* body);
+
 } // namespace host
 
 #endif /* PLATFORM_HOST_MENU_LAYOUT_H */

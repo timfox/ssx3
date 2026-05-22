@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_002C4050
+.ent func_002C4050
+func_002C4050:
+    .word  0x27bdffe0
+    .word  0x2402001c
+    .word  0x7fb00010
+    .word  0x2403ffff
+    .word  0x0080802d
+    .word  0xffbf0000
+    .word  0xae020008
+    .word  0x260400b9
+    .word  0xae000004
+    .word  0x24020006
+    .word  0xae00000c
+    .word  0x0000282d
+    .word  0xae000010
+    .word  0x24060040
+    .word  0xae000040
+    .word  0xae00004c
+    .word  0xaf800848
+    .word  0xaf80084c
+    .word  0xaf800850
+    .word  0xae030038
+    .word  0xae020014
+    .word  0xae030018
+    .word  0xae03001c
+    .word  0xae000050
+    .word  0xae000054
+    .word  0xae000020
+    .word  0xae000024
+    .word  0xae00002c
+    .word  0xae000030
+    .word  0xae000034
+    .word  0xae000044
+    .word  0xae000048
+    .word  0xaf800854
+    .word  0xae000028
+    .word  0xae0014e0
+    .word  0xae0014e8
+    .word  0xae0014e4
+    .word  0x0c0f9912
+    .word  0xae00003c
+    .word  0x260400f9
+    .word  0x0000282d
+    .word  0x0c0f9912
+    .word  0x24060040
+    .word  0x26040079
+    .word  0x0000282d
+    .word  0x0c0f9912
+    .word  0x24060040
+    .word  0x26040139
+    .word  0x0000282d
+    .word  0x0c0f9912
+    .word  0x24060040
+    .word  0x2602018c
+    .word  0x24030001
+    .word  0x00000000
+    .word  0xac40fff0
+    .word  0x2463ffff
+    .word  0xac40fff4
+    .word  0xac40fff8
+    .word  0xac40fffc
+    .word  0xac400000
+    .word  0x0461fff9
+    .word  0x24420014
+    .word  0x26040480
+    .word  0x0000282d
+    .word  0x0c0f9912
+    .word  0x24060040
+    .word  0x260401a4
+    .word  0x0000282d
+    .word  0x0c0f9912
+    .word  0x240602d0
+    .word  0x260404c0
+    .word  0x0000282d
+    .word  0x0c0f9912
+    .word  0x24061000
+    .word  0x260414c0
+    .word  0x0000282d
+    .word  0x0c0f9912
+    .word  0x24060020
+    .word  0x7bb00010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0020
+.end func_002C4050

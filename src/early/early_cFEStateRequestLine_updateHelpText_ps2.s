@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cFEStateRequestLine_updateHelpText
+.ent cFEStateRequestLine_updateHelpText
+cFEStateRequestLine_updateHelpText:
+    .word  0x27bdffe0
+    .word  0x7fb00010
+    .word  0xffbf0000
+    .word  0x0080802d
+    .word  0x8e0201e8
+    .word  0x50400049
+    .word  0x7bb00010
+    .word  0xde020160
+    .word  0x00a21016
+    .word  0x30420001
+    .word  0x0002103c
+    .word  0x0002103f
+    .word  0x1040000f
+    .word  0x24030001
+    .word  0xde020158
+    .word  0x00a31814
+    .word  0x00031827
+    .word  0x00431024
+    .word  0x2c420001
+    .word  0x0002103c
+    .word  0x0002103f
+    .word  0x50400004
+    .word  0x3c040046
+    .word  0x3c040046
+    .word  0x10000029
+    .word  0x248406b0
+    .word  0x10000027
+    .word  0x248406c8
+    .word  0x8e02016c
+    .word  0x10400019
+    .word  0x00000000
+    .word  0x0c0662ba
+    .word  0x0200202d
+    .word  0x8e030168
+    .word  0x0062182a
+    .word  0x1060000e
+    .word  0x0000282d
+    .word  0xde060160
+    .word  0x0000202d
+    .word  0x00000000
+    .word  0x00861016
+    .word  0x30420001
+    .word  0x24840001
+    .word  0x28830040
+    .word  0x00000000
+    .word  0x1460fffa
+    .word  0x00452821
+    .word  0x28a20006
+    .word  0x50400004
+    .word  0x3c040046
+    .word  0x3c040046
+    .word  0x1000000e
+    .word  0x248406e0
+    .word  0x1000000c
+    .word  0x248406f8
+    .word  0x0c053720
+    .word  0x00000000
+    .word  0x0040202d
+    .word  0x0c053756
+    .word  0x0000282d
+    .word  0x3c030053
+    .word  0x80625c11
+    .word  0x1440000a
+    .word  0x3c040046
+    .word  0x3c040046
+    .word  0x24840710
+    .word  0x0c0c5d9c
+    .word  0x00000000
+    .word  0x8e0401e8
+    .word  0x0c0e8400
+    .word  0x0040282d
+    .word  0x10000007
+    .word  0x7bb00010
+    .word  0x0c0c5d9c
+    .word  0x24840720
+    .word  0x8e0401e8
+    .word  0x0c0e8400
+    .word  0x0040282d
+    .word  0x7bb00010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0020
+.end cFEStateRequestLine_updateHelpText

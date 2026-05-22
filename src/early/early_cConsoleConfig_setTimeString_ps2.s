@@ -1,0 +1,59 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cConsoleConfig_setTimeString
+.ent cConsoleConfig_setTimeString
+cConsoleConfig_setTimeString:
+    .word  0x27bdff90
+    .word  0x7fb10050
+    .word  0x00c0882d
+    .word  0x7fb00060
+    .word  0x00e0302d
+    .word  0xffbf0040
+    .word  0x0100382d
+    .word  0x00a0802d
+    .word  0x11400006
+    .word  0x0120402d
+    .word  0x24020001
+    .word  0x11420009
+    .word  0x0200202d
+    .word  0x1000001b
+    .word  0x0220302d
+    .word  0x3c050048
+    .word  0x03a0202d
+    .word  0x0c0b09f0
+    .word  0x24a56500
+    .word  0x10000014
+    .word  0x0200202d
+    .word  0x28c2000c
+    .word  0x10400006
+    .word  0x03a0202d
+    .word  0x3c050048
+    .word  0x0c0b09f0
+    .word  0x24a56510
+    .word  0x1000000c
+    .word  0x0200202d
+    .word  0x2402000d
+    .word  0x3c050048
+    .word  0x00c2001a
+    .word  0x50400001
+    .word  0x000001cd
+    .word  0x24a56528
+    .word  0x03a0202d
+    .word  0x00003010
+    .word  0x0c0b09f0
+    .word  0x24c6fff4
+    .word  0x0200202d
+    .word  0x0220302d
+    .word  0x0c0b096e
+    .word  0x03a0282d
+    .word  0x7bb00060
+    .word  0x7bb10050
+    .word  0xdfbf0040
+    .word  0x03e00008
+    .word  0x27bd0070
+.end cConsoleConfig_setTimeString

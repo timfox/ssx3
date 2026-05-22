@@ -1,0 +1,97 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cBankManager_cBankManager
+.ent cBankManager_cBankManager
+cBankManager_cBankManager:
+    .word  0x27bdff70
+    .word  0x7fb00080
+    .word  0x7fb10070
+    .word  0x00e0802d
+    .word  0x7fb20060
+    .word  0x00a0882d
+    .word  0x7fb40040
+    .word  0x0080902d
+    .word  0x7fb30050
+    .word  0x00c0a02d
+    .word  0x7fb50030
+    .word  0x12200006
+    .word  0xffbf0020
+    .word  0x26420ad0
+    .word  0x0200282d
+    .word  0x0040202d
+    .word  0x0c0ab7a2
+    .word  0xae4201d8
+    .word  0x0c0a2816
+    .word  0x0240202d
+    .word  0x0200302d
+    .word  0x264401d8
+    .word  0x0c0ab342
+    .word  0x0000282d
+    .word  0x3c030048
+    .word  0x8e4201d8
+    .word  0x24673ab8
+    .word  0x16200011
+    .word  0xac470004
+    .word  0xdc663ab8
+    .word  0xdce20008
+    .word  0xdce30010
+    .word  0xdce40018
+    .word  0x8e4501d8
+    .word  0xffa20008
+    .word  0xffa30010
+    .word  0xffa60000
+    .word  0xffa40018
+    .word  0xacbd0004
+    .word  0x94e30008
+    .word  0x8e4201d8
+    .word  0x2442f530
+    .word  0x02421023
+    .word  0x00621821
+    .word  0xa7a30008
+    .word  0x24040060
+    .word  0x3c020048
+    .word  0x02842018
+    .word  0x3c030048
+    .word  0x24423b48
+    .word  0x24633ad8
+    .word  0xae540ac8
+    .word  0x3c050048
+    .word  0xae420ab0
+    .word  0x24a529b8
+    .word  0xae4301d4
+    .word  0x34840010
+    .word  0x0000302d
+    .word  0x0c0c5f8c
+    .word  0x0000382d
+    .word  0x26550acc
+    .word  0x24530010
+    .word  0x2691ffff
+    .word  0xac540000
+    .word  0x12800008
+    .word  0x0260802d
+    .word  0x2414ffff
+    .word  0x00000000
+    .word  0x0200202d
+    .word  0x0c0a2c92
+    .word  0x2631ffff
+    .word  0x1634fffc
+    .word  0x26100060
+    .word  0xaeb30000
+    .word  0x0240102d
+    .word  0xaf920524
+    .word  0x7bb00080
+    .word  0x7bb10070
+    .word  0x7bb20060
+    .word  0x7bb30050
+    .word  0x7bb40040
+    .word  0x7bb50030
+    .word  0xdfbf0020
+    .word  0x03e00008
+    .word  0x27bd0090
+    .word  0x00000000
+.end cBankManager_cBankManager

@@ -1,0 +1,61 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cScriptSoundBankManager_cScriptSoundBankManager
+.ent cScriptSoundBankManager_cScriptSoundBankManager
+cScriptSoundBankManager_cScriptSoundBankManager:
+    .word  0x27bdffd0
+    .word  0x00c0402d
+    .word  0x7fb10010
+    .word  0x00a0182d
+    .word  0x0080882d
+    .word  0x7fb00020
+    .word  0x2404000c
+    .word  0x3c020048
+    .word  0x01040018
+    .word  0xffbf0000
+    .word  0x24422240
+    .word  0x00e0802d
+    .word  0x3c050048
+    .word  0x0060302d
+    .word  0x24a51fb0
+    .word  0xae230000
+    .word  0x00002012
+    .word  0xae22000c
+    .word  0x0000382d
+    .word  0x0c0c5f8c
+    .word  0xae280004
+    .word  0x8e230004
+    .word  0x0000282d
+    .word  0x18600013
+    .word  0xae220008
+    .word  0x2406ffff
+    .word  0x0000202d
+    .word  0x00000000
+    .word  0x8e230008
+    .word  0x24a50001
+    .word  0x00831821
+    .word  0xac660000
+    .word  0x8e220008
+    .word  0x00821021
+    .word  0xac500004
+    .word  0x26100001
+    .word  0x8e220008
+    .word  0x00821021
+    .word  0xac400008
+    .word  0x8e220004
+    .word  0x00a2102a
+    .word  0x1440fff2
+    .word  0x2484000c
+    .word  0x0220102d
+    .word  0x7bb00020
+    .word  0x7bb10010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0030
+    .word  0x00000000
+.end cScriptSoundBankManager_cScriptSoundBankManager

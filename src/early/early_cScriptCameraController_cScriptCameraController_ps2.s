@@ -1,0 +1,69 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cScriptCameraController_cScriptCameraController
+.ent cScriptCameraController_cScriptCameraController
+cScriptCameraController_cScriptCameraController:
+    .word  0x27bdff90
+    .word  0x7fb20040
+    .word  0x7fb40020
+    .word  0x0080902d
+    .word  0x00a0a02d
+    .word  0x7fb30030
+    .word  0x00c0282d
+    .word  0x7fb50010
+    .word  0x7fb00060
+    .word  0x7fb10050
+    .word  0x0000982d
+    .word  0xffbf0000
+    .word  0x0c0572e8
+    .word  0x3c150046
+    .word  0x3c020046
+    .word  0x24030003
+    .word  0x2442c428
+    .word  0x3c050046
+    .word  0xae420014
+    .word  0x24a5be88
+    .word  0xae430000
+    .word  0x24040008
+    .word  0x0000302d
+    .word  0x0c0c5f8c
+    .word  0x0000382d
+    .word  0xae42001c
+    .word  0x8e51001c
+    .word  0x00000000
+    .word  0x00138080
+    .word  0x0000302d
+    .word  0x0000382d
+    .word  0x02118821
+    .word  0x24040080
+    .word  0x26a5bea0
+    .word  0x0c0c5f5c
+    .word  0x26730001
+    .word  0x0040202d
+    .word  0x0c09f57a
+    .word  0x0280282d
+    .word  0xae220000
+    .word  0x8e42001c
+    .word  0x02028021
+    .word  0x0c0a0ca6
+    .word  0x8e040000
+    .word  0x2a620002
+    .word  0x5440ffee
+    .word  0x8e51001c
+    .word  0x0240102d
+    .word  0xae400018
+    .word  0x7bb00060
+    .word  0x7bb10050
+    .word  0x7bb20040
+    .word  0x7bb30030
+    .word  0x7bb40020
+    .word  0x7bb50010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0070
+.end cScriptCameraController_cScriptCameraController

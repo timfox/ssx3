@@ -17,6 +17,10 @@ void cSSXApp_flush(void* self);
 int cSSXApp_initLocale(void* self);
 int cSSXApp_parseCommandLine(void* self, int argc, char** argv);
 void cSSXApp_timerCallback(void* self);
+int cSSXApp_loadInputMap(void* self, const char* path);
+int cSSXApp_startGameLoad(void* self, int mode);
+int cSSXApp_initload(void* self);
+void cSSXApp_loadexecpurge(void* self);
 
 #ifdef __cplusplus
 }

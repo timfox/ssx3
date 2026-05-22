@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cFEStateRuleSelect_setupMenu
+.ent cFEStateRuleSelect_setupMenu
+cFEStateRuleSelect_setupMenu:
+    .word  0x27bdff10
+    .word  0x3c02004a
+    .word  0x7fb300b0
+    .word  0x00052e00
+    .word  0x7fb50090
+    .word  0x3c03004a
+    .word  0x7fb60080
+    .word  0x0080982d
+    .word  0x7fb70070
+    .word  0x0000a82d
+    .word  0x7fbe0060
+    .word  0x0005be03
+    .word  0x7fb000e0
+    .word  0x27b60010
+    .word  0x7fb100d0
+    .word  0x27be0030
+    .word  0x7fb200c0
+    .word  0x7fb400a0
+    .word  0xffbf0050
+    .word  0x244916a8
+    .word  0x81260000
+    .word  0x81270001
+    .word  0x81280002
+    .word  0xa3a60000
+    .word  0xa3a70001
+    .word  0xa3a80002
+    .word  0x246716b0
+    .word  0x80e20000
+    .word  0x80e50001
+    .word  0x80e60002
+    .word  0xa3a20010
+    .word  0xa3a50011
+    .word  0xa3a60012
+    .word  0x00000000
+    .word  0x0c0c5d9c
+    .word  0x03a0202d
+    .word  0x8e640040
+    .word  0x0c0e7618
+    .word  0x0040282d
+    .word  0x02c0202d
+    .word  0x0c0c5d9c
+    .word  0x0040802d
+    .word  0x8e640040
+    .word  0x0c0e7618
+    .word  0x0040282d
+    .word  0x120000ce
+    .word  0x0040902d
+    .word  0x124000cc
+    .word  0x02b71021
+    .word  0x82630050
+    .word  0x00021600
+    .word  0x00021603
+    .word  0x0043182a
+    .word  0x106000d8
+    .word  0x3c050044
+    .word  0x8e640048
+    .word  0x24a51018
+    .word  0x3c030044
+    .word  0x00822021
+    .word  0x24631008
+    .word  0x80940000
+    .word  0x00141080
+    .word  0x02831821
+    .word  0x00451021
+    .word  0x80710000
+    .word  0x0c0c5d9c
+    .word  0x8c440000
+    .word  0x0040282d
+    .word  0x0c0e8400
+    .word  0x0240202d
+    .word  0x0c0e699c
+    .word  0x0200202d
+    .word  0x2e220007
+    .word  0x1040009f
+    .word  0xae140018
+    .word  0x3c020046
+    .word  0x00111880
+    .word  0x2442faf0
+    .word  0x00621821
+    .word  0x8c640000
+    .word  0x00800008
+    .word  0x00000000
+.end cFEStateRuleSelect_setupMenu

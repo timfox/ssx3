@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_001AC170
+.ent func_001AC170
+func_001AC170:
+    .word  0x27bdffc0
+    .word  0x7fb20010
+    .word  0x7fb10020
+    .word  0x0080902d
+    .word  0xffbf0000
+    .word  0x00a0882d
+    .word  0x7fb00030
+    .word  0x3c040046
+    .word  0x8e300038
+    .word  0x0c0c5d9c
+    .word  0x24842b38
+    .word  0x56020003
+    .word  0x3c040046
+    .word  0x1000003e
+    .word  0xae200018
+    .word  0x8e300038
+    .word  0x0c0c5d9c
+    .word  0x24842b48
+    .word  0x56020003
+    .word  0x3c040046
+    .word  0x10000036
+    .word  0x24020001
+    .word  0x8e300038
+    .word  0x0c0c5d9c
+    .word  0x24842b58
+    .word  0x56020014
+    .word  0x3c040046
+    .word  0xae5106e0
+    .word  0x24020002
+    .word  0xae220018
+    .word  0x24050001
+    .word  0x8e4606e0
+    .word  0x8cc20008
+    .word  0x844400c8
+    .word  0x8c4300cc
+    .word  0x0060f809
+    .word  0x00c42021
+    .word  0x8e4606e0
+    .word  0x24050001
+    .word  0x8cc20008
+    .word  0x84440040
+    .word  0x8c430044
+    .word  0x0060f809
+    .word  0x00c42021
+    .word  0x10000020
+    .word  0x7bb00030
+    .word  0x8e300038
+    .word  0x0c0c5d9c
+    .word  0x24842b70
+    .word  0x56020003
+    .word  0x3c040046
+    .word  0x10000017
+    .word  0x24020003
+    .word  0x8e300038
+    .word  0x0c0c5d9c
+    .word  0x24842b88
+    .word  0x12020006
+    .word  0x3c040046
+    .word  0x8e300038
+    .word  0x0c0c5d9c
+    .word  0x24842ba0
+    .word  0x16020007
+    .word  0x3c04004a
+    .word  0x3c05004a
+    .word  0x0220202d
+    .word  0x0c0e8314
+    .word  0x24a51408
+    .word  0x10000009
+    .word  0x7bb00030
+    .word  0x8e300038
+    .word  0x0c0c5d9c
+    .word  0x24841a80
+    .word  0x16020004
+    .word  0x7bb00030
+    .word  0x24020004
+    .word  0xae220018
+    .word  0x7bb00030
+    .word  0x7bb10020
+    .word  0x7bb20010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0040
+.end func_001AC170

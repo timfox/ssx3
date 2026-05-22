@@ -1,0 +1,81 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cCamera_cCamera
+.ent cCamera_cCamera
+cCamera_cCamera:
+    .word  0x27bdffd0
+    .word  0x7fb00020
+    .word  0x0080802d
+    .word  0x7fb10010
+    .word  0xffbf0000
+    .word  0x0c0575a6
+    .word  0x00a0882d
+    .word  0x3c030046
+    .word  0x260400c0
+    .word  0x2463b888
+    .word  0x0c05db5a
+    .word  0xae030090
+    .word  0x3c050046
+    .word  0x0000302d
+    .word  0x0000382d
+    .word  0x24a5b748
+    .word  0x0c0c5f5c
+    .word  0x24040020
+    .word  0x0200282d
+    .word  0x0c057360
+    .word  0x0040202d
+    .word  0x3c050046
+    .word  0x0000382d
+    .word  0xae0200a4
+    .word  0x24a5b760
+    .word  0x24040044
+    .word  0x0c0c5f5c
+    .word  0x0000302d
+    .word  0x0220282d
+    .word  0x0200302d
+    .word  0x0c05866a
+    .word  0x0040202d
+    .word  0x3c050046
+    .word  0x0000382d
+    .word  0xae0200a8
+    .word  0x24a5b778
+    .word  0x24040020
+    .word  0x0c0c5f5c
+    .word  0x0000302d
+    .word  0x0220282d
+    .word  0x0200302d
+    .word  0x0c05a3fa
+    .word  0x0040202d
+    .word  0x2403ffff
+    .word  0xae0200ac
+    .word  0xae0300b0
+    .word  0x3c040050
+    .word  0xae0000b4
+    .word  0x2484f160
+    .word  0xae000454
+    .word  0x3c050050
+    .word  0xae000458
+    .word  0x24a5f130
+    .word  0xae00045c
+    .word  0x24060001
+    .word  0xae000450
+    .word  0x0200102d
+    .word  0xae000460
+    .word  0x7bb10010
+    .word  0x78830000
+    .word  0xdfbf0000
+    .word  0x7e030470
+    .word  0x78a40000
+    .word  0xae0604a4
+    .word  0x7e040490
+    .word  0xae0004a0
+    .word  0x7bb00020
+    .word  0x03e00008
+    .word  0x27bd0030
+    .word  0x00000000
+.end cCamera_cCamera

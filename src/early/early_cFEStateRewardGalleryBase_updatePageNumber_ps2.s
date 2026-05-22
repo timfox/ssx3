@@ -1,0 +1,101 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cFEStateRewardGalleryBase_updatePageNumber
+.ent cFEStateRewardGalleryBase_updatePageNumber
+cFEStateRewardGalleryBase_updatePageNumber:
+    .word  0x27bdfef0
+    .word  0x7fb200e0
+    .word  0x7fb00100
+    .word  0x0080902d
+    .word  0x7fb100f0
+    .word  0xffbf00d0
+    .word  0x8e420904
+    .word  0x1040004c
+    .word  0x7bb00100
+    .word  0x8e420040
+    .word  0x8c4300d0
+    .word  0x8c640010
+    .word  0x8c820010
+    .word  0x10400041
+    .word  0x3c040046
+    .word  0x8c510004
+    .word  0x24847060
+    .word  0x86300020
+    .word  0x0c0c5d9c
+    .word  0x00508021
+    .word  0x8e230024
+    .word  0x0040282d
+    .word  0x0060f809
+    .word  0x0200202d
+    .word  0x0040282d
+    .word  0x10a00035
+    .word  0x03a0202d
+    .word  0x8e420058
+    .word  0x8e430060
+    .word  0x50400001
+    .word  0x000001cd
+    .word  0x00621821
+    .word  0x8e460064
+    .word  0x2463ffff
+    .word  0x0062001a
+    .word  0x00c23021
+    .word  0x24c6ffff
+    .word  0x00008012
+    .word  0x00c2001a
+    .word  0x0200382d
+    .word  0x00003012
+    .word  0x0c0b09b4
+    .word  0x24c60001
+    .word  0x8e440904
+    .word  0x0c0e83a4
+    .word  0x03a0282d
+    .word  0x3c04004a
+    .word  0x0c0c5d9c
+    .word  0x24841ef8
+    .word  0x8e440040
+    .word  0x0c0e7618
+    .word  0x0040282d
+    .word  0x0040302d
+    .word  0x10c00007
+    .word  0x2a050002
+    .word  0x8cc30008
+    .word  0x38a50001
+    .word  0x84640048
+    .word  0x8c62004c
+    .word  0x0040f809
+    .word  0x00c42021
+    .word  0x3c04004a
+    .word  0x0c0c5d9c
+    .word  0x24841f00
+    .word  0x8e440040
+    .word  0x0c0e7618
+    .word  0x0040282d
+    .word  0x0040302d
+    .word  0x50c0000f
+    .word  0x7bb00100
+    .word  0x8cc30008
+    .word  0x2a050002
+    .word  0x38a50001
+    .word  0x84640048
+    .word  0x8c62004c
+    .word  0x0040f809
+    .word  0x00c42021
+    .word  0x10000006
+    .word  0x7bb00100
+    .word  0x3c05004a
+    .word  0x8e440904
+    .word  0x0c0e8314
+    .word  0x24a51408
+    .word  0x7bb00100
+    .word  0x7bb100f0
+    .word  0x7bb200e0
+    .word  0xdfbf00d0
+    .word  0x03e00008
+    .word  0x27bd0110
+    .word  0x00000000
+.end cFEStateRewardGalleryBase_updatePageNumber

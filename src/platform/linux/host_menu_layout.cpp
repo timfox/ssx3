@@ -1,5 +1,14 @@
 #include "platform/host_menu_layout.h"
 
+#include "platform/host_fe_atlas.h"
+#include "platform/host_vulkan_menu.h"
+#include "platform/host_visualfx_menu.h"
+#include "platform/host_fe_font.h"
+#include "platform/host_fe_layout.h"
+#include "platform/host_fe_layout_runtime.h"
+#include "platform/host_vulkan_menu.h"
+#include "platform/host_fe_strings.h"
+
 #define STB_EASY_FONT_IMPLEMENTATION
 #include "third_party/stb_easy_font.h"
 
@@ -15,9 +24,6 @@ namespace {
 
 constexpr int kAmbientSnowCount = 85;
 constexpr int kBurstSnowCount = 50;
-constexpr int kTexLogo = 0;
-constexpr int kTexMountain = 1;
-constexpr int kTexSnow = 2;
 
 // Retail title_logo crop is 512x276 (ui/fe_1.ssh ssxt, top band).
 constexpr float kLogoAspect = 512.0f / 276.0f;
@@ -62,6 +68,204 @@ float vph(const MenuViewport& vp, float vh) {
     return (vh / static_cast<float>(kTitleVirtualHeight)) * vp.height;
 }
 
+void append_fullwindow_sky(std::vector<MenuSprite>& sprites,
+                           const MenuViewport& viewport,
+                           float r,
+                           float g,
+                           float b,
+                           float r2,
+                           float g2,
+                           float b2) {
+    MenuSprite sky{};
+    sky.texture_index = kTexMenuSnow;
+    sky.x = 0.0f;
+    sky.y = 0.0f;
+    sky.w = static_cast<float>(viewport.window_width);
+    sky.h = static_cast<float>(viewport.window_height);
+    sky.gradient_y = true;
+    sky.r = r;
+    sky.g = g;
+    sky.b = b;
+    sky.a = 1.0f;
+    sky.r2 = r2;
+    sky.g2 = g2;
+    sky.b2 = b2;
+    sky.a2 = 1.0f;
+    append_sprite(sprites, sky);
+}
+
+void append_virtual_rect(std::vector<MenuSprite>& sprites,
+                         const MenuViewport& vp,
+                         int texture_index,
+                         float vx,
+                         float vy,
+                         float vw,
+                         float vh,
+                         float alpha = 1.0f,
+                         float r = 1.0f,
+                         float g = 1.0f,
+                         float b = 1.0f,
+                         float u0 = 0.0f,
+                         float v0 = 0.0f,
+                         float u1 = 1.0f,
+                         float v1 = 1.0f) {
+    MenuSprite sprite{};
+    sprite.texture_index = texture_index;
+    sprite.x = vpx(vp, vx);
+    sprite.y = vpy(vp, vy);
+    sprite.w = vpw(vp, vw);
+    sprite.h = vph(vp, vh);
+    sprite.u0 = u0;
+    sprite.v0 = v0;
+    sprite.u1 = u1;
+    sprite.v1 = v1;
+    sprite.r = r;
+    sprite.g = g;
+    sprite.b = b;
+    sprite.a = alpha;
+    append_sprite(sprites, sprite);
+}
+
+void append_solid_rect(std::vector<MenuSprite>& sprites,
+                       const MenuViewport& vp,
+                       float vx,
+                       float vy,
+                       float vw,
+                       float vh,
+                       float r,
+                       float g,
+                       float b,
+                       float a) {
+    append_virtual_rect(sprites, vp, kTexMenuSolid, vx, vy, vw, vh, a, r, g, b);
+}
+
+void append_texture_rect(std::vector<MenuSprite>& sprites,
+                         const MenuViewport& vp,
+                         int texture_index,
+                         float vx,
+                         float vy,
+                         float vw,
+                         float vh,
+                         const FeAtlasRect& uv,
+                         float alpha = 1.0f,
+                         float r = 1.0f,
+                         float g = 1.0f,
+                         float b = 1.0f) {
+    append_virtual_rect(sprites,
+                        vp,
+                        texture_index,
+                        vx,
+                        vy,
+                        vw,
+                        vh,
+                        alpha,
+                        r,
+                        g,
+                        b,
+                        uv.u0,
+                        uv.v0,
+                        uv.u1,
+                        uv.v1);
+}
+
+void append_dashed_line_h(std::vector<MenuSprite>& sprites,
+                          const MenuViewport& vp,
+                          float x0,
+                          float x1,
+                          float y,
+                          float thickness = 1.0f) {
+    constexpr float dash = 6.0f;
+    constexpr float gap = 5.0f;
+    for (float x = x0; x < x1; x += dash + gap) {
+        const float w = std::min(dash, x1 - x);
+        append_solid_rect(sprites, vp, x, y, w, thickness, 0.45f, 0.48f, 0.52f, 0.28f);
+    }
+}
+
+void append_dashed_line_v(std::vector<MenuSprite>& sprites,
+                          const MenuViewport& vp,
+                          float x,
+                          float y0,
+                          float y1,
+                          float thickness = 1.0f) {
+    constexpr float dash = 6.0f;
+    constexpr float gap = 5.0f;
+    for (float y = y0; y < y1; y += dash + gap) {
+        const float h = std::min(dash, y1 - y);
+        append_solid_rect(sprites, vp, x, y, thickness, h, 0.45f, 0.48f, 0.52f, 0.28f);
+    }
+}
+
+void append_retail_menu_sky(std::vector<MenuSprite>& sprites, const MenuViewport& vp) {
+    /* Retail main menu: light icy blue (not fe_1_EA_b — that atlas is dark grey). */
+    append_fullwindow_sky(sprites, vp, 0.72f, 0.82f, 0.92f, 0.58f, 0.68f, 0.82f);
+}
+
+void append_menu_backdrop(std::vector<MenuSprite>& sprites, const MenuViewport& vp) {
+    append_retail_menu_sky(sprites, vp);
+}
+
+void append_main_menu_orange_frame(std::vector<MenuSprite>& sprites, const MenuViewport& vp) {
+    constexpr float vw = static_cast<float>(kTitleVirtualWidth);
+    constexpr float vh = static_cast<float>(kTitleVirtualHeight);
+    const float orange_r = 0.92f;
+    const float orange_g = 0.42f;
+    const float orange_b = 0.08f;
+    append_solid_rect(sprites, vp, 0.0f, vh - 18.0f, vw, 18.0f, orange_r, orange_g, orange_b, 1.0f);
+    append_solid_rect(sprites, vp, 0.0f, 0.0f, 14.0f, vh, orange_r, orange_g, orange_b, 1.0f);
+}
+
+void append_main_menu_left_panel(std::vector<MenuSprite>& sprites,
+                                 const MenuViewport& vp,
+                                 float column_divider_x) {
+    append_solid_rect(sprites,
+                      vp,
+                      14.0f,
+                      52.0f,
+                      column_divider_x - 22.0f,
+                      268.0f,
+                      0.22f,
+                      0.38f,
+                      0.58f,
+                      0.92f);
+}
+
+void append_menu_list_highlight(std::vector<MenuSprite>& sprites,
+                                const MenuViewport& vp,
+                                float sel_x,
+                                float sel_y,
+                                float sel_w,
+                                float sel_h) {
+    append_solid_rect(sprites, vp, sel_x, sel_y, sel_w, sel_h, 0.94f, 0.44f, 0.06f, 1.0f);
+}
+
+void append_options_backdrop(std::vector<MenuSprite>& sprites, const MenuViewport& vp) {
+    constexpr float vw = static_cast<float>(kTitleVirtualWidth);
+    constexpr float vh = static_cast<float>(kTitleVirtualHeight);
+    append_fullwindow_sky(sprites, vp, 0.12f, 0.16f, 0.22f, 0.18f, 0.22f, 0.30f);
+    append_virtual_rect(sprites,
+                        vp,
+                        kTexMenuHudPanel,
+                        FeOptionsLayout::panel_x,
+                        FeOptionsLayout::panel_y,
+                        FeOptionsLayout::panel_w,
+                        FeOptionsLayout::panel_h,
+                        0.94f);
+    append_solid_rect(sprites, vp, 0.0f, 0.0f, vw, vh, 0.0f, 0.0f, 0.0f, 0.28f);
+}
+
+void append_options_sub_backdrop(std::vector<MenuSprite>& sprites, const MenuViewport& vp) {
+    append_options_backdrop(sprites, vp);
+    append_virtual_rect(sprites,
+                        vp,
+                        kTexMenuHudPanel,
+                        FeOptionsSubLayout::panel_x,
+                        FeOptionsSubLayout::panel_y,
+                        FeOptionsSubLayout::panel_w,
+                        FeOptionsSubLayout::panel_h,
+                        0.96f);
+}
+
 void append_text(std::vector<MenuSprite>& sprites,
                  const MenuViewport& vp,
                  const char* text,
@@ -72,12 +276,19 @@ void append_text(std::vector<MenuSprite>& sprites,
                  float g,
                  float b,
                  float a) {
+    if (host_fe_font_is_loaded()) {
+        append_fe_text(sprites, vp, text, vx, vy, scale, r, g, b, a);
+        return;
+    }
+
     alignas(16) char vertex_buffer[65536];
-    /* stb_easy_font_print returns quad count (bytes written / 64), not byte length. */
+    /* stb_easy_font_print returns quad count (bytes written / 64), not byte length.
+     * Each quad is a solid axis-aligned rectangle (no texture); use kTexSolid. */
     const int num_quads =
         stb_easy_font_print(0.0f, 0.0f, const_cast<char*>(text), nullptr, vertex_buffer, sizeof(vertex_buffer));
     const auto* bytes = reinterpret_cast<const unsigned char*>(vertex_buffer);
-    const float pixel_scale = vpw(vp, scale);
+    const float scale_x = vpw(vp, scale);
+    const float scale_y = vph(vp, scale);
     for (int i = 0; i < num_quads; ++i) {
         const unsigned char* q = bytes + i * 64;
         float min_x = 0.0f;
@@ -100,23 +311,135 @@ void append_text(std::vector<MenuSprite>& sprites,
                 max_y = std::max(max_y, fy);
             }
         }
+        const float glyph_w = (max_x - min_x) * scale_x;
+        const float glyph_h = (max_y - min_y) * scale_y;
+        if (glyph_w < 0.25f && glyph_h < 0.25f) {
+            continue;
+        }
+
         MenuSprite sprite{};
         sprite.x = vpx(vp, vx + min_x * scale);
         sprite.y = vpy(vp, vy + min_y * scale);
-        sprite.w = (max_x - min_x) * pixel_scale;
-        sprite.h = (max_y - min_y) * pixel_scale;
+        sprite.w = std::max(glyph_w, 1.0f);
+        sprite.h = std::max(glyph_h, 1.0f);
+        sprite.u0 = 0.0f;
+        sprite.v0 = 0.0f;
+        sprite.u1 = 1.0f;
+        sprite.v1 = 1.0f;
         sprite.r = r;
         sprite.g = g;
         sprite.b = b;
         sprite.a = a;
-        sprite.texture_index = kTexSnow;
-        if (sprite.w > 0.5f && sprite.h > 0.5f) {
-            append_sprite(sprites, sprite);
-        }
+        sprite.texture_index = kTexMenuSolid;
+        append_sprite(sprites, sprite);
     }
 }
 
+void append_main_menu_controller_hints(std::vector<MenuSprite>& sprites,
+                                       const MenuViewport& vp,
+                                       float hint_y,
+                                       float hint_scale) {
+    struct HintRow {
+        FeAtlasRect icon;
+        const char* label;
+    };
+    static const HintRow kRows[] = {
+        {FePs2PadAtlas::kCross, fe_string_hint_select()},
+        {FePs2PadAtlas::kTriangle, fe_string_hint_previous()},
+        {FePs2PadAtlas::kSquare, fe_string_hint_options()},
+    };
+
+    if (!vulkan_menu_texture_ready(kTexMenuBgAccent)) {
+        append_text(sprites,
+                    vp,
+                    fe_string_main_menu_hints(),
+                    318.0f,
+                    hint_y,
+                    hint_scale,
+                    0.08f,
+                    0.08f,
+                    0.10f,
+                    0.92f);
+        return;
+    }
+
+    constexpr float icon = 22.0f;
+    constexpr float group_w = 106.0f;
+    constexpr float start_x = 318.0f;
+    const float text_y = hint_y + 3.0f;
+    const float text_scale = hint_scale * 0.96f;
+
+    for (int i = 0; i < 3; ++i) {
+        const float gx = start_x + static_cast<float>(i) * group_w;
+        append_texture_rect(sprites,
+                            vp,
+                            kTexMenuBgAccent,
+                            gx,
+                            hint_y,
+                            icon,
+                            icon,
+                            kRows[i].icon,
+                            1.0f);
+        append_text(sprites,
+                    vp,
+                    kRows[i].label,
+                    gx + icon + 5.0f,
+                    text_y,
+                    text_scale,
+                    0.06f,
+                    0.06f,
+                    0.08f,
+                    0.95f);
+    }
+}
+
+void append_menu_list_label(std::vector<MenuSprite>& sprites,
+                            const MenuViewport& vp,
+                            const char* text,
+                            float x,
+                            float y,
+                            float scale,
+                            float scale_sel,
+                            bool selected,
+                            bool disabled) {
+    const float use_scale = selected ? scale_sel : scale;
+    float r = 0.05f;
+    float g = 0.05f;
+    float b = 0.08f;
+    float a = 0.95f;
+    if (selected) {
+        r = g = 1.0f;
+        b = 1.0f;
+        a = 1.0f;
+    } else if (disabled) {
+        r = 0.45f;
+        g = 0.48f;
+        b = 0.55f;
+        a = 0.75f;
+    }
+    append_text(sprites, vp, text, x, y, use_scale, r, g, b, a);
+}
+
+void append_options_list_label(std::vector<MenuSprite>& sprites,
+                               const MenuViewport& vp,
+                               const char* text,
+                               float x,
+                               float y,
+                               float scale,
+                               float scale_sel,
+                               bool selected) {
+    const float use_scale = selected ? scale_sel : scale;
+    const float r = selected ? 0.98f : 0.62f;
+    const float g = selected ? 0.98f : 0.64f;
+    const float b = selected ? 1.0f : 0.68f;
+    append_text(sprites, vp, text, x, y, use_scale, r, g, b, selected ? 1.0f : 0.86f);
+}
+
 float measure_text_width_virtual(const char* text, float scale) {
+    if (host_fe_font_is_loaded()) {
+        return measure_fe_text_width_virtual(text, scale);
+    }
+
     alignas(16) char buf[4096];
     const int count =
         stb_easy_font_print(0.0f, 0.0f, const_cast<char*>(text), nullptr, buf, sizeof(buf));
@@ -147,8 +470,8 @@ void init_snow(float logo_cx, float logo_cy, float logo_w) {
     std::uniform_real_distribution<float> x_dist(0.0f, static_cast<float>(kTitleVirtualWidth));
     std::uniform_real_distribution<float> y_dist(0.0f, static_cast<float>(kTitleVirtualHeight));
     std::uniform_real_distribution<float> vx_amb(-10.0f, 10.0f);
-    // Positive virtual vy moves up on screen with our NDC mapping; use negative for fall.
-    std::uniform_real_distribution<float> vy_amb(-32.0f, -8.0f);
+    // Virtual coords: y=0 at top; positive vy moves downward (falling snow).
+    std::uniform_real_distribution<float> vy_amb(8.0f, 32.0f);
     std::uniform_real_distribution<float> size_amb(1.5f, 4.5f);
     std::uniform_real_distribution<float> alpha_amb(0.2f, 0.55f);
 
@@ -165,7 +488,7 @@ void init_snow(float logo_cx, float logo_cy, float logo_w) {
     std::normal_distribution<float> burst_x(logo_cx + logo_w * 0.14f, logo_w * 0.09f);
     std::normal_distribution<float> burst_y(logo_cy - logo_w * 0.02f, logo_w * 0.05f);
     std::uniform_real_distribution<float> burst_vx(-20.0f, 70.0f);
-    std::uniform_real_distribution<float> burst_vy(-48.0f, -12.0f);
+    std::uniform_real_distribution<float> burst_vy(12.0f, 48.0f);
     std::uniform_real_distribution<float> size_burst(2.0f, 7.0f);
     std::uniform_real_distribution<float> alpha_burst(0.5f, 1.0f);
 
@@ -193,7 +516,7 @@ void update_snow(float dt, float logo_cx, float logo_cy, float logo_w) {
         flake.x += flake.vx * dt;
         flake.y += flake.vy * dt;
         if (flake.burst) {
-            flake.vy -= 6.0f * dt;
+            flake.vy += 6.0f * dt;
             flake.vx *= 1.0f - 0.25f * dt;
             if (flake.y < logo_cy - logo_w * 0.35f || flake.x > w + 12.0f) {
                 std::mt19937 rng(static_cast<uint32_t>(flake.x * 19.0f + flake.y * 7.0f));
@@ -202,7 +525,7 @@ void update_snow(float dt, float logo_cx, float logo_cy, float logo_w) {
                 flake.x = burst_x(rng);
                 flake.y = burst_y(rng);
                 flake.vx = 18.0f + static_cast<float>(rng() % 55);
-                flake.vy = -14.0f - static_cast<float>(rng() % 28);
+                flake.vy = 14.0f + static_cast<float>(rng() % 28);
             }
         } else {
             if (flake.y < -flake.size - 8.0f) {
@@ -280,41 +603,23 @@ void build_title_screen(MenuFrame& frame,
     constexpr float vw = static_cast<float>(kTitleVirtualWidth);
     constexpr float vh = static_cast<float>(kTitleVirtualHeight);
 
-    // Retail layout (640x448): wide icy logo, mountains left, heavy bottom fog.
-    const float logo_w = 548.0f;
+    const float logo_w = FeTitleLayout::logo_w;
     const float logo_h = logo_w / kLogoAspect;
     const float logo_x = (vw - logo_w) * 0.5f;
-    const float logo_y = 86.0f;
+    const float logo_y = FeTitleLayout::logo_y;
     const float logo_cx = logo_x + logo_w * 0.5f;
     const float logo_cy = logo_y + logo_h * 0.5f;
 
     update_snow(dt, logo_cx, logo_cy, logo_w);
 
-    // Sky gradient
-    MenuSprite sky{};
-    sky.texture_index = kTexSnow;
-    sky.x = vpx(viewport, 0.0f);
-    sky.y = vpy(viewport, 0.0f);
-    sky.w = vpw(viewport, vw);
-    sky.h = vph(viewport, vh);
-    sky.gradient_y = true;
-    sky.r = 0.70f;
-    sky.g = 0.82f;
-    sky.b = 0.95f;
-    sky.a = 1.0f;
-    sky.r2 = 0.96f;
-    sky.g2 = 0.98f;
-    sky.b2 = 1.0f;
-    sky.a2 = 1.0f;
-    append_sprite(frame.sprites, sky);
+    append_fullwindow_sky(frame.sprites, viewport, 0.62f, 0.74f, 0.88f, 0.88f, 0.92f, 0.98f);
 
-    // Distant peaks (left-heavy, matches retail mountain placement)
     MenuSprite mountain{};
-    mountain.texture_index = kTexMountain;
-    mountain.x = vpx(viewport, -48.0f);
-    mountain.y = vpy(viewport, 118.0f);
-    mountain.w = vpw(viewport, 390.0f);
-    mountain.h = vph(viewport, 250.0f);
+    mountain.texture_index = kTexMenuMountain;
+    mountain.x = vpx(viewport, FeTitleLayout::mountain_x);
+    mountain.y = vpy(viewport, FeTitleLayout::mountain_y);
+    mountain.w = vpw(viewport, FeTitleLayout::mountain_w);
+    mountain.h = vph(viewport, FeTitleLayout::mountain_h);
     mountain.r = 0.58f;
     mountain.g = 0.70f;
     mountain.b = 0.84f;
@@ -331,11 +636,11 @@ void build_title_screen(MenuFrame& frame,
 
     // Bottom whiteout fog overlay
     MenuSprite fog{};
-    fog.texture_index = kTexSnow;
+    fog.texture_index = kTexMenuSnow;
     fog.x = vpx(viewport, 0.0f);
-    fog.y = vpy(viewport, 250.0f);
+    fog.y = vpy(viewport, FeTitleLayout::fog_y);
     fog.w = vpw(viewport, vw);
-    fog.h = vph(viewport, vh - 250.0f);
+    fog.h = vph(viewport, vh - FeTitleLayout::fog_y);
     fog.gradient_y = true;
     fog.r = 1.0f;
     fog.g = 1.0f;
@@ -349,7 +654,7 @@ void build_title_screen(MenuFrame& frame,
 
     for (const Snowflake& flake : g_title.ambient) {
         MenuSprite snow{};
-        snow.texture_index = kTexSnow;
+        snow.texture_index = kTexMenuSnow;
         snow.x = vpx(viewport, flake.x);
         snow.y = vpy(viewport, flake.y);
         snow.w = vpw(viewport, flake.size);
@@ -362,7 +667,7 @@ void build_title_screen(MenuFrame& frame,
     }
 
     MenuSprite logo{};
-    logo.texture_index = kTexLogo;
+    logo.texture_index = kTexMenuLogo;
     logo.x = vpx(viewport, logo_x);
     logo.y = vpy(viewport, logo_y);
     logo.w = vpw(viewport, logo_w);
@@ -372,7 +677,7 @@ void build_title_screen(MenuFrame& frame,
 
     for (const Snowflake& flake : g_title.burst) {
         MenuSprite snow{};
-        snow.texture_index = kTexSnow;
+        snow.texture_index = kTexMenuSnow;
         snow.x = vpx(viewport, flake.x);
         snow.y = vpy(viewport, flake.y);
         snow.w = vpw(viewport, flake.size);
@@ -385,28 +690,28 @@ void build_title_screen(MenuFrame& frame,
     }
 
     const float blink = 0.55f + 0.45f * (0.5f + 0.5f * std::sin(time_sec * 3.0f));
-    const char* press_text = "press <start> to play";
-    const float press_scale = 2.05f;
+    const char* press_text = fe_string_title_press();
+    const float press_scale = FeTitleLayout::press_scale;
     const float press_w = measure_text_width_virtual(press_text, press_scale);
     append_text(frame.sprites,
                 viewport,
                 press_text,
                 (vw - press_w) * 0.5f,
-                288.0f,
+                FeTitleLayout::press_y,
                 press_scale,
-                0.82f,
-                0.84f,
                 0.88f,
+                0.90f,
+                0.94f,
                 blink);
 
-    const char* copy_text = "Copyright Electronic Arts";
-    const float copy_scale = 1.15f;
+    const char* copy_text = fe_string_title_copyright();
+    const float copy_scale = FeTitleLayout::copyright_scale;
     const float copy_w = measure_text_width_virtual(copy_text, copy_scale);
     append_text(frame.sprites,
                 viewport,
                 copy_text,
                 (vw - copy_w) * 0.5f,
-                412.0f,
+                FeTitleLayout::copyright_y,
                 copy_scale,
                 0.07f,
                 0.07f,
@@ -429,90 +734,130 @@ void build_main_menu_screen(MenuFrame& frame,
         return;
     }
 
+    const FeMainMenuLayoutValues& layout = fe_main_menu_layout();
     constexpr float vw = static_cast<float>(kTitleVirtualWidth);
     constexpr float vh = static_cast<float>(kTitleVirtualHeight);
 
-    MenuSprite sky{};
-    sky.texture_index = kTexSnow;
-    sky.x = vpx(viewport, 0.0f);
-    sky.y = vpy(viewport, 0.0f);
-    sky.w = vpw(viewport, vw);
-    sky.h = vph(viewport, vh);
-    sky.gradient_y = true;
-    sky.r = 0.55f;
-    sky.g = 0.68f;
-    sky.b = 0.82f;
-    sky.a = 1.0f;
-    sky.r2 = 0.88f;
-    sky.g2 = 0.92f;
-    sky.b2 = 0.98f;
-    sky.a2 = 1.0f;
-    append_sprite(frame.sprites, sky);
+    append_menu_backdrop(frame.sprites, viewport);
+    append_main_menu_left_panel(frame.sprites, viewport, layout.column_divider_x);
+    append_main_menu_orange_frame(frame.sprites, viewport);
 
-    MenuSprite mountain{};
-    mountain.texture_index = kTexMountain;
-    mountain.x = vpx(viewport, -60.0f);
-    mountain.y = vpy(viewport, 80.0f);
-    mountain.w = vpw(viewport, 420.0f);
-    mountain.h = vph(viewport, 320.0f);
-    mountain.r = 0.65f;
-    mountain.g = 0.78f;
-    mountain.b = 0.90f;
-    mountain.a = 0.95f;
-    append_sprite(frame.sprites, mountain);
+    const float orange3_w = 52.0f;
+    const float orange3_h = 64.0f;
+    append_texture_rect(frame.sprites,
+                        viewport,
+                        kTexMenuBrandLogo,
+                        layout.orange_three_x,
+                        layout.orange_three_y,
+                        orange3_w,
+                        orange3_h,
+                        FeBrandAtlas::kOrangeThree);
 
-    const float logo_w = 320.0f;
-    const float logo_h = logo_w / kLogoAspect;
-    MenuSprite logo{};
-    logo.texture_index = kTexLogo;
-    logo.x = vpx(viewport, (vw - logo_w) * 0.5f);
-    logo.y = vpy(viewport, 24.0f);
-    logo.w = vpw(viewport, logo_w);
-    logo.h = vph(viewport, logo_h);
-    logo.a = 0.92f;
-    append_sprite(frame.sprites, logo);
+    const float wordmark_w = layout.corner_logo_w;
+    const float wordmark_h = 36.0f;
+    append_texture_rect(frame.sprites,
+                        viewport,
+                        kTexMenuBrandLogo,
+                        layout.corner_logo_x,
+                        layout.corner_logo_y,
+                        wordmark_w,
+                        wordmark_h,
+                        FeBrandAtlas::kWordmark,
+                        0.9f);
 
-    static const char* kMenuItems[] = {
-        "Freeride",
-        "World Tour",
-        "Multiplayer",
-        "Options",
-        "Profile",
-    };
-    const int count = static_cast<int>(sizeof(kMenuItems) / sizeof(kMenuItems[0]));
-    const int items = item_count < count ? item_count : count;
-    const float base_x = 368.0f;
-    const float base_y = 168.0f;
-    const float line_h = 38.0f;
-    const float base_scale = 2.35f;
-    const float sel_scale = 2.75f;
-
-    for (int i = 0; i < items; ++i) {
-        const bool selected = (i == selected_item);
-        const float scale = selected ? sel_scale : base_scale;
-        const float pulse = selected ? (0.85f + 0.15f * std::sin(time_sec * 5.0f)) : 1.0f;
-        append_text(frame.sprites,
-                    viewport,
-                    kMenuItems[i],
-                    base_x,
-                    base_y + static_cast<float>(i) * line_h,
-                    scale,
-                    selected ? 0.05f : 0.12f,
-                    selected ? 0.08f : 0.14f,
-                    selected ? 0.12f : 0.18f,
-                    selected ? pulse : 0.82f);
-    }
+    append_dashed_line_h(frame.sprites, viewport, 16.0f, vw - 16.0f, layout.header_divider_y);
+    append_dashed_line_v(frame.sprites,
+                         viewport,
+                         layout.column_divider_x,
+                         layout.header_divider_y + 4.0f,
+                         vh - 56.0f);
 
     append_text(frame.sprites,
                 viewport,
-                "D-Pad / arrows  ·  Cross confirm  ·  Circle back",
-                48.0f,
-                418.0f,
-                1.35f,
-                0.35f,
-                0.38f,
-                0.42f,
-                0.75f);
+                fe_string_main_menu_title(),
+                layout.header_title_x,
+                layout.header_title_y,
+                layout.header_title_scale,
+                0.98f,
+                0.98f,
+                1.0f,
+                1.0f);
+
+    const int items = item_count < fe_mainmenu_item_count() ? item_count : fe_mainmenu_item_count();
+    const int sel = selected_item < 0 ? 0 : (selected_item >= items ? items - 1 : selected_item);
+
+    append_text(frame.sprites,
+                viewport,
+                fe_mainmenu_description(sel),
+                layout.desc_x,
+                layout.desc_y,
+                layout.desc_scale,
+                0.96f,
+                0.98f,
+                1.0f,
+                1.0f);
+
+    MenuSprite mountain{};
+    mountain.texture_index = kTexMenuMountain;
+    mountain.x = vpx(viewport, layout.mountain_x);
+    mountain.y = vpy(viewport, layout.mountain_y);
+    mountain.w = vpw(viewport, layout.mountain_w);
+    mountain.h = vph(viewport, layout.mountain_h);
+    mountain.r = 0.55f;
+    mountain.g = 0.68f;
+    mountain.b = 0.82f;
+    mountain.a = 1.0f;
+    append_sprite(frame.sprites, mountain);
+
+    const float sel_y = layout.menu_y + static_cast<float>(sel) * layout.menu_line_h - 5.0f;
+    append_menu_list_highlight(
+        frame.sprites, viewport, layout.sel_bar_x, sel_y, layout.sel_bar_w, layout.sel_bar_h);
+
+    for (int i = 0; i < items; ++i) {
+        const bool is_online = (i == fe_mainmenu_item_count() - 1);
+        append_menu_list_label(frame.sprites,
+                               viewport,
+                               fe_mainmenu_label(i),
+                               layout.menu_x,
+                               layout.menu_y + static_cast<float>(i) * layout.menu_line_h,
+                               layout.menu_scale,
+                               layout.menu_scale_sel,
+                               i == sel,
+                               is_online);
+    }
+
+    float snow_r = 0.95f;
+    float snow_g = 0.97f;
+    float snow_b = 1.0f;
+    if (const HostVisualEffectsMainMenu* active = host_visualfx_mainmenu_active()) {
+        snow_r = host_visualfx_mainmenu_snow_r(active);
+        snow_g = host_visualfx_mainmenu_snow_g(active);
+        snow_b = host_visualfx_mainmenu_snow_b(active);
+    }
+    static const float kFlake[][2] = {
+        {468.0f, 248.0f}, {512.0f, 198.0f}, {548.0f, 286.0f}, {498.0f, 332.0f},
+        {572.0f, 228.0f}, {438.0f, 302.0f}, {524.0f, 356.0f},
+    };
+    for (const auto& pos : kFlake) {
+        if (pos[0] < layout.column_divider_x + 8.0f) {
+            continue;
+        }
+        const float sz = 5.0f + 3.0f * std::sin(time_sec * 2.0f + pos[0] * 0.02f);
+        MenuSprite flake{};
+        flake.texture_index = kTexMenuSnow;
+        flake.x = vpx(viewport, pos[0]);
+        flake.y = vpy(viewport, pos[1]);
+        flake.w = vpw(viewport, sz);
+        flake.h = vph(viewport, sz);
+        flake.r = snow_r;
+        flake.g = snow_g;
+        flake.b = snow_b;
+        flake.a = 0.45f;
+        append_sprite(frame.sprites, flake);
+    }
+
+    append_main_menu_controller_hints(
+        frame.sprites, viewport, layout.hint_y, layout.hint_scale);
 }
 
 void build_mountain_room_screen(MenuFrame& frame,
@@ -530,33 +875,30 @@ void build_mountain_room_screen(MenuFrame& frame,
         return;
     }
 
+    const FeMountainLayoutValues& layout = fe_mountain_layout();
     constexpr float vw = static_cast<float>(kTitleVirtualWidth);
     constexpr float vh = static_cast<float>(kTitleVirtualHeight);
 
-    MenuSprite sky{};
-    sky.texture_index = kTexSnow;
-    sky.x = vpx(viewport, 0.0f);
-    sky.y = vpy(viewport, 0.0f);
-    sky.w = vpw(viewport, vw);
-    sky.h = vph(viewport, vh);
-    sky.gradient_y = true;
-    sky.r = 0.18f;
-    sky.g = 0.28f;
-    sky.b = 0.42f;
-    sky.a = 1.0f;
-    sky.r2 = 0.42f;
-    sky.g2 = 0.52f;
-    sky.b2 = 0.68f;
-    sky.a2 = 1.0f;
-    append_sprite(frame.sprites, sky);
+    append_retail_menu_sky(frame.sprites, viewport);
+
+    int map_texture = kTexMapPanorama;
+    if (selected_peak == 0 && vulkan_menu_texture_ready(kTexMapPeakA)) {
+        map_texture = kTexMapPeakA;
+    } else if (selected_peak == 1 && vulkan_menu_texture_ready(kTexMapPeakB)) {
+        map_texture = kTexMapPeakB;
+    } else if (selected_peak == 2 && vulkan_menu_texture_ready(kTexMapPeakC)) {
+        map_texture = kTexMapPeakC;
+    } else if (!vulkan_menu_texture_ready(kTexMapPanorama)) {
+        map_texture = kTexMenuMountain;
+    }
 
     const float pan = 0.5f + 0.12f * std::sin(time_sec * 0.35f);
     MenuSprite panorama{};
-    panorama.texture_index = kTexMountain;
-    panorama.x = vpx(viewport, -24.0f);
-    panorama.y = vpy(viewport, 40.0f);
-    panorama.w = vpw(viewport, vw + 48.0f);
-    panorama.h = vph(viewport, 340.0f);
+    panorama.texture_index = map_texture;
+    panorama.x = vpx(viewport, layout.map_panorama_x);
+    panorama.y = vpy(viewport, layout.map_panorama_y);
+    panorama.w = vpw(viewport, layout.map_panorama_w);
+    panorama.h = vph(viewport, layout.map_panorama_h);
     panorama.u0 = pan - 0.35f;
     panorama.u1 = pan + 0.35f;
     panorama.v0 = 0.0f;
@@ -565,7 +907,7 @@ void build_mountain_room_screen(MenuFrame& frame,
     append_sprite(frame.sprites, panorama);
 
     MenuSprite vignette{};
-    vignette.texture_index = kTexSnow;
+    vignette.texture_index = kTexMenuSnow;
     vignette.x = vpx(viewport, 0.0f);
     vignette.y = vpy(viewport, 0.0f);
     vignette.w = vpw(viewport, vw);
@@ -581,53 +923,50 @@ void build_mountain_room_screen(MenuFrame& frame,
     vignette.a2 = 0.65f;
     append_sprite(frame.sprites, vignette);
 
-    static const char* kPeaks[] = {"Peak A", "Peak B", "Peak C"};
-    const int count = static_cast<int>(sizeof(kPeaks) / sizeof(kPeaks[0]));
-    const int peaks = peak_count < count ? peak_count : count;
-    const float card_w = 168.0f;
-    const float card_y = 318.0f;
-    const float gap = 12.0f;
+    const int peaks = peak_count < fe_mountain_peak_count() ? peak_count : fe_mountain_peak_count();
+    const float card_w = layout.peak_card_w;
+    const float card_y = layout.peak_y;
+    const float gap = layout.peak_gap;
     const float total_w = static_cast<float>(peaks) * card_w + static_cast<float>(peaks - 1) * gap;
     float card_x = (vw - total_w) * 0.5f;
 
     for (int i = 0; i < peaks; ++i) {
         const bool selected = (i == selected_peak);
-        const float scale = selected ? 2.1f : 1.75f;
-        const float pulse = selected ? (0.9f + 0.1f * std::sin(time_sec * 6.0f)) : 0.75f;
+        const float scale = selected ? layout.peak_scale_sel : layout.peak_scale;
+        const float pulse = selected ? (0.92f + 0.08f * std::sin(time_sec * 6.0f)) : 0.78f;
         append_text(frame.sprites,
                     viewport,
-                    kPeaks[i],
+                    fe_mountain_peak_label(i),
                     card_x,
                     card_y,
                     scale,
-                    selected ? 0.95f : 0.55f,
-                    selected ? 0.97f : 0.60f,
-                    selected ? 1.0f : 0.65f,
-                    pulse);
+                    selected ? 0.98f : 0.50f,
+                    selected ? 0.98f : 0.54f,
+                    selected ? 1.0f : 0.58f,
+                    selected ? pulse : 0.70f);
         card_x += card_w + gap;
     }
 
     append_text(frame.sprites,
                 viewport,
-                "Freeride — mountain room (retail cFEStateMountainRoom)",
-                28.0f,
-                28.0f,
-                1.45f,
-                0.75f,
-                0.80f,
-                0.88f,
-                0.9f);
-
+                fe_mainmenu_label(1),
+                layout.header_x,
+                layout.header_y,
+                layout.header_scale * 0.72f,
+                0.94f,
+                0.96f,
+                0.98f,
+                0.95f);
     append_text(frame.sprites,
                 viewport,
-                "Left/Right peak · Cross race · Circle back",
-                36.0f,
-                418.0f,
-                1.3f,
-                0.4f,
-                0.42f,
-                0.48f,
-                0.8f);
+                fe_string_mountain_select_peak(),
+                layout.header_x,
+                layout.header_y + 28.0f,
+                1.05f,
+                0.55f,
+                0.58f,
+                0.62f,
+                0.88f);
 }
 
 void build_options_screen(MenuFrame& frame,
@@ -648,60 +987,31 @@ void build_options_screen(MenuFrame& frame,
     constexpr float vw = static_cast<float>(kTitleVirtualWidth);
     constexpr float vh = static_cast<float>(kTitleVirtualHeight);
 
-    MenuSprite backdrop{};
-    backdrop.texture_index = kTexSnow;
-    backdrop.x = vpx(viewport, 0.0f);
-    backdrop.y = vpy(viewport, 0.0f);
-    backdrop.w = vpw(viewport, vw);
-    backdrop.h = vph(viewport, vh);
-    backdrop.gradient_y = true;
-    backdrop.r = 0.08f;
-    backdrop.g = 0.10f;
-    backdrop.b = 0.14f;
-    backdrop.a = 1.0f;
-    backdrop.r2 = 0.20f;
-    backdrop.g2 = 0.22f;
-    backdrop.b2 = 0.28f;
-    backdrop.a2 = 1.0f;
-    append_sprite(frame.sprites, backdrop);
+    append_options_backdrop(frame.sprites, viewport);
 
     append_text(frame.sprites,
                 viewport,
                 "Options",
-                48.0f,
-                40.0f,
-                3.2f,
-                0.92f,
+                FeOptionsLayout::title_x,
+                FeOptionsLayout::title_y,
+                FeOptionsLayout::title_scale,
                 0.94f,
+                0.96f,
                 0.98f,
                 1.0f);
 
-    static const char* kItems[] = {
-        "Game",
-        "Sound",
-        "Controller",
-        "Save / Load",
-        "Back",
-    };
-    const int count = static_cast<int>(sizeof(kItems) / sizeof(kItems[0]));
-    const int items = item_count < count ? item_count : count;
-    const float base_x = 72.0f;
-    const float base_y = 120.0f;
-    const float line_h = 42.0f;
+    const int items = item_count < fe_options_item_count() ? item_count : fe_options_item_count();
 
     for (int i = 0; i < items; ++i) {
-        const bool selected = (i == selected_item);
-        const float scale = selected ? 2.5f : 2.1f;
-        append_text(frame.sprites,
-                    viewport,
-                    kItems[i],
-                    base_x,
-                    base_y + static_cast<float>(i) * line_h,
-                    scale,
-                    selected ? 0.08f : 0.45f,
-                    selected ? 0.10f : 0.48f,
-                    selected ? 0.14f : 0.52f,
-                    selected ? 1.0f : 0.78f);
+        append_options_list_label(frame.sprites,
+                                  viewport,
+                                  fe_options_label(i),
+                                  FeOptionsLayout::menu_x,
+                                  FeOptionsLayout::menu_y +
+                                      static_cast<float>(i) * FeOptionsLayout::menu_line_h,
+                                  FeOptionsLayout::menu_scale,
+                                  FeOptionsLayout::menu_scale_sel,
+                                  i == selected_item);
     }
 
     (void)time_sec;
@@ -750,35 +1060,17 @@ void build_options_game_screen(MenuFrame& frame,
         return;
     }
 
-    constexpr float vw = static_cast<float>(kTitleVirtualWidth);
-    constexpr float vh = static_cast<float>(kTitleVirtualHeight);
-
-    MenuSprite backdrop{};
-    backdrop.texture_index = kTexSnow;
-    backdrop.x = vpx(viewport, 0.0f);
-    backdrop.y = vpy(viewport, 0.0f);
-    backdrop.w = vpw(viewport, vw);
-    backdrop.h = vph(viewport, vh);
-    backdrop.gradient_y = true;
-    backdrop.r = 0.06f;
-    backdrop.g = 0.08f;
-    backdrop.b = 0.12f;
-    backdrop.a = 1.0f;
-    backdrop.r2 = 0.16f;
-    backdrop.g2 = 0.18f;
-    backdrop.b2 = 0.24f;
-    backdrop.a2 = 1.0f;
-    append_sprite(frame.sprites, backdrop);
+    append_options_sub_backdrop(frame.sprites, viewport);
 
     append_text(frame.sprites,
                 viewport,
                 "Game Options",
-                48.0f,
-                36.0f,
-                2.8f,
-                0.90f,
-                0.92f,
+                FeOptionsLayout::title_x,
+                40.0f,
+                FeOptionsLayout::title_scale * 0.88f,
+                0.94f,
                 0.96f,
+                0.98f,
                 1.0f);
 
     static const char* kDifficulty[] = {"Easy", "Medium", "Hard"};
@@ -799,10 +1091,6 @@ void build_options_game_screen(MenuFrame& frame,
     };
     const int spec_count = static_cast<int>(sizeof(kSpecs) / sizeof(kSpecs[0]));
     const int rows = row_count < spec_count ? row_count : spec_count;
-    const float base_x = 56.0f;
-    const float base_y = 108.0f;
-    const float line_h = 36.0f;
-
     for (int i = 0; i < rows; ++i) {
         const bool selected = (i == selected_row);
         char line[96]{};
@@ -815,28 +1103,16 @@ void build_options_game_screen(MenuFrame& frame,
         } else {
             std::snprintf(line, sizeof(line), "%s", kSpecs[i].label);
         }
-        append_text(frame.sprites,
-                    viewport,
-                    line,
-                    base_x,
-                    base_y + static_cast<float>(i) * line_h,
-                    selected ? 2.2f : 1.85f,
-                    selected ? 0.10f : 0.50f,
-                    selected ? 0.12f : 0.52f,
-                    selected ? 0.16f : 0.56f,
-                    selected ? 1.0f : 0.80f);
+        append_options_list_label(frame.sprites,
+                                  viewport,
+                                  line,
+                                  FeOptionsSubLayout::row_x,
+                                  FeOptionsSubLayout::row_y +
+                                      static_cast<float>(i) * FeOptionsSubLayout::row_line_h,
+                                  FeOptionsSubLayout::row_scale,
+                                  FeOptionsSubLayout::row_scale_sel,
+                                  selected);
     }
-
-    append_text(frame.sprites,
-                viewport,
-                "Left/Right change value · Circle/Esc back",
-                40.0f,
-                412.0f,
-                1.25f,
-                0.40f,
-                0.42f,
-                0.48f,
-                0.72f);
 }
 
 void build_options_sound_screen(MenuFrame& frame,
@@ -856,42 +1132,21 @@ void build_options_sound_screen(MenuFrame& frame,
         return;
     }
 
-    constexpr float vw = static_cast<float>(kTitleVirtualWidth);
-    constexpr float vh = static_cast<float>(kTitleVirtualHeight);
-
-    MenuSprite backdrop{};
-    backdrop.texture_index = kTexSnow;
-    backdrop.x = vpx(viewport, 0.0f);
-    backdrop.y = vpy(viewport, 0.0f);
-    backdrop.w = vpw(viewport, vw);
-    backdrop.h = vph(viewport, vh);
-    backdrop.gradient_y = true;
-    backdrop.r = 0.05f;
-    backdrop.g = 0.07f;
-    backdrop.b = 0.11f;
-    backdrop.a = 1.0f;
-    backdrop.r2 = 0.14f;
-    backdrop.g2 = 0.16f;
-    backdrop.b2 = 0.22f;
-    backdrop.a2 = 1.0f;
-    append_sprite(frame.sprites, backdrop);
+    append_options_sub_backdrop(frame.sprites, viewport);
 
     append_text(frame.sprites,
                 viewport,
                 "Sound Options",
-                48.0f,
-                36.0f,
-                2.8f,
-                0.90f,
-                0.92f,
+                FeOptionsLayout::title_x,
+                40.0f,
+                FeOptionsLayout::title_scale * 0.88f,
+                0.94f,
                 0.96f,
+                0.98f,
                 1.0f);
 
     static const char* kOnOff[] = {"Off", "On"};
     const int rows = row_count < 5 ? row_count : 5;
-    const float base_x = 56.0f;
-    const float base_y = 108.0f;
-    const float line_h = 36.0f;
 
     for (int i = 0; i < rows; ++i) {
         const bool selected = (i == selected_row);
@@ -908,19 +1163,187 @@ void build_options_sound_screen(MenuFrame& frame,
             const char* labels[] = {"", "Music", "SFX", "Commentary"};
             format_option_row(line, sizeof(line), labels[i], kOnOff, 2, vi);
         }
-        append_text(frame.sprites,
-                    viewport,
-                    line,
-                    base_x,
-                    base_y + static_cast<float>(i) * line_h,
-                    selected ? 2.2f : 1.85f,
-                    selected ? 0.10f : 0.50f,
-                    selected ? 0.12f : 0.52f,
-                    selected ? 0.16f : 0.56f,
-                    selected ? 1.0f : 0.80f);
+        append_options_list_label(frame.sprites,
+                                  viewport,
+                                  line,
+                                  FeOptionsSubLayout::row_x,
+                                  FeOptionsSubLayout::row_y +
+                                      static_cast<float>(i) * FeOptionsSubLayout::row_line_h,
+                                  FeOptionsSubLayout::row_scale,
+                                  FeOptionsSubLayout::row_scale_sel,
+                                  selected);
     }
 
     (void)time_sec;
+}
+
+void build_fe_info_screen(MenuFrame& frame,
+                          const MenuViewport& viewport,
+                          float time_sec,
+                          const char* title,
+                          const char* body) {
+    frame.time_sec = time_sec;
+    frame.width = viewport.window_width;
+    frame.height = viewport.window_height;
+    frame.viewport = viewport;
+    frame.sprites.clear();
+
+    if (viewport.width < 8.0f || viewport.height < 8.0f) {
+        return;
+    }
+
+    append_options_backdrop(frame.sprites, viewport);
+
+    append_text(frame.sprites,
+                viewport,
+                title ? title : "",
+                FeOptionsLayout::title_x,
+                FeOptionsLayout::title_y,
+                FeOptionsLayout::title_scale * 0.82f,
+                0.94f,
+                0.96f,
+                0.98f,
+                1.0f);
+
+    if (body && body[0]) {
+        append_text(frame.sprites,
+                    viewport,
+                    body,
+                    FeOptionsLayout::menu_x,
+                    FeOptionsLayout::menu_y + 28.0f,
+                    FeOptionsLayout::menu_scale * 0.70f,
+                    0.72f,
+                    0.76f,
+                    0.80f,
+                    0.82f);
+    }
+}
+
+void build_fe_list_screen(MenuFrame& frame,
+                          const MenuViewport& viewport,
+                          float time_sec,
+                          const char* header_title,
+                          const char* const* labels,
+                          const char* const* descriptions,
+                          int item_count,
+                          int selected_item) {
+    frame.time_sec = time_sec;
+    frame.width = viewport.window_width;
+    frame.height = viewport.window_height;
+    frame.viewport = viewport;
+    frame.sprites.clear();
+
+    if (viewport.width < 8.0f || viewport.height < 8.0f || item_count <= 0 || !labels) {
+        return;
+    }
+
+    const FeMainMenuLayoutValues& layout = fe_main_menu_layout();
+    constexpr float vw = static_cast<float>(kTitleVirtualWidth);
+    constexpr float vh = static_cast<float>(kTitleVirtualHeight);
+
+    append_menu_backdrop(frame.sprites, viewport);
+
+    append_texture_rect(frame.sprites,
+                        viewport,
+                        kTexMenuOverlay,
+                        0.0f,
+                        vh - 72.0f,
+                        vw,
+                        72.0f,
+                        FeOverlayAtlas::kTreeLine,
+                        0.35f);
+
+    MenuSprite mountain{};
+    mountain.texture_index = kTexMenuMountain;
+    mountain.x = vpx(viewport, layout.mountain_x);
+    mountain.y = vpy(viewport, layout.mountain_y);
+    mountain.w = vpw(viewport, layout.mountain_w);
+    mountain.h = vph(viewport, layout.mountain_h);
+    mountain.r = 0.55f;
+    mountain.g = 0.68f;
+    mountain.b = 0.82f;
+    mountain.a = 1.0f;
+    append_sprite(frame.sprites, mountain);
+
+    append_texture_rect(frame.sprites,
+                        viewport,
+                        kTexMenuBrandLogo,
+                        layout.orange_three_x,
+                        layout.orange_three_y,
+                        52.0f,
+                        64.0f,
+                        FeBrandAtlas::kOrangeThree);
+
+    append_texture_rect(frame.sprites,
+                        viewport,
+                        kTexMenuBrandLogo,
+                        layout.corner_logo_x,
+                        layout.corner_logo_y,
+                        layout.corner_logo_w,
+                        36.0f,
+                        FeBrandAtlas::kWordmark,
+                        0.9f);
+
+    append_dashed_line_h(frame.sprites, viewport, 16.0f, vw - 16.0f, layout.header_divider_y);
+    append_dashed_line_v(frame.sprites,
+                         viewport,
+                         layout.column_divider_x,
+                         layout.header_divider_y + 4.0f,
+                         vh - 56.0f);
+
+    append_text(frame.sprites,
+                viewport,
+                header_title ? header_title : "",
+                layout.header_title_x,
+                layout.header_title_y,
+                layout.header_title_scale,
+                0.96f,
+                0.98f,
+                1.0f,
+                1.0f);
+
+    const int items = item_count;
+    const int sel = selected_item < 0 ? 0 : (selected_item >= items ? items - 1 : selected_item);
+
+    if (descriptions && descriptions[sel] && descriptions[sel][0]) {
+        append_text(frame.sprites,
+                    viewport,
+                    descriptions[sel],
+                    layout.desc_x,
+                    layout.desc_y,
+                    layout.desc_scale,
+                    0.92f,
+                    0.94f,
+                    0.98f,
+                    0.95f);
+    }
+
+    const float sel_y = layout.menu_y + static_cast<float>(sel) * layout.menu_line_h - 4.0f;
+    append_menu_list_highlight(
+        frame.sprites, viewport, layout.sel_bar_x, sel_y, layout.sel_bar_w, layout.sel_bar_h);
+
+    for (int i = 0; i < items; ++i) {
+        append_menu_list_label(frame.sprites,
+                               viewport,
+                               labels[i] ? labels[i] : "",
+                               layout.menu_x,
+                               layout.menu_y + static_cast<float>(i) * layout.menu_line_h,
+                               layout.menu_scale,
+                               layout.menu_scale_sel,
+                               i == sel,
+                               false);
+    }
+
+    append_text(frame.sprites,
+                viewport,
+                fe_string_main_menu_hints(),
+                layout.hint_x,
+                layout.hint_y,
+                layout.hint_scale,
+                0.48f,
+                0.50f,
+                0.54f,
+                0.82f);
 }
 
 } // namespace host

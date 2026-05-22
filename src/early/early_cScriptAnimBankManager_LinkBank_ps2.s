@@ -1,0 +1,95 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cScriptAnimBankManager_LinkBank
+.ent cScriptAnimBankManager_LinkBank
+cScriptAnimBankManager_LinkBank:
+    .word  0x27bdffb0
+    .word  0x7fb10030
+    .word  0x7fb30010
+    .word  0x00a0882d
+    .word  0x7fb20020
+    .word  0x0080982d
+    .word  0x7fb00040
+    .word  0xffbf0000
+    .word  0x0c09d5c6
+    .word  0x00c0902d
+    .word  0x0040802d
+    .word  0x56000041
+    .word  0x8e020004
+    .word  0x0c09d5fc
+    .word  0x0260202d
+    .word  0x0040802d
+    .word  0x3c050048
+    .word  0xae110000
+    .word  0x24a51a98
+    .word  0xae120008
+    .word  0x24040018
+    .word  0x0000382d
+    .word  0x0c0c5f5c
+    .word  0x8e660000
+    .word  0x8e050008
+    .word  0x0c0c4488
+    .word  0x0040202d
+    .word  0x0040902d
+    .word  0x8e420004
+    .word  0x84510002
+    .word  0x1a20000d
+    .word  0xae00000c
+    .word  0x0000282d
+    .word  0x0220202d
+    .word  0x8e420008
+    .word  0x00a21021
+    .word  0x8c430000
+    .word  0x10600004
+    .word  0x2484ffff
+    .word  0x8e02000c
+    .word  0x24420001
+    .word  0xae02000c
+    .word  0x1480fff7
+    .word  0x24a50014
+    .word  0x8e04000c
+    .word  0x5080001a
+    .word  0x92020004
+    .word  0x8e660000
+    .word  0x3c050048
+    .word  0x00042080
+    .word  0x24a51aa8
+    .word  0x0c0c5f8c
+    .word  0x0000382d
+    .word  0xae020010
+    .word  0x0000302d
+    .word  0x1a20000f
+    .word  0x0000202d
+    .word  0x0000282d
+    .word  0x8e420008
+    .word  0x00a21021
+    .word  0x8c430000
+    .word  0x10600005
+    .word  0x00061080
+    .word  0x8e030010
+    .word  0x24c60001
+    .word  0x00431021
+    .word  0xac440000
+    .word  0x24840001
+    .word  0x0091102a
+    .word  0x1440fff4
+    .word  0x24a50014
+    .word  0x92020004
+    .word  0x8f830d08
+    .word  0x00021080
+    .word  0x00621821
+    .word  0xac720000
+    .word  0x8e020004
+    .word  0x7bb00040
+    .word  0x7bb10030
+    .word  0x7bb20020
+    .word  0x7bb30010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0050
+.end cScriptAnimBankManager_LinkBank

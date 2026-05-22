@@ -1,5 +1,8 @@
 #include "platform/host_vulkan_menu.h"
 
+#include "platform/host_fe_font.h"
+#include "platform/host_fe_layout.h"
+
 #define STB_IMAGE_IMPLEMENTATION
 #include "third_party/stb_image.h"
 
@@ -7,14 +10,20 @@
 #include <array>
 #include <cmath>
 #include <cstring>
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <stdexcept>
 
+namespace fs = std::filesystem;
+
 namespace host {
+
+constexpr int kMaxTextures = 16;
+std::array<bool, kMaxTextures> g_texture_ready{};
+
 namespace {
 
-constexpr int kMaxTextures = 8;
 constexpr VkDeviceSize kVertexStride = 8 * sizeof(float); // pos.xy, uv.xy, color.rgba
 
 [[noreturn]] void throw_menu(const char* what) {
@@ -74,6 +83,7 @@ void VulkanMenuGpu::shutdown() {
         }
     }
     textures_.clear();
+    g_texture_ready = {};
     device_ = VK_NULL_HANDLE;
 }
 
@@ -93,6 +103,97 @@ bool VulkanMenuGpu::load_assets(const std::string& asset_dir) {
     if (!create_snow_texture()) {
         return false;
     }
+    if (!create_solid_texture()) {
+        return false;
+    }
+
+    const fs::path ui_dir = fs::path(asset_dir).parent_path() / "ui";
+    const auto load_ui_tex = [&](const char* filename, int slot) -> bool {
+        const fs::path path = ui_dir / filename;
+        if (fs::is_regular_file(path)) {
+            return load_png_texture(path.string(), slot);
+        }
+        return false;
+    };
+    if (load_ui_tex("fe_1_EA_b.png", kTexMenuBgPrimary) ||
+        load_ui_tex("splash_ssx3.png", kTexMenuBgPrimary)) {
+        std::cout << "[menu]    retail menu backdrop → texture " << kTexMenuBgPrimary << '\n';
+    }
+    if (load_png_texture(asset_dir + "/ui_PS2.png", kTexMenuBgAccent) ||
+        load_ui_tex("fe_1_PS2.png", kTexMenuBgAccent) ||
+        load_ui_tex("fe_1_FE_t.png", kTexMenuBgAccent) ||
+        load_ui_tex("fl_1_FE_t.png", kTexMenuBgAccent)) {
+        std::cout << "[menu]    PS2 pad icons → texture " << kTexMenuBgAccent << '\n';
+    }
+
+    std::string primary_font;
+    std::string icon_font;
+    bool load_icons = false;
+    if (host_fe_font_gpu_paths(asset_dir, primary_font, icon_font, load_icons)) {
+        if (!load_png_texture(primary_font, kTexFeFont)) {
+            std::cerr << "[menu]    failed to load menu font atlas\n";
+        } else {
+            std::cout << "[menu]    " << fs::path(primary_font).filename().string() << " → texture "
+                      << kTexFeFont << " (" << host_fe_font_mode_name() << ")\n";
+        }
+        if (load_icons && fs::is_regular_file(icon_font)) {
+            if (!load_png_texture(icon_font, kTexFeIcons)) {
+                std::cerr << "[menu]    failed to load retail icon atlas\n";
+            } else {
+                std::cout << "[menu]    " << fs::path(icon_font).filename().string() << " → texture "
+                          << kTexFeIcons << " (controller icons)\n";
+            }
+        }
+    } else {
+        std::cerr << "[menu]    no font atlas (extract_menu_font.py or bake_host_font.py)\n";
+    }
+
+    const std::string widg = asset_dir + "/menu_panel.png";
+    const std::string widg_fallback = asset_dir + "/ui_Widg.png";
+    if (load_png_texture(widg, kTexMenuWidg) || load_png_texture(widg_fallback, kTexMenuWidg)) {
+        std::cout << "[menu]    menu widget panel → texture " << kTexMenuWidg << '\n';
+    }
+
+    if ((fs::is_regular_file(asset_dir + "/ui_hudp.png") &&
+         load_png_texture(asset_dir + "/ui_hudp.png", kTexMenuHudPanel)) ||
+        load_ui_tex("ui_hudp.png", kTexMenuHudPanel)) {
+        std::cout << "[menu]    ui_hudp.png → texture " << kTexMenuHudPanel << " (options panel)\n";
+    }
+    if (fs::is_regular_file(asset_dir + "/ui_over.png") &&
+        load_png_texture(asset_dir + "/ui_over.png", kTexMenuOverlay)) {
+        std::cout << "[menu]    ui_over.png → texture " << kTexMenuOverlay << " (menu overlay)\n";
+    }
+    const std::string brand = asset_dir + "/ssx3_logo.png";
+    if (!load_png_texture(brand, kTexMenuBrandLogo) &&
+        load_png_texture(asset_dir + "/title_logo.png", kTexMenuBrandLogo)) {
+        std::cout << "[menu]    title_logo.png → texture " << kTexMenuBrandLogo << " (brand fallback)\n";
+    } else if (fs::is_regular_file(brand)) {
+        std::cout << "[menu]    ssx3_logo.png → texture " << kTexMenuBrandLogo << " (brand)\n";
+    }
+
+    const fs::path host_root = fs::path(asset_dir).parent_path();
+    const fs::path map_dir = host_root / "map";
+    const auto load_map = [&](const char* name, int slot) {
+        const fs::path path = map_dir / name;
+        if (fs::is_regular_file(path) && load_png_texture(path.string(), slot)) {
+            std::cout << "[menu]    " << name << " → texture " << slot << '\n';
+            return true;
+        }
+        return false;
+    };
+    if (!load_map("map_mtn_mout.png", kTexMapPanorama)) {
+        load_png_texture(mountain, kTexMapPanorama) || load_png_texture(mountain_fallback, kTexMapPanorama);
+    }
+    if (!load_map("map_peakA_peak.png", kTexMapPeakA)) {
+        load_png_texture(mountain, kTexMapPeakA);
+    }
+    if (!load_map("map_peakB_peak.png", kTexMapPeakB)) {
+        load_png_texture(mountain, kTexMapPeakB);
+    }
+    if (!load_map("map_peakC_peak.png", kTexMapPeakC)) {
+        load_png_texture(mountain, kTexMapPeakC);
+    }
+
     return true;
 }
 
@@ -144,6 +245,8 @@ void VulkanMenuGpu::record(VkCommandBuffer cmd, VkExtent2D draw_extent, const Me
     vkCmdBindPipeline(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline_);
 
     VkViewport viewport{};
+    viewport.x = 0.0f;
+    viewport.y = 0.0f;
     viewport.width = static_cast<float>(draw_extent.width);
     viewport.height = static_cast<float>(draw_extent.height);
     viewport.minDepth = 0.0f;
@@ -159,7 +262,8 @@ void VulkanMenuGpu::record(VkCommandBuffer cmd, VkExtent2D draw_extent, const Me
     uint32_t first_vertex = 0;
     for (size_t i = 0; i < frame.sprites.size(); ++i) {
         const int tex = frame.sprites[i].texture_index;
-        if (tex < 0 || tex >= static_cast<int>(descriptor_sets_.size())) {
+        if (tex < 0 || tex >= static_cast<int>(descriptor_sets_.size()) ||
+            !g_texture_ready[static_cast<size_t>(tex)]) {
             first_vertex += 6;
             continue;
         }
@@ -182,20 +286,21 @@ void VulkanMenuGpu::screen_to_ndc(float sx,
                                   float sh,
                                   VkExtent2D extent,
                                   float out[8]) const {
+    /* Top-left screen origin. Vulkan maps NDC y=-1 to the top of the framebuffer. */
     const float fb_w = static_cast<float>(std::max<uint32_t>(extent.width, 1u));
     const float fb_h = static_cast<float>(std::max<uint32_t>(extent.height, 1u));
     const float x0 = (sx / fb_w) * 2.0f - 1.0f;
     const float x1 = ((sx + sw) / fb_w) * 2.0f - 1.0f;
-    const float y0 = 1.0f - (sy / fb_h) * 2.0f;
-    const float y1 = 1.0f - ((sy + sh) / fb_h) * 2.0f;
+    const float y_top = -1.0f + (sy / fb_h) * 2.0f;
+    const float y_bottom = -1.0f + ((sy + sh) / fb_h) * 2.0f;
     out[0] = x0;
-    out[1] = y1;
+    out[1] = y_top;
     out[2] = x1;
-    out[3] = y1;
+    out[3] = y_top;
     out[4] = x1;
-    out[5] = y0;
+    out[5] = y_bottom;
     out[6] = x0;
-    out[7] = y0;
+    out[7] = y_bottom;
 }
 
 void VulkanMenuGpu::append_sprite_quad(const MenuSprite& sprite,
@@ -205,7 +310,7 @@ void VulkanMenuGpu::append_sprite_quad(const MenuSprite& sprite,
     screen_to_ndc(sprite.x, sprite.y, sprite.w, sprite.h, extent, ndc);
 
     const float u_corners[4] = {sprite.u0, sprite.u1, sprite.u1, sprite.u0};
-    const float v_corners[4] = {sprite.v1, sprite.v1, sprite.v0, sprite.v0};
+    const float v_corners[4] = {sprite.v0, sprite.v0, sprite.v1, sprite.v1};
     const int tri[] = {0, 1, 2, 0, 2, 3};
     for (int i = 0; i < 6; ++i) {
         const int corner = tri[i];
@@ -451,6 +556,9 @@ bool VulkanMenuGpu::load_png_texture(const std::string& path, int index) {
 
 bool VulkanMenuGpu::load_rgba_texture(const unsigned char* pixels, int width, int height, int index) {
     if (!pixels || index < 0 || index >= kMaxTextures || width <= 0 || height <= 0) {
+        if (index >= 0 && index < kMaxTextures) {
+            g_texture_ready[static_cast<size_t>(index)] = false;
+        }
         return false;
     }
     const int w = width;
@@ -648,7 +756,14 @@ bool VulkanMenuGpu::load_rgba_texture(const unsigned char* pixels, int width, in
     vkUpdateDescriptorSets(device_, 1, &write, 0, nullptr);
     vkDestroySampler(device_, sampler, nullptr);
 
+    g_texture_ready[static_cast<size_t>(index)] = true;
     return true;
+}
+
+bool VulkanMenuGpu::create_solid_texture() {
+    constexpr int kSize = 4;
+    std::vector<unsigned char> pixels(static_cast<size_t>(kSize * kSize * 4), 255);
+    return load_rgba_texture(pixels.data(), kSize, kSize, 3);
 }
 
 bool VulkanMenuGpu::create_snow_texture() {
@@ -671,6 +786,13 @@ bool VulkanMenuGpu::create_snow_texture() {
     }
 
     return load_rgba_texture(pixels.data(), kSize, kSize, 2);
+}
+
+bool vulkan_menu_texture_ready(int texture_index) {
+    if (texture_index < 0 || texture_index >= kMaxTextures) {
+        return false;
+    }
+    return g_texture_ready[static_cast<size_t>(texture_index)];
 }
 
 } // namespace host

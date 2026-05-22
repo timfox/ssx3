@@ -10,12 +10,21 @@ enum class FEScreen {
     Options,
     OptionsGame,
     OptionsSound,
+    Previews,
+    MultiPlay,
+    SingleEvent,
+    PeakRoom,
+    Message,
 };
 
 enum class FEMainMenuAction {
     None,
     MountainRoom,
     Options,
+    SingleEvent,
+    MultiPlay,
+    Previews,
+    Online,
     Stub,
 };
 
@@ -23,6 +32,8 @@ enum class FEOptionsAction {
     Back,
     OptionsGame,
     OptionsSound,
+    OptionsController,
+    OptionsSaveLoad,
     Stub,
 };
 

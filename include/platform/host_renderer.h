@@ -47,8 +47,17 @@ public:
     }
     virtual void set_main_menu_frame(const MenuFrame& frame) { (void)frame; }
     virtual void shutdown_main_menu() {}
+
+    virtual bool init_world_gameplay(int map_id = 0) {
+        (void)map_id;
+        return false;
+    }
+    virtual void tick_world_gameplay(float dt_seconds) { (void)dt_seconds; }
+    virtual void shutdown_world_gameplay() {}
 };
 
+/** Linux native uses Vulkan exclusively (SDL only creates a VkSurface). */
+Renderer* create_renderer();
 Renderer* create_vulkan_renderer();
 void destroy_renderer(Renderer* renderer);
 

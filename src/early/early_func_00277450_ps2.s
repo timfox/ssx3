@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_00277450
+.ent func_00277450
+func_00277450:
+    .word  0x27bdffa0
+    .word  0x7fb20030
+    .word  0x7fb00050
+    .word  0x0080902d
+    .word  0x7fb40010
+    .word  0x00a0802d
+    .word  0x7fb10040
+    .word  0x00c0a02d
+    .word  0x7fb30020
+    .word  0x2644000c
+    .word  0xffbf0000
+    .word  0x0c0a0f4a
+    .word  0x0200882d
+    .word  0x0040982d
+    .word  0x0233102a
+    .word  0x10400039
+    .word  0x2402ffff
+    .word  0x2644000c
+    .word  0x0c0a0f5c
+    .word  0x0220282d
+    .word  0x12800005
+    .word  0x0040802d
+    .word  0x8e020008
+    .word  0x30420002
+    .word  0x5440002c
+    .word  0x26310001
+    .word  0x8e02000c
+    .word  0x0441002d
+    .word  0x0220102d
+    .word  0x0240202d
+    .word  0x0c09df76
+    .word  0x0200282d
+    .word  0x54400015
+    .word  0x8e420000
+    .word  0x8e050004
+    .word  0x04a00007
+    .word  0x8e440000
+    .word  0x8e060010
+    .word  0x8e070014
+    .word  0x0c09e574
+    .word  0x8e080018
+    .word  0x10000007
+    .word  0xae02000c
+    .word  0x8e050000
+    .word  0x8e060010
+    .word  0x8e070014
+    .word  0x0c09e54a
+    .word  0x8e080018
+    .word  0xae02000c
+    .word  0x8e02000c
+    .word  0x04400011
+    .word  0x0220102d
+    .word  0x10000015
+    .word  0x7bb00050
+    .word  0x8c430500
+    .word  0x14600011
+    .word  0x0220102d
+    .word  0x0240202d
+    .word  0x0c09df7a
+    .word  0x0200282d
+    .word  0x8e440000
+    .word  0x8c450000
+    .word  0x0c0a0e3a
+    .word  0x24840500
+    .word  0x54400001
+    .word  0xae00000c
+    .word  0x10000006
+    .word  0x0220102d
+    .word  0x26310001
+    .word  0x0233102a
+    .word  0x1440ffcb
+    .word  0x2644000c
+    .word  0x2402ffff
+    .word  0x7bb00050
+    .word  0x7bb10040
+    .word  0x7bb20030
+    .word  0x7bb30020
+    .word  0x7bb40010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0060
+    .word  0x00000000
+.end func_00277450

@@ -1,0 +1,115 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cScreenPopup_onGainTransition
+.ent cScreenPopup_onGainTransition
+cScreenPopup_onGainTransition:
+    .word  0x27bdffb0
+    .word  0x7fb10030
+    .word  0x7fb00040
+    .word  0x0080882d
+    .word  0x10a00035
+    .word  0xffbf0020
+    .word  0xc781a6f8
+    .word  0x24100001
+    .word  0x3c013f80
+    .word  0x44810000
+    .word  0xae3002bc
+    .word  0x262500bc
+    .word  0xe7a10004
+    .word  0xe7a00008
+    .word  0x0c071ac2
+    .word  0xe7a10000
+    .word  0x0220202d
+    .word  0x0c071dce
+    .word  0x03a0282d
+    .word  0x8e22031c
+    .word  0x54500005
+    .word  0x3c04004a
+    .word  0x44806000
+    .word  0x0c0717c8
+    .word  0x0220202d
+    .word  0x3c04004a
+    .word  0x0c0c5d9c
+    .word  0x24841c48
+    .word  0x8e240040
+    .word  0x0c0e71de
+    .word  0x0040282d
+    .word  0x0040182d
+    .word  0x3402ffff
+    .word  0x10620003
+    .word  0x24020019
+    .word  0x10000002
+    .word  0xae2300a8
+    .word  0xae2200a8
+    .word  0x8e2200a8
+    .word  0x24030001
+    .word  0x14430004
+    .word  0x00000000
+    .word  0x24020002
+    .word  0xae2200a8
+    .word  0x8e2200a8
+    .word  0xc783a6fc
+    .word  0xc6210278
+    .word  0x2442ffff
+    .word  0xc620027c
+    .word  0x44821000
+    .word  0x468010a0
+    .word  0x46030841
+    .word  0xae2300a4
+    .word  0x46030001
+    .word  0x46020843
+    .word  0x46020003
+    .word  0xe62100ac
+    .word  0xe62000b0
+    .word  0x8e23031c
+    .word  0x24020001
+    .word  0x1462001d
+    .word  0x0220202d
+    .word  0xc62100a4
+    .word  0x46800860
+    .word  0xc62000b0
+    .word  0xc62300ac
+    .word  0xc782a700
+    .word  0x27a50010
+    .word  0x46000802
+    .word  0x8e220058
+    .word  0x46030842
+    .word  0x6843004b
+    .word  0x6c430044
+    .word  0x8c46004c
+    .word  0xb3a30007
+    .word  0xb7a30000
+    .word  0xafa60008
+    .word  0x46020000
+    .word  0x46020840
+    .word  0xe7a00014
+    .word  0x0c071dce
+    .word  0xe7a10010
+    .word  0x8e2300a4
+    .word  0x8e2200a8
+    .word  0x0062102a
+    .word  0x1040000c
+    .word  0x24630001
+    .word  0x0000102d
+    .word  0x1000000a
+    .word  0xae2300a4
+    .word  0x6a22027f
+    .word  0x6e220278
+    .word  0x8e230280
+    .word  0xb3a20007
+    .word  0xb7a20000
+    .word  0xafa30008
+    .word  0x0c071dce
+    .word  0x03a0282d
+    .word  0x24020001
+    .word  0x7bb00040
+    .word  0x7bb10030
+    .word  0xdfbf0020
+    .word  0x03e00008
+    .word  0x27bd0050
+.end cScreenPopup_onGainTransition

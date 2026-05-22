@@ -1,0 +1,115 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global gGenMonsterTrickReqName
+.ent gGenMonsterTrickReqName
+gGenMonsterTrickReqName:
+    .word  0x27bdffb0
+    .word  0x3c020044
+    .word  0x7fb00040
+    .word  0x0000182d
+    .word  0x7fb10030
+    .word  0x2450d608
+    .word  0x7fb20020
+    .word  0x0080882d
+    .word  0xffbf0010
+    .word  0x00c0902d
+    .word  0x8e020000
+    .word  0x14450051
+    .word  0x24630001
+    .word  0x03a0202d
+    .word  0x0000282d
+    .word  0x0c0f9912
+    .word  0x24060008
+    .word  0x92020008
+    .word  0x2405f3ff
+    .word  0xdfa30000
+    .word  0x3c06ffff
+    .word  0x34c60fff
+    .word  0x30420003
+    .word  0x92040009
+    .word  0x00651824
+    .word  0x000212b8
+    .word  0x00621825
+    .word  0x3084000f
+    .word  0x9202000a
+    .word  0x00042338
+    .word  0x00661824
+    .word  0x3c05fff8
+    .word  0x34a5ffff
+    .word  0x00641825
+    .word  0x30420007
+    .word  0x9204000b
+    .word  0x00651824
+    .word  0x00021438
+    .word  0x3c05ffc7
+    .word  0x34a5ffff
+    .word  0x00621825
+    .word  0x30840007
+    .word  0x9202000c
+    .word  0x00651824
+    .word  0x000424f8
+    .word  0x2405ffff
+    .word  0x00052c38
+    .word  0x34a50fff
+    .word  0x00052c38
+    .word  0x34a5ffff
+    .word  0x00641825
+    .word  0x3042000f
+    .word  0x9204000d
+    .word  0x00651824
+    .word  0x00021738
+    .word  0x9205000e
+    .word  0x00621825
+    .word  0x3084007f
+    .word  0x2402fc07
+    .word  0x00021438
+    .word  0x3442ffff
+    .word  0x00021438
+    .word  0x3442ffff
+    .word  0x000420fc
+    .word  0x00621824
+    .word  0x30a5007f
+    .word  0x00641825
+    .word  0x3c02fffc
+    .word  0x344207ff
+    .word  0x00021438
+    .word  0x3442ffff
+    .word  0x00021438
+    .word  0x3442ffff
+    .word  0x00622024
+    .word  0x00052afc
+    .word  0x00852025
+    .word  0x3c030003
+    .word  0xffa40000
+    .word  0x3463f800
+    .word  0x8fa20004
+    .word  0x00431024
+    .word  0x50400006
+    .word  0x0220202d
+    .word  0x34028000
+    .word  0x000216f8
+    .word  0x00821025
+    .word  0xffa20000
+    .word  0x0220202d
+    .word  0x0240302d
+    .word  0x0c045a54
+    .word  0x03a0282d
+    .word  0x10000006
+    .word  0x7bb00040
+    .word  0x28620018
+    .word  0x1440ffab
+    .word  0x26100010
+    .word  0xa2200000
+    .word  0x7bb00040
+    .word  0x7bb10030
+    .word  0x7bb20020
+    .word  0xdfbf0010
+    .word  0x03e00008
+    .word  0x27bd0050
+    .word  0x00000000
+.end gGenMonsterTrickReqName

@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_00277598
+.ent func_00277598
+func_00277598:
+    .word  0x27bdff90
+    .word  0x7fb10050
+    .word  0x7fb20040
+    .word  0x0080882d
+    .word  0x7fb00060
+    .word  0x00a0902d
+    .word  0x7fb30030
+    .word  0x12400043
+    .word  0xffbf0020
+    .word  0x2633000c
+    .word  0x0c0a0f68
+    .word  0x0260202d
+    .word  0x1440003e
+    .word  0x0260202d
+    .word  0x0c0a0f5c
+    .word  0x0000282d
+    .word  0x68430007
+    .word  0x6c430000
+    .word  0x6844000f
+    .word  0x6c440008
+    .word  0x68450017
+    .word  0x6c450010
+    .word  0x8c460018
+    .word  0xb3a30007
+    .word  0xb7a30000
+    .word  0xb3a4000f
+    .word  0xb7a40008
+    .word  0xb3a50017
+    .word  0xb7a50010
+    .word  0xafa60018
+    .word  0x8fa2000c
+    .word  0x04400025
+    .word  0x0220202d
+    .word  0x0c09df76
+    .word  0x03a0282d
+    .word  0x54400006
+    .word  0x8e220000
+    .word  0x8e240000
+    .word  0x0c0a0950
+    .word  0x8fa5000c
+    .word  0x1000001d
+    .word  0x0260202d
+    .word  0x8c430504
+    .word  0x50600017
+    .word  0x8e240000
+    .word  0x0220202d
+    .word  0x0c09df7a
+    .word  0x03a0282d
+    .word  0x8e240000
+    .word  0x0040802d
+    .word  0x0c0a0eee
+    .word  0x24840500
+    .word  0x50400002
+    .word  0x8e100014
+    .word  0x8e100018
+    .word  0x0602000b
+    .word  0x8e240000
+    .word  0x0c0a2c60
+    .word  0x00000000
+    .word  0x8c435558
+    .word  0x0200282d
+    .word  0x24420118
+    .word  0x84640020
+    .word  0x8c660024
+    .word  0x00c0f809
+    .word  0x00442021
+    .word  0x8e240000
+    .word  0x0c0a0e06
+    .word  0x24840500
+    .word  0x0260202d
+    .word  0x0c0a0f70
+    .word  0x0000282d
+    .word  0x2652ffff
+    .word  0x1640ffc0
+    .word  0x00000000
+    .word  0x7bb00060
+    .word  0x7bb10050
+    .word  0x7bb20040
+    .word  0x7bb30030
+    .word  0xdfbf0020
+    .word  0x03e00008
+    .word  0x27bd0070
+.end func_00277598

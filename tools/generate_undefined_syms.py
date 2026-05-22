@@ -54,7 +54,9 @@ def main() -> int:
         print("No obj/ directory; build objects first.", file=sys.stderr)
         return 1
 
-    obj_paths = sorted(OBJ_DIR.rglob("*.o"))
+    obj_paths = sorted(
+        p for p in OBJ_DIR.rglob("*.o") if "host" not in p.parts
+    )
     if not obj_paths:
         print("No object files found; build objects first.", file=sys.stderr)
         return 1

@@ -1,0 +1,83 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global luno_cLunoVM_execute
+.ent luno_cLunoVM_execute
+luno_cLunoVM_execute:
+    .word  0x27bdfec0
+    .word  0x7fb10110
+    .word  0x7fb500d0
+    .word  0x7fb700b0
+    .word  0x0080a82d
+    .word  0x7fb00120
+    .word  0x7fb20100
+    .word  0x7fb300f0
+    .word  0x7fb400e0
+    .word  0x7fb600c0
+    .word  0x7fbe00a0
+    .word  0xffbf0090
+    .word  0xe7b40130
+    .word  0x8ca20000
+    .word  0xafa20070
+    .word  0x24440010
+    .word  0x8ca30004
+    .word  0xafa0007c
+    .word  0xafa40074
+    .word  0x00031900
+    .word  0x8fa50070
+    .word  0x8c420004
+    .word  0xafa00080
+    .word  0x00a28821
+    .word  0x2442fff0
+    .word  0x02238821
+    .word  0x00021082
+    .word  0xafa20078
+    .word  0x8e30000c
+    .word  0x1a000016
+    .word  0x00c0b82d
+    .word  0x00102100
+    .word  0x3c050048
+    .word  0x3c06a000
+    .word  0x24840010
+    .word  0x24a59790
+    .word  0x0c0c5f8c
+    .word  0x0000382d
+    .word  0x24460010
+    .word  0xac500000
+    .word  0x2603ffff
+    .word  0x12000009
+    .word  0x00c0102d
+    .word  0x2404ffff
+    .word  0xac40000c
+    .word  0x2463ffff
+    .word  0xac400004
+    .word  0x00000000
+    .word  0x00000000
+    .word  0x1464fffa
+    .word  0x24420010
+    .word  0xafa6007c
+    .word  0x8e360004
+    .word  0x8fa60078
+    .word  0x02c6102a
+    .word  0x504008a4
+    .word  0x8fa4007c
+    .word  0x8fa70074
+    .word  0x00161080
+    .word  0x00471021
+    .word  0x8c520000
+    .word  0x324300ff
+    .word  0x2c62002b
+    .word  0x10400897
+    .word  0x26d60001
+    .word  0x3c020048
+    .word  0x00031880
+    .word  0x244297b0
+    .word  0x00621821
+    .word  0x8c640000
+    .word  0x00800008
+    .word  0x00000000
+.end luno_cLunoVM_execute

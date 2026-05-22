@@ -1,0 +1,109 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cAI_initComputerActors
+.ent cAI_initComputerActors
+cAI_initComputerActors:
+    .word  0x27bdff60
+    .word  0x7fb00090
+    .word  0x7fb20070
+    .word  0x7fb30060
+    .word  0x7fb10080
+    .word  0x7fb40050
+    .word  0x7fb50040
+    .word  0x7fb60030
+    .word  0x7fb70020
+    .word  0x7fbe0010
+    .word  0xffbf0000
+    .word  0x0c053720
+    .word  0x0080802d
+    .word  0x0040202d
+    .word  0x0c053756
+    .word  0x24050001
+    .word  0x0040982d
+    .word  0x8e030094
+    .word  0x8e020084
+    .word  0x00621823
+    .word  0x1860003b
+    .word  0x8e120078
+    .word  0x00121080
+    .word  0x0060b02d
+    .word  0x24420028
+    .word  0x26170020
+    .word  0x0050a021
+    .word  0x3c1e0045
+    .word  0x8e020084
+    .word  0x24041a90
+    .word  0x27c57f40
+    .word  0x3c068000
+    .word  0x00021080
+    .word  0x0000382d
+    .word  0x02e21021
+    .word  0x0c0c5f5c
+    .word  0x8c550000
+    .word  0x0040202d
+    .word  0x24050001
+    .word  0x0c042320
+    .word  0x24060001
+    .word  0x0040882d
+    .word  0x12200002
+    .word  0x0000102d
+    .word  0x8e220018
+    .word  0xae820000
+    .word  0x0240282d
+    .word  0xac52086c
+    .word  0x0260202d
+    .word  0x2406ffff
+    .word  0x0c051c88
+    .word  0x26d6ffff
+    .word  0x0240282d
+    .word  0x02a0302d
+    .word  0x0c051cce
+    .word  0x0260202d
+    .word  0x0240282d
+    .word  0x0000302d
+    .word  0x0260202d
+    .word  0x0c051cf4
+    .word  0x26520001
+    .word  0x8e62000c
+    .word  0x84440008
+    .word  0x8c43000c
+    .word  0x0060f809
+    .word  0x02642021
+    .word  0x8e820000
+    .word  0x2403ffff
+    .word  0x26940004
+    .word  0xac430870
+    .word  0x0c046ee6
+    .word  0x8e240018
+    .word  0x8e020084
+    .word  0x00021080
+    .word  0x02021021
+    .word  0xac51005c
+    .word  0x8e030084
+    .word  0x24630001
+    .word  0x16c0ffcd
+    .word  0xae030084
+    .word  0x8e62000c
+    .word  0x84440008
+    .word  0x8c43000c
+    .word  0x0060f809
+    .word  0x02642021
+    .word  0xae120078
+    .word  0x7bb00090
+    .word  0x7bb10080
+    .word  0x7bb20070
+    .word  0x7bb30060
+    .word  0x7bb40050
+    .word  0x7bb50040
+    .word  0x7bb60030
+    .word  0x7bb70020
+    .word  0x7bbe0010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd00a0
+.end cAI_initComputerActors

@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_0023D660
+.ent func_0023D660
+func_0023D660:
+    .word  0x27bdffe0
+    .word  0x7fb00010
+    .word  0xffbf0000
+    .word  0x0080802d
+    .word  0x8e050434
+    .word  0x8ca20000
+    .word  0x84440018
+    .word  0x8c43001c
+    .word  0x0060f809
+    .word  0x00a42021
+    .word  0x8e020338
+    .word  0x5040000b
+    .word  0x8e030424
+    .word  0x8e050434
+    .word  0x8ca30000
+    .word  0x84640058
+    .word  0x8c62005c
+    .word  0x0040f809
+    .word  0x00a42021
+    .word  0x5440003a
+    .word  0x7bb00010
+    .word  0xae000338
+    .word  0x8e030424
+    .word  0x2402ffff
+    .word  0x54620005
+    .word  0x8e050434
+    .word  0x0c0906b0
+    .word  0x0200202d
+    .word  0xae020424
+    .word  0x8e050434
+    .word  0x8ca30000
+    .word  0x84640058
+    .word  0x8c62005c
+    .word  0x0040f809
+    .word  0x00a42021
+    .word  0x54400018
+    .word  0x8e030130
+    .word  0x0200202d
+    .word  0x0c08f55c
+    .word  0x0000282d
+    .word  0x8e030130
+    .word  0x38620031
+    .word  0x10400009
+    .word  0x0000202d
+    .word  0x38620032
+    .word  0x10400006
+    .word  0x38620033
+    .word  0x10400004
+    .word  0x38620034
+    .word  0x10400002
+    .word  0x38620036
+    .word  0x0002202b
+    .word  0x10800006
+    .word  0x24050003
+    .word  0x8e020748
+    .word  0x84440008
+    .word  0x8c43000c
+    .word  0x0060f809
+    .word  0x02042021
+    .word  0x8e030130
+    .word  0x24020031
+    .word  0x14620005
+    .word  0x24020033
+    .word  0x0c08f89a
+    .word  0x0200202d
+    .word  0x1000000c
+    .word  0x7bb00010
+    .word  0x14620005
+    .word  0x24020036
+    .word  0x0c08f926
+    .word  0x0200202d
+    .word  0x10000006
+    .word  0x7bb00010
+    .word  0x54620004
+    .word  0x7bb00010
+    .word  0x0c08f8c8
+    .word  0x0200202d
+    .word  0x7bb00010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0020
+    .word  0x00000000
+.end func_0023D660

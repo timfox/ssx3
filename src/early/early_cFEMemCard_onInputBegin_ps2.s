@@ -1,0 +1,81 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cFEMemCard_onInputBegin
+.ent cFEMemCard_onInputBegin
+cFEMemCard_onInputBegin:
+    .word  0x27bdffc0
+    .word  0x24020001
+    .word  0x7fb00030
+    .word  0x7fb10020
+    .word  0x00a0802d
+    .word  0x7fb20010
+    .word  0x0080882d
+    .word  0xffbf0000
+    .word  0x8e2301a8
+    .word  0x14620003
+    .word  0x0000902d
+    .word  0x10000033
+    .word  0x0000102d
+    .word  0x8e030008
+    .word  0x84640098
+    .word  0x8c62009c
+    .word  0x0040f809
+    .word  0x02042021
+    .word  0x50400014
+    .word  0x8e030008
+    .word  0x24120001
+    .word  0x8e220040
+    .word  0x10400027
+    .word  0xae3201fc
+    .word  0x3c040046
+    .word  0x0c0c5d9c
+    .word  0x24847940
+    .word  0x8e240040
+    .word  0x0c0e71de
+    .word  0x0040282d
+    .word  0x0040282d
+    .word  0x3402ffff
+    .word  0x10a2001e
+    .word  0x0240102d
+    .word  0x8e240040
+    .word  0x0c0e721c
+    .word  0x24060001
+    .word  0x10000019
+    .word  0x0240102d
+    .word  0x846400a0
+    .word  0x8c6200a4
+    .word  0x0040f809
+    .word  0x02042021
+    .word  0x10400013
+    .word  0x0240102d
+    .word  0x24120001
+    .word  0x8e220040
+    .word  0x1040000e
+    .word  0xae3201f8
+    .word  0x3c040046
+    .word  0x0c0c5d9c
+    .word  0x24847950
+    .word  0x8e240040
+    .word  0x0c0e71de
+    .word  0x0040282d
+    .word  0x0040282d
+    .word  0x3402ffff
+    .word  0x10a20005
+    .word  0x0240102d
+    .word  0x8e240040
+    .word  0x0c0e721c
+    .word  0x24060001
+    .word  0x0240102d
+    .word  0x7bb00030
+    .word  0x7bb10020
+    .word  0x7bb20010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0040
+    .word  0x00000000
+.end cFEMemCard_onInputBegin

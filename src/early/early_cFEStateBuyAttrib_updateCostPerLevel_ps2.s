@@ -1,0 +1,71 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cFEStateBuyAttrib_updateCostPerLevel
+.ent cFEStateBuyAttrib_updateCostPerLevel
+cFEStateBuyAttrib_updateCostPerLevel:
+    .word  0x27bdff70
+    .word  0x7fb30050
+    .word  0x7fb10070
+    .word  0x0080982d
+    .word  0x7fb20060
+    .word  0x26710068
+    .word  0x7fb40040
+    .word  0x0000902d
+    .word  0x7fb50030
+    .word  0x7fb00080
+    .word  0xffbf0020
+    .word  0x0c053720
+    .word  0x3c15004a
+    .word  0x0040202d
+    .word  0x0c053756
+    .word  0x2405000b
+    .word  0x0040a02d
+    .word  0x00000000
+    .word  0x03a0202d
+    .word  0x0240302d
+    .word  0x26a52348
+    .word  0x0c105e0a
+    .word  0x26520001
+    .word  0x0c0c5d9c
+    .word  0x03a0202d
+    .word  0x8e640048
+    .word  0x0c0e7618
+    .word  0x0040282d
+    .word  0x0040802d
+    .word  0x12000012
+    .word  0x0280202d
+    .word  0x8e250000
+    .word  0x0c054394
+    .word  0x24a5ffff
+    .word  0x0c0662bc
+    .word  0x0040202d
+    .word  0x0040282d
+    .word  0x0c0e8314
+    .word  0x0200202d
+    .word  0x8e220000
+    .word  0x2842000b
+    .word  0x14400006
+    .word  0x0000282d
+    .word  0x8e020008
+    .word  0x84440048
+    .word  0x8c43004c
+    .word  0x0060f809
+    .word  0x02042021
+    .word  0x2a420007
+    .word  0x1440ffe0
+    .word  0x26310004
+    .word  0x7bb00080
+    .word  0x7bb10070
+    .word  0x7bb20060
+    .word  0x7bb30050
+    .word  0x7bb40040
+    .word  0x7bb50030
+    .word  0xdfbf0020
+    .word  0x03e00008
+    .word  0x27bd0090
+.end cFEStateBuyAttrib_updateCostPerLevel

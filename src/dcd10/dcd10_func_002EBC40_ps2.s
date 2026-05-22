@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_002EBC40
+.ent func_002EBC40
+func_002EBC40:
+    .word  0x27bdffd0
+    .word  0x3c013f80
+    .word  0x44810800
+    .word  0xffbf0020
+    .word  0x460c0841
+    .word  0x3c014420
+    .word  0x44811800
+    .word  0xc4820014
+    .word  0x468010a0
+    .word  0x3c01c3f0
+    .word  0x44812000
+    .word  0xc4800018
+    .word  0x46800020
+    .word  0x46001a06
+    .word  0x44803800
+    .word  0x46011082
+    .word  0x46010002
+    .word  0x46031142
+    .word  0x46072834
+    .word  0x00000000
+    .word  0x4500000b
+    .word  0x46040182
+    .word  0xc7800a48
+    .word  0x46082a00
+    .word  0xc781c65c
+    .word  0xc7820a40
+    .word  0x46010002
+    .word  0xc78a0a44
+    .word  0x46050002
+    .word  0x46003946
+    .word  0x10000008
+    .word  0x460011c0
+    .word  0xc7800a48
+    .word  0x46054201
+    .word  0xc781c660
+    .word  0xc7870a40
+    .word  0x46010002
+    .word  0x46080002
+    .word  0x46003a80
+    .word  0x44804800
+    .word  0x46093034
+    .word  0x00000000
+    .word  0x4500000c
+    .word  0xc7800a54
+    .word  0xc781c664
+    .word  0x3c0143f0
+    .word  0x44811000
+    .word  0x46010002
+    .word  0xc7830a4c
+    .word  0x46023100
+    .word  0xc7820a50
+    .word  0x46060002
+    .word  0x46004986
+    .word  0x1000000a
+    .word  0x460018c0
+    .word  0xc782c668
+    .word  0x3c0143f0
+    .word  0x44810000
+    .word  0xc7810a54
+    .word  0x46060101
+    .word  0xc7830a4c
+    .word  0x46020842
+    .word  0x46040842
+    .word  0x46011880
+    .word  0x46075041
+    .word  0x24860004
+    .word  0x46031001
+    .word  0xe7a50000
+    .word  0x44806000
+    .word  0x03a0202d
+    .word  0xe7a60004
+    .word  0x27a50010
+    .word  0xe7a80008
+    .word  0xe7a4000c
+    .word  0xe7a70010
+    .word  0xe7a30014
+    .word  0xe7a10018
+    .word  0x0c0bae4e
+    .word  0xe7a0001c
+    .word  0xdfbf0020
+    .word  0x03e00008
+    .word  0x27bd0030
+.end func_002EBC40

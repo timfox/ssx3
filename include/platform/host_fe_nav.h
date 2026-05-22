@@ -30,6 +30,19 @@ void fe_options_sound_navigate(void* sound, int delta);
 bool fe_options_sound_selection_is_back(void* sound);
 void fe_options_sound_adjust_value(void* sound, int delta);
 
+int fe_previews_get_selected(void* previews);
+void fe_previews_navigate(void* previews, int delta);
+
+int fe_multiplay_get_selected(void* multiplay);
+void fe_multiplay_navigate(void* multiplay, int delta);
+
+int fe_single_event_get_selected(void* single_event);
+void fe_single_event_navigate(void* single_event, int delta);
+
+int fe_peak_room_get_selected(void* peak_room);
+void fe_peak_room_navigate(void* peak_room, int delta);
+int fe_peak_room_get_peak(void* peak_room);
+
 } // namespace host
 
 #endif /* PLATFORM_HOST_FE_NAV_H */

@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_002F6910
+.ent func_002F6910
+func_002F6910:
+    .word  0x27bdffd0
+    .word  0x7fb00020
+    .word  0x7fb10010
+    .word  0xffbf0000
+    .word  0x0c0bdace
+    .word  0x0080802d
+    .word  0x0040882d
+    .word  0x0c0bdaca
+    .word  0x0200202d
+    .word  0x56200004
+    .word  0x92030007
+    .word  0x92020007
+    .word  0x1000003f
+    .word  0x304200fe
+    .word  0x30620001
+    .word  0x5440003e
+    .word  0x7bb00020
+    .word  0x34640001
+    .word  0x82030004
+    .word  0x10600013
+    .word  0xa2040007
+    .word  0x1c600006
+    .word  0x24020001
+    .word  0x2402ffff
+    .word  0x10620007
+    .word  0x32220040
+    .word  0x10000033
+    .word  0x7bb00020
+    .word  0x10620028
+    .word  0x24020060
+    .word  0x1000002f
+    .word  0x7bb00020
+    .word  0x5040002d
+    .word  0x7bb00020
+    .word  0xa2000007
+    .word  0xa2000004
+    .word  0xa2000006
+    .word  0x10000027
+    .word  0xa2000005
+    .word  0x32220010
+    .word  0x10400005
+    .word  0x32220020
+    .word  0x92020006
+    .word  0x24420001
+    .word  0x10000020
+    .word  0xa2020006
+    .word  0x1040001e
+    .word  0x3c020044
+    .word  0x82030005
+    .word  0x24425e30
+    .word  0x82040006
+    .word  0x00621821
+    .word  0x80620000
+    .word  0x1482000c
+    .word  0x92050005
+    .word  0x24a20001
+    .word  0xa2000006
+    .word  0x304400ff
+    .word  0x24030009
+    .word  0x14830011
+    .word  0xa2020005
+    .word  0x24020001
+    .word  0xa2000005
+    .word  0xa2020004
+    .word  0x1000000c
+    .word  0xa2000006
+    .word  0x2402ffff
+    .word  0x10000009
+    .word  0xa2020004
+    .word  0x16220004
+    .word  0x32220040
+    .word  0x24020008
+    .word  0x10000004
+    .word  0xaf820ad0
+    .word  0x10400002
+    .word  0x38820002
+    .word  0xa2020007
+    .word  0x7bb00020
+    .word  0x7bb10010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0030
+.end func_002F6910

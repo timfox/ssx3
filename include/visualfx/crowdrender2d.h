@@ -6,6 +6,8 @@ int cCrowdRender2D_cCrowdRender2D(int param_1);
 void* cCrowdRender2D_constructCrowdAnim2D(void* param);
 void cCrowdRender2D_init();
 void* cCrowdAnim2D_cCrowdAnim2D(void* memory, void* param_1);
+int cCrowdAnim2D_advanceFrame(void* anim, int frame, int max_frame, int* mode);
+void cCrowdAnim2D_update(void* anim);
 int cCrowdRender2D_purge(int* param_1);
 void operator_delete(int* param_1);
 

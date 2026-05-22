@@ -11,6 +11,9 @@
 
 namespace host {
 
+/** True after a successful texture upload for this GPU slot. */
+bool vulkan_menu_texture_ready(int texture_index);
+
 class VulkanMenuGpu {
 public:
     bool init(VkPhysicalDevice physical_device,
@@ -42,6 +45,7 @@ private:
     bool load_png_texture(const std::string& path, int index);
     bool load_rgba_texture(const unsigned char* pixels, int width, int height, int index);
     bool create_snow_texture();
+    bool create_solid_texture();
     void screen_to_ndc(float sx, float sy, float sw, float sh, VkExtent2D extent, float out[8]) const;
     void append_sprite_quad(const MenuSprite& sprite,
                             VkExtent2D extent,

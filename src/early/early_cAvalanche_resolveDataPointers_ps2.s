@@ -1,0 +1,113 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cAvalanche_resolveDataPointers
+.ent cAvalanche_resolveDataPointers
+cAvalanche_resolveDataPointers:
+    .word  0x27bdff90
+    .word  0x8f8409c0
+    .word  0x7fb00050
+    .word  0x7fb10040
+    .word  0x7fb20030
+    .word  0x7fb30020
+    .word  0xffbf0010
+    .word  0x10800055
+    .word  0xe7b40060
+    .word  0x8f8309c4
+    .word  0x10600052
+    .word  0x8f8209cc
+    .word  0x14400051
+    .word  0x7bb00050
+    .word  0x24700008
+    .word  0x0080902d
+    .word  0x8e510004
+    .word  0x00000000
+    .word  0x52200021
+    .word  0x96020000
+    .word  0x3c013f80
+    .word  0x4481a000
+    .word  0x2413000a
+    .word  0x00000000
+    .word  0x26100004
+    .word  0xc6000000
+    .word  0xc6010004
+    .word  0xc6020008
+    .word  0xe7a00000
+    .word  0x2610000c
+    .word  0xe7a10004
+    .word  0xe7a20008
+    .word  0xe7b4000c
+    .word  0x7ba20000
+    .word  0x922300f3
+    .word  0x10600006
+    .word  0x7e2200e0
+    .word  0x8e2400fc
+    .word  0x50800004
+    .word  0xc6200100
+    .word  0x0c0c5fa6
+    .word  0x00000000
+    .word  0xc6200100
+    .word  0xae3000fc
+    .word  0x46000064
+    .word  0x44020800
+    .word  0xa22000f3
+    .word  0x8e3100f4
+    .word  0x00531818
+    .word  0x1620ffe6
+    .word  0x00708021
+    .word  0x96020000
+    .word  0x0000202d
+    .word  0x26100002
+    .word  0xa642000c
+    .word  0x96030000
+    .word  0x3042ffff
+    .word  0x26100002
+    .word  0x1040000c
+    .word  0xa643000e
+    .word  0x26430014
+    .word  0x00000000
+    .word  0xc6000000
+    .word  0x24840001
+    .word  0xac600000
+    .word  0x26100008
+    .word  0xe460fffc
+    .word  0x9642000c
+    .word  0x0082102a
+    .word  0x1440fff8
+    .word  0x24630008
+    .word  0x9642000e
+    .word  0x1040000e
+    .word  0x0000282d
+    .word  0x26440110
+    .word  0x00000000
+    .word  0x96030000
+    .word  0x24a50001
+    .word  0x26100002
+    .word  0xa4830002
+    .word  0x96020000
+    .word  0x26100002
+    .word  0xa4820000
+    .word  0x9642000e
+    .word  0x00a2102a
+    .word  0x1440fff6
+    .word  0x24840004
+    .word  0xa640000c
+    .word  0x8e520008
+    .word  0x5640ffb8
+    .word  0x8e510004
+    .word  0x24020001
+    .word  0xaf8209cc
+    .word  0x7bb00050
+    .word  0x7bb10040
+    .word  0x7bb20030
+    .word  0x7bb30020
+    .word  0xdfbf0010
+    .word  0xc7b40060
+    .word  0x03e00008
+    .word  0x27bd0070
+    .word  0x00000000
+.end cAvalanche_resolveDataPointers

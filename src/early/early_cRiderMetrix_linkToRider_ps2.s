@@ -1,0 +1,65 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cRiderMetrix_linkToRider
+.ent cRiderMetrix_linkToRider
+cRiderMetrix_linkToRider:
+    .word  0x27bdff90
+    .word  0x7fb10050
+    .word  0x7fb00060
+    .word  0x0080882d
+    .word  0x7fb20040
+    .word  0x7fb30030
+    .word  0x7fb40020
+    .word  0x7fb50010
+    .word  0xffbf0000
+    .word  0xae2501ac
+    .word  0x8ca20870
+    .word  0x04400020
+    .word  0x2402002c
+    .word  0x3c05004a
+    .word  0xae2201b4
+    .word  0x24a51078
+    .word  0x24041ad0
+    .word  0x0000302d
+    .word  0x0000382d
+    .word  0x0c0c5f8c
+    .word  0x263501b0
+    .word  0x2412002b
+    .word  0x0040982d
+    .word  0x2414ffff
+    .word  0x0260802d
+    .word  0x00000000
+    .word  0x0200202d
+    .word  0x0c045bea
+    .word  0x2652ffff
+    .word  0x1654fffc
+    .word  0x2610009c
+    .word  0xaeb30000
+    .word  0x8e2201b4
+    .word  0x1840000a
+    .word  0x0000182d
+    .word  0x0000202d
+    .word  0x8e2201b0
+    .word  0x00821021
+    .word  0xac430098
+    .word  0x24630001
+    .word  0x8e2201b4
+    .word  0x0062102a
+    .word  0x1440fff9
+    .word  0x2484009c
+    .word  0x7bb00060
+    .word  0x7bb10050
+    .word  0x7bb20040
+    .word  0x7bb30030
+    .word  0x7bb40020
+    .word  0x7bb50010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0070
+    .word  0x00000000
+.end cRiderMetrix_linkToRider

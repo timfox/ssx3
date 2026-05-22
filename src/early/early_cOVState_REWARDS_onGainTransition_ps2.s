@@ -1,0 +1,80 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global cOVState_REWARDS_onGainTransition
+.ent cOVState_REWARDS_onGainTransition
+cOVState_REWARDS_onGainTransition:
+    .word  0x27bdfd90
+    .word  0x7fb40220
+    .word  0x7fb00260
+    .word  0x0080a02d
+    .word  0x7fb10250
+    .word  0x7fb20240
+    .word  0x7fb30230
+    .word  0x7fb50210
+    .word  0xffbf0200
+    .word  0x8e820048
+    .word  0x14400092
+    .word  0x24030001
+    .word  0x0c053720
+    .word  0x00000000
+    .word  0x0040202d
+    .word  0x0c053756
+    .word  0x24050002
+    .word  0x0c053720
+    .word  0x0040a82d
+    .word  0x0040202d
+    .word  0x0c053756
+    .word  0x24050001
+    .word  0x0c053720
+    .word  0x0040982d
+    .word  0x0040202d
+    .word  0x0c053756
+    .word  0x0000282d
+    .word  0x0040902d
+    .word  0x24030005
+    .word  0x3c020053
+    .word  0x24425bc8
+    .word  0x8044004a
+    .word  0x1083000e
+    .word  0x80450048
+    .word  0x28820005
+    .word  0x14400018
+    .word  0x2ca20006
+    .word  0x2882000c
+    .word  0x10400015
+    .word  0x2ca20006
+    .word  0x0c07f464
+    .word  0x00000000
+    .word  0x0040282d
+    .word  0x0c0b0942
+    .word  0x03a0202d
+    .word  0x1000003d
+    .word  0x3c040047
+    .word  0x27b000d0
+    .word  0x3c050047
+    .word  0x24a5f520
+    .word  0x0c0b0950
+    .word  0x0200202d
+    .word  0x0c0512fc
+    .word  0x0240202d
+    .word  0x0200282d
+    .word  0x0040302d
+    .word  0x0c0b09b4
+    .word  0x03a0202d
+    .word  0x10000030
+    .word  0x3c040047
+    .word  0x10400021
+    .word  0x0000882d
+    .word  0x3c020047
+    .word  0x00051880
+    .word  0x244204a0
+    .word  0x00621821
+    .word  0x8c640000
+    .word  0x00800008
+    .word  0x00000000
+.end cOVState_REWARDS_onGainTransition

@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_001D5DF0
+.ent func_001D5DF0
+func_001D5DF0:
+    .word  0x27bdffc0
+    .word  0x7fb00030
+    .word  0x7fb10020
+    .word  0x7fb20010
+    .word  0xffbf0000
+    .word  0x0c053720
+    .word  0x00000000
+    .word  0x24050005
+    .word  0x0c053756
+    .word  0x0040202d
+    .word  0x8f84f7b8
+    .word  0x0c089fe0
+    .word  0x0040802d
+    .word  0x8f85ef38
+    .word  0x0040902d
+    .word  0x24030001
+    .word  0x8ca201c4
+    .word  0xaca301b0
+    .word  0xaca001b4
+    .word  0xae4200f8
+    .word  0x8cb101bc
+    .word  0x12230017
+    .word  0x2a220002
+    .word  0x50400005
+    .word  0x24020002
+    .word  0x12200025
+    .word  0x7bb00030
+    .word  0x10000031
+    .word  0x7bb10020
+    .word  0x1622002e
+    .word  0x7bb00030
+    .word  0x0c054a52
+    .word  0x00000000
+    .word  0x0040802d
+    .word  0x8f84ef38
+    .word  0x0c076652
+    .word  0x0200282d
+    .word  0x8f82ef38
+    .word  0x0240202d
+    .word  0x0200382d
+    .word  0x8c4601d0
+    .word  0x0c08f28a
+    .word  0x8c4501c4
+    .word  0x10000020
+    .word  0x7bb00030
+    .word  0x24020002
+    .word  0x0200202d
+    .word  0x0c0549a2
+    .word  0xaca20228
+    .word  0x8f90ef38
+    .word  0xae0201d4
+    .word  0x0c053720
+    .word  0xae0201d0
+    .word  0x0c053812
+    .word  0x0040202d
+    .word  0x8e0601d0
+    .word  0x0040382d
+    .word  0x8e0501c4
+    .word  0x0c08f28a
+    .word  0x0240202d
+    .word  0x8f82ef38
+    .word  0x1000000d
+    .word  0xac510200
+    .word  0x0c054aea
+    .word  0x00000000
+    .word  0x0040802d
+    .word  0x8f84ef38
+    .word  0x0c076652
+    .word  0x0200282d
+    .word  0x8f82ef38
+    .word  0x0240202d
+    .word  0x0200382d
+    .word  0x8c4601d0
+    .word  0x0c08f28a
+    .word  0x8c4501c4
+    .word  0x7bb00030
+    .word  0x7bb10020
+    .word  0x7bb20010
+    .word  0xdfbf0000
+    .word  0x03e00008
+    .word  0x27bd0040
+    .word  0x00000000
+.end func_001D5DF0

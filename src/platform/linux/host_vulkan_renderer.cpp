@@ -4,6 +4,9 @@
 #include "platform/host_video_player.h"
 #include "platform/host_vulkan_context.h"
 #include "platform/host_vulkan_menu.h"
+#include "platform/host_vulkan_world.h"
+#include "platform/host_object.h"
+#include "platform/host_world_scene.h"
 
 #include <SDL.h>
 #include <SDL_vulkan.h>
@@ -143,14 +146,17 @@ public:
             std::cout << "[gfx]     Vulkan renderer ready (" << swap_extent_.width << "x"
                       << swap_extent_.height << ")\n";
         }
+        gs_set_renderer(this);
         return true;
     }
 
     void shutdown() override {
+        gs_set_renderer(nullptr);
         if (device_ != VK_NULL_HANDLE) {
             vkDeviceWaitIdle(device_);
         }
 
+        shutdown_world_gameplay();
         shutdown_main_menu();
         frame_pipeline_.shutdown();
         destroy_video_resources();
@@ -230,7 +236,11 @@ public:
                              VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT);
         }
 
-        const bool menu_frame = menu_mode_ && !menu_frame_.sprites.empty();
+        const bool menu_frame = !world_mode_ && menu_mode_ && !menu_frame_.sprites.empty();
+
+        if (world_mode_) {
+            world_gpu_.record(cmd, current_image_, swap_extent_);
+        } else {
         const VkExtent2D draw_extent =
             (frame_pipeline_.active() && !menu_frame) ? frame_pipeline_.render_extent() : swap_extent_;
         const VkFramebuffer draw_framebuffer =
@@ -250,6 +260,8 @@ public:
 
         vkCmdBeginRenderPass(cmd, &render_pass_info, VK_SUBPASS_CONTENTS_INLINE);
         VkViewport viewport{};
+        viewport.x = 0.0f;
+        viewport.y = 0.0f;
         viewport.width = static_cast<float>(draw_extent.width);
         viewport.height = static_cast<float>(draw_extent.height);
         viewport.minDepth = 0.0f;
@@ -269,8 +281,9 @@ public:
             vkCmdDraw(cmd, 3, 1, 0, 0);
         }
         vkCmdEndRenderPass(cmd);
+        }
 
-        if (frame_pipeline_.active() && !menu_frame) {
+        if (frame_pipeline_.active() && !world_mode_ && !menu_frame) {
             frame_pipeline_.record_upscale(cmd,
                                            swap_images_[current_image_],
                                            swap_image_views_[current_image_],
@@ -336,6 +349,11 @@ public:
             } else if (event.type == SDL_KEYDOWN) {
                 if (event.key.keysym.sym == SDLK_ESCAPE) {
                     should_close_ = true;
+                } else if (event.key.keysym.sym == SDLK_F11) {
+                    const Uint32 flags = SDL_GetWindowFlags(window_);
+                    const bool fullscreen = (flags & SDL_WINDOW_FULLSCREEN_DESKTOP) != 0;
+                    SDL_SetWindowFullscreen(window_, fullscreen ? 0 : SDL_WINDOW_FULLSCREEN_DESKTOP);
+                    framebuffer_resized_ = true;
                 } else if (event.key.keysym.sym == SDLK_SPACE || event.key.keysym.sym == SDLK_RETURN ||
                            event.key.keysym.sym == SDLK_KP_ENTER) {
                     skip_video_ = true;
@@ -525,17 +543,56 @@ public:
         }
         menu_gpu_.on_swapchain_resize(swap_extent_);
         menu_mode_ = true;
-        gs_set_renderer(this);
         return true;
     }
 
     void set_main_menu_frame(const MenuFrame& frame) override { menu_frame_ = frame; }
 
     void shutdown_main_menu() override {
-        gs_set_renderer(nullptr);
         menu_mode_ = false;
         menu_frame_ = {};
         menu_gpu_.shutdown();
+    }
+
+    bool init_world_gameplay(int map_id = 0) override {
+        shutdown_main_menu();
+        world_scene_ = build_world_scene_for_map(map_id);
+        if (!world_gpu_.init(physical_device_,
+                             device_,
+                             graphics_queue_,
+                             *queue_indices_.graphics,
+                             command_pool_,
+                             swap_format_,
+                             swap_image_views_,
+                             swap_extent_,
+                             config_.shader_dir,
+                             world_scene_)) {
+            return false;
+        }
+        world_mode_ = true;
+        gs_set_renderer(this);
+        std::cout << "[world]   gameplay terrain for map_id=" << map_id << " ("
+                  << world_scene_.terrain.indices.size() / 3 << " tris, "
+                  << host_instance_man_active_count() << " instance markers)\n";
+        return true;
+    }
+
+    void tick_world_gameplay(float dt_seconds) override {
+        if (!world_mode_) {
+            return;
+        }
+        update_world_camera_from_pad(world_scene_.camera, dt_seconds);
+        const float aspect = static_cast<float>(swap_extent_.width) /
+                             static_cast<float>(std::max(1u, swap_extent_.height));
+        world_gpu_.set_camera(world_scene_.camera, aspect);
+    }
+
+    void shutdown_world_gameplay() override {
+        if (!world_mode_) {
+            return;
+        }
+        world_mode_ = false;
+        world_gpu_.shutdown();
     }
 
 private:
@@ -1094,6 +1151,9 @@ private:
             frame_pipeline_.resize(swap_extent_);
         }
         menu_gpu_.on_swapchain_resize(swap_extent_);
+        if (world_mode_) {
+            world_gpu_.on_swapchain_changed(swap_image_views_, swap_extent_);
+        }
     }
 
     void cleanup_swapchain() {
@@ -1323,11 +1383,17 @@ private:
     VulkanMenuGpu menu_gpu_{};
     MenuFrame menu_frame_{};
     bool menu_mode_ = false;
+
+    VulkanWorldGpu world_gpu_{};
+    WorldScene world_scene_{};
+    bool world_mode_ = false;
 };
 
 } // namespace
 
-Renderer* create_vulkan_renderer() { return new VulkanRenderer(); }
+Renderer* create_renderer() { return new VulkanRenderer(); }
+
+Renderer* create_vulkan_renderer() { return create_renderer(); }
 
 void destroy_renderer(Renderer* renderer) {
     delete renderer;

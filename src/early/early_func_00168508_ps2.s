@@ -1,0 +1,93 @@
+.include "macro.inc"
+
+.set noat
+.set noreorder
+
+.section .text, "ax"
+
+.global func_00168508
+.ent func_00168508
+func_00168508:
+    .word  0x27bdff50
+    .word  0x7fb00090
+    .word  0x7fb10080
+    .word  0x0080802d
+    .word  0xffbf0070
+    .word  0x00a0882d
+    .word  0xe7b400a0
+    .word  0x8e020030
+    .word  0x8c440004
+    .word  0x8c8306c0
+    .word  0x248406c0
+    .word  0x84650038
+    .word  0x8c62003c
+    .word  0x0040f809
+    .word  0x00852021
+    .word  0x5622003d
+    .word  0x7bb00090
+    .word  0x8e060030
+    .word  0x27a40020
+    .word  0x3c0142c8
+    .word  0x4481a000
+    .word  0x8cc20000
+    .word  0x84450008
+    .word  0x8c43000c
+    .word  0x0060f809
+    .word  0x00c52821
+    .word  0x3c030050
+    .word  0x27a40050
+    .word  0x2463f160
+    .word  0x4402a000
+    .word  0xd8640000
+    .word  0x48a21800
+    .word  0x4be32158
+    .word  0xfba50040
+    .word  0x7ba20040
+    .word  0x7fa20030
+    .word  0xdba30020
+    .word  0xdba40030
+    .word  0x4be41968
+    .word  0xfba50040
+    .word  0x7ba20040
+    .word  0x8e060030
+    .word  0x7fa20010
+    .word  0x8cc30000
+    .word  0x84650020
+    .word  0x8c620024
+    .word  0x0040f809
+    .word  0x00c52821
+    .word  0x3c014348
+    .word  0x44810000
+    .word  0x0220282d
+    .word  0x44020000
+    .word  0xdba40050
+    .word  0x48a21800
+    .word  0x4be32158
+    .word  0xfba50060
+    .word  0x0200202d
+    .word  0x7ba20060
+    .word  0x7fa20040
+    .word  0xdba30010
+    .word  0xdba40040
+    .word  0x4be4196c
+    .word  0xfba50060
+    .word  0x7ba20060
+    .word  0x7e020040
+    .word  0x0c059b18
+    .word  0x7fa20000
+    .word  0x4600a306
+    .word  0x0200202d
+    .word  0x0c059954
+    .word  0x46006346
+    .word  0x8e020010
+    .word  0x84440028
+    .word  0x8c43002c
+    .word  0x0060f809
+    .word  0x02042021
+    .word  0x7bb00090
+    .word  0x7bb10080
+    .word  0xdfbf0070
+    .word  0xc7b400a0
+    .word  0x03e00008
+    .word  0x27bd00b0
+.end func_00168508

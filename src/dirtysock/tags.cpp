@@ -4,6 +4,9 @@
 //https://decomp.me/scratch/fZ4tu
 INCLUDE_ASM("dirtysock/tags", cDirtysock_tag__TagFieldSetupAppend__FPcN20);
 #ifdef SKIP_ASM
+#ifdef SSX3_HOST
+extern "C"
+#endif
 char* cDirtysock_tag__TagFieldSetupAppend(char* message, char* buffer, char* key)
 {
     if (key == (char*)0x0) {
