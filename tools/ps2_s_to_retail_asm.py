@@ -42,6 +42,8 @@ def fn_declaration(obj_text: str, glabel: str) -> str | None:
         m = re.search(pat, obj_text, re.M)
         if m:
             ret, args = m.group(1).strip(), m.group(2).strip()
+            if not re.match(r"^(?:void|int|unsigned|char|float|double|static\b)", ret):
+                continue
             return f"{ret} {glabel}({args});"
     return None
 

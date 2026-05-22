@@ -4,7 +4,7 @@
 
 extern void* func_002D1BD8(void);
 #ifdef SKIP_ASM
-extern float cSpline_calcLength(void* spline);
+float cSpline_calcLength(void* spline);
 PS2_RETAIL_ASM_ONLY(
     cSpline_calcLength,
     ".word 0x8c820008\n\t"

@@ -58,6 +58,8 @@ def wrap_file(path: Path, symbols: set[str]) -> int:
             continue
         if text[pos : pos + 20].startswith("#ifndef SSX3_HOST"):
             continue
+        if "#ifndef SSX3_HOST" in text[pos : pos + 400]:
+            continue
         depth = 1
         i = pos + len("#ifdef SKIP_ASM")
         while depth > 0:
@@ -76,9 +78,11 @@ def wrap_file(path: Path, symbols: set[str]) -> int:
             "",
             body,
         )
+        body = body.lstrip("\n")
         out.append(block)
         out.append(body)
-        out.append("#endif\n")
+        if not body.rstrip().endswith("#endif"):
+            out.append("#endif\n")
         out.append("#endif\n")
         pos = i
         changed += 1

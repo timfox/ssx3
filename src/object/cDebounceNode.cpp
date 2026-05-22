@@ -6,9 +6,6 @@ extern "C" {
 #endif
 void cMoveNode_cMoveNode(void* self, void* param_2, void* config);
 extern int D_004906F0;
-#ifdef SSX3_HOST
-}
-#endif
 
 // 100% — retail @ 0x00342D10
 INCLUDE_ASM("mem/rom21_cDebounceNode", cDebounceNode_cDebounceNode);
@@ -69,5 +66,9 @@ void* cDebounceNode_cDebounceNode(void* self, void* param_2, void* config) {
     return self;
 }
 #endif
+#endif
+
+#ifdef SSX3_HOST
+}
 #endif
 

@@ -38,6 +38,7 @@ NATIVE_HOST_SOURCES_BASE = [
     "src/platform/linux/host_log.cpp",
     "src/platform/linux/host_mem.cpp",
     "src/platform/linux/host_mem_body.cpp",
+    "src/platform/linux/host_heap_synthetic.cpp",
     "src/platform/linux/host_sync.cpp",
     "src/platform/linux/host_filesys.cpp",
     "src/platform/linux/host_big.cpp",
@@ -258,6 +259,36 @@ compiler_type = "gcc"
 [decompme.compilers]
 "tools/cc/eegcc-2.95.3-V1.36/bin/gcc" = "eegcc-2.95.3-V1.36"
 """)
+
+def emit_native_build(ninja: ninja_syntax.Writer) -> None:
+    """Host Linux binary (SSX3_HOST decomp paths); safe to call in --objects mode."""
+    host_cxxflags, host_libs = host_build_flags()
+
+    host_shader_outputs = []
+    for src, out in HOST_SHADERS:
+        host_shader_outputs.append(out)
+        ninja.build(out, "spirv", src)
+
+    native_objects = []
+    for src in host_native_sources():
+        obj = Path("obj/host") / (Path(src).stem + ".o")
+        native_objects.append(str(obj))
+        ninja.build(
+            str(obj),
+            "host_cc",
+            src,
+            variables={"hostflags": host_cxxflags},
+        )
+
+    ninja.build(
+        NATIVE_PATH,
+        "host_link",
+        native_objects,
+        implicit=host_shader_outputs,
+        variables={"hostflags": host_cxxflags, "hostlibs": host_libs},
+    )
+    ninja.build("native", "phony", NATIVE_PATH)
+
 
 def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_only=False, dual_objects=False):
     """
@@ -15684,34 +15715,10 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_
             }
             with open("objdiff.json", "w", encoding="utf-8") as f:
                 json.dump(objdiff, f, indent=2)
+        emit_native_build(ninja)
         return
 
-    host_cxxflags, host_libs = host_build_flags()
-
-    host_shader_outputs = []
-    for src, out in HOST_SHADERS:
-        host_shader_outputs.append(out)
-        ninja.build(out, "spirv", src)
-
-    native_objects = []
-    for src in host_native_sources():
-        obj = Path("obj/host") / (Path(src).stem + ".o")
-        native_objects.append(str(obj))
-        ninja.build(
-            str(obj),
-            "host_cc",
-            src,
-            variables={"hostflags": host_cxxflags},
-        )
-
-    ninja.build(
-        NATIVE_PATH,
-        "host_link",
-        native_objects,
-        implicit=host_shader_outputs,
-        variables={"hostflags": host_cxxflags, "hostlibs": host_libs},
-    )
-    ninja.build("native", "phony", NATIVE_PATH)
+    emit_native_build(ninja)
 
     if not objects_only and os.path.exists(UNDEFINED_SYMS_AUTO_PATH):
         os.remove(UNDEFINED_SYMS_AUTO_PATH)

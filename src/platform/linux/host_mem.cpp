@@ -1,7 +1,9 @@
 #include "platform/host_abi.h"
+#include "platform/host_heap_synthetic.h"
 
 #include "platform/host_log.h"
 
+#include <cstdint>
 #include <cstdlib>
 #include <iostream>
 #include <string>
@@ -55,6 +57,18 @@ void* cMemMan_alloc(unsigned long size, void* heap_tag, unsigned long flags, voi
     const std::string msg =
         "cMemMan_alloc " + std::to_string(size) + " bytes (heap " + std::to_string(host::g_heap_bytes) + ")";
     host::host_log("mem", msg.c_str());
+
+    if (heap_tag != nullptr) {
+        const auto tag = static_cast<unsigned int>(reinterpret_cast<uintptr_t>(heap_tag));
+        if ((tag & 0xF0000000u) == 0x20000000u) {
+            HostHeapSyntheticBlock* block =
+                static_cast<HostHeapSyntheticBlock*>(host_heap_synthetic_from_encoded(tag));
+            if (block != nullptr) {
+                block->word_at_54 = static_cast<int>(reinterpret_cast<uintptr_t>(user));
+            }
+        }
+    }
+
     return user;
 }
 

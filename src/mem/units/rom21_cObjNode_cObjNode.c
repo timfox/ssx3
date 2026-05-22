@@ -9,7 +9,7 @@ extern int D_00491F00;
 extern int D_00491E80;
 extern int D_0044AFF0;
 #ifdef SKIP_ASM
-extern void* cObjNode_cObjNode(void* self, void* param_2, void* config);
+void* cObjNode_cObjNode(void* self, void* param_2, void* param_3);
 PS2_RETAIL_ASM_ONLY(
     cObjNode_cObjNode,
     ".word 0x27bdffe0\n\t"

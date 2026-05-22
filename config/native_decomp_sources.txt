@@ -40,6 +40,7 @@ src/object/bucketman.cpp
 src/object/bucketpurge.cpp
 src/object/cDebounceNode.cpp
 src/object/deadfadenode.cpp
+src/object/effectlink.cpp
 src/object/flexbridgenode.cpp
 src/object/floatingnode.cpp
 src/object/instancenode.cpp
@@ -49,6 +50,7 @@ src/object/movenode.cpp
 src/object/movenode_helpers.cpp
 src/object/multisplinemodifier.cpp
 src/object/objnode.cpp
+src/object/particle_basis.cpp
 src/object/railmodifier.cpp
 src/object/sortobjnode.cpp
 src/object/spline3d.cpp

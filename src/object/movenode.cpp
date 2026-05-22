@@ -27,6 +27,7 @@ extern char D_0049E990[];
 #endif
 extern void func_003458C0(void* particle, void* param);
 extern void func_00346120(void* halo, void* param);
+extern void func_00345C90(void* particle, void* param, void* parent_iface, void* heap_extra, void* bind_data);
 extern int D_004906F0;
 #ifdef SSX3_HOST
 extern void* D_2898;
@@ -382,7 +383,6 @@ PS2_RETAIL_ASM_ONLY(
 )
 #else
 extern void func_003C5F94(void* fmt, void* a0);
-extern void func_00351724(void* particle, void* param, void* heap, void* tag);
 
 void cMoveNode_addDynamicParticle(void* self, void* param) {
     void* iface = *(void**)((char*)self + 0x18);
@@ -394,7 +394,7 @@ void cMoveNode_addDynamicParticle(void* self, void* param) {
     }
     void* particle = cMemMan_alloc(0x270UL, D_0049E990, 0x20000000UL, (void*)0);
     void* parent = *(void**)((char*)self + 0x18);
-    func_00351724(particle, param, (void*)0, parent);
+    func_00345C90(particle, param, parent, (void*)0, (void*)0);
     cMoveNode_addEffectModifier(self, particle);
 }
 #endif

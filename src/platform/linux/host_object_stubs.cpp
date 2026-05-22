@@ -1,4 +1,24 @@
+#include "platform/host_heap_synthetic.h"
+
 #include <cstring>
+#include <cstdint>
+
+static bool host_ptr_looks_allocated(void* ptr) {
+    if (ptr == 0) {
+        return false;
+    }
+    const uintptr_t raw = reinterpret_cast<uintptr_t>(ptr);
+    return raw >= 0x10000u && raw < 0x80000000u;
+}
+
+static int host_lowest_set_bit(unsigned masked) {
+    for (int bit = 0; bit < 24; bit++) {
+        if ((masked >> bit) & 1u) {
+            return bit;
+        }
+    }
+    return -1;
+}
 
 #ifdef SSX3_HOST
 extern "C" {
@@ -168,17 +188,32 @@ void func_003C5F8C(void* fmt, unsigned long a0, unsigned long a1, unsigned long 
     (void)a2;
 }
 
-void func_00351724(void* particle, void* param, void* heap, void* tag) {
-    (void)particle;
-    (void)param;
-    (void)heap;
-    (void)tag;
+void func_0034FED8(void* a0, void* a1) {
+    (void)a0;
+    (void)a1;
+}
+
+void func_002F7A68(void* sub) {
+    if (sub != 0) {
+        std::memset(sub, 0, 0x1C0);
+    }
+}
+
+void func_00416210(void* dst, void* a1, int size) {
+    (void)a1;
+    if (dst != 0 && size > 0) {
+        std::memset(dst, 0, static_cast<size_t>(size));
+    }
 }
 
 void func_003D415C(void* zero, void* scratch, void* overlap_out) {
     (void)zero;
-    (void)scratch;
-    (void)overlap_out;
+    if (scratch != 0) {
+        std::memset(scratch, 0, 0x30);
+    }
+    if (overlap_out != 0) {
+        std::memset(overlap_out, 0, 0x10);
+    }
 }
 
 void func_003D4AF0(void* block, void* scratch) {
@@ -188,7 +223,9 @@ void func_003D4AF0(void* block, void* scratch) {
 
 void func_003D4B0E(void* block, void* overlap_out) {
     (void)block;
-    (void)overlap_out;
+    if (overlap_out != 0) {
+        std::memset(overlap_out, 0, 0x10);
+    }
 }
 
 void func_003513D0(void* table) {
@@ -221,6 +258,56 @@ void func_003612C0(void* dst, void* src) {
 
 int D_0045288C;
 int D_00452888;
+
+// Retail @ 0x003D5290 — walk heap tag table @ ~0x517610 (4 rows, 0x928 stride).
+void* func_003D5290(void* query_ptr) {
+    if (query_ptr == 0) {
+        return 0;
+    }
+
+#ifdef SSX3_HOST
+    void* synthetic = host_heap_synthetic_resolve(query_ptr);
+    if (synthetic != 0) {
+        return synthetic;
+    }
+#endif
+
+    if (host_ptr_looks_allocated(query_ptr)) {
+        return query_ptr;
+    }
+
+    const uintptr_t raw = reinterpret_cast<uintptr_t>(query_ptr);
+    const unsigned masked = (unsigned)(raw & 0x00ffffffu);
+    if (host_lowest_set_bit(masked) < 0) {
+        return 0;
+    }
+
+    return 0;
+}
+
+// Retail @ 0x003D3030 — func_003D5290 then load word at resolved+0x54 (or -8 if null).
+int func_003D3030(void* block) {
+    void* resolved = func_003D5290(block);
+    if (resolved == 0) {
+        return -8;
+    }
+    return *(int*)((char*)resolved + 0x54);
+}
+
+// Retail @ 0x003D11B8 — init/teardown scratch record (a1); status at out+0 for func_003D53B8.
+void func_003D11B8(void* block, void* out) {
+    if (out == 0) {
+        return;
+    }
+    std::memset(out, 0, 0x40);
+    void* resolved = func_003D5290(block);
+    const int status = func_003D3030(block);
+    *(int*)((char*)out + 0x24) = status;
+    *(int*)((char*)out + 0x28) = (int)(unsigned long)resolved;
+    *(int*)((char*)out + 0) = (status >= 0) ? 0 : -1;
+    *(int*)((char*)out + 4) = -1;
+    *(int*)((char*)out + 8) = -1;
+}
 
 #ifdef SSX3_HOST
 }

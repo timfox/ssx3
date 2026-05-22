@@ -5,19 +5,12 @@
 extern "C" {
 static unsigned char g_D_0049E890[0x10];
 void* D_0049E890 = g_D_0049E890;
-}
 #else
 extern char D_0049E890[];
 #endif
 
-#ifdef SSX3_HOST
-extern "C" {
-#endif
 void* cMemMan_alloc(unsigned long size, void* heap_tag, unsigned long flags, void* heap_state);
 void cInstanceNode_getBoundBoxInfo(void* self, void* out, unsigned long flags);
-#ifdef SSX3_HOST
-}
-#endif
 
 // Retail @ 0x0034EEB8
 INCLUDE_ASM("mem/rom21_cFloatingNode", cFloatingNode_initInfo);
@@ -48,9 +41,7 @@ PS2_RETAIL_ASM_ONLY(
 )
 #else
 void cFloatingNode_initInfo_impl(void* self);
-#ifdef SSX3_HOST
-extern "C"
-#endif
+
 void cFloatingNode_initInfo(void* self) {
     cFloatingNode_initInfo_impl(self);
 }
@@ -63,3 +54,6 @@ void cFloatingNode_initInfo_impl(void* self) {
 #endif
 #endif
 
+#ifdef SSX3_HOST
+}
+#endif

@@ -15,7 +15,7 @@ extern void* cInstanceNode_cInstanceNode_impl(void* self, void* param_2, void* c
 extern void cInstanceMan_copyInstance_impl(void* dst, void* src);
 extern int D_00491C80;
 #ifdef SKIP_ASM
- func_0034FC78(self, param_2);
+void func_0034FC78(void* self, void* param_2);
 PS2_RETAIL_ASM_ONLY(
     func_0034FC78,
     ".word 0x03e00008\n\t"

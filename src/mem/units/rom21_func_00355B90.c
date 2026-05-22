@@ -11,6 +11,13 @@ extern char D_0049E9D8[];
 extern char D_0049E940[];
 typedef void (*NodeConfigBindFn)(void* src, void* dst, int count);
 extern void func_0035F6E8(void* spline, void* config);
+extern void func_0034FED8(void* a0, void* a1);
+extern void func_002F7A68(void* sub);
+extern void func_00416210(void* dst, void* a1, int size);
+extern void func_0036CBF8(void* out_basis, void* zero, void* param_word, void* stack);
+extern void func_00370058(void* basis, void* tmpl, void* param, void* particle_sub);
+extern void func_0036CE00(void* basis, float f12, float f13, float f14);
+extern void func_0036CE28(void* basis, float f12, float f13);
 #ifdef SKIP_ASM
 void* func_00355B90(void* spline, void* config);
 PS2_RETAIL_ASM_ONLY(

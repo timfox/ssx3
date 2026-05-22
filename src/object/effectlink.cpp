@@ -26,11 +26,12 @@ void cEffectLink_add(void** list_head, void* node) {
     if (prev != 0) {
         *(void**)((char*)prev + 4) = node;
     }
-    *(void**)((char*)node + 4) = list_head;
-    void* prev_head = *list_head;
-    *(void**)((char*)node + 0) = prev_head;
+    *(void**)((char*)node + 4) = (void*)list_head;
+    prev = *list_head;
+    *(void**)((char*)node + 0) = prev;
     *list_head = node;
 }
+#endif
 #endif
 
 #ifdef SSX3_HOST

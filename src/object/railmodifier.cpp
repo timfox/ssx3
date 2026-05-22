@@ -310,8 +310,8 @@ void cRailModifier_buildXform(void* self) {
     const int rail_flags = *(int*)((char*)self + 0x80);
     if (rail_flags >= 0) {
         rail_apply_point_to_basis(basis, 0.0f, 0.0f, 0.0f, (float*)((char*)self + 0x54));
-        std::memcpy((char*)self + 0x60, (char*)self + 0x54, 0x40);
-        std::memcpy((char*)self + 0x70, (char*)self + 0x54, 0x40);
+        std::memmove((char*)self + 0x60, (char*)self + 0x54, 0x40);
+        std::memmove((char*)self + 0x70, (char*)self + 0x54, 0x40);
         *(int*)((char*)self + 0x44) = -1;
         return;
     }

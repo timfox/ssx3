@@ -2,8 +2,14 @@
 // @objdiff-matched
 #include "ps2_match.h"
 
+extern void* cBucketMan_first(void* bucket_man, int bucket_id);
+extern void* func_003D5290(void* query_ptr);
+extern int func_003D3030(void* block);
+extern void func_003D11B8(void* block, void* scratch);
+extern int D_00517644;
+extern int D_00517668;
 #ifdef SKIP_ASM
-void func_003D53B8(void);
+void* func_003D53B8(int shift_heap, int shift_block);
 PS2_RETAIL_ASM_ONLY(
     func_003D53B8,
     ".word 0x27bdff70\n\t"

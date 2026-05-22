@@ -377,6 +377,7 @@ void* cDeadFadeNode_cDeadFadeNode(void* self, void* param_2, void* config) {
     }
     *(void**)((char*)self + 0) = block;
 
+    // Config iface hooks (retail vtable): +0xD0 primary fade init, +0xD8 secondary + copy from self+0x38.
     char* iface = *(char**)config;
     if (iface != 0) {
         void (*init_primary)(void*, void*) =

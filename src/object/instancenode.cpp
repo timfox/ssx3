@@ -203,10 +203,36 @@ static int instancenode_init_from_config(void* config, void* self) {
 // Retail @ 0x0034FB90
 INCLUDE_ASM("mem/rom21_cInstanceNode", cInstanceNode_cInstanceNode);
 #ifdef SKIP_ASM
+#ifndef SSX3_HOST
+PS2_RETAIL_ASM_ONLY(
+    cInstanceNode_cInstanceNode,
+    ".word 0x27bdffd0\n\t"
+    ".word 0x7fb00020\n\t"
+    ".word 0x7fb10010\n\t"
+    ".word 0x0080802d\n\t"
+    ".word 0xffbf0000\n\t"
+    ".word 0x0c0d5230\n\t"
+    ".word 0x00c0882d\n\t"
+    ".word 0x3c030049\n\t"
+    ".word 0x0200282d\n\t"
+    ".word 0x24631c80\n\t"
+    ".word 0xae03000c\n\t"
+    ".word 0x8e260000\n\t"
+    ".word 0x84c40020\n\t"
+    ".word 0x8cc20024\n\t"
+    ".word 0x0040f809\n\t"
+    ".word 0x02242021\n\t"
+    ".word 0xae020018\n\t"
+    ".word 0x0200102d\n\t"
+    ".word 0x7bb10010\n\t"
+    ".word 0x7bb00020\n\t"
+    ".word 0xdfbf0000\n\t"
+    ".word 0x03e00008\n\t"
+    ".word 0x27bd0030\n\t"
+    ".word 0x00000000\n\t"
+)
+#else
 void* cInstanceNode_cInstanceNode_impl(void* self, void* param_2, void* config);
-#ifdef SSX3_HOST
-extern "C"
-#endif
 void* cInstanceNode_cInstanceNode(void* self, void* param_2, void* config) {
     return cInstanceNode_cInstanceNode_impl(self, param_2, config);
 }
@@ -217,14 +243,38 @@ void* cInstanceNode_cInstanceNode_impl(void* self, void* param_2, void* config) 
     return self;
 }
 #endif
+#endif
+
 
 // Retail @ 0x00351270
 INCLUDE_ASM("mem/rom21_cInstanceMan_copyInstance", cInstanceMan_copyInstance);
 #ifdef SKIP_ASM
+#ifndef SSX3_HOST
+PS2_RETAIL_ASM_ONLY(
+    cInstanceMan_copyInstance,
+    ".word 0x27bdffd0\n\t"
+    ".word 0x7fb00020\n\t"
+    ".word 0x00a0802d\n\t"
+    ".word 0xffbf0000\n\t"
+    ".word 0x7fb10010\n\t"
+    ".word 0x00c0282d\n\t"
+    ".word 0x8e110078\n\t"
+    ".word 0x0200202d\n\t"
+    ".word 0x0c0f995d\n\t"
+    ".word 0x240600a0\n\t"
+    ".word 0x8e020008\n\t"
+    ".word 0xae110078\n\t"
+    ".word 0x34422000\n\t"
+    ".word 0x7bb10010\n\t"
+    ".word 0xae020008\n\t"
+    ".word 0x7bb00020\n\t"
+    ".word 0xdfbf0000\n\t"
+    ".word 0x03e00008\n\t"
+    ".word 0x27bd0030\n\t"
+    ".word 0x00000000\n\t"
+)
+#else
 void cInstanceMan_copyInstance_impl(void* dst, void* src);
-#ifdef SSX3_HOST
-extern "C"
-#endif
 void cInstanceMan_copyInstance(void* dst, void* src) {
     cInstanceMan_copyInstance_impl(dst, src);
 }
@@ -240,10 +290,91 @@ void cInstanceMan_copyInstance_impl(void* dst, void* src) {
     *(int*)((char*)dst + 8) = flags | 0x2000;
 }
 #endif
+#endif
+
 
 // Retail @ 0x00350A88 — write bound-box fields into out buffer.
 INCLUDE_ASM("mem/rom21_cInstanceNode", cInstanceNode_getBoundBoxInfo);
 #ifdef SKIP_ASM
+#ifndef SSX3_HOST
+PS2_RETAIL_ASM_ONLY(
+    cInstanceNode_getBoundBoxInfo,
+    ".word 0x8c820018\n\t"
+    ".word 0x27bdffc0\n\t"
+    ".word 0x3c013f80\n\t"
+    ".word 0x44811000\n\t"
+    ".word 0x24a80010\n\t"
+    ".word 0xc4400060\n\t"
+    ".word 0x03a0482d\n\t"
+    ".word 0x44801800\n\t"
+    ".word 0x46001106\n\t"
+    ".word 0xe7a00000\n\t"
+    ".word 0x0000382d\n\t"
+    ".word 0xc4400064\n\t"
+    ".word 0xe7a00004\n\t"
+    ".word 0xc4410068\n\t"
+    ".word 0xe7a2000c\n\t"
+    ".word 0xe7a10008\n\t"
+    ".word 0x7ba20000\n\t"
+    ".word 0x7ca20000\n\t"
+    ".word 0x8c830018\n\t"
+    ".word 0xc460006c\n\t"
+    ".word 0xe7a00000\n\t"
+    ".word 0xc4610070\n\t"
+    ".word 0xe7a10004\n\t"
+    ".word 0xc4600074\n\t"
+    ".word 0xe7a00008\n\t"
+    ".word 0x7ba20000\n\t"
+    ".word 0x7ca20010\n\t"
+    ".word 0x8c830018\n\t"
+    ".word 0x78620040\n\t"
+    ".word 0x7fa20000\n\t"
+    ".word 0x30e20001\n\t"
+    ".word 0x00000000\n\t"
+    ".word 0x50400002\n\t"
+    ".word 0xc5020000\n\t"
+    ".word 0xc4a20000\n\t"
+    ".word 0x30e20002\n\t"
+    ".word 0x50400002\n\t"
+    ".word 0xc5010004\n\t"
+    ".word 0xc4a10004\n\t"
+    ".word 0x30e20004\n\t"
+    ".word 0x50400002\n\t"
+    ".word 0xc5000008\n\t"
+    ".word 0xc4a00008\n\t"
+    ".word 0xe7a20010\n\t"
+    ".word 0xe7a10014\n\t"
+    ".word 0xe7a00018\n\t"
+    ".word 0xe7a4001c\n\t"
+    ".word 0xdba30010\n\t"
+    ".word 0xd9240000\n\t"
+    ".word 0x4be4196c\n\t"
+    ".word 0xfba50030\n\t"
+    ".word 0x7ba20030\n\t"
+    ".word 0x7fa20020\n\t"
+    ".word 0xdba30020\n\t"
+    ".word 0xdba50020\n\t"
+    ".word 0x4b000183\n\t"
+    ".word 0x4be5192a\n\t"
+    ".word 0x4b04203d\n\t"
+    ".word 0x4b0430be\n\t"
+    ".word 0x4b04310b\n\t"
+    ".word 0x48232000\n\t"
+    ".word 0x44830000\n\t"
+    ".word 0x46001834\n\t"
+    ".word 0x00000000\n\t"
+    ".word 0x45030001\n\t"
+    ".word 0x460000c6\n\t"
+    ".word 0x24e70001\n\t"
+    ".word 0x28e20008\n\t"
+    ".word 0x5440ffdb\n\t"
+    ".word 0x30e20001\n\t"
+    ".word 0x46030004\n\t"
+    ".word 0xe4c00000\n\t"
+    ".word 0x03e00008\n\t"
+    ".word 0x27bd0040\n\t"
+)
+#else
 #ifdef SSX3_HOST
 extern "C"
 #endif
@@ -279,6 +410,7 @@ void cInstanceNode_getBoundBoxInfo(void* self, void* out, unsigned long flags) {
         *(float*)(buf + (corner * 8)) = components[kCornerComponent[corner]];
     }
 }
+#endif
 #endif
 
 #ifdef SSX3_HOST

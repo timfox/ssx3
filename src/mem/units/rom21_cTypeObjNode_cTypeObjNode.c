@@ -5,7 +5,6 @@
 typedef void (*NodeConfigBindFn)(void* src, void* dst, int count);
 extern int D_2898;
 extern void cBucketMan_add(void* bucket_man, void* node, void* param);
-extern void* cObjNode_cObjNode(void* self, void* param_2, void* config);
 extern int D_00491F00;
 extern int D_00491E80;
 extern int D_0044AFF0;

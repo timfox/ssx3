@@ -10,7 +10,6 @@ int D_00491E80;
 int D_0044AFF0;
 #ifdef SSX3_HOST
 extern void* D_2898;
-}
 #endif
 
 typedef void (*NodeConfigBindFn)(void* src, void* dst, int count);
@@ -109,5 +108,9 @@ void* cTypeObjNode_cTypeObjNode(void* self, void* param_2, void* config) {
     return self;
 }
 #endif
+#endif
+
+#ifdef SSX3_HOST
+}
 #endif
 
