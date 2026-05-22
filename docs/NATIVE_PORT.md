@@ -13,9 +13,9 @@ PS2-only services with a **host abstraction layer (HAL)**.
 |------|--------|
 | Executable size | ~3.8 MB main segment, mostly **disassembly** |
 | Named symbols | ~750 in `config/symbol_addrs.txt` |
-| C++ with real bodies | **6** files (`hashvalue`, `bxrandom`, `bxstring`, `md5`, `crowdrender2d`, `dirtysock/tags`) |
+| C++ with real bodies | Growing set — see `config/native_decomp_sources.txt` (`hashvalue`, `md5`, `bxrandom`, `bx/bxstring`, `crowdrender2d`, `dirtysock/tags`, …) |
 | Placeholder `src/**/*.cpp` | **~365** files (`//Known file in project` only) |
-| Linked into `ssx3-native` today | Host HAL + **`hashvalue.cpp`**, **`bxrandom.cpp`**, **`crowdrender2d.cpp`** (SKIP_ASM bodies) |
+| Linked into `ssx3-native` today | Host HAL + **`hashvalue.cpp`**, **`md5.cpp`**, **`bxrandom.cpp`**, **`crowdrender2d.cpp`**, **`dirtysock/tags.cpp`** (SKIP_ASM bodies) |
 | Title screen / FMV | **Host reimplementation** (assets + Vulkan), not `cFEStateTitle` |
 
 So “translate everything” is the right end state, but **most functions are not translated yet** —
@@ -82,7 +82,7 @@ API. Expect something like `host_gs_submit(draw_command)` called from ported gra
 
 Today:
 
-- `configure.py` → `host_native_sources()` lists only host files + `hashvalue.cpp`.
+- `configure.py` → `host_native_sources()` = host HAL + `config/native_decomp_sources.txt` (run `scripts/sync_native_decomp.py` after decomp).
 - Game placeholders are **not** compiled for native.
 
 Target:
@@ -101,8 +101,9 @@ Target:
 | **0** (now) | Disc check, FMV, hash smoke test, placeholder Vulkan title | — |
 | **1** (started) | HAL: `cMemMan_*`, `systemInit`, FILESYS/BIG, `--boot-game` | `host_mem.cpp`, `host_boot.cpp`, `host_big.cpp` |
 | **2** (started) | Retail `main()` chain → `cAppMan_mainLoop` host tick loop | `--boot-game`, `--boot-then-gfx` |
-| **2b** (started) | Link decomp units (`bxrandom`, `crowdrender2d`, …) with smoke tests | `bxrandom.cpp`, `crowdrender2d.cpp`, `host_game_bss.cpp` |
-| **2c** (started) | `cSSXApp_init`, `cFEStateTitle_*`, `cFEStateMainMenu_*`, `cBigFile_read` | `host_fe_title.cpp`, `host_fe_mainmenu.cpp`, `host_fe_session.cpp` |
+| **2b** (started) | Link decomp units (`bxrandom`, `crowdrender2d`, …) with smoke tests | `bxrandom.cpp`, `crowdrender2d.cpp`, `host_game_bss.cpp`; `cSSXApp_init` calls `cCrowdRender2D_*` |
+| **2e** (started) | Retail module init loop + per-frame tick | `host_retail_modules.cpp`, `host_retail_tick.cpp`, `--boot-then-game` |
+| **2c** (started) | `cSSXApp_init`, `cFELocale_*`, `cUIEngine_loadFile`, `cFEStateTransition_*`, `cBigFile_read` | `host_ssxapp.cpp`, `host_fe_locale.cpp`, `host_ui_engine.cpp`, `host_boot.cpp` |
 | **2d** (started) | Auto `fe_1.ssh` → menu PNGs; title → main → mountain room / options | `host_menu_assets.cpp`, `host_fe_session.cpp` |
 | **3** (started) | BIGF + `cBigFile_open`, PS2 path I/O from `disc/` | `host_big.cpp`, `host_io.cpp`, `host_bigfile.cpp` |
 | **4** (started) | Graphics stubs + `gs_submit_menu_frame` → Vulkan | `host_graphics.cpp`, `host_gs.cpp` |
@@ -135,7 +136,7 @@ This runs a **C reimplementation of retail `main()`’s call order** (not MIPS `
 7. `cBigFile_open` / `cBigFile_read` on `data/audio/audio.big`
 8. `cFEStateTitle_onCreateScreen` (host stub @ `0x194778`)
 9. `cExecutionMan_halt(ctx)`
-10. `cAppMan_run` → `cAppMan_mainLoop` (`--boot-game` only; `--boot-then-gfx` skips to Vulkan)
+10. `cAppMan_run` → `cAppMan_mainLoop` — **Vulkan only** (`create_renderer()`); headless fallback if GPU init fails (`--boot-game`, `--boot-then-game`, `--game`, `--gfx`)
 
 Symbols: `include/platform/host_abi.h`, `include/platform/host_syscalls.h`, `src/platform/linux/host_*.cpp`.
 

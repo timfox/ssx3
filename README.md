@@ -45,9 +45,17 @@ $ . venv/bin/activate
 
 ## Native Linux port (in progress)
 
-**Direction:** run decompiled game code on Linux with Vulkan — not permanent
-reimplementations of game systems in the host layer. See `docs/NATIVE_PORT.md` for
-architecture and phased plan.
+**Direction:** decompile SSX 3 to matching C, then **link that same C** on Linux with
+`-DSSX3_HOST -DSKIP_ASM` behind a thin HAL — not a permanent rewrite in
+`src/platform/linux/`. Start here: **`docs/NATIVE_DECOMP.md`**.
+
+```bash
+python3 tools/native_status.py
+python3 scripts/sync_native_decomp.py
+venv/bin/python configure.py && ninja native
+```
+
+See also `docs/NATIVE_PORT.md` (HAL detail) and `docs/PLAYABLE_ROADMAP.md` (milestones).
 
 This repository does not yet run SSX 3 as a playable native Linux game. Most
 game code is still PS2 assembly or placeholder files. The native target is an
@@ -79,19 +87,46 @@ $ . venv/bin/activate
 ```
 
 With `--gfx`, boot movies and the main menu share one window at `--width` x
-`--height` (default 1280x720). **Space** or **Enter** skips the current movie;
-**Escape** quits. Use `--no-boot-videos` to skip FMV entirely.
+`--height` (default **1280×720**). Use **`--resolution`** for presets (`720p`,
+`1080p`, `1440p`, `4k`, `ps2` for 640×448, etc.); run **`--list-resolutions`**
+for the full table. **`--width`** / **`--height`** override a preset. The FE
+layout letterboxes to NTSC 640×448 inside any window size; resize the window
+live and the swapchain follows. **Space** or **Enter** skips the current movie;
+**Escape** quits. **F11** toggles fullscreen (desktop mode). Use `--no-boot-videos` to skip FMV entirely.
 
 After boot FMV (or with `--no-boot-videos`), a **temporary** Vulkan title screen
 stands in until real `cFEStateTitle` code runs through the graphics HAL
 (see `docs/NATIVE_PORT.md`). Today it uses extracted `fe_1.ssh` art in 640×448
 layout; the window is resizable with letterboxing.
 
+Menu text uses a bitmap font atlas. **Retail** (default): `disc/data/fonts/fefont.sfn` → `fe_font_atlas.png` via `scripts/extract_menu_font.py` ([EA-Font-Manager](https://github.com/bartlomiejduda/EA-Font-Manager)). Strings like `press <start> to play` map `<start>` to the retail Start-button glyph.
+
+**Custom** (optional): bake your own TTF into `host_font_atlas.png` + `host_font_metrics.bin`:
+
+```bash
+python3 scripts/bake_host_font.py --font /path/to/YourFont.ttf --size 24
+```
+
+`--font auto` (default) uses the retail `fefont.sfn` atlas when present; `--font custom` uses `host_font_*` from `bake_host_font.py`. Force retail with `--font retail` on `ssx3-native --gfx`.
+
+Extract all host assets from a disc rip in one pass:
+
+```bash
+python3 scripts/extract_host_assets.py --disc disc
+```
+
+See `docs/DISC_EXTRACT.md` for per-script detail. Locale strings come from
+`data/locale/cmnamer.loc` + `feamer.loc` → `assets/host/locale/fe_strings.json`.
+
+Menu audio WAVs are under `assets/host/audio/`, menu textures in `assets/host/menu/`,
+and additional FE SSH tags in `assets/host/ui/`.
+
 Menu audio is decoded from `disc/data/audio/audio.big` on first run
 (`scripts/extract_menu_audio.py` uses bundled `tools/vgmstream/vgmstream-cli`):
-title wind loop (`BC_AmbLoop1.bnk`), layered menu stems (`SSX3Menu.bnk`), and UI
-SFX (`FE Menu.bnk`). WAVs land in `assets/host/audio/` and playback uses **OpenAL**
-during `--gfx` (D-pad moves, confirm, back, start).
+title wind loop (`BC_AmbLoop1.bnk`), menu music loop (`SSX3Menu.bnk` subsong 1),
+short interactive stems (subsongs 4–6, one-shots on D-pad), and UI SFX (`FE Menu.bnk`).
+WAVs land in `assets/host/audio/`; **OpenAL** plays wind on the title screen and the
+menu loop on other FE screens during `--gfx`.
 
 Vulkan renderer with optional upscaling:
 
@@ -115,7 +150,7 @@ export LD_LIBRARY_PATH=$DLSS_SDK_ROOT/lib/Linux_x86_64/rel:$LD_LIBRARY_PATH
 out/ssx3-native --gfx --upscale dlss
 ```
 
-Options: `--width`, `--height`, `--no-vsync`, `--render-scale`, optional positional
+Options: `--resolution`, `--width`, `--height`, `--no-vsync`, `--render-scale`, optional positional
 `disc` and `rebuilt_elf` paths.
 
 To add more decompiled sources to the native binary, append paths to
