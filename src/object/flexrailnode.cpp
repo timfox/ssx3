@@ -71,11 +71,6 @@ PS2_RETAIL_ASM_ONLY(
     ".word 0x00000000\n\t"
 )
 #else
-#ifdef SSX3_HOST
-extern "C"
-#endif
-#endif
-
 void cFlexRailNode_addSpaceHash(void* self) {
     void* hdr = cMemMan_alloc(0x10UL, (void*)D_0048E808, 0x20000000UL, (void*)0);
     *(void**)((char*)hdr + 0xC) = self;

@@ -174,11 +174,6 @@ PS2_RETAIL_ASM_ONLY(
     ".word 0x27bd0040\n\t"
 )
 #else
-#ifdef SSX3_HOST
-extern "C"
-#endif
-#endif
-
 void func_0034FB00(void* self, void* param_2, void* config) {
     func_00354850(self, param_2, config);
     *(int*)((char*)self + 0xC) = (int)(unsigned long)&D_00491C80;
@@ -192,6 +187,7 @@ void func_0034FB00(void* self, void* param_2, void* config) {
         func_002D1CF0(self, param_2, config);
     }
 }
+#endif
 #endif
 
 typedef void* (*InstanceConfigInitFn)(void* src, void* self);

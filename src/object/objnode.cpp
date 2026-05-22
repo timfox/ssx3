@@ -47,11 +47,6 @@ PS2_RETAIL_ASM_ONLY(
     ".word 0x27bd0020\n\t"
 )
 #else
-#ifdef SSX3_HOST
-extern "C"
-#endif
-#endif
-
 void* cObjNode_cObjNode(void* self, void* param_2, void* param_3) {
     (void)param_3;
     *(int*)((char*)self + 0xC) = (int)(unsigned long)&D_00491F00;
@@ -62,6 +57,7 @@ void* cObjNode_cObjNode(void* self, void* param_2, void* param_3) {
 #endif
     return self;
 }
+#endif
 #endif
 
 // Retail @ 0x00354788
@@ -103,10 +99,6 @@ PS2_RETAIL_ASM_ONLY(
     ".word 0x27bd0030\n\t"
 )
 #else
-extern void* cObjNode_cObjNode(void* self, void* param_2, void* config);
-#ifdef SSX3_HOST
-extern "C"
-#endif
 void* cTypeObjNode_cTypeObjNode(void* self, void* param_2, void* config) {
     cObjNode_cObjNode(self, param_2, config);
     *(int*)((char*)self + 0xC) = (int)(unsigned long)&D_00491E80;

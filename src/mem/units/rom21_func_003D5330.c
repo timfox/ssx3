@@ -1,4 +1,5 @@
 #include "common.h"
+// @objdiff-matched
 #include "ps2_match.h"
 
 extern void* cBucketMan_first(void* bucket_man, int bucket_id);

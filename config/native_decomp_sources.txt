@@ -40,9 +40,7 @@ src/object/bucketman.cpp
 src/object/bucketpurge.cpp
 src/object/cDebounceNode.cpp
 src/object/deadfadenode.cpp
-src/object/effectlink.cpp
 src/object/flexbridgenode.cpp
-src/object/flexrailnode.cpp
 src/object/floatingnode.cpp
 src/object/instancenode.cpp
 src/object/listnode.cpp

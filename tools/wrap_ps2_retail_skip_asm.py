@@ -71,6 +71,11 @@ def wrap_file(path: Path, symbols: set[str]) -> int:
             elif tag == "endif":
                 depth -= 1
         body = text[pos : i - len("#endif")]
+        body = re.sub(
+            r"#ifdef SSX3_HOST\s*\nextern \"C\"\s*\n#endif\s*\n",
+            "",
+            body,
+        )
         out.append(block)
         out.append(body)
         out.append("#endif\n")
