@@ -259,6 +259,9 @@ def main() -> int:
     if unit_total and unit_matched < unit_total:
         print("  obj/current uses *_ps2.s until a unit is tagged @objdiff-matched")
     print("  Verify/tag:                python3 tools/batch_verify_units.py")
+    print("  Jr-delay void/return:      python3 tools/auto_try_jr_delay_units.py")
+    print("                             python3 tools/auto_try_jr_delay_return.py")
+    print("  Tiny asm units:            python3 tools/bulk_generate_tiny_ps2_units.py")
     print("  Regenerate:                python3 tools/extract_object_c_units.py")
     print("## Still monolithic in yaml")
     bare = len(re.findall(r", asm\]\s*$", YAML.read_text(), re.M))
