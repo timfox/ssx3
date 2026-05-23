@@ -3,7 +3,7 @@
 #include "ps2_match.h"
 
 #ifdef SKIP_ASM
-int cListNode_isSentinel(void* node);
+void cListNode_isSentinel(void);
 PS2_RETAIL_ASM_ONLY(
     cListNode_isSentinel,
     ".word 0x8c820004\n\t"

@@ -22,6 +22,22 @@ from ps2_s_to_retail_asm import fn_declaration, retail_asm_from_ps2  # noqa: E40
 BOOT_KEYS = [
     "rom21_SYNCTASK_init",
     "rom21_func_003E6448",
+    "rom21_func_0036CBF8",
+    "rom21_func_0036CCB8",
+    "rom21_func_0036CE00",
+    "rom21_func_0036CE28",
+    "rom21_func_0036D008",
+    "rom21_func_0036D318",
+    "rom21_func_0036D3D8",
+    "rom21_func_0036D3E8",
+    "rom21_func_0036CFA8",
+    "rom21_func_0036D020",
+    "rom21_func_0036D1F0",
+    "rom21_func_0036D400",
+    "rom21_func_0036D428",
+    "rom21_func_0036D500",
+    "rom21_func_0034FC78",
+    "rom21_func_00370058",
     "rom21_SYNCTASK_add",
     "rom21_SYNCTASK_del",
     "rom21_SYNCTASK_run",
@@ -236,9 +252,13 @@ def symbol_from_key(key: str) -> str:
     return key.split("_", 1)[-1]
 
 
-def write_unit(key: str, ps2: Path, decl: str | None) -> Path:
+def write_unit(key: str, ps2: Path, decl: str | None, force: bool = False) -> Path | None:
     _, asm_body, _ = retail_asm_from_ps2(ps2)
     out = UNITS / f"{key}.c"
+    if out.is_file() and not force:
+        text = out.read_text(encoding="utf-8", errors="replace")
+        if "// @objdiff-matched" in text and "PS2_RETAIL_ASM_ONLY" not in text:
+            return None
     parts = [
         '#include "common.h"\n',
         '#include "ps2_match.h"\n\n',
@@ -258,6 +278,7 @@ def write_unit(key: str, ps2: Path, decl: str | None) -> Path:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--boot", action="store_true", help="Generate boot-critical set")
+    ap.add_argument("--force", action="store_true", help="Overwrite units even if hand-decompiled")
     ap.add_argument("keys", nargs="*", help="Explicit unit keys (e.g. rom21_SYNCTASK_init)")
     args = ap.parse_args()
 
@@ -273,7 +294,10 @@ def main() -> int:
             print(f"[units] skip {key}: no *_ps2.s")
             continue
         decl = None
-        write_unit(key, ps2, decl)
+        out = write_unit(key, ps2, decl, force=args.force)
+        if out is None:
+            print(f"[units] keep {key}.c (hand-decompiled, use --force to replace)")
+            continue
         print(f"[units] wrote {key}.c from {ps2.name}")
         written += 1
 

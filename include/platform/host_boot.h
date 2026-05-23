@@ -13,6 +13,8 @@ void* host_boot_ssx_app(void);
 void* host_boot_active_game(void);
 int host_boot_race_map_id(void);
 int host_boot_start_race_load(int track_id);
+/** load_mode → cGame_load; track_id → cGame_loadTrack (may differ for peak events). */
+int host_boot_start_race_load_mapped(int load_mode, int track_id);
 
 } // namespace host
 

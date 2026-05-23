@@ -2,12 +2,8 @@
 // @objdiff-matched
 #include "ps2_match.h"
 
-extern void* operator_new(unsigned long size);
-extern int D_00491F00;
-extern int D_00491E80;
-extern void func_003D5330(void* bucket_man, int bucket_id);
 #ifdef SKIP_ASM
-void* cBucketMan_first(void* bucket_man, int bucket_id);
+void cBucketMan_first(void);
 PS2_RETAIL_ASM_ONLY(
     cBucketMan_first,
     ".word 0x24020044\n\t"

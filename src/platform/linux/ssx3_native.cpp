@@ -407,7 +407,7 @@ int main(int argc, char** argv) {
     }
 
     std::cout << "runtime status: host I/O and decompiled utilities are linked.\n";
-    std::cout << "hint: --boot-game runs retail boot with Vulkan renderer (systemInit → cAppMan_mainLoop).\n";
+    std::cout << "hint: --boot-game runs retail boot → FE menu (peak room Cross = race when boot active).\n";
     std::cout << "hint: --boot-then-gfx runs retail init then FMV + Vulkan title menu.\n";
     std::cout << "hint: --gfx FE flow: title → menu → Freeride / Options → Game options.\n";
     std::cout << "hint: --game flyover on procedural alpine terrain (Vulkan 3D, retail world stubs).\n";

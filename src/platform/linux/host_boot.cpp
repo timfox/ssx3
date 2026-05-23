@@ -16,7 +16,9 @@
 #include "platform/host_game_state.h"
 #include "platform/host_ssxapp_state.h"
 #include "platform/host_gameplay.h"
+#include "platform/host_renderer.h"
 #include "platform/host_object.h"
+#include "platform/host_track_map.h"
 
 #include <cstdint>
 #include <cstring>
@@ -236,15 +238,36 @@ int host_boot_race_map_id(void) {
     return game ? game->map_id : 0;
 }
 
-int host_boot_start_race_load(int track_id) {
+int host_boot_start_race_load_mapped(int load_mode, int track_id) {
     void* ssx = host_boot_ssx_app();
     if (!ssx) {
         return 0;
     }
-    if (!cSSXApp_startGameLoad(ssx, track_id)) {
+    if (track_id < 0) {
+        track_id = load_mode;
+    }
+    track_log_disc_availability(track_id);
+
+    char log_buf[128];
+    std::snprintf(log_buf,
+                  sizeof(log_buf),
+                  "race load mode=%d track=%d (%s)",
+                  load_mode,
+                  track_id,
+                  track_map_label(track_id));
+    host_log("boot", log_buf);
+
+    if (!cSSXApp_startGameLoad(ssx, load_mode)) {
         return 0;
     }
+    if (auto* app = host::ssxapp_as_state(ssx)) {
+        app->pending_track = track_id;
+    }
     return cSSXApp_initload(ssx) ? 1 : 0;
+}
+
+int host_boot_start_race_load(int track_id) {
+    return host_boot_start_race_load_mapped(track_id, track_id);
 }
 
 bool run_game_boot_chain(int argc, char** argv) {
@@ -254,11 +277,28 @@ bool run_game_boot_chain(int argc, char** argv) {
     if (!g_app) {
         return false;
     }
-    cAppMan_run(g_app, argc, argv);
-    run_retail_boot_shutdown();
 
+    RendererConfig config{};
+    config.title = "SSX3";
+    config.width = 1280;
+    config.height = 720;
+    config.vsync = true;
+    config.shader_dir = "obj/host/shaders";
+    config.upscale = UpscaleBackend::Direct;
+
+    bool ok = false;
+    if (run_boot_fe_vulkan_session(config)) {
+        ok = true;
+        host_log("boot", "cAppMan_mainLoop — retail FE session finished");
+    } else {
+        host_log("boot", "FE unavailable — terrain cAppMan_mainLoop");
+        cAppMan_run(g_app, argc, argv);
+        ok = true;
+    }
+
+    run_retail_boot_shutdown();
     host_log("boot", "boot chain finished");
-    return true;
+    return ok;
 }
 
 } // namespace host

@@ -1,4 +1,5 @@
 #include "common.h"
+// @objdiff-matched
 #include "ps2_match.h"
 
 extern unsigned char D_004FF120[0x50];

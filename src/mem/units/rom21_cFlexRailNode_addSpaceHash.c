@@ -2,13 +2,8 @@
 // @objdiff-matched
 #include "ps2_match.h"
 
-extern void* func_002D1BE0(void* block);
-extern void func_00328F28(void* out_three_words, void* param_30);
-extern void func_00328C20(void* node, int mode, void* hash_root, void* stack_indices);
-extern char D_0048E808[];
-extern void* cMemMan_alloc(unsigned long size, void* heap_tag, unsigned long flags, void* heap_state);
 #ifdef SKIP_ASM
-void cFlexRailNode_addSpaceHash(void* self);
+void cFlexRailNode_addSpaceHash(void);
 PS2_RETAIL_ASM_ONLY(
     cFlexRailNode_addSpaceHash,
     ".word 0x27bdffb0\n\t"

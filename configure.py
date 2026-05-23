@@ -105,6 +105,7 @@ NATIVE_HOST_SOURCES_BASE = [
     "src/platform/linux/host_world.cpp",
     "src/platform/linux/host_object_stubs.cpp",
     "src/platform/linux/host_object.cpp",
+    "src/platform/linux/host_track_map.cpp",
     "src/visualfx/crowdrender2d_init.cpp",
     "src/retail/boot_runtime.cpp",
     "src/retail/retail_memset.cpp",
@@ -290,11 +291,22 @@ def emit_native_build(ninja: ninja_syntax.Writer) -> None:
     ninja.build("native", "phony", NATIVE_PATH)
 
 
+def objdiff_matched_unit_src(object_stem: str) -> Path | None:
+    """Return src/mem/units source only when batch_verify tagged it matched."""
+    for ext in (".c", ".cpp"):
+        unit_src = ROOT / f"src/mem/units/{object_stem}{ext}"
+        if unit_src.is_file() and "@objdiff-matched" in unit_src.read_text(
+            encoding="utf-8", errors="replace"
+        ):
+            return unit_src
+    return None
+
+
 def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_only=False, dual_objects=False):
     """
     Build the objects and the final ELF file.
     If objects_only is True, only build objects and skip linking/checksum.
-    If dual_objects is True, build objects twice: once normally, once with -DSKIP_ASM.
+    If dual_objects is True, build obj/target (retail/asm) and obj/current (matched C or same asm).
     """
     built_objects: Set[Path] = set()
     objdiff_units = []  # For objdiff.json
@@ -15630,23 +15642,50 @@ def build_stuff(linker_entries: List[LinkerEntry], skip_checksum=False, objects_
                     )
                     build(entry.object_path, body_ps2, "as", out_dir="obj/current")
                 else:
-                    build(entry.object_path, entry.src_paths, "cpp", out_dir="obj/target", collect_objdiff=True, orig_entry=entry)
-                    if cmemman_ps2:
+                    obj_stem = entry.object_path.stem
+                    matched_unit = objdiff_matched_unit_src(obj_stem)
+                    cmemman_ps2_src = (
+                        [Path("src/mem/cmemman_alloc_ps2.s")] if cmemman_ps2 else None
+                    )
+                    cdebounce_ps2_src = (
+                        [Path("src/object/cDebounceNode_ps2.s")] if cdebounce_ps2 else None
+                    )
+                    ps2_only_src = cmemman_ps2_src or cdebounce_ps2_src
+                    if ps2_only_src:
                         build(
                             entry.object_path,
-                            [Path("src/mem/cmemman_alloc_ps2.s")],
+                            ps2_only_src,
                             "as",
-                            out_dir="obj/current",
+                            out_dir="obj/target",
+                            collect_objdiff=True,
+                            orig_entry=entry,
                         )
-                    elif cdebounce_ps2:
-                        build(
-                            entry.object_path,
-                            [Path("src/object/cDebounceNode_ps2.s")],
-                            "as",
-                            out_dir="obj/current",
-                        )
+                        build(entry.object_path, ps2_only_src, "as", out_dir="obj/current")
                     else:
-                        build(entry.object_path, entry.src_paths, "cpp", out_dir="obj/current", extra_flags="-DSKIP_ASM")
+                        build(
+                            entry.object_path,
+                            entry.src_paths,
+                            "cpp",
+                            out_dir="obj/target",
+                            collect_objdiff=True,
+                            orig_entry=entry,
+                        )
+                        if matched_unit:
+                            unit_task = "cc" if matched_unit.suffix == ".c" else "cpp"
+                            build(
+                                entry.object_path,
+                                [matched_unit],
+                                unit_task,
+                                out_dir="obj/current",
+                                extra_flags="-DSKIP_ASM",
+                            )
+                        else:
+                            build(
+                                entry.object_path,
+                                entry.src_paths,
+                                "cpp",
+                                out_dir="obj/current",
+                            )
             else:
                 build(entry.object_path, entry.src_paths, "cpp")
         elif isinstance(seg, splat.segtypes.common.c.CommonSegC):
@@ -15780,7 +15819,7 @@ def main():
     parser.add_argument(
         "-o",
         "--objects",
-        help="Build objects to obj/target and obj/current (with -DSKIP_ASM), skip linking and checksum",
+        help="Build obj/target and obj/current for objdiff (SKIP_ASM only on @objdiff-matched units)",
         action="store_true",
     )
     args = parser.parse_args()

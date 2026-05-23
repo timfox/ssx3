@@ -70,17 +70,21 @@ def early_tail_yaml_offset() -> int | None:
     return None
 
 
-def object_c_units_progress() -> tuple[int, int]:
+def object_c_units_progress() -> tuple[int, int, int]:
     units_dir = ROOT / "src/mem/units"
     if not units_dir.is_dir():
-        return 0, 0
+        return 0, 0, 0
     units = list(units_dir.glob("*.cpp")) + list(units_dir.glob("*.c"))
-    matched = sum(
-        1
-        for p in units
-        if "@objdiff-matched" in p.read_text(encoding="utf-8", errors="replace")
-    )
-    return len(units), matched
+    matched = 0
+    readable = 0
+    for p in units:
+        text = p.read_text(encoding="utf-8", errors="replace")
+        if "@objdiff-matched" not in text:
+            continue
+        matched += 1
+        if "PS2_RETAIL_ASM_ONLY" not in text:
+            readable += 1
+    return len(units), matched, readable
 
 
 def native_skip_asm_sources() -> list[str]:
@@ -247,10 +251,11 @@ def main() -> int:
         print(f"  late function progress:    {late_split}/{late_split} (100%)")
     print(f"  late *_ps2.s stubs:        {late2_ps2}")
     print()
-    unit_total, unit_matched = object_c_units_progress()
+    unit_total, unit_matched, unit_readable = object_c_units_progress()
     print("## Object C units (rom21 SKIP_ASM → src/mem/units)")
     print(f"  Unit files:                {unit_total}")
     print(f"  objdiff-matched (@tag):    {unit_matched}/{unit_total}")
+    print(f"  readable EE C (no embed): {unit_readable}")
     if unit_total and unit_matched < unit_total:
         print("  obj/current uses *_ps2.s until a unit is tagged @objdiff-matched")
     print("  Verify/tag:                python3 tools/batch_verify_units.py")

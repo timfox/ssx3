@@ -64,6 +64,7 @@ struct HostCatalogSpawn {
 
 static constexpr std::uintptr_t kCatalogEeBase = 0x004FE770u;
 
+#if 0 /* Re-enable when EE catalog relocation is host-safe (see host_catalog_collect_spawns). */
 static std::uintptr_t host_catalog_normalize_ref(std::uintptr_t ref) {
     if (ref >= kCatalogEeBase && ref < kCatalogEeBase + kInstanceCatalogBytes) {
         return ref - kCatalogEeBase;
@@ -113,6 +114,15 @@ static void host_catalog_relocate_all() {
                                  kInstanceCatalogBytes - kInstanceCatalogTableBytes);
 }
 
+static bool host_catalog_ptr_in_buffer(const void* ptr) {
+    if (D_004FE770 == nullptr || ptr == nullptr) {
+        return false;
+    }
+    const auto* base = static_cast<const char*>(D_004FE770);
+    const auto* p = static_cast<const char*>(ptr);
+    return p >= base && p < base + kInstanceCatalogBytes;
+}
+
 static const void* host_catalog_resolve_ptr(std::uintptr_t ref) {
     if (D_004FE770 == nullptr || ref == 0) {
         return nullptr;
@@ -122,14 +132,24 @@ static const void* host_catalog_resolve_ptr(std::uintptr_t ref) {
     if (ref < kInstanceCatalogBytes) {
         return base + ref;
     }
-    if (ref >= kCatalogEeRamMin && ref < kCatalogEeRamMax) {
-        return reinterpret_cast<const void*>(ref);
-    }
+    /* Catalog blobs still contain retail EE addresses; never dereference them on host. */
+    (void)kCatalogEeRamMin;
+    (void)kCatalogEeRamMax;
     return nullptr;
 }
 
+static bool host_catalog_matrix_fits(const float* matrix) {
+    if (!host_catalog_ptr_in_buffer(matrix)) {
+        return false;
+    }
+    const auto* base = static_cast<const char*>(D_004FE770);
+    const auto* end = base + kInstanceCatalogBytes;
+    const auto* p = reinterpret_cast<const char*>(matrix);
+    return p + 64 <= end;
+}
+
 static bool host_catalog_read_translation(const float* matrix, float* x, float* y, float* z) {
-    if (matrix == nullptr) {
+    if (matrix == nullptr || !host_catalog_matrix_fits(matrix)) {
         return false;
     }
     float tx = matrix[12];
@@ -152,70 +172,26 @@ static bool host_catalog_read_translation(const float* matrix, float* x, float* 
 }
 
 static const float* host_catalog_resolve_matrix(const void* entry) {
-    if (entry == nullptr) {
+    if (!host_catalog_ptr_in_buffer(entry)) {
         return nullptr;
     }
     const auto* bytes = static_cast<const char*>(entry);
     const std::uintptr_t matrix_ref =
         static_cast<std::uintptr_t>(*(const std::uint32_t*)(bytes + 0xF8));
     const void* indirect = host_catalog_resolve_ptr(matrix_ref);
-    if (indirect != nullptr) {
+    if (indirect != nullptr && host_catalog_ptr_in_buffer(indirect)) {
         return static_cast<const float*>(indirect);
     }
-    return reinterpret_cast<const float*>(bytes + 0xF8);
+    return nullptr;
 }
+#endif
 
 static int host_catalog_collect_spawns(HostCatalogSpawn* out, int max_out, int section_id) {
-    if (out == nullptr || max_out <= 0 || D_004FE770 == nullptr) {
-        return 0;
-    }
-
-    int written = 0;
-    auto* base = static_cast<char*>(D_004FE770);
-    for (std::size_t region = 0; region < kInstanceCatalogBytes; region += kInstanceCatalogTableBytes) {
-        char* cursor = base + region;
-        const char* end = cursor + kInstanceCatalogTableBytes;
-        while (cursor + kInstanceCatalogSlotStride <= end && written < max_out) {
-            const std::uintptr_t entry_ref =
-                static_cast<std::uintptr_t>(*(const std::uint32_t*)(cursor + 0x2E0));
-            const void* entry = host_catalog_resolve_ptr(entry_ref);
-            if (entry == nullptr) {
-                entry = cursor;
-            }
-
-            float px = 0.0f;
-            float py = 0.0f;
-            float pz = 0.0f;
-            const float* matrix = host_catalog_resolve_matrix(entry);
-            if (!host_catalog_read_translation(matrix, &px, &py, &pz)) {
-                cursor += kInstanceCatalogSlotStride;
-                continue;
-            }
-
-            const int slot_section = *(const int*)(cursor + 0x10);
-            if (section_id >= 0 && slot_section >= 0 && slot_section != section_id) {
-                cursor += kInstanceCatalogSlotStride;
-                continue;
-            }
-
-            HostCatalogSpawn& spawn = out[written++];
-            spawn.px = px;
-            spawn.py = py;
-            spawn.pz = pz;
-            spawn.extent = 1.0f;
-            const float bound = *(const float*)(static_cast<const char*>(entry) + 0x18);
-            if (bound > 0.1f && bound < 500.0f) {
-                spawn.extent = bound;
-            }
-            spawn.section = slot_section;
-
-            cursor += kInstanceCatalogSlotStride;
-        }
-        if (written > 0) {
-            break;
-        }
-    }
-    return written;
+    (void)out;
+    (void)max_out;
+    (void)section_id;
+    /* Host uses procedural fallback spawns until EE catalog relocation is complete. */
+    return 0;
 }
 
 static HostObjectInterface g_host_object_interface;
@@ -287,68 +263,14 @@ static void host_try_load_instance_catalog(int track_id) {
         return;
     }
 
-    char path[128];
-    std::snprintf(path, sizeof(path), "data/world/map%02d.big", track_id);
-    std::vector<std::string> candidates = {
-        path,
-        "data/objects.big",
-        "data/world/objects.big",
-        "data/world/world.big",
-    };
-
-    for (const std::string& rel : candidates) {
-        if (!host::disc().exists(rel)) {
-            continue;
-        }
-        const auto archive = host::big_open(rel);
-        if (!archive || archive->entries.empty()) {
-            continue;
-        }
-
-        const host::BigEntry* best = nullptr;
-        for (const host::BigEntry& entry : archive->entries) {
-            if (entry.size < 0x800 || entry.offset + entry.size > archive->data.size()) {
-                continue;
-            }
-            if (best == nullptr || entry.size > best->size) {
-                best = &entry;
-            }
-        }
-        if (best == nullptr) {
-            continue;
-        }
-
-        const std::size_t copy_bytes =
-            std::min<std::size_t>(best->size, kInstanceCatalogBytes);
-        std::memset(D_004FE770, 0, kInstanceCatalogBytes);
-        std::memcpy(D_004FE770,
-                    reinterpret_cast<const char*>(archive->data.data()) + best->offset,
-                    copy_bytes);
-        if (copy_bytes > kInstanceCatalogTableBytes) {
-            const std::size_t tail_bytes =
-                std::min(copy_bytes - kInstanceCatalogTableBytes,
-                         kInstanceCatalogBytes - kInstanceCatalogTableBytes);
-            std::memcpy(static_cast<char*>(D_004FE770) + kInstanceCatalogTableBytes,
-                        reinterpret_cast<const char*>(archive->data.data()) + best->offset +
-                            kInstanceCatalogTableBytes,
-                        tail_bytes);
-        }
-
-        host_catalog_relocate_all();
-
-        HostCatalogSpawn probe[24];
-        const int probe_count = host_catalog_collect_spawns(probe, 24, -1);
-
-        char log_buf[192];
-        std::snprintf(log_buf,
-                      sizeof(log_buf),
-                      "instance_man catalog %s %zu bytes slots=%d -> D_004FE770",
-                      rel.c_str(),
-                      copy_bytes,
-                      probe_count);
-        host::host_log("object", log_buf);
-        return;
-    }
+    /* Keep D_004FE770 zeroed until EE catalog relocation is host-safe (see host_catalog_collect_spawns). */
+    std::memset(D_004FE770, 0, kInstanceCatalogBytes);
+    char log_buf[96];
+    std::snprintf(log_buf,
+                  sizeof(log_buf),
+                  "instance_man track %d: host catalog parse disabled (fallback spawns)",
+                  track_id);
+    host::host_log("object", log_buf);
 }
 
 static int host_spawn_section_instances(int section_id, int map_id) {

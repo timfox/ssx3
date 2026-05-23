@@ -1,11 +1,15 @@
 #include "platform/host_gameplay.h"
 
 #include "platform/host_boot.h"
+#include "platform/host_fe_assets.h"
+#include "platform/host_fe_context.h"
 #include "platform/host_game.h"
 #include "platform/host_game_state.h"
+#include "platform/host_menu_assets.h"
 #include "platform/host_pad.h"
 #include "platform/host_renderer.h"
 #include "platform/host_ssxapp.h"
+#include "platform/host_track_map.h"
 
 #include <SDL.h>
 #include <iostream>
@@ -18,6 +22,8 @@ void host_app_request_quit(void);
 }
 
 namespace host {
+
+bool run_fe_menu_session(Renderer* renderer, const std::string& asset_dir);
 
 bool run_world_gameplay_session(Renderer* renderer, void* ssx_app) {
     if (!renderer) {
@@ -56,7 +62,7 @@ bool run_world_gameplay_session(Renderer* renderer, void* ssx_app) {
         }
 
         if (ssx_app && (pad_pressed(PadButton::Cross) || pad_pressed(PadButton::Start))) {
-            if (host_boot_start_race_load(0)) {
+            if (host_boot_start_race_load_mapped(0, 0)) {
                 map_id = host_boot_race_map_id();
                 renderer->shutdown_world_gameplay();
                 if (!renderer->init_world_gameplay(map_id)) {
@@ -99,7 +105,7 @@ bool run_native_world_session(const RendererConfig& config, bool retail_boot_ini
             return false;
         }
         ssx_app = host_boot_ssx_app();
-        if (ssx_app && host_boot_start_race_load(0)) {
+        if (ssx_app && host_boot_start_race_load_mapped(0, 0)) {
             std::cout << "[world]   retail startGameLoad → initload (track 0, in_race)\n";
         } else {
             std::cerr << "[world]   warning: retail race load failed; flyover only\n";
@@ -140,12 +146,21 @@ bool run_boot_appman_vulkan_session(void* ssx_app) {
     }
 
     int map_id = host_boot_race_map_id();
+    if (ssx_app) {
+        auto* game = game_as_state(host_boot_active_game());
+        if (!game || !game->in_race) {
+            if (host_boot_start_race_load_mapped(0, 0)) {
+                map_id = host_boot_race_map_id();
+                std::cout << "[boot]    auto-loaded track 0 (retail cGame_loadTrack)\n";
+            }
+        }
+    }
     if (!renderer->init_world_gameplay(map_id)) {
         renderer->shutdown();
         return false;
     }
 
-    std::cout << "[boot]    cAppMan_mainLoop — Vulkan renderer (Enter=load track, Esc=quit)\n";
+    std::cout << "[boot]    cAppMan_mainLoop — Vulkan renderer (Enter=reload track, Esc=quit)\n";
 
     while (host_app_tick()) {
         renderer->poll_events();
@@ -162,7 +177,7 @@ bool run_boot_appman_vulkan_session(void* ssx_app) {
         }
 
         if (ssx_app && (pad_pressed(PadButton::Cross) || pad_pressed(PadButton::Start))) {
-            if (host_boot_start_race_load(0)) {
+            if (host_boot_start_race_load_mapped(0, 0)) {
                 map_id = host_boot_race_map_id();
                 renderer->shutdown_world_gameplay();
                 if (!renderer->init_world_gameplay(map_id)) {
@@ -192,6 +207,54 @@ bool run_boot_appman_vulkan_session(void* ssx_app) {
     renderer->shutdown_world_gameplay();
     renderer->shutdown();
     return true;
+}
+
+bool host_launch_race_from_fe(Renderer* renderer, int load_mode, int track_id) {
+    void* ssx_app = host_boot_ssx_app();
+    if (!renderer || !ssx_app) {
+        return false;
+    }
+
+    const std::string asset_dir = fe_menu_asset_dir();
+    renderer->shutdown_main_menu();
+
+    if (!host_boot_start_race_load_mapped(load_mode, track_id)) {
+        std::cerr << "[fe]      race load failed mode=" << load_mode << " track=" << track_id
+                  << '\n';
+        if (!renderer->init_main_menu(asset_dir)) {
+            return false;
+        }
+        return false;
+    }
+
+    std::cout << "[fe]      race load mode=" << load_mode << " track=" << track_id << " ("
+              << track_map_label(track_id) << ") → 3D session\n";
+    run_world_gameplay_session(renderer, ssx_app);
+
+    if (!renderer->init_main_menu(asset_dir)) {
+        std::cerr << "[fe]      failed to restore FE menu after race\n";
+        return false;
+    }
+    fe_set_frame_context(renderer->width(), renderer->height(), 1.0f / 60.0f);
+    return true;
+}
+
+bool run_boot_fe_vulkan_session(const RendererConfig& config) {
+    const std::string asset_dir = fe_menu_asset_dir();
+    if (!host_menu_assets_ready(asset_dir)) {
+        std::cerr << "[boot]    FE assets missing — run: python3 scripts/extract_host_assets.py --disc disc\n";
+        return false;
+    }
+
+    std::unique_ptr<Renderer, decltype(&destroy_renderer)> renderer(create_renderer(),
+                                                                   destroy_renderer);
+    if (!renderer || !renderer->init(config)) {
+        return false;
+    }
+
+    const bool ok = run_fe_menu_session(renderer.get(), asset_dir);
+    renderer->shutdown();
+    return ok;
 }
 
 } // namespace host

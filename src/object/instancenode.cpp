@@ -103,7 +103,7 @@ void func_00354850(void* self, void* param_2, void* config) {
 #endif
 #endif
 
-// Retail @ 0x0034FC78 — *(param_2+0x0C) = self (back-link into config).
+// Retail @ 0x0034FC78 — *(param_2+0x0C) = self (readable C in rom21_func_0034FC78.c).
 INCLUDE_ASM("mem/rom21_func_0034FC78", func_0034FC78);
 #ifdef SKIP_ASM
 #ifndef SSX3_HOST

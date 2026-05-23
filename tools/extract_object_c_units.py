@@ -326,6 +326,14 @@ def main() -> int:
             use_c = use_ps2 or "PS2_RETAIL_ASM" in body or has_decomp_c
             use_cpp = has_decomp_c and not use_ps2
             out = UNITS_DIR / f"{key}.{'cpp' if use_cpp else ('c' if use_c else 'cpp')}"
+            if out.is_file():
+                existing = out.read_text(encoding="utf-8", errors="replace")
+                if (
+                    "// @objdiff-matched" in existing
+                    and "PS2_RETAIL_ASM_ONLY" not in existing
+                ):
+                    pos = m.end()
+                    continue
             header = parent_header(text, text, glabel)
             if use_c:
                 header = re.sub(r"#ifdef SSX3_HOST.*?#endif\n\n?", "", header, flags=re.S)

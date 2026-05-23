@@ -24,6 +24,10 @@
 #include "platform/host_fe_font.h"
 #include "platform/host_menu_audio.h"
 #include "platform/host_pad.h"
+#include "platform/host_boot.h"
+#include "platform/host_gameplay.h"
+#include "platform/host_renderer.h"
+#include "platform/host_track_map.h"
 
 #include <SDL.h>
 
@@ -35,6 +39,7 @@ namespace host {
 namespace {
 
 struct FESession {
+    Renderer* renderer = nullptr;
     void* title = nullptr;
     void* main_menu = nullptr;
     void* mountain_room = nullptr;
@@ -51,6 +56,9 @@ struct FESession {
     int input_grace_frames = 0;
 };
 
+bool enter_mountain_room(FESession& session, const std::string& asset_dir);
+bool enter_single_event(FESession& session, const std::string& asset_dir);
+
 void fe_arm_input_grace(FESession& session, int frames = 4) {
     if (frames > session.input_grace_frames) {
         session.input_grace_frames = frames;
@@ -63,6 +71,33 @@ bool fe_consume_input_grace(FESession& session) {
     }
     --session.input_grace_frames;
     return true;
+}
+
+bool fe_launch_race_if_booted(FESession& session, int load_mode, int track_id) {
+    if (!session.renderer || !host_boot_ssx_app()) {
+        return false;
+    }
+    return host_launch_race_from_fe(session.renderer, load_mode, track_id);
+}
+
+void fe_restore_mountain_room(FESession& session, const std::string& asset_dir) {
+    if (!session.mountain_room) {
+        enter_mountain_room(session, asset_dir);
+        return;
+    }
+    cFEStateMountainRoom_onCreateScreen(session.mountain_room);
+    session.screen = FEScreen::MountainRoom;
+    host_menu_audio_on_screen(session.screen);
+}
+
+void fe_restore_single_event(FESession& session, const std::string& asset_dir) {
+    if (!session.single_event) {
+        enter_single_event(session, asset_dir);
+        return;
+    }
+    cFEStateEventSelect_onCreateScreen(session.single_event);
+    session.screen = FEScreen::SingleEvent;
+    host_menu_audio_on_screen(session.screen);
 }
 
 void destroy_main_menu(FESession& session) {
@@ -594,17 +629,27 @@ void handle_single_event_input(FESession& session, const std::string& asset_dir)
     }
     host_menu_audio_play_sfx(MenuSfx::Confirm);
     const int mode = fe_single_event_get_selected(session.single_event);
+    const int load_mode = track_load_mode_for_single_event(mode);
+    const int track_id = track_map_id_for_single_event(mode);
+
+    if (fe_launch_race_if_booted(session, load_mode, track_id)) {
+        fe_restore_single_event(session, asset_dir);
+        std::cout << "[fe]      Single Event \"" << fe_single_event_label(mode) << "\" → race ("
+                  << track_map_label(track_id) << ")\n";
+        return;
+    }
+
     char body[256];
     std::snprintf(body,
                   sizeof(body),
-                  "%s — retail event select/load not ported (cFEStateEventSelect).",
+                  "%s — run with --boot-game to load this event on host.",
                   fe_single_event_label(mode));
     destroy_message(session);
     enter_message(session,
                   asset_dir,
                   host_fe_message_create(asset_dir.c_str(), fe_single_event_screen_title(), body),
                   FEScreen::SingleEvent,
-                  "single event mode stub");
+                  "single event (needs --boot-game)");
 }
 
 void handle_peak_room_input(FESession& session, const std::string& asset_dir) {
@@ -633,6 +678,16 @@ void handle_peak_room_input(FESession& session, const std::string& asset_dir) {
     host_menu_audio_play_sfx(MenuSfx::Confirm);
     const int peak = fe_peak_room_get_peak(session.peak_room);
     const int mode = fe_peak_room_get_selected(session.peak_room);
+
+    const int load_mode = track_load_mode_for_peak_event(mode);
+    const int track_id = track_map_id_for_peak_event(peak, mode);
+    if (fe_launch_race_if_booted(session, load_mode, track_id)) {
+        destroy_peak_room(session);
+        fe_restore_mountain_room(session, asset_dir);
+        std::cout << "[fe]      returned from race (" << track_map_label(track_id) << ")\n";
+        return;
+    }
+
     if (!enter_peak_event_stub(session, asset_dir, peak, mode)) {
         std::cout << "[fe]      peak event stub open failed\n";
     }
@@ -662,6 +717,17 @@ void handle_mountain_room_input(FESession& session, const std::string& asset_dir
         destroy_mountain_room(session);
         enter_main_menu(session, asset_dir);
         return;
+    }
+    if (pad_pressed(PadButton::Start)) {
+        host_menu_audio_play_sfx(MenuSfx::Start);
+        const int peak = fe_mountain_room_get_peak(session.mountain_room);
+        if (fe_launch_race_if_booted(session, 0, track_map_id_for_mountain_peak(peak))) {
+            fe_restore_mountain_room(session, asset_dir);
+            std::cout << "[fe]      Freeride quick race (" << track_map_label(
+                             track_map_id_for_mountain_peak(peak))
+                      << ")\n";
+            return;
+        }
     }
     if (pad_pressed(PadButton::Cross)) {
         host_menu_audio_play_sfx(MenuSfx::Confirm);
@@ -880,6 +946,7 @@ bool run_fe_menu_session(Renderer* renderer, const std::string& asset_dir) {
     }
 
     FESession session{};
+    session.renderer = renderer;
     session.title = host_fe_title_create(asset_dir.c_str());
     if (!session.title) {
         renderer->shutdown_main_menu();
@@ -893,6 +960,9 @@ bool run_fe_menu_session(Renderer* renderer, const std::string& asset_dir) {
 
     std::cout << "[fe]      SSX3 front-end (retail FE states → Vulkan + decomp VFX/audio)\n";
     std::cout << "[fe]      D-Pad navigate · Cross/E confirm · Triangle/W back · Square/A options · Start/Space title\n";
+    if (host_boot_ssx_app()) {
+        std::cout << "[fe]      Boot session: mountain Start or peak Cross = race · Single Event Cross = race\n";
+    }
 
     const Uint64 freq = SDL_GetPerformanceFrequency();
     Uint64 last_ticks = SDL_GetPerformanceCounter();
