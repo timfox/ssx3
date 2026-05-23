@@ -8,7 +8,7 @@ Goal: `./out/ssx3-native` runs **decompiled retail C** behind a **host HAL**, no
 |-------|--------|
 | Splat / per-function segments | **Done** (~15k units: early, mem, dcd10, late) |
 | objdiff reference (`obj/target`) | **Done** (retail `*_ps2.s` per segment) |
-| Matching C (`obj/current`) | **207** `@objdiff-matched` units; **1** readable EE C (`func_0034FC78`); object graph via `extract_object_c_units.py` |
+| Matching C (`obj/current`) | **376** `@objdiff-matched` units; **168** readable EE C (jr-delay `void f(void){}` + `func_0034FC78` back-link); `tools/auto_try_jr_delay_units.py` |
 | Native binary | **Builds** — **53** decomp TUs; smoke, `--gfx` FE, `--boot-game` (Enter → load track), `--game` flyover |
 | World (native) | **HAL state** — `HostWorld` / `HostWorldView`; `cGame_load` → `host_world_create` → `cWorld_resetMap` |
 | Playable race | **Started** — `--boot-then-game`: retail load + `cRider_initOnce` + Vulkan terrain per `map_id`; `cSSXApp_preUpdate` ticks race |

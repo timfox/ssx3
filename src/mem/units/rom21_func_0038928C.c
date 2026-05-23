@@ -1,0 +1,10 @@
+#include "common.h"
+#include "ps2_match.h"
+
+#ifdef SKIP_ASM
+void func_0038928C(void);
+PS2_RETAIL_ASM_ONLY(
+    func_0038928C,
+    ".word 0x00000000\n\t"
+)
+#endif
